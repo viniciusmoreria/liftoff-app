@@ -1,22 +1,11 @@
 import React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { Box } from 'native-base';
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={{ color: '#fff' }}>
-        Open up App.tsx to start working on your app!
-      </Text>
-    </View>
+    <Box flex={1} alignItems="center" justifyContent="center" bg="black">
+      Hello from Native Base!
+    </Box>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#050506',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
