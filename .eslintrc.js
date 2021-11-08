@@ -19,6 +19,15 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     'no-use-before-define': 'off',
     'no-console': ['error', { allow: ['tron'] }],
+    'import/prefer-default-export': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     'import/order': [
       'error',
       {
@@ -38,5 +47,11 @@ module.exports = {
         },
       },
     ],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+      'babel-plugin-root-import': {},
+    },
   },
 };
