@@ -20,7 +20,7 @@ module.exports = function (api) {
             '.png',
           ],
           alias: {
-            '@components': './src/components',
+            '@pages': './src/pages',
           },
         },
       ],
