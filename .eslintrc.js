@@ -54,4 +54,7 @@ module.exports = {
       typescript: {},
     },
   },
+  globals: {
+    __DEV__: true,
+  },
 };
