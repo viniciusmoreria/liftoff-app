@@ -2,5 +2,5 @@
 
 Spacex launches tracker, being built with react native.
 
-[![Continuous Integration](https://github.com/viniciusmoreria/liftoff/actions/workflows/ci.yaml/badge.svg)](https://github.com/viniciusmoreria/liftoff/actions/workflows/ci.yaml)
-[![Expo Publish](https://github.com/viniciusmoreria/liftoff/actions/workflows/cd-expo.yaml/badge.svg)](https://github.com/viniciusmoreria/liftoff/actions/workflows/cd-expo.yaml)
+[![Build](https://github.com/viniciusmoreria/liftoff/actions/workflows/ci.yml/badge.svg)](https://github.com/viniciusmoreria/liftoff/actions/workflows/ci.yml)
+[![Deployment](https://github.com/viniciusmoreria/liftoff/actions/workflows/cd-expo.yml/badge.svg)](https://github.com/viniciusmoreria/liftoff/actions/workflows/cd-expo.yml)
