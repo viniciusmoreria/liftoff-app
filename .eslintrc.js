@@ -20,6 +20,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'no-console': ['error', { allow: ['tron'] }],
     'import/prefer-default-export': 'off',
+    camelcase: 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -52,5 +53,8 @@ module.exports = {
     'import/resolver': {
       typescript: {},
     },
+  },
+  globals: {
+    __DEV__: true,
   },
 };
