@@ -21,6 +21,9 @@ module.exports = function (api) {
           ],
           alias: {
             '@pages': './src/pages',
+            '@types': './src/@types',
+            '@config': './src/config',
+            '@hooks': './src/hooks',
           },
         },
       ],
