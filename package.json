@@ -8,7 +8,9 @@
     "ios": "expo start -c --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "yarn eslint --ext '.js,.ts,.tsx' --fix src"
+    "lint": "yarn eslint --ext '.js,.ts,.tsx' --fix src",
+    "type-check": "tsc --noEmit",
+    "format": "yarn prettier --write --list-different"
   },
   "dependencies": {
     "expo": "^44.0.0-beta.1",
