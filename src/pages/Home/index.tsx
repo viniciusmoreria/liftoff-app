@@ -1,40 +1,51 @@
 import React from 'react';
 
-import { Box, Image, Text, ZStack } from 'native-base';
+import { Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
+import { TouchableOpacity } from 'react-native';
 
-import { UpcomingBackground } from '@assets/images';
+import NextLaunch from '@components/nextlaunch';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
+import { useRockets } from '@hooks/useRockets';
+import { greeting } from '@utils/helpers';
 
 export default function Home() {
-  const { data } = useUpcomingLaunches();
-  return (
-    <Box flex={1} bg="background" px="4" safeArea>
-      <ZStack mt="16" w="100%" h={250} justifyContent="flex-end">
-        <Image
-          source={UpcomingBackground}
-          h="100%"
-          w="full"
-          resizeMode="cover"
-          borderRadius="3xl"
-          alt="spacex-rockets-launch"
-        />
+  const {
+    data: launches,
+    isLoadingError,
+    refetch: refetchLaunches,
+  } = useUpcomingLaunches();
+  const { data: rockets, refetch: refetchRockets } = useRockets();
 
-        <Box
-          w="100%"
-          p="4"
-          bg={{
-            linearGradient: {
-              colors: ['transparent', 'background'],
-              start: [0, 0.2],
-              end: [0, 1],
-            },
-          }}
-        >
-          <Text color="white" fontSize="3xl" fontWeight={700}>
-            {!!data?.length && data[0]?.name}
+  const handleRefreshData = React.useCallback(async () => {
+    await refetchLaunches();
+    await refetchRockets();
+  }, [refetchLaunches, refetchRockets]);
+
+  if (isLoadingError || !launches || !rockets) {
+    return (
+      <Center flex={1} bg="background">
+        <Heading color="primary" size="sm" mb="4">
+          Error loading launches
+        </Heading>
+
+        <TouchableOpacity onPress={handleRefreshData}>
+          <Text color="white" fontSize="sm" fontWeight={700}>
+            Try again
           </Text>
-        </Box>
-      </ZStack>
-    </Box>
+        </TouchableOpacity>
+      </Center>
+    );
+  }
+
+  return (
+    <ScrollView flex={1} bg="background" px="4">
+      <StatusBar animated barStyle="light-content" />
+
+      <Heading color="white" fontWeight="500" mt="16" pl="4">
+        {greeting()}
+      </Heading>
+
+      <NextLaunch />
+    </ScrollView>
   );
 }
