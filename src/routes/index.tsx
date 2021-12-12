@@ -13,7 +13,7 @@ import LottieView from 'lottie-react-native';
 import { Center } from 'native-base';
 
 import { LoadingAnimation } from '@assets/animations';
-import { useUpcomingLaunches } from '@hooks/useLaunches';
+import { usePastLaunches, useUpcomingLaunches } from '@hooks/useLaunches';
 import { useRockets } from '@hooks/useRockets';
 
 import AppRoutes from './app.routes';
@@ -21,6 +21,7 @@ import AppRoutes from './app.routes';
 const Routes = () => {
   const { isLoading: isLoadingRockets } = useRockets();
   const { isLoading: isLoadingLaunches } = useUpcomingLaunches();
+  const { isLoading: isLoadingPastLaunches } = usePastLaunches();
 
   const [isFontsLoaded] = useFonts({
     Roboto_100Thin,
@@ -31,7 +32,12 @@ const Routes = () => {
     Roboto_900Black,
   });
 
-  if (!isFontsLoaded || isLoadingRockets || isLoadingLaunches) {
+  if (
+    !isFontsLoaded ||
+    isLoadingRockets ||
+    isLoadingLaunches ||
+    isLoadingPastLaunches
+  ) {
     return (
       <Center flex={1} bg="background">
         <LottieView

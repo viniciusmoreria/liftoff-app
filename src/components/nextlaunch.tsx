@@ -23,22 +23,31 @@ export default function NextLaunch() {
   }
 
   return (
-    <Box mt="8" w="100%" p="4">
-      <Text color="white" fontSize="xl" fontWeight={700}>
+    <Box mt="8" w="100%" py="4" justifyContent="center">
+      <Text color="white" fontSize="lg" fontWeight={900}>
         {launches[0].name}
       </Text>
 
       <Row justifyContent="space-between" mt="1">
         <Box borderBottomColor="accent" borderBottomWidth={1}>
-          <Text color="white" fontSize="sm" fontWeight={700}>
+          <Text color="primary" fontSize="sm" fontWeight={700}>
             T-Minus
           </Text>
         </Box>
 
-        <Text color="white" fontSize="sm" fontWeight={700}>
-          {tMinus.days} <Divider /> {tMinus.hours} <Divider /> {tMinus.minutes}{' '}
-          <Divider /> {tMinus.seconds}s
-        </Text>
+        <Row>
+          {Number(tMinus.days) >= 1 && (
+            <Text color="primary" fontSize="sm" fontWeight={700}>
+              {Number(tMinus.days) > 1
+                ? `${tMinus.days} days `
+                : `${tMinus.days} day `}
+              <Divider />{' '}
+            </Text>
+          )}
+          <Text color="primary" fontSize="sm" fontWeight={700}>
+            {tMinus.hours}:{tMinus.minutes}:{tMinus.seconds}
+          </Text>
+        </Row>
       </Row>
     </Box>
   );

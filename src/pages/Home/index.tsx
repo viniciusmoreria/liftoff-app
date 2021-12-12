@@ -1,9 +1,19 @@
 import React from 'react';
 
-import { Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
+import {
+  Box,
+  Center,
+  Heading,
+  Row,
+  ScrollView,
+  StatusBar,
+  Text,
+} from 'native-base';
 import { TouchableOpacity } from 'react-native';
 
 import NextLaunch from '@components/nextlaunch';
+import PastLaunches from '@components/pastlaunches';
+import UpcomingLaunches from '@components/upcominglaunches';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
 import { useRockets } from '@hooks/useRockets';
 import { greeting } from '@utils/helpers';
@@ -39,13 +49,39 @@ export default function Home() {
 
   return (
     <ScrollView flex={1} bg="background" px="4">
-      <StatusBar animated barStyle="light-content" />
+      <Box pl="4">
+        <StatusBar animated barStyle="light-content" />
 
-      <Heading color="white" fontWeight="500" mt="16" pl="4">
-        {greeting()}
-      </Heading>
+        <Heading color="white" fontWeight="500" mt="16">
+          {greeting()}
+        </Heading>
 
-      <NextLaunch />
+        <NextLaunch />
+
+        <Row alignItems="center" justifyContent="space-between">
+          <Heading color="white" mt="8" size="sm" fontWeight={900}>
+            Upcoming
+          </Heading>
+
+          <Heading color="white" mt="8" size="xs" fontWeight={900}>
+            See all
+          </Heading>
+        </Row>
+
+        <UpcomingLaunches />
+
+        <Row alignItems="center" justifyContent="space-between">
+          <Heading color="white" mt="8" size="sm" fontWeight={900}>
+            Recent
+          </Heading>
+
+          <Heading color="white" mt="8" size="xs" fontWeight={900}>
+            See all
+          </Heading>
+        </Row>
+
+        <PastLaunches />
+      </Box>
     </ScrollView>
   );
 }

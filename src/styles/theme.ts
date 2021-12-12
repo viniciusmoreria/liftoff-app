@@ -34,6 +34,7 @@ const theme = extendTheme({
   colors: {
     background: '#040812',
     primary: '#D3E3E6',
+    secondary: '#2525254e',
     accent: '#DD4C5A',
   },
 });
