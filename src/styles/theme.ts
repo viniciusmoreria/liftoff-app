@@ -30,6 +30,11 @@ const theme = extendTheme({
     body: 'Roboto',
     mono: 'Roboto',
   },
+
+  colors: {
+    background: '#050506',
+    primary: '#D3E3E6',
+  },
 });
 
 export default theme;
