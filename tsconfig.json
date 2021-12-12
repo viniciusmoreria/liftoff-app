@@ -8,6 +8,9 @@
       "@types/*": ["types/*"],
       "@config/*": ["config/*"],
       "@hooks/*": ["hooks/*"],
+      "@assets/*": ["assets/*"],
+      "@utils/*": ["utils/*"],
+      "@components/*": ["components/*"],
     }
   },
 }

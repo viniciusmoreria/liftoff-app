@@ -1,21 +1,51 @@
 import React from 'react';
 
-import { Box, Text } from 'native-base';
+import { Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
+import { TouchableOpacity } from 'react-native';
 
+import NextLaunch from '@components/nextlaunch';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
+import { useRockets } from '@hooks/useRockets';
+import { greeting } from '@utils/helpers';
 
 export default function Home() {
-  const { data } = useUpcomingLaunches();
+  const {
+    data: launches,
+    isLoadingError,
+    refetch: refetchLaunches,
+  } = useUpcomingLaunches();
+  const { data: rockets, refetch: refetchRockets } = useRockets();
+
+  const handleRefreshData = React.useCallback(async () => {
+    await refetchLaunches();
+    await refetchRockets();
+  }, [refetchLaunches, refetchRockets]);
+
+  if (isLoadingError || !launches || !rockets) {
+    return (
+      <Center flex={1} bg="background">
+        <Heading color="primary" size="sm" mb="4">
+          Error loading launches
+        </Heading>
+
+        <TouchableOpacity onPress={handleRefreshData}>
+          <Text color="white" fontSize="sm" fontWeight={700}>
+            Try again
+          </Text>
+        </TouchableOpacity>
+      </Center>
+    );
+  }
 
   return (
-    <Box flex={1} alignItems="center" justifyContent="center" bg="black">
-      <Text color="white" fontSize="2xl" fontWeight={900}>
-        Next launch:
-      </Text>
+    <ScrollView flex={1} bg="background" px="4">
+      <StatusBar animated barStyle="light-content" />
 
-      <Text color="white" fontSize="3xl">
-        {!!data?.length && data[0]?.name}
-      </Text>
-    </Box>
+      <Heading color="white" fontWeight="500" mt="16" pl="4">
+        {greeting()}
+      </Heading>
+
+      <NextLaunch />
+    </ScrollView>
   );
 }
