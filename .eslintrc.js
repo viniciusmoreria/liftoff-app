@@ -2,7 +2,11 @@ module.exports = {
   env: {
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:prettier/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -56,5 +60,6 @@ module.exports = {
   },
   globals: {
     __DEV__: true,
+    NodeJS: true,
   },
 };
