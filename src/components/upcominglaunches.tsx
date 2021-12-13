@@ -7,7 +7,7 @@ import { useUpcomingLaunches } from '@hooks/useLaunches';
 export default function UpcomingLaunches() {
   const { data: launches } = useUpcomingLaunches();
 
-  if (!launches) {
+  if (!launches?.length) {
     return null;
   }
 

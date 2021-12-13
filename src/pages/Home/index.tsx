@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
+import { Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 
 import NextLaunch from '@components/nextlaunch';
@@ -50,19 +50,17 @@ export default function Home() {
 
   return (
     <ScrollView flex={1} bg="background" px="4">
-      <Box pl="4">
-        <StatusBar animated barStyle="light-content" />
+      <StatusBar animated barStyle="light-content" />
 
-        <Heading color="white" fontWeight="500" mt="16">
-          {greeting()}
-        </Heading>
+      <Heading color="white" fontWeight="500" mt="16">
+        {greeting()}
+      </Heading>
 
-        <NextLaunch />
+      <NextLaunch />
 
-        <UpcomingLaunches />
+      <UpcomingLaunches />
 
-        <PastLaunches />
-      </Box>
+      <PastLaunches />
     </ScrollView>
   );
 }
