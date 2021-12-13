@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Heading, Row, ScrollView, Text } from 'native-base';
+import { Box, Row, ScrollView, Text } from 'native-base';
 
 import { useUpcomingLaunches } from '@hooks/useLaunches';
 
@@ -12,15 +12,15 @@ export default function UpcomingLaunches() {
   }
 
   return (
-    <>
+    <Box mt="6">
       <Row alignItems="center" justifyContent="space-between">
-        <Heading color="white" mt="8" size="sm" fontWeight={900}>
+        <Text color="white" fontSize="lg" fontWeight={700}>
           Upcoming
-        </Heading>
+        </Text>
 
-        <Heading color="white" mt="8" size="xs" fontWeight={900}>
+        <Text color="white" fontSize="sm" fontWeight={700}>
           See all
-        </Heading>
+        </Text>
       </Row>
 
       <ScrollView mt="4" w="100%" py="4" horizontal>
@@ -36,6 +36,6 @@ export default function UpcomingLaunches() {
           );
         })}
       </ScrollView>
-    </>
+    </Box>
   );
 }
