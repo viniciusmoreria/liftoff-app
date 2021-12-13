@@ -1,31 +1,41 @@
 import React from 'react';
 
-import { Box, Row, ScrollView, Text } from 'native-base';
+import { Box, Heading, Row, ScrollView, Text } from 'native-base';
 
 import { useUpcomingLaunches } from '@hooks/useLaunches';
-import { useRockets } from '@hooks/useRockets';
 
 export default function UpcomingLaunches() {
   const { data: launches } = useUpcomingLaunches();
-  const { data: rockets } = useRockets();
 
-  if (!launches || !rockets) {
+  if (!launches) {
     return null;
   }
 
   return (
-    <ScrollView mt="4" w="100%" py="4" horizontal>
-      {launches.slice(1, 6).map((launch) => {
-        return (
-          <Box key={launch.id} mr="4">
-            <Text color="white" fontSize="lg" fontWeight={900}>
-              {launch.name}
-            </Text>
+    <>
+      <Row alignItems="center" justifyContent="space-between">
+        <Heading color="white" mt="8" size="sm" fontWeight={900}>
+          Upcoming
+        </Heading>
 
-            <Row justifyContent="space-between" mt="1" />
-          </Box>
-        );
-      })}
-    </ScrollView>
+        <Heading color="white" mt="8" size="xs" fontWeight={900}>
+          See all
+        </Heading>
+      </Row>
+
+      <ScrollView mt="4" w="100%" py="4" horizontal>
+        {launches.slice(1, 6).map((launch) => {
+          return (
+            <Box key={launch.id} mr="4">
+              <Text color="white" fontSize="lg" fontWeight={900}>
+                {launch.name}
+              </Text>
+
+              <Row justifyContent="space-between" mt="1" />
+            </Box>
+          );
+        })}
+      </ScrollView>
+    </>
   );
 }
