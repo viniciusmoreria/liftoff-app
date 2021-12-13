@@ -5,12 +5,10 @@ import { Box, Row, Text } from 'native-base';
 
 import useDate from '@hooks/useDate';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
-import { useRockets } from '@hooks/useRockets';
 import { getTMinus } from '@utils/helpers';
 
 export default function NextLaunch() {
   const { data: launches } = useUpcomingLaunches();
-  const { data: rockets } = useRockets();
 
   const date = useDate({
     date: launches?.length ? fromUnixTime(launches[0].date_unix) : new Date(),
@@ -18,7 +16,7 @@ export default function NextLaunch() {
 
   const tMinus = getTMinus(date);
 
-  if (!launches || !rockets) {
+  if (!launches) {
     return null;
   }
 
