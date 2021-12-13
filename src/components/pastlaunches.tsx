@@ -18,7 +18,7 @@ export default function PastLaunches() {
           Recent
         </Heading>
 
-        <Heading color="primary" mt="8" size="xs" fontWeight={900}>
+        <Heading color="white" mt="8" size="xs" fontWeight={900}>
           See all
         </Heading>
       </Row>
