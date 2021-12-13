@@ -9,6 +9,8 @@ import UpcomingLaunches from '@components/upcominglaunches';
 import { usePastLaunches, useUpcomingLaunches } from '@hooks/useLaunches';
 import { greeting } from '@utils/helpers';
 
+import theme from '../../styles/theme';
+
 export default function Home() {
   const { isError: errorUpcomingLaunches, refetch: refetchLaunches } =
     useUpcomingLaunches();
@@ -28,7 +30,16 @@ export default function Home() {
           Error loading launches
         </Heading>
 
-        <TouchableOpacity onPress={handleRefreshData}>
+        <TouchableOpacity
+          onPress={handleRefreshData}
+          style={{
+            backgroundColor: theme.colors.secondary,
+            padding: 10,
+            width: 100,
+            alignItems: 'center',
+            borderRadius: 16,
+          }}
+        >
           <Text color="white" fontSize="sm" fontWeight={700}>
             Try again
           </Text>

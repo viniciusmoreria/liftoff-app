@@ -28,21 +28,21 @@ export default function NextLaunch() {
 
       <Row justifyContent="space-between" mt="1">
         <Box borderBottomColor="accent" borderBottomWidth={1}>
-          <Text color="primary" fontSize="sm" fontWeight={700}>
+          <Text color="white" fontSize="sm" fontWeight={700}>
             T-Minus
           </Text>
         </Box>
 
         <Row>
           {Number(tMinus.days) >= 1 && (
-            <Text color="primary" fontSize="sm" fontWeight={700}>
+            <Text color="white" fontSize="sm" fontWeight={700}>
               {Number(tMinus.days) > 1
                 ? `${tMinus.days} days `
                 : `${tMinus.days} day `}
               <Divider />{' '}
             </Text>
           )}
-          <Text color="primary" fontSize="sm" fontWeight={700}>
+          <Text color="white" fontSize="sm" fontWeight={700}>
             {tMinus.hours}:{tMinus.minutes}:{tMinus.seconds}
           </Text>
         </Row>

@@ -33,8 +33,8 @@ const theme = extendTheme({
 
   colors: {
     background: '#040812',
-    primary: '#D3E3E6',
-    secondary: '#2525254e',
+    primary: '#c0c0c0',
+    secondary: '#111424',
     accent: '#DD4C5A',
   },
 });
