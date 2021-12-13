@@ -16,7 +16,7 @@ export default function NextLaunch() {
 
   const tMinus = getTMinus(date);
 
-  if (!launches) {
+  if (!launches?.length) {
     return null;
   }
 
