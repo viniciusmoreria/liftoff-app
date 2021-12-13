@@ -1,44 +1,45 @@
 import React from 'react';
 
-import {
-  Box,
-  Center,
-  Heading,
-  Row,
-  ScrollView,
-  StatusBar,
-  Text,
-} from 'native-base';
+import { Box, Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 
 import NextLaunch from '@components/nextlaunch';
 import PastLaunches from '@components/pastlaunches';
 import UpcomingLaunches from '@components/upcominglaunches';
-import { useUpcomingLaunches } from '@hooks/useLaunches';
-import { useRockets } from '@hooks/useRockets';
+import { usePastLaunches, useUpcomingLaunches } from '@hooks/useLaunches';
 import { greeting } from '@utils/helpers';
 
+import theme from '../../styles/theme';
+
 export default function Home() {
-  const {
-    data: launches,
-    isLoadingError,
-    refetch: refetchLaunches,
-  } = useUpcomingLaunches();
-  const { data: rockets, refetch: refetchRockets } = useRockets();
+  const { isError: errorUpcomingLaunches, refetch: refetchLaunches } =
+    useUpcomingLaunches();
+
+  const { isError: errorPastLaunches, refetch: refetchPastLaunches } =
+    usePastLaunches();
 
   const handleRefreshData = React.useCallback(async () => {
     await refetchLaunches();
-    await refetchRockets();
-  }, [refetchLaunches, refetchRockets]);
+    await refetchPastLaunches();
+  }, [refetchLaunches, refetchPastLaunches]);
 
-  if (isLoadingError || !launches || !rockets) {
+  if (errorUpcomingLaunches || errorPastLaunches) {
     return (
       <Center flex={1} bg="background">
         <Heading color="primary" size="sm" mb="4">
           Error loading launches
         </Heading>
 
-        <TouchableOpacity onPress={handleRefreshData}>
+        <TouchableOpacity
+          onPress={handleRefreshData}
+          style={{
+            backgroundColor: theme.colors.secondary,
+            padding: 10,
+            width: 100,
+            alignItems: 'center',
+            borderRadius: 16,
+          }}
+        >
           <Text color="white" fontSize="sm" fontWeight={700}>
             Try again
           </Text>
@@ -58,27 +59,7 @@ export default function Home() {
 
         <NextLaunch />
 
-        <Row alignItems="center" justifyContent="space-between">
-          <Heading color="white" mt="8" size="sm" fontWeight={900}>
-            Upcoming
-          </Heading>
-
-          <Heading color="white" mt="8" size="xs" fontWeight={900}>
-            See all
-          </Heading>
-        </Row>
-
         <UpcomingLaunches />
-
-        <Row alignItems="center" justifyContent="space-between">
-          <Heading color="white" mt="8" size="sm" fontWeight={900}>
-            Recent
-          </Heading>
-
-          <Heading color="white" mt="8" size="xs" fontWeight={900}>
-            See all
-          </Heading>
-        </Row>
 
         <PastLaunches />
       </Box>
