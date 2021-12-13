@@ -52,7 +52,7 @@ export default function Home() {
     <ScrollView flex={1} bg="background" px="4">
       <StatusBar animated barStyle="light-content" />
 
-      <Heading color="white" fontWeight="500" mt="16">
+      <Heading color="white" fontWeight="500" mt="24">
         {greeting()}
       </Heading>
 

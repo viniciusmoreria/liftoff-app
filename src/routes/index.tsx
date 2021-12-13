@@ -12,7 +12,7 @@ import {
 import LottieView from 'lottie-react-native';
 import { Center } from 'native-base';
 
-import { LoadingAnimation } from '@assets/animations';
+import { RedDotAnimation } from '@assets/animations';
 import { usePastLaunches, useUpcomingLaunches } from '@hooks/useLaunches';
 
 import AppRoutes from './app.routes';
@@ -34,12 +34,7 @@ const Routes = () => {
   if (!isFontsLoaded || isLoadingLaunches || isLoadingPastLaunches) {
     return (
       <Center flex={1} bg="background">
-        <LottieView
-          source={LoadingAnimation}
-          autoPlay
-          loop
-          style={{ width: 60 }}
-        />
+        <LottieView source={RedDotAnimation} autoPlay style={{ width: 100 }} />
       </Center>
     );
   }
