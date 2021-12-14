@@ -2,33 +2,33 @@ import { extendTheme } from 'native-base';
 
 const theme = extendTheme({
   fontConfig: {
-    Roboto: {
+    Inter: {
       100: {
-        normal: 'Roboto_100Thin',
+        normal: 'Inter_100Thin',
       },
       300: {
-        normal: 'Roboto_300Light',
+        normal: 'Inter_300Light',
       },
       400: {
-        normal: 'Roboto_400Regular',
+        normal: 'Inter_400Regular',
       },
       500: {
-        normal: 'Roboto_500Medium',
+        normal: 'Inter_500Medium',
       },
       700: {
-        normal: 'Roboto_700Bold',
+        normal: 'Inter_700Bold',
       },
 
       900: {
-        normal: 'Roboto_900Black',
+        normal: 'Inter_900Black',
       },
     },
   },
 
   fonts: {
-    heading: 'Roboto',
-    body: 'Roboto',
-    mono: 'Roboto',
+    heading: 'Inter',
+    body: 'Inter',
+    mono: 'Inter',
   },
 
   colors: {

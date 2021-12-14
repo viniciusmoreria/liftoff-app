@@ -2,13 +2,13 @@ import React from 'react';
 
 import {
   useFonts,
-  Roboto_100Thin,
-  Roboto_300Light,
-  Roboto_400Regular,
-  Roboto_500Medium,
-  Roboto_700Bold,
-  Roboto_900Black,
-} from '@expo-google-fonts/roboto';
+  Inter_100Thin,
+  Inter_300Light,
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_700Bold,
+  Inter_900Black,
+} from '@expo-google-fonts/inter';
 import LottieView from 'lottie-react-native';
 import { Center } from 'native-base';
 
@@ -18,12 +18,12 @@ import AppRoutes from './app.routes';
 
 const Routes = () => {
   const [isFontsLoaded] = useFonts({
-    Roboto_100Thin,
-    Roboto_300Light,
-    Roboto_400Regular,
-    Roboto_500Medium,
-    Roboto_700Bold,
-    Roboto_900Black,
+    Inter_100Thin,
+    Inter_300Light,
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_700Bold,
+    Inter_900Black,
   });
 
   if (!isFontsLoaded) {
