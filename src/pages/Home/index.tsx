@@ -72,9 +72,9 @@ function ErrorComponent() {
 
   return (
     <Center flex={1} bg="background">
-      <Heading color="primary" size="sm" mb="4">
-        Error loading launches
-      </Heading>
+      <Text color="primary" mb="2">
+        Something went wrong
+      </Text>
 
       <TouchableOpacity
         onPress={handleRefreshData}
