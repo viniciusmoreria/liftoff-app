@@ -4,18 +4,11 @@ import { Skeleton } from '@motify/skeleton';
 import { format, fromUnixTime } from 'date-fns';
 import { Box, Row, Text } from 'native-base';
 
-import { usePayloadById } from '@hooks/useLaunches';
-import { useRocketById } from '@hooks/useRockets';
 import { LaunchProps } from '@types';
 
 export function UpcomingLaunch({ launch }: { launch: LaunchProps }) {
-  const { data: rocket, isLoading } = useRocketById(launch.rocket);
-  const { data: payload, isLoading: isLoadingPayload } = usePayloadById(
-    launch.payloads[0],
-  );
-
   return (
-    <Skeleton show={isLoading || isLoadingPayload} width={250}>
+    <Skeleton show={!launch} width={250}>
       <Box
         bg="secondary"
         p="4"
@@ -32,7 +25,7 @@ export function UpcomingLaunch({ launch }: { launch: LaunchProps }) {
             </Text>
 
             <Text color="primary" fontSize="xs" fontWeight={500} mt="1">
-              {rocket?.name}
+              {launch?.rocket.name}
             </Text>
           </Box>
 
@@ -64,9 +57,9 @@ export function UpcomingLaunch({ launch }: { launch: LaunchProps }) {
         </Row>
 
         <Row alignItems="center" justifyContent="space-between">
-          <Box bg="background" px="2" py="0.5" borderRadius={2}>
+          <Box bg="background" px={2} py={0.5} borderRadius={2}>
             <Text color="white" fontSize="10" fontWeight={500}>
-              {payload?.orbit}
+              {launch.payloads[0].orbit}
             </Text>
           </Box>
 
