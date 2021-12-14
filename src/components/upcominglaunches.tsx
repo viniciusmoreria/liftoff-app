@@ -27,7 +27,7 @@ export default function UpcomingLaunches() {
         {launches.slice(1, 6).map((launch) => {
           return (
             <Box key={launch.id} mr="4">
-              <Text color="white" fontSize="lg" fontWeight={900}>
+              <Text color="white" fontSize="lg" fontWeight={700}>
                 {launch.name}
               </Text>
 

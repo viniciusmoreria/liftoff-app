@@ -13,7 +13,7 @@
     "format": "yarn prettier --write --list-different '**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "@expo-google-fonts/roboto": "^0.2.0",
+    "@expo-google-fonts/inter": "^0.2.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.24.0",
