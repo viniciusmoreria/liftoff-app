@@ -13,7 +13,7 @@ export default function PastLaunches() {
 
   return (
     <Box mt="6">
-      <Row alignItems="center" justifyContent="space-between">
+      <Row alignItems="center" justifyContent="space-between" pl="4">
         <Text color="white" fontSize="lg" fontWeight={700}>
           Recent
         </Text>
@@ -23,7 +23,7 @@ export default function PastLaunches() {
         </Text>
       </Row>
 
-      <ScrollView mt="4" w="100%" py="4" horizontal>
+      <ScrollView w="100%" py="4" pl="4" horizontal>
         {launches.slice(0, 5).map((launch) => {
           return (
             <Box key={launch.id} mr="4">

@@ -21,7 +21,7 @@ export default function NextLaunch() {
   }
 
   return (
-    <Box mt="8" w="100%" py="4" justifyContent="center">
+    <Box mt="8" w="100%" py="4" justifyContent="center" pl="4">
       <Text color="white" fontSize="lg" fontWeight={700}>
         {launches[0].name}
       </Text>
