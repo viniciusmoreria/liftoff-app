@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { api } from '@config/api';
-import { LaunchProps } from '@types';
+import { LaunchProps, PayloadProps } from '@types';
 
 export const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
   const { data } = await api.get('/launches/upcoming');
@@ -10,7 +10,7 @@ export const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
 };
 
 export function useUpcomingLaunches() {
-  return useQuery('upcomingLaunches', getUpcomingLaunches);
+  return useQuery(['upcomingLaunches'], getUpcomingLaunches);
 }
 
 export const getPastLaunches = async (): Promise<LaunchProps[]> => {
@@ -20,5 +20,15 @@ export const getPastLaunches = async (): Promise<LaunchProps[]> => {
 };
 
 export function usePastLaunches() {
-  return useQuery('pastLaunches', getPastLaunches);
+  return useQuery(['pastLaunches'], getPastLaunches);
+}
+
+export const getPayload = async (payloadId: string): Promise<PayloadProps> => {
+  const { data } = await api.get(`/payloads/${payloadId}`);
+
+  return data;
+};
+
+export function usePayloadById(payloadId: string) {
+  return useQuery([`payload-${payloadId}`], () => getPayload(payloadId));
 }

@@ -26,6 +26,7 @@ export interface LaunchProps {
   cores: Core[];
   id: string;
 }
+
 interface Patch {
   small: string;
   large: string;
