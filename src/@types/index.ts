@@ -1,3 +1,2 @@
-export { LaunchProps } from './launches';
+export { LaunchProps, LaunchPaginationProps } from './launches';
 export { RocketProps } from './rockets';
-export { PayloadProps } from './payloads';

@@ -1,12 +1,39 @@
 import { useQuery } from 'react-query';
 
 import { api } from '@config/api';
-import { LaunchProps, PayloadProps } from '@types';
+import { LaunchProps, LaunchPaginationProps } from '@types';
 
 export const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
-  const { data } = await api.get('/launches/upcoming');
+  const { data } = await api.post<LaunchPaginationProps>('/launches/query', {
+    query: {
+      upcoming: true,
+    },
+    options: {
+      sort: {
+        flight_number: 'asc',
+      },
+      populate: [
+        'payloads',
+        'rocket',
+        'launchpad',
+        {
+          path: 'cores',
+          populate: [
+            {
+              path: 'landpad',
+              select: 'name',
+            },
+            {
+              path: 'core',
+              select: 'serial',
+            },
+          ],
+        },
+      ],
+    },
+  });
 
-  return data;
+  return data.docs;
 };
 
 export function useUpcomingLaunches() {
@@ -21,14 +48,4 @@ export const getPastLaunches = async (): Promise<LaunchProps[]> => {
 
 export function usePastLaunches() {
   return useQuery(['pastLaunches'], getPastLaunches);
-}
-
-export const getPayload = async (payloadId: string): Promise<PayloadProps> => {
-  const { data } = await api.get(`/payloads/${payloadId}`);
-
-  return data;
-};
-
-export function usePayloadById(payloadId: string) {
-  return useQuery([`payload-${payloadId}`], () => getPayload(payloadId));
 }
