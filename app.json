@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "splash": {
-      "backgroundColor": "#040812"
+      "backgroundColor": "#05050B"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
