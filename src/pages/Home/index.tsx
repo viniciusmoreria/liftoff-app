@@ -31,11 +31,11 @@ export default function Home() {
   }
 
   return (
-    <ScrollView flex={1} bg="background" px="4">
+    <ScrollView flex={1} bg="background" pr="4">
       <StatusBar animated barStyle="light-content" />
 
       <AnimatedBox>
-        <Heading color="white" fontWeight="500" mt="24">
+        <Heading color="white" fontWeight="500" mt="24" pl="4">
           {greeting()}
         </Heading>
       </AnimatedBox>

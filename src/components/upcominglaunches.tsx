@@ -4,6 +4,8 @@ import { Box, Row, ScrollView, Text } from 'native-base';
 
 import { useUpcomingLaunches } from '@hooks/useLaunches';
 
+import { UpcomingLaunch } from './upcomingLaunch';
+
 export default function UpcomingLaunches() {
   const { data: launches } = useUpcomingLaunches();
 
@@ -13,7 +15,7 @@ export default function UpcomingLaunches() {
 
   return (
     <Box mt="6">
-      <Row alignItems="center" justifyContent="space-between">
+      <Row alignItems="center" justifyContent="space-between" pl="4">
         <Text color="white" fontSize="lg" fontWeight={700}>
           Upcoming
         </Text>
@@ -23,17 +25,9 @@ export default function UpcomingLaunches() {
         </Text>
       </Row>
 
-      <ScrollView mt="4" w="100%" py="4" horizontal>
+      <ScrollView w="100%" py="4" pl="4" horizontal>
         {launches.slice(1, 6).map((launch) => {
-          return (
-            <Box key={launch.id} mr="4">
-              <Text color="white" fontSize="lg" fontWeight={700}>
-                {launch.name}
-              </Text>
-
-              <Row justifyContent="space-between" mt="1" />
-            </Box>
-          );
+          return <UpcomingLaunch key={launch.id} launch={launch} />;
         })}
       </ScrollView>
     </Box>
