@@ -4,11 +4,28 @@ import { Box, Row, ScrollView, Text } from 'native-base';
 
 import { usePastLaunches } from '@hooks/useLaunches';
 
+import { PastLaunch } from './pastLaunch';
+
 export default function PastLaunches() {
   const { data: launches } = usePastLaunches();
 
   if (!launches?.length) {
-    return null;
+    return (
+      <Box mt="6">
+        <Box pl="4">
+          <Text color="white" fontSize="lg" fontWeight={700}>
+            Recent
+          </Text>
+        </Box>
+
+        <Box w="100%" py="4" pl="4">
+          <Text color="white" fontSize="sm" fontWeight={700}>
+            Something went wrong while fetching recent launches, please try
+            again later
+          </Text>
+        </Box>
+      </Box>
+    );
   }
 
   return (
@@ -25,13 +42,7 @@ export default function PastLaunches() {
 
       <ScrollView w="100%" py="4" pl="4" horizontal>
         {launches.slice(0, 5).map((launch) => {
-          return (
-            <Box key={launch.id} mr="4">
-              <Text color="white" fontSize="lg" fontWeight={700}>
-                {launch.name}
-              </Text>
-            </Box>
-          );
+          return <PastLaunch key={launch.id} launch={launch} />;
         })}
       </ScrollView>
     </Box>
