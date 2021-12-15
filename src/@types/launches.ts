@@ -294,5 +294,8 @@ export interface Core {
   landing_attempt: boolean;
   landing_success?: boolean;
   landing_type?: string;
-  landpad?: string;
+  landpad?: {
+    name: string;
+    id: string;
+  };
 }
