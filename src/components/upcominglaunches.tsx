@@ -26,7 +26,7 @@ export default function UpcomingLaunches() {
       </Row>
 
       <ScrollView w="100%" py="4" pl="4" horizontal>
-        {launches.slice(1, 6).map((launch) => {
+        {launches.slice(1).map((launch) => {
           return <UpcomingLaunch key={launch.id} launch={launch} />;
         })}
       </ScrollView>

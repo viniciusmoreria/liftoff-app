@@ -8,24 +8,24 @@ export interface LaunchPaginationProps {
   pagingCounter: number;
   hasPrevPage: boolean;
   hasNextPage: boolean;
-  prevPage?: any;
+  prevPage?: number;
   nextPage: number;
 }
 
 export interface LaunchProps {
   fairings: Fairings;
   links: Links;
-  static_fire_date_utc?: any;
-  static_fire_date_unix?: any;
+  static_fire_date_utc: Date;
+  static_fire_date_unix: number;
   net: boolean;
-  window?: any;
+  window: number;
   rocket: Rocket;
-  success?: any;
-  failures: any[];
-  details?: any;
-  crew: any[];
-  ships: any[];
-  capsules: any[];
+  success: boolean;
+  failures: Failure[];
+  details: string;
+  crew: string[];
+  ships: string[];
+  capsules: string[];
   payloads: Payload[];
   launchpad: Launchpad;
   flight_number: number;
@@ -33,88 +33,76 @@ export interface LaunchProps {
   date_utc: Date;
   date_unix: number;
   date_local: Date;
-  date_precision: string;
+  date_precision: 'hour' | 'day' | 'month' | 'year' | 'quarter' | 'half';
   upcoming: boolean;
   cores: Core[];
   auto_update: boolean;
   tbd: boolean;
-  launch_library_id: string;
+  launch_library_id?: string;
   id: string;
 }
 
-interface Core {
-  core?: any;
-  flight?: any;
-  gridfins?: any;
-  legs?: any;
-  reused?: any;
-  landing_attempt?: any;
-  landing_success?: any;
-  landing_type?: any;
-  landpad?: any;
+export interface Fairings {
+  reused: boolean;
+  recovery_attempt: boolean;
+  recovered: boolean;
+  ships: string[];
 }
 
-interface Fairings {
-  reused?: any;
-  recovery_attempt?: any;
-  recovered?: any;
-  ships: any[];
+export interface Patch {
+  small: string;
+  large: string;
 }
 
-interface Patch {
-  small?: any;
-  large?: any;
+export interface Reddit {
+  campaign?: string;
+  launch?: string;
+  media?: string;
+  recovery?: string;
 }
 
-interface Reddit {
-  campaign?: any;
-  launch?: any;
-  media?: any;
-  recovery?: any;
+export interface Flickr {
+  small: string[];
+  original: string[];
 }
 
-interface Flickr {
-  small: any[];
-  original: any[];
-}
-
-interface Links {
+export interface Links {
   patch: Patch;
   reddit: Reddit;
   flickr: Flickr;
-  presskit?: any;
-  webcast?: any;
-  youtube_id?: any;
-  article?: any;
-  wikipedia?: any;
+  presskit?: string;
+  webcast: string;
+  youtube_id: string;
+  article: string;
+  wikipedia: string;
 }
 
-interface Height {
+export interface Height {
   meters: number;
   feet: number;
 }
 
-interface Diameter {
+export interface Diameter {
   meters: number;
   feet: number;
 }
 
-interface Mass {
+export interface Mass {
   kg: number;
   lb: number;
 }
 
-interface ThrustSeaLevel {
+export interface ThrustSeaLevel {
   kN: number;
   lbf: number;
 }
 
-interface ThrustVacuum {
+export interface ThrustVacuum {
   kN: number;
   lbf: number;
 }
 
-interface FirstStage {
+export interface FirstStage {
   thrust_sea_level: ThrustSeaLevel;
   thrust_vacuum: ThrustVacuum;
   reusable: boolean;
@@ -123,32 +111,32 @@ interface FirstStage {
   burn_time_sec: number;
 }
 
-interface Thrust {
+export interface Thrust {
   kN: number;
   lbf: number;
 }
 
-interface Height2 {
+export interface Height2 {
   meters: number;
   feet: number;
 }
 
-interface Diameter2 {
+export interface Diameter2 {
   meters: number;
   feet: number;
 }
 
-interface CompositeFairing {
+export interface CompositeFairing {
   height: Height2;
   diameter: Diameter2;
 }
 
-interface Payloads {
+export interface Payloads {
   composite_fairing: CompositeFairing;
   option_1: string;
 }
 
-interface SecondStage {
+export interface SecondStage {
   thrust: Thrust;
   payloads: Payloads;
   reusable: boolean;
@@ -157,22 +145,22 @@ interface SecondStage {
   burn_time_sec: number;
 }
 
-interface Isp {
+export interface Isp {
   sea_level: number;
   vacuum: number;
 }
 
-interface ThrustSeaLevel2 {
+export interface ThrustSeaLevel2 {
   kN: number;
   lbf: number;
 }
 
-interface ThrustVacuum2 {
+export interface ThrustVacuum2 {
   kN: number;
   lbf: number;
 }
 
-interface Engines {
+export interface Engines {
   isp: Isp;
   thrust_sea_level: ThrustSeaLevel2;
   thrust_vacuum: ThrustVacuum2;
@@ -186,19 +174,19 @@ interface Engines {
   thrust_to_weight: number;
 }
 
-interface LandingLegs {
+export interface LandingLegs {
   number: number;
-  material: string;
+  material?: string;
 }
 
-interface PayloadWeight {
+export interface PayloadWeight {
   id: string;
   name: string;
   kg: number;
   lb: number;
 }
 
-interface Rocket {
+export interface Rocket {
   height: Height;
   diameter: Diameter;
   mass: Mass;
@@ -223,24 +211,30 @@ interface Rocket {
   id: string;
 }
 
-interface Dragon {
-  capsule?: any;
-  mass_returned_kg?: any;
-  mass_returned_lbs?: any;
-  flight_time_sec?: any;
-  manifest?: any;
-  water_landing?: any;
-  land_landing?: any;
+export interface Failure {
+  time: number;
+  altitude?: number;
+  reason: string;
 }
 
-interface Payload {
+export interface Dragon {
+  capsule?: string;
+  mass_returned_kg?: number;
+  mass_returned_lbs?: number;
+  flight_time_sec?: number;
+  manifest?: string;
+  water_landing?: boolean;
+  land_landing?: boolean;
+}
+
+export interface Payload {
   dragon: Dragon;
   name: string;
   type: string;
   reused: boolean;
   launch: string;
   customers: string[];
-  norad_ids: any[];
+  norad_ids: number[];
   nationalities: string[];
   manufacturers: string[];
   mass_kg: number;
@@ -248,27 +242,27 @@ interface Payload {
   orbit: string;
   reference_system: string;
   regime: string;
-  longitude: number;
-  semi_major_axis_km?: any;
-  eccentricity?: any;
-  periapsis_km?: any;
-  apoapsis_km?: any;
-  inclination_deg?: any;
-  period_min?: any;
-  lifespan_years: number;
-  epoch?: any;
-  mean_motion?: any;
-  raan?: any;
-  arg_of_pericenter?: any;
-  mean_anomaly?: any;
+  longitude?: number;
+  semi_major_axis_km?: number;
+  eccentricity?: number;
+  periapsis_km: number;
+  apoapsis_km: number;
+  inclination_deg: number;
+  period_min?: number;
+  lifespan_years?: number;
+  epoch?: Date;
+  mean_motion?: number;
+  raan?: number;
+  arg_of_pericenter?: number;
+  mean_anomaly?: number;
   id: string;
 }
 
-interface Images {
+export interface Images {
   large: string[];
 }
 
-interface Launchpad {
+export interface Launchpad {
   images: Images;
   name: string;
   full_name: string;
@@ -284,4 +278,21 @@ interface Launchpad {
   status: string;
   details: string;
   id: string;
+}
+
+export interface Core2 {
+  serial: string;
+  id: string;
+}
+
+export interface Core {
+  core: Core2;
+  flight: number;
+  gridfins: boolean;
+  legs: boolean;
+  reused: boolean;
+  landing_attempt: boolean;
+  landing_success?: boolean;
+  landing_type?: string;
+  landpad?: string;
 }

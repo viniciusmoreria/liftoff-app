@@ -1,12 +1,17 @@
 import React from 'react';
 
 import { Skeleton } from '@motify/skeleton';
-import { format, fromUnixTime } from 'date-fns';
+import { format, fromUnixTime, isBefore } from 'date-fns';
+import LottieView from 'lottie-react-native';
 import { Box, Row, Text } from 'native-base';
 
+import { RedDotAnimation } from '@assets/animations';
 import { LaunchProps } from '@types';
 
 export function UpcomingLaunch({ launch }: { launch: LaunchProps }) {
+  const isPendingConfirmation =
+    launch.date_precision !== 'hour' && launch.date_precision !== 'day';
+
   return (
     <Skeleton show={!launch} width={250}>
       <Box
@@ -29,30 +34,39 @@ export function UpcomingLaunch({ launch }: { launch: LaunchProps }) {
             </Text>
           </Box>
 
-          <Box
-            bg="background"
-            px={2}
-            py={0.5}
-            borderRadius={2}
-            alignItems="center"
-          >
-            <Text
-              color="primary"
-              fontSize="9"
-              fontWeight={500}
-              textTransform="uppercase"
-            >
-              {format(fromUnixTime(launch.date_unix), 'MMM')}
-            </Text>
+          <Box bg="background" px={2} py={0.5} borderRadius={2}>
+            {isPendingConfirmation ? (
+              <Box alignItems="center">
+                <Text
+                  color="white"
+                  fontSize="9"
+                  fontWeight={500}
+                  textTransform="uppercase"
+                >
+                  {format(fromUnixTime(launch.date_unix), 'Y')}
+                </Text>
+              </Box>
+            ) : (
+              <Box alignItems="center">
+                <Text
+                  color="primary"
+                  fontSize="9"
+                  fontWeight={500}
+                  textTransform="uppercase"
+                >
+                  {format(fromUnixTime(launch.date_unix), 'MMM')}
+                </Text>
 
-            <Text
-              color="white"
-              fontSize="10"
-              fontWeight={500}
-              textTransform="uppercase"
-            >
-              {format(fromUnixTime(launch.date_unix), 'd')}
-            </Text>
+                <Text
+                  color="white"
+                  fontSize="10"
+                  fontWeight={500}
+                  textTransform="uppercase"
+                >
+                  {format(fromUnixTime(launch.date_unix), 'd')}
+                </Text>
+              </Box>
+            )}
           </Box>
         </Row>
 
@@ -64,10 +78,26 @@ export function UpcomingLaunch({ launch }: { launch: LaunchProps }) {
           </Box>
 
           <Box alignItems="center">
-            <Text color="primary" fontSize="10" fontWeight={500}>
-              {format(fromUnixTime(launch.date_unix), 'HH:mm ')}
-              {format(fromUnixTime(launch.date_unix), 'O')}
-            </Text>
+            {isPendingConfirmation ? (
+              <Row alignItems="center">
+                {isBefore(fromUnixTime(launch.date_unix), new Date()) && (
+                  <LottieView
+                    source={RedDotAnimation}
+                    autoPlay
+                    style={{ height: 25 }}
+                  />
+                )}
+
+                <Text color="primary" fontSize="10" fontWeight={500}>
+                  Date pending
+                </Text>
+              </Row>
+            ) : (
+              <Text color="primary" fontSize="10" fontWeight={500}>
+                {format(fromUnixTime(launch.date_unix), 'HH:mm ')}
+                {format(fromUnixTime(launch.date_unix), 'O')}
+              </Text>
+            )}
           </Box>
         </Row>
       </Box>
