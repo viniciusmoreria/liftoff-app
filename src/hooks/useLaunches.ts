@@ -33,7 +33,13 @@ export const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
     },
   });
 
-  return data.docs;
+  const launchOrder = ['hour', 'day', 'month', 'year', 'quarter', 'half'];
+
+  return data.docs.sort(
+    (a, b) =>
+      launchOrder.indexOf(a.date_precision) -
+      launchOrder.indexOf(b.date_precision),
+  );
 };
 
 export function useUpcomingLaunches() {
