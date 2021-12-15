@@ -42,9 +42,11 @@ export default function NextLaunch() {
               <Divider />{' '}
             </Text>
           )}
-          <Text color="white" fontSize="sm" fontWeight={700}>
-            {tMinus.hours}:{tMinus.minutes}:{tMinus.seconds}
-          </Text>
+          <Box w={70}>
+            <Text color="white" fontSize="sm" fontWeight={700}>
+              {tMinus.hours}:{tMinus.minutes}:{tMinus.seconds}
+            </Text>
+          </Box>
         </Row>
       </Row>
     </Box>
