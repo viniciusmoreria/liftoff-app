@@ -9,10 +9,7 @@ import {
   Inter_700Bold,
   Inter_900Black,
 } from '@expo-google-fonts/inter';
-import LottieView from 'lottie-react-native';
-import { Center } from 'native-base';
-
-import { LoadingAnimation } from '@assets/animations';
+import { Box } from 'native-base';
 
 import AppRoutes from './app.routes';
 
@@ -27,11 +24,7 @@ const Routes = () => {
   });
 
   if (!isFontsLoaded) {
-    return (
-      <Center flex={1} bg="background">
-        <LottieView source={LoadingAnimation} autoPlay style={{ width: 100 }} />
-      </Center>
-    );
+    return <Box flex={1} bg="background" />;
   }
 
   return <AppRoutes />;
