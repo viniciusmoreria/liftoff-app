@@ -1,8 +1,8 @@
 import React from 'react';
 
 import LottieView from 'lottie-react-native';
-import { Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
-import { TouchableOpacity } from 'react-native';
+import { Box, Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
+import { RefreshControl, TouchableOpacity } from 'react-native';
 import { useQueryClient } from 'react-query';
 
 import { LoadingAnimation } from '@assets/animations';
@@ -16,11 +16,21 @@ import { greeting } from '@utils/helpers';
 import theme from '../../styles/theme';
 
 export default function Home() {
+  const queryClient = useQueryClient();
+
   const { isLoading: isLoadingLaunches, isError: errorUpcomingLaunches } =
     useUpcomingLaunches();
 
   const { isLoading: isLoadingPastLaunches, isError: errorPastLaunches } =
     usePastLaunches();
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const handleRefreshData = React.useCallback(async () => {
+    setRefreshing(true);
+    await queryClient.refetchQueries();
+    setRefreshing(false);
+  }, [queryClient]);
 
   if (isLoadingLaunches || isLoadingPastLaunches) {
     return <LoadingComponent />;
@@ -31,13 +41,27 @@ export default function Home() {
   }
 
   return (
-    <ScrollView flex={1} bg="background" pr="4">
+    <ScrollView
+      flex={1}
+      bg="background"
+      pr="4"
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefreshData}
+          tintColor="white"
+          colors={['white']}
+        />
+      }
+    >
       <StatusBar animated barStyle="light-content" />
 
       <AnimatedBox>
-        <Heading color="white" fontWeight="500" mt="24" pl="4">
-          {greeting()}
-        </Heading>
+        <Box safeArea mt="6">
+          <Heading color="white" fontWeight="500" pl="4">
+            {greeting()}
+          </Heading>
+        </Box>
       </AnimatedBox>
 
       <AnimatedBox delay={500}>
