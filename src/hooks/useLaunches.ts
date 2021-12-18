@@ -75,7 +75,6 @@ export const getPastLaunches = async (): Promise<LaunchProps[]> => {
       ],
     },
   });
-  // const { data } = await api.get('/launches/past');
 
   return data.docs;
 };
