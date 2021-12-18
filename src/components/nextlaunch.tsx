@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fromUnixTime } from 'date-fns';
+import { fromUnixTime, isAfter } from 'date-fns';
 import { Box, Row, Text } from 'native-base';
 
 import useDate from '@hooks/useDate';
@@ -20,6 +20,8 @@ export default function NextLaunch() {
     return null;
   }
 
+  const isTPlusStage = isAfter(new Date(), fromUnixTime(launches[0].date_unix));
+
   return (
     <Box mt="8" w="100%" py="4" justifyContent="center" pl="4">
       <Text color="white" fontSize="lg" fontWeight={700}>
@@ -27,10 +29,19 @@ export default function NextLaunch() {
       </Text>
 
       <Row justifyContent="space-between" mt="1">
-        <Box borderBottomColor="accent" borderBottomWidth={1}>
-          <Text color="white" fontSize="sm" fontWeight={700}>
-            T-Minus
-          </Text>
+        <Box
+          borderBottomColor={isTPlusStage ? 'green.600' : 'accent'}
+          borderBottomWidth={1}
+        >
+          {isTPlusStage ? (
+            <Text color="white" fontSize="sm" fontWeight={700}>
+              T-Plus
+            </Text>
+          ) : (
+            <Text color="white" fontSize="sm" fontWeight={700}>
+              T-Minus
+            </Text>
+          )}
         </Box>
 
         <Row>
@@ -42,11 +53,9 @@ export default function NextLaunch() {
               <Divider />{' '}
             </Text>
           )}
-          <Box w={70}>
-            <Text color="white" fontSize="sm" fontWeight={700}>
-              {tMinus.hours}:{tMinus.minutes}:{tMinus.seconds}
-            </Text>
-          </Box>
+          <Text color="white" fontSize="sm" fontWeight={700}>
+            {tMinus.hours}:{tMinus.minutes}:{tMinus.seconds}
+          </Text>
         </Row>
       </Row>
     </Box>
