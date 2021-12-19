@@ -34,6 +34,7 @@ export function Article({ article }: { article: ArticleProps }) {
         justifyContent="space-between"
         w="100%"
         p="4"
+        borderBottomRadius="8"
       >
         <Row w="100%" justifyContent="space-between">
           <Box borderBottomWidth={1} borderBottomColor="accent">

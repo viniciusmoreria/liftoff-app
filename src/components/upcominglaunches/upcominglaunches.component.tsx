@@ -2,33 +2,26 @@ import React from 'react';
 
 import { Box, Row, ScrollView, Text } from 'native-base';
 
-import useArticles from '@hooks/useArticles';
-import { ArticleProps } from '@types';
+import { useUpcomingLaunches } from '@hooks/useLaunches';
 
-import { Article } from './article';
-import withAnimatedBox from './withAnimatedBox';
+import withAnimatedBox from '../withAnimatedBox';
+import { UpcomingLaunch } from './upcominglaunch.component';
 
-function Articles() {
-  const { data: articles } = useArticles();
+function UpcomingLaunches() {
+  const { data: launches } = useUpcomingLaunches();
 
-  const articlesData = React.useMemo(
-    () => articles?.pages.flat().slice(0, 5) as ArticleProps[],
-    [articles?.pages],
-  );
-
-  if (!articlesData.length) {
+  if (!launches?.length) {
     return (
       <Box mt="6">
         <Box pl="4">
           <Text color="white" fontSize="lg" fontWeight={700}>
-            News
+            Upcoming
           </Text>
         </Box>
 
         <Box w="100%" py="4" pl="4">
           <Text color="white" fontSize="sm" fontWeight={700}>
-            Something went wrong while fetching recent news, please try again
-            later
+            No upcoming launches at the moment
           </Text>
         </Box>
       </Box>
@@ -39,21 +32,21 @@ function Articles() {
     <Box mt="6">
       <Row alignItems="center" justifyContent="space-between" pl="4">
         <Text color="white" fontSize="lg" fontWeight={700}>
-          News
+          Upcoming
         </Text>
 
         <Text color="white" fontSize="sm" fontWeight={700}>
-          See all
+          Show more
         </Text>
       </Row>
 
       <ScrollView w="100%" py="4" pl="4" horizontal>
-        {articlesData.map((article) => {
-          return <Article key={article.id} article={article} />;
+        {launches.slice(1, 6).map((launch) => {
+          return <UpcomingLaunch key={launch.id} launch={launch} />;
         })}
       </ScrollView>
     </Box>
   );
 }
 
-export default withAnimatedBox(Articles, 950);
+export default withAnimatedBox(UpcomingLaunches, 650);
