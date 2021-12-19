@@ -1,37 +1,40 @@
 import { useQuery } from 'react-query';
 
-import { api } from '@config/api';
+import { spacexApi } from '@config/api';
 import { LaunchProps, LaunchPaginationProps } from '@types';
 
 export const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
-  const { data } = await api.post<LaunchPaginationProps>('/launches/query', {
-    query: {
-      upcoming: true,
-    },
-    options: {
-      sort: {
-        flight_number: 'asc',
+  const { data } = await spacexApi.post<LaunchPaginationProps>(
+    '/launches/query',
+    {
+      query: {
+        upcoming: true,
       },
-      populate: [
-        'payloads',
-        'rocket',
-        'launchpad',
-        {
-          path: 'cores',
-          populate: [
-            {
-              path: 'landpad',
-              select: 'name',
-            },
-            {
-              path: 'core',
-              select: 'serial',
-            },
-          ],
+      options: {
+        sort: {
+          flight_number: 'asc',
         },
-      ],
+        populate: [
+          'payloads',
+          'rocket',
+          'launchpad',
+          {
+            path: 'cores',
+            populate: [
+              {
+                path: 'landpad',
+                select: 'name',
+              },
+              {
+                path: 'core',
+                select: 'serial',
+              },
+            ],
+          },
+        ],
+      },
     },
-  });
+  );
 
   const launchOrder = ['hour', 'day', 'month', 'year', 'quarter', 'half'];
 
@@ -47,34 +50,37 @@ export function useUpcomingLaunches() {
 }
 
 export const getPastLaunches = async (): Promise<LaunchProps[]> => {
-  const { data } = await api.post<LaunchPaginationProps>('/launches/query', {
-    query: {
-      upcoming: false,
-    },
-    options: {
-      sort: {
-        flight_number: 'desc',
+  const { data } = await spacexApi.post<LaunchPaginationProps>(
+    '/launches/query',
+    {
+      query: {
+        upcoming: false,
       },
-      populate: [
-        'payloads',
-        'rocket',
-        'launchpad',
-        {
-          path: 'cores',
-          populate: [
-            {
-              path: 'landpad',
-              select: 'name',
-            },
-            {
-              path: 'core',
-              select: 'serial',
-            },
-          ],
+      options: {
+        sort: {
+          flight_number: 'desc',
         },
-      ],
+        populate: [
+          'payloads',
+          'rocket',
+          'launchpad',
+          {
+            path: 'cores',
+            populate: [
+              {
+                path: 'landpad',
+                select: 'name',
+              },
+              {
+                path: 'core',
+                select: 'serial',
+              },
+            ],
+          },
+        ],
+      },
     },
-  });
+  );
 
   return data.docs;
 };
