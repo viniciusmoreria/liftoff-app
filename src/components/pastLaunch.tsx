@@ -75,7 +75,14 @@ export function PastLaunch({ launch }: { launch: LaunchProps }) {
               </Text>
             </Box>
 
-            <Box bg="background" px={1.5} py={0.5} borderRadius={2}>
+            <Box
+              bg="background"
+              alignItems="center"
+              w={5}
+              px={1.5}
+              py={0.5}
+              borderRadius={2}
+            >
               {launch.success ? (
                 <Ionicons name="checkmark-sharp" color="green" size={12} />
               ) : (
