@@ -5,8 +5,9 @@ import { Box, Row, ScrollView, Text } from 'native-base';
 import { usePastLaunches } from '@hooks/useLaunches';
 
 import { PastLaunch } from './pastLaunch';
+import withAnimatedBox from './withAnimatedBox';
 
-export default function PastLaunches() {
+function PastLaunches() {
   const { data: launches } = usePastLaunches();
 
   if (!launches?.length) {
@@ -48,3 +49,5 @@ export default function PastLaunches() {
     </Box>
   );
 }
+
+export default withAnimatedBox(PastLaunches, 800);
