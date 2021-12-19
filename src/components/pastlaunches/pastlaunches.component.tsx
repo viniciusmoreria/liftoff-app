@@ -4,8 +4,8 @@ import { Box, Row, ScrollView, Text } from 'native-base';
 
 import { usePastLaunches } from '@hooks/useLaunches';
 
-import { PastLaunch } from './pastLaunch';
-import withAnimatedBox from './withAnimatedBox';
+import withAnimatedBox from '../withAnimatedBox';
+import { PastLaunch } from './pastlaunch.component';
 
 function PastLaunches() {
   const { data: launches } = usePastLaunches();
@@ -37,7 +37,7 @@ function PastLaunches() {
         </Text>
 
         <Text color="white" fontSize="sm" fontWeight={700}>
-          See all
+          Show more
         </Text>
       </Row>
 

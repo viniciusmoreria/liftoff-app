@@ -1,9 +1,9 @@
-export { default as AnimatedBox } from './animatedbox';
-export { Article } from './article';
-export { default as Articles } from './articles';
-export { default as NextLaunch } from './nextlaunch';
-export { PastLaunch } from './pastLaunch';
-export { default as PastLaunches } from './pastlaunches';
-export { UpcomingLaunch } from './upcomingLaunch';
-export { default as UpcomingLaunches } from './upcominglaunches';
+export { default as AnimatedBox } from './animatedbox/animatedbox.component';
+export { Article } from './articles/article.component';
+export { default as Articles } from './articles/articles.component';
+export { default as NextLaunch } from './nextlaunch/nextlaunch.component';
+export { PastLaunch } from './pastlaunches/pastlaunch.component';
+export { default as PastLaunches } from './pastlaunches/pastlaunches.component';
+export { UpcomingLaunch } from './upcominglaunches/upcominglaunch.component';
+export { default as UpcomingLaunches } from './upcominglaunches/upcominglaunches.component';
 export { default as withAnimatedBox } from './withAnimatedBox';
