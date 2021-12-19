@@ -5,8 +5,9 @@ import { Box, Row, ScrollView, Text } from 'native-base';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
 
 import { UpcomingLaunch } from './upcomingLaunch';
+import withAnimatedBox from './withAnimatedBox';
 
-export default function UpcomingLaunches() {
+function UpcomingLaunches() {
   const { data: launches } = useUpcomingLaunches();
 
   if (!launches?.length) {
@@ -47,3 +48,5 @@ export default function UpcomingLaunches() {
     </Box>
   );
 }
+
+export default withAnimatedBox(UpcomingLaunches, 650);
