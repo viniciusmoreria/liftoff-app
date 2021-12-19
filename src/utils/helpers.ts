@@ -4,6 +4,8 @@ import { Platform } from 'react-native';
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
 
+export const isNameValid = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
 export const groupBy = <T = any>(arr: T[], key: string) =>
   arr
     .map((val: any) => val[key])

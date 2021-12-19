@@ -6,8 +6,16 @@ import BottomSheet, {
 } from '@gorhom/bottom-sheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LottieView from 'lottie-react-native';
-import { Box, Center, Heading, ScrollView, StatusBar, Text } from 'native-base';
-import { Keyboard, RefreshControl, TouchableOpacity } from 'react-native';
+import {
+  Box,
+  Pressable,
+  Center,
+  Heading,
+  ScrollView,
+  StatusBar,
+  Text,
+} from 'native-base';
+import { Keyboard, RefreshControl } from 'react-native';
 import { useQueryClient } from 'react-query';
 
 import { LoadingAnimation } from '@assets/animations';
@@ -16,7 +24,7 @@ import NextLaunch from '@components/nextlaunch';
 import PastLaunches from '@components/pastlaunches';
 import UpcomingLaunches from '@components/upcominglaunches';
 import { usePastLaunches, useUpcomingLaunches } from '@hooks/useLaunches';
-import { greeting } from '@utils/helpers';
+import { greeting, isNameValid } from '@utils/helpers';
 
 import theme from '../../styles/theme';
 
@@ -30,7 +38,7 @@ export default function Home() {
   const { isLoading: isLoadingPastLaunches, isError: errorPastLaunches } =
     usePastLaunches();
 
-  const snapPoints = React.useMemo(() => [360], []);
+  const snapPoints = React.useMemo(() => [330], []);
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [name, setName] = React.useState('');
@@ -43,7 +51,6 @@ export default function Home() {
   }, [queryClient]);
 
   const handleSubmitName = React.useCallback(async () => {
-    Keyboard.dismiss();
     setStoragedName(name.trim());
     setName('');
     await AsyncStorage.setItem('name', name.trim());
@@ -111,16 +118,14 @@ export default function Home() {
             </Heading>
 
             <Box alignSelf="flex-start">
-              <TouchableOpacity
-                onPress={() => bottomSheetRef.current?.expand()}
-              >
+              <Pressable onPress={() => bottomSheetRef.current?.expand()}>
                 <Heading color="white">{storagedName || 'crew member'}</Heading>
                 <Box
                   borderStyle="dotted"
                   borderColor="accent"
-                  borderWidth={1}
+                  borderWidth={storagedName ? 0 : 1}
                 />
-              </TouchableOpacity>
+              </Pressable>
             </Box>
           </Box>
         </AnimatedBox>
@@ -149,9 +154,10 @@ export default function Home() {
         )}
         enablePanDownToClose
         enableOverDrag
+        onClose={() => Keyboard.dismiss()}
       >
         <Box flex={1} mt="12" px="4">
-          <Heading color="white">what you would like to be called?</Heading>
+          <Heading color="white">What you would like to be called?</Heading>
 
           <Box alignItems="center">
             <BottomSheetTextInput
@@ -172,21 +178,20 @@ export default function Home() {
               }}
             />
 
-            <TouchableOpacity
+            <Pressable
               onPress={handleSubmitName}
-              disabled={!name}
-              style={{
-                backgroundColor: theme.colors.secondary,
-                padding: 10,
-                width: '100%',
-                alignItems: 'center',
-                borderRadius: 16,
-              }}
+              disabled={!isNameValid.test(name)}
+              opacity={isNameValid.test(name) ? 1 : 0.5}
+              bg="secondary"
+              w="100%"
+              alignItems="center"
+              p={3}
+              borderRadius={8}
             >
               <Text color="white" fontSize="sm" fontWeight={700}>
                 Confirm
               </Text>
-            </TouchableOpacity>
+            </Pressable>
           </Box>
         </Box>
       </BottomSheet>
@@ -215,20 +220,18 @@ function ErrorComponent() {
         Something went wrong
       </Text>
 
-      <TouchableOpacity
+      <Pressable
         onPress={handleRefreshData}
-        style={{
-          backgroundColor: theme.colors.secondary,
-          padding: 10,
-          width: 100,
-          alignItems: 'center',
-          borderRadius: 16,
-        }}
+        w={100}
+        bg="secondary"
+        p={2}
+        borderRadius={16}
+        alignItems="center"
       >
         <Text color="white" fontSize="sm" fontWeight={700}>
           Try again
         </Text>
-      </TouchableOpacity>
+      </Pressable>
     </Center>
   );
 }
