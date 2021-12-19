@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import AnimatedBox from './animatedbox';
+import AnimatedBox from './animatedbox/animatedbox.component';
 
 const withAnimatedBox = (Component: FC, delay: number) => () => {
   return (

@@ -3,11 +3,10 @@ import React from 'react';
 import { fromUnixTime, isAfter } from 'date-fns';
 import { Box, Center, Row, Text } from 'native-base';
 
-import useDate from '@hooks/useDate';
-import { useUpcomingLaunches } from '@hooks/useLaunches';
+import { useDate, useUpcomingLaunches } from '@hooks/index';
 import { getTMinus } from '@utils/helpers';
 
-import withAnimatedBox from './withAnimatedBox';
+import withAnimatedBox from '../withAnimatedBox';
 
 function NextLaunch() {
   const { data: launches } = useUpcomingLaunches();
