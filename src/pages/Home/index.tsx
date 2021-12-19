@@ -19,10 +19,14 @@ import { Keyboard, RefreshControl } from 'react-native';
 import { useQueryClient } from 'react-query';
 
 import { LoadingAnimation } from '@assets/animations';
-import AnimatedBox from '@components/animatedbox';
-import NextLaunch from '@components/nextlaunch';
-import PastLaunches from '@components/pastlaunches';
-import UpcomingLaunches from '@components/upcominglaunches';
+import {
+  AnimatedBox,
+  Articles,
+  NextLaunch,
+  PastLaunches,
+  UpcomingLaunches,
+} from '@components/index';
+import useArticles from '@hooks/useArticles';
 import { usePastLaunches, useUpcomingLaunches } from '@hooks/useLaunches';
 import { greeting, isNameValid } from '@utils/helpers';
 
@@ -37,6 +41,9 @@ export default function Home() {
 
   const { isLoading: isLoadingPastLaunches, isError: errorPastLaunches } =
     usePastLaunches();
+
+  const { isLoading: isLoadingArticles, isError: errorArticles } =
+    useArticles();
 
   const snapPoints = React.useMemo(() => [330], []);
 
@@ -86,16 +93,16 @@ export default function Home() {
     getName();
   }, []);
 
-  if (isLoadingLaunches || isLoadingPastLaunches) {
+  if (isLoadingLaunches || isLoadingPastLaunches || isLoadingArticles) {
     return <LoadingComponent />;
   }
 
-  if (errorUpcomingLaunches || errorPastLaunches) {
+  if (errorUpcomingLaunches || errorPastLaunches || errorArticles) {
     return <ErrorComponent />;
   }
 
   return (
-    <>
+    <Box flex={1} safeAreaBottom bg="background">
       <ScrollView
         flex={1}
         bg="background"
@@ -135,6 +142,8 @@ export default function Home() {
         <UpcomingLaunches />
 
         <PastLaunches />
+
+        <Articles />
       </ScrollView>
 
       <BottomSheet
@@ -195,7 +204,7 @@ export default function Home() {
           </Box>
         </Box>
       </BottomSheet>
-    </>
+    </Box>
   );
 }
 
