@@ -1,6 +1,8 @@
 # :rocket: Liftoff
 
-Spacex launches tracker, being built with react native.
+spacex launches tracker, built with react native.
 
-[![Build Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff/Build?style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff/actions?query=workflow%3ABuild)
-[![Deploy Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff/Deployment?label=deployment&style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff/actions?query=workflow%Deployment)
+[![Build Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff/Build?style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff/actions/workflows/ci.yml)
+[![Deploy Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff/Deployment?label=deployment&style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff/actions/workflows/cd-expo.yml)
+[![Repository Size](https://img.shields.io/github/repo-size/viniciusmoreria/liftoff?label=size&style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff)
+[![run in expo](https://img.shields.io/badge/runs%20with%20expo-try%20now-4630EB.svg?style=flat&colorA=000000&colorB=000000)](https://expo.dev/@viniciusmoreria/Liftoff)
