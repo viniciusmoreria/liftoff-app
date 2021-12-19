@@ -26,8 +26,11 @@ import {
   PastLaunches,
   UpcomingLaunches,
 } from '@components/index';
-import useArticles from '@hooks/useArticles';
-import { usePastLaunches, useUpcomingLaunches } from '@hooks/useLaunches';
+import {
+  useArticles,
+  usePastLaunches,
+  useUpcomingLaunches,
+} from '@hooks/index';
 import { greeting, isNameValid } from '@utils/helpers';
 
 import theme from '../../styles/theme';
@@ -102,7 +105,7 @@ export default function Home() {
   }
 
   return (
-    <Box flex={1} safeAreaBottom bg="background">
+    <Box flex={1} safeAreaTop bg="background">
       <ScrollView
         flex={1}
         bg="background"
@@ -115,11 +118,12 @@ export default function Home() {
             colors={['white']}
           />
         }
+        _contentContainerStyle={{ pb: 36 }}
       >
         <StatusBar animated barStyle="light-content" />
 
         <AnimatedBox>
-          <Box safeArea mt="6" pl="4">
+          <Box my="6" pl="4">
             <Heading color="white" fontWeight="500">
               {greeting()},
             </Heading>
