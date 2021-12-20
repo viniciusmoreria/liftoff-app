@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Box, Row, ScrollView, Text } from 'native-base';
+import { Box, FlatList, Row, Text } from 'native-base';
 
 import { useUpcomingLaunches } from '@hooks/useLaunches';
+import { LaunchProps } from '@types';
 
 import withAnimatedBox from '../withAnimatedBox';
 import { UpcomingLaunch } from './upcominglaunch.component';
@@ -28,6 +29,10 @@ function UpcomingLaunches() {
     );
   }
 
+  const renderItem = ({ item: launch }: { item: LaunchProps }) => {
+    return <UpcomingLaunch key={launch.id} launch={launch} />;
+  };
+
   return (
     <Box mt="6">
       <Row alignItems="center" justifyContent="space-between" pl="4">
@@ -40,11 +45,13 @@ function UpcomingLaunches() {
         </Text>
       </Row>
 
-      <ScrollView w="100%" py="4" pl="4" horizontal>
-        {launches.slice(1, 6).map((launch) => {
-          return <UpcomingLaunch key={launch.id} launch={launch} />;
-        })}
-      </ScrollView>
+      <FlatList
+        data={launches.slice(1, 6)}
+        renderItem={renderItem}
+        horizontal
+        py="4"
+        pl="4"
+      />
     </Box>
   );
 }
