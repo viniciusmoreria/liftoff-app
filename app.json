@@ -22,7 +22,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
-        "backgroundColor": "#DD4C5A"
+        "backgroundColor": "#05050B"
       },
       "package": "com.viniciusmoreria.liftoff"
     }
