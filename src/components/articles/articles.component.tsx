@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Row, ScrollView, Text } from 'native-base';
+import { Box, FlatList, Row, Text } from 'native-base';
 
 import useArticles from '@hooks/useArticles';
 import { ArticleProps } from '@types';
@@ -35,6 +35,10 @@ function Articles() {
     );
   }
 
+  const renderItem = ({ item: article }: { item: ArticleProps }) => {
+    return <Article key={article.id} article={article} />;
+  };
+
   return (
     <Box mt="6">
       <Row alignItems="center" justifyContent="space-between" pl="4">
@@ -47,11 +51,13 @@ function Articles() {
         </Text>
       </Row>
 
-      <ScrollView w="100%" py="4" pl="4" horizontal>
-        {articlesData.map((article) => {
-          return <Article key={article.id} article={article} />;
-        })}
-      </ScrollView>
+      <FlatList
+        data={articlesData}
+        renderItem={renderItem}
+        horizontal
+        py="4"
+        pl="4"
+      />
     </Box>
   );
 }
