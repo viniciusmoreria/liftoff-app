@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export type Interval = 'second' | 'minute' | 'hour' | number | undefined | null;
+type Interval = 'second' | 'minute' | 'hour' | number | undefined | null;
 
 const useDate = ({
   date,
@@ -26,9 +26,9 @@ const useDate = ({
   return newDate;
 };
 
-export default useDate;
+export { useDate };
 
-export const nextCallback = (now: Date, interval: Interval) => {
+const nextCallback = (now: Date, interval: Interval) => {
   if (typeof interval === 'number') {
     return interval;
   }

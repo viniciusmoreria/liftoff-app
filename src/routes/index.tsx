@@ -9,9 +9,25 @@ import {
   Inter_700Bold,
   Inter_900Black,
 } from '@expo-google-fonts/inter';
-import { Box } from 'native-base';
+import LottieView from 'lottie-react-native';
+
+import { LoadingAnimation } from '@assets/animations';
+import * as Atoms from '@components/atoms';
+import {
+  useUpcomingLaunches,
+  useRecentLaunches,
+  useArticles,
+} from '@hooks/index';
 
 import AppRoutes from './app.routes';
+
+function LoadingComponent() {
+  return (
+    <Atoms.Center sx={{ flex: 1 }}>
+      <LottieView source={LoadingAnimation} autoPlay style={{ width: 50 }} />
+    </Atoms.Center>
+  );
+}
 
 const Routes = () => {
   const [isFontsLoaded] = useFonts({
@@ -23,11 +39,18 @@ const Routes = () => {
     Inter_900Black,
   });
 
-  if (!isFontsLoaded) {
-    return <Box flex={1} bg="background" />;
+  const { isLoading: isLoadingLaunches } = useUpcomingLaunches();
+  const { isLoading: isLoadingPastLaunches } = useRecentLaunches();
+  const { isLoading: isLoadingArticles } = useArticles();
+
+  const isLoading =
+    isLoadingLaunches || isLoadingPastLaunches || isLoadingArticles;
+
+  if (!isFontsLoaded || isLoading) {
+    return <LoadingComponent />;
   }
 
   return <AppRoutes />;
 };
 
-export default Routes;
+export { Routes };

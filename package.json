@@ -2,17 +2,20 @@
   "name": "liftoff",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start -c --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "yarn eslint --ext '.js,.ts,.tsx' --fix src",
-    "type-check": "tsc --noEmit",
-    "format": "yarn prettier --write --list-different '**/*.{ts,tsx}'"
+    "lint": "eslint --ext '.js,.ts,.tsx' --fix src",
+    "format": "yarn prettier --write --list-different '**/*.{ts,tsx}'",
+    "check-types": "yarn tsc -p tsconfig.json --noEmit",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@capsizecss/core": "^3.0.0",
     "@expo-google-fonts/inter": "^0.2.0",
     "@expo/vector-icons": "^12.0.0",
     "@gorhom/bottom-sheet": "^4",
@@ -22,13 +25,13 @@
     "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.24.0",
     "date-fns": "^2.27.0",
+    "dripsy": "^3.6.0",
     "expo": "^44.0.0-beta.1",
     "expo-font": "~10.0.4",
     "expo-linear-gradient": "~11.0.0",
     "expo-status-bar": "~1.2.0",
     "lottie-react-native": "5.0.1",
     "moti": "^0.16.1",
-    "native-base": "^3.2.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
@@ -57,8 +60,16 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "prettier": "^2.4.1",
-    "typescript": "~4.3.5"
+    "typescript": "^4.5.4"
   },
-  "private": true
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "yarn lint",
+      "yarn format",
+      "bash -c 'yarn check-types'"
+    ]
+  }
 }

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { spacexApi } from '@config/api';
 import { LaunchProps, LaunchPaginationProps } from '@types';
 
-export const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
+const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
   const { data } = await spacexApi.post<LaunchPaginationProps>(
     '/launches/query',
     {
@@ -49,7 +49,7 @@ export function useUpcomingLaunches() {
   return useQuery(['upcomingLaunches'], getUpcomingLaunches);
 }
 
-export const getPastLaunches = async (): Promise<LaunchProps[]> => {
+const getRecentLaunches = async (): Promise<LaunchProps[]> => {
   const { data } = await spacexApi.post<LaunchPaginationProps>(
     '/launches/query',
     {
@@ -85,6 +85,6 @@ export const getPastLaunches = async (): Promise<LaunchProps[]> => {
   return data.docs;
 };
 
-export function usePastLaunches() {
-  return useQuery(['pastLaunches'], getPastLaunches);
+export function useRecentLaunches() {
+  return useQuery(['recentLaunches'], getRecentLaunches);
 }

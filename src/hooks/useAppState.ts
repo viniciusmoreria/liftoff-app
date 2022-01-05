@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AppState, AppStateStatus } from 'react-native';
 
-import usePrevious from './usePrevious';
+import { usePrevious } from './usePrevious';
 
 const AppStateTypes = {
   active: 'active',
@@ -15,7 +15,7 @@ interface UseAppStateProps {
   justBecameActive: boolean | undefined;
 }
 
-export default function useAppState(): UseAppStateProps {
+export function useAppState(): UseAppStateProps {
   const [appState, setAppState] = React.useState(AppState.currentState);
   const prevAppState = usePrevious(appState);
 

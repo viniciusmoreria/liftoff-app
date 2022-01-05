@@ -16,7 +16,7 @@ jobs:
     - name: Installing dependencies
       run: yarn
     - name: Running Type Check
-      run: yarn type-check
+      run: yarn check-types
     - name: Running Linter
       run: yarn lint
     - name: Running Prettier Format
