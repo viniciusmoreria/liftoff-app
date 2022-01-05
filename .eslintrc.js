@@ -28,6 +28,7 @@ module.exports = {
     'no-console': ['error', { allow: ['tron'] }],
     'import/no-duplicates': 'off',
     'import/prefer-default-export': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     camelcase: 'off',
     'import/extensions': [
       'error',
@@ -65,5 +66,6 @@ module.exports = {
   globals: {
     __DEV__: true,
     NodeJS: true,
+    JSX: true,
   },
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MotiView } from 'moti';
 
-export default function AnimatedBox({
+function AnimatedBox({
   children,
   delay = 350,
 }: {
@@ -26,3 +26,5 @@ export default function AnimatedBox({
     </MotiView>
   );
 }
+
+export { AnimatedBox };

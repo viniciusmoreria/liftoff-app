@@ -2,6 +2,8 @@
   "expo": {
     "name": "Liftoff",
     "slug": "Liftoff",
+    "description": "Spacex launches tracker",
+    "primaryColor": "#05050B",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",

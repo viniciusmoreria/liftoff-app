@@ -5,7 +5,8 @@ import { Platform } from 'react-native';
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
 
-export const isNameValid = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+export const isNameValid =
+  /^[A-Za-zÀ-ú\s]+(([',. -][A-Za-zÀ-ú ])?[A-Za-zÀ-ú]*)*$/;
 
 export const groupBy = <T = any>(arr: T[], key: string) =>
   arr
@@ -15,7 +16,7 @@ export const groupBy = <T = any>(arr: T[], key: string) =>
       return acc;
     }, {});
 
-export const greeting = () => {
+export const greet = () => {
   const date = new Date();
   const hour = date.getHours();
 

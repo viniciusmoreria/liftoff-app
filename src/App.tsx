@@ -1,20 +1,12 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { NativeBaseProvider } from 'native-base';
+import { DripsyProvider } from 'dripsy';
 import { QueryClient, QueryClientProvider, focusManager } from 'react-query';
 
-import useAppState from '@hooks/useAppState';
-
-import Routes from './routes';
-import theme from './styles/theme';
-
-const config = {
-  dependencies: {
-    // eslint-disable-next-line global-require
-    'linear-gradient': require('expo-linear-gradient').LinearGradient,
-  },
-};
+import { BottomSheetProvider, useAppState } from './hooks';
+import { Routes } from './routes';
+import { theme } from './styles/theme';
 
 const queryClient = new QueryClient();
 
@@ -27,11 +19,13 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NativeBaseProvider theme={theme} config={config}>
+      <DripsyProvider theme={theme}>
         <NavigationContainer>
-          <Routes />
+          <BottomSheetProvider>
+            <Routes />
+          </BottomSheetProvider>
         </NavigationContainer>
-      </NativeBaseProvider>
+      </DripsyProvider>
     </QueryClientProvider>
   );
 }
