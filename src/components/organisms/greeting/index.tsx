@@ -27,7 +27,7 @@ function Greeting() {
 
   return (
     <Atoms.AnimatedBox>
-      <Atoms.Box sx={{ pl: '24px', mt: '24px', mb: '16px' }}>
+      <Atoms.Box sx={{ pl: '24px', mt: '42px', mb: '16px' }}>
         <Atoms.Text variant="text-xl" sx={{ color: 'white', fontWeight: 500 }}>
           {greet()},
         </Atoms.Text>

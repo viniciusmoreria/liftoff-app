@@ -52,7 +52,7 @@ function UpcomingLaunches() {
       </Atoms.Box>
 
       <FlatList
-        data={launches.slice(1, 6)}
+        data={launches.slice(0, 5)}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingLeft: 24 }}
         horizontal

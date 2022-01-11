@@ -24,12 +24,12 @@ function ChangeNameSheet({
   }, [closeSheet, name, onChangeName]);
 
   return (
-    <Atoms.Box>
+    <Atoms.Box sx={{ pt: '12px', pb: '42px' }}>
       <Atoms.Text variant="text-xl" sx={{ color: 'white', fontWeight: 'bold' }}>
         What you would like to be called?
       </Atoms.Text>
 
-      <Atoms.Box sx={{ alignItems: 'center', mb: '30px' }}>
+      <Atoms.Box sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <BottomSheetTextInput
           value={name}
           onChangeText={setName}
@@ -39,8 +39,8 @@ function ChangeNameSheet({
           style={{
             borderBottomColor: 'white',
             borderBottomWidth: 1.6,
-            marginTop: 24,
-            marginBottom: 36,
+            marginTop: 38,
+            marginBottom: 52,
             width: '100%',
             height: 48,
             color: 'white',
