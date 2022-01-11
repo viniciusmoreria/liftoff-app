@@ -31,7 +31,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
               uri: `https://img.youtube.com/vi/${launch.links.youtube_id}/0.jpg`,
             }}
             sx={{
-              height: 180,
+              height: 140,
               width: 250,
               borderTopRightRadius: 8,
               borderTopLeftRadius: 8,
