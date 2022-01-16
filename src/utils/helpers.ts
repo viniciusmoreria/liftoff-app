@@ -32,14 +32,7 @@ export const greet = () => {
 };
 
 function addLeadingZeros(number: number, targetLength = 2): string {
-  const sign = number < 0 ? '-' : '';
-  let output = Math.abs(number).toString();
-
-  while (output.length < targetLength) {
-    output = `0${output}`;
-  }
-
-  return sign + output;
+  return String(number).padStart(targetLength, '0');
 }
 
 export function getTMinus(date: Date) {
