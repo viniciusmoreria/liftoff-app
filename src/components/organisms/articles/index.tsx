@@ -5,15 +5,20 @@ import { Alert, FlatList } from 'react-native';
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
 import withAnimatedBox from '@components/withAnimatedBox';
-import { useUpcomingLaunches } from '@hooks/useLaunches';
-import { LaunchProps } from '@types';
+import { useArticles } from '@hooks/useArticles';
+import { ArticleProps } from '@types';
 
-import { Launch } from '../launchcard';
+import { Article } from '../articlecard';
 
-function UpcomingLaunches() {
-  const { data: launches } = useUpcomingLaunches();
+function Articles() {
+  const { data: articles } = useArticles();
 
-  if (!launches?.length) {
+  const articlesData = React.useMemo(
+    () => articles?.pages.flat().slice(0, 5) as ArticleProps[],
+    [articles?.pages],
+  );
+
+  if (!articlesData?.length) {
     return (
       <Atoms.Box
         sx={{
@@ -21,17 +26,18 @@ function UpcomingLaunches() {
           pl: '24px',
         }}
       >
-        <Molecules.SectionTitle title="Upcoming" />
+        <Molecules.SectionTitle title="News" />
 
         <Atoms.Text variant="text-xs" sx={{ color: 'white', mt: '10px' }}>
-          No Spacex upcoming launches at the moment
+          Something went wrong while fetching recent news, please try again
+          later
         </Atoms.Text>
       </Atoms.Box>
     );
   }
 
-  const renderItem = ({ item: launch }: { item: LaunchProps }) => {
-    return <Launch key={launch.id} launch={launch} />;
+  const renderItem = ({ item: article }: { item: ArticleProps }) => {
+    return <Article key={article.id} article={article} />;
   };
 
   return (
@@ -42,17 +48,17 @@ function UpcomingLaunches() {
     >
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
-          title="Upcoming"
+          title="News"
           subtitle="Show more"
           onPress={() => {
-            // TODO - open all launches screen
+            // TODO - open all articles screen
             Alert.alert('In development');
           }}
         />
       </Atoms.Box>
 
       <FlatList
-        data={launches.slice(1, 6)}
+        data={articlesData}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingLeft: 24 }}
         horizontal
@@ -62,4 +68,4 @@ function UpcomingLaunches() {
   );
 }
 
-export default withAnimatedBox(UpcomingLaunches, 650);
+export default withAnimatedBox(Articles, 950);

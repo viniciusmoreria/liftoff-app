@@ -13,7 +13,7 @@ function SectionTitle({ title, subtitle, onPress }: SectionTitleProps) {
     <Atoms.Row
       sx={{ flex: 1, alignItems: 'center', justifyContent: 'space-between' }}
     >
-      <Atoms.Text sx={{ color: 'white', fontWeight: 'bold' }}>
+      <Atoms.Text variant="text-sm" sx={{ color: 'white', fontWeight: 'bold' }}>
         {title}
       </Atoms.Text>
 

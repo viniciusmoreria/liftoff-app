@@ -20,7 +20,10 @@ function Timer({ unixTime }: { unixTime: number }) {
     <Atoms.Box>
       {Number(tMinus.days) >= 1 && !isTPlusStage ? (
         <Atoms.Row sx={{ alignItems: 'center', justifyContent: 'center' }}>
-          <TimerDoubleDigit digits={tMinus.days} label="days" />
+          <TimerDoubleDigit
+            digits={tMinus.days}
+            label={Number(tMinus.days) > 1 ? 'days' : 'day'}
+          />
           <TimerDivider />
           <TimerDoubleDigit digits={tMinus.hours} label="hours" />
         </Atoms.Row>
