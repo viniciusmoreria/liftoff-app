@@ -1,4 +1,4 @@
-import { formatRelative, intervalToDuration } from 'date-fns';
+import { formatRelative, intervalToDuration, isAfter } from 'date-fns';
 import en from 'date-fns/locale/en-US';
 import { Platform } from 'react-native';
 
@@ -36,12 +36,10 @@ function addLeadingZeros(number: number, targetLength = 2): string {
 }
 
 export function getTMinus(date: Date) {
-  const duration = intervalToDuration({
+  const { days, hours, minutes, seconds } = intervalToDuration({
     start: new Date(),
     end: date,
   });
-
-  const { days, hours, minutes, seconds } = duration;
 
   const tMinus = {
     days: addLeadingZeros(days as number),
@@ -51,6 +49,22 @@ export function getTMinus(date: Date) {
   };
 
   return tMinus;
+}
+
+export type LaunchStageType = ReturnType<typeof getLaunchStage>;
+
+export function getLaunchStage(date: Date) {
+  const tMinus = getTMinus(date);
+
+  if (isAfter(new Date(), date)) {
+    return 'T-Plus';
+  }
+
+  if (isAfter(new Date(), date) && Number(tMinus.minutes) < 1) {
+    return 'Liftoff';
+  }
+
+  return 'T-Minus';
 }
 
 const formatRelativeLocale: { [key: string]: string } = {

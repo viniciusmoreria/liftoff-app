@@ -28,7 +28,6 @@ export default function Home() {
         sx={{
           flex: 1,
           bg: 'background',
-          pr: '24px',
         }}
         refreshControl={
           <RefreshControl
