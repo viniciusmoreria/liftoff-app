@@ -1,13 +1,20 @@
 import React from 'react';
 
 import * as Atoms from '@components/atoms';
+import { LaunchStageType } from '@utils/helpers';
 
-function TCountLabel({ isTPlusStage }: { isTPlusStage: boolean }) {
+const getLaunchColor = {
+  'T-Minus': 'accent',
+  Liftoff: 'orange',
+  'T-Plus': 'green',
+};
+
+function TCountLabel({ stage }: { stage: LaunchStageType }) {
   return (
     <Atoms.Box
       sx={{
         alignSelf: 'flex-start',
-        borderBottomColor: isTPlusStage ? 'green' : 'accent',
+        borderBottomColor: getLaunchColor[stage],
         borderBottomWidth: 2,
       }}
     >
@@ -19,7 +26,7 @@ function TCountLabel({ isTPlusStage }: { isTPlusStage: boolean }) {
           lineHeight: 22,
         }}
       >
-        {isTPlusStage ? 'T-Plus' : 'T-Minus'}
+        {stage}
       </Atoms.Text>
     </Atoms.Box>
   );

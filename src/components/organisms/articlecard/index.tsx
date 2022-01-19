@@ -25,7 +25,7 @@ export function Article({ article }: { article: ArticleProps }) {
           }}
           sx={{
             height: 240,
-            width: 250,
+            width: 280,
             borderRadius: 8,
           }}
           accessibilityLabel={`Published image of the article: ${article.title}`}
@@ -38,7 +38,7 @@ export function Article({ article }: { article: ArticleProps }) {
           bg: 'secondary',
           p: '16px',
           height: 100,
-          width: 250,
+          width: 280,
           justifyContent: 'space-between',
           position: 'absolute',
           bottom: 0,

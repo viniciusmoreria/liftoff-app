@@ -11,7 +11,12 @@ type SectionTitleProps = {
 function SectionTitle({ title, subtitle, onPress }: SectionTitleProps) {
   return (
     <Atoms.Row
-      sx={{ flex: 1, alignItems: 'center', justifyContent: 'space-between' }}
+      sx={{
+        flex: 1,
+        pr: '24px',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}
     >
       <Atoms.Text variant="text-sm" sx={{ color: 'white', fontWeight: 'bold' }}>
         {title}

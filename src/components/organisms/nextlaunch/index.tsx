@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { fromUnixTime, isAfter } from 'date-fns';
-
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
 import withAnimatedBox from '@components/withAnimatedBox';
 import { useUpcomingLaunches } from '@hooks/index';
+import { getLaunchStage, getTMinus } from '@utils/helpers';
 
 import { Timer } from '../timer';
 
@@ -16,14 +15,16 @@ function NextLaunch() {
     return null;
   }
 
-  const isTPlusStage = isAfter(new Date(), fromUnixTime(launches[0].date_unix));
+  const { days } = getTMinus(new Date(launches[0].date_local));
+  const stage = getLaunchStage(new Date(launches[0].date_local));
 
-  return (
+  return Number(days) <= 5 ? (
     <Atoms.Row
       sx={{
         mt: '36px',
         mb: '12px',
         pl: '24px',
+        pr: '24px',
         width: '100%',
         justifyContent: 'space-between',
       }}
@@ -33,11 +34,13 @@ function NextLaunch() {
           {launches[0].name}
         </Atoms.Text>
 
-        <Molecules.TCountLabel isTPlusStage={isTPlusStage} />
+        <Molecules.TCountLabel stage={stage} />
       </Atoms.Box>
 
-      <Timer unixTime={launches[0].date_unix} />
+      <Timer launchDate={new Date(launches[0].date_local)} stage={stage} />
     </Atoms.Row>
+  ) : (
+    <Atoms.Box />
   );
 }
 

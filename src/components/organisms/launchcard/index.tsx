@@ -2,7 +2,7 @@ import React, { ComponentProps } from 'react';
 
 import { Ionicons } from '@expo/vector-icons';
 import { Skeleton } from '@motify/skeleton';
-import { format, fromUnixTime } from 'date-fns';
+import { format } from 'date-fns';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -32,7 +32,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
             }}
             sx={{
               height: 140,
-              width: 250,
+              width: 280,
               borderTopRightRadius: 8,
               borderTopLeftRadius: 8,
             }}
@@ -49,7 +49,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
           mr: '16px',
           mt: hasYoutubeId ? 0 : '16px',
           height: 100,
-          width: 250,
+          width: 280,
           borderRadius: 8,
           borderTopRightRadius: hasYoutubeId ? 0 : 8,
           borderTopLeftRadius: hasYoutubeId ? 0 : 8,
@@ -96,7 +96,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
                     textTransform: 'uppercase',
                   }}
                 >
-                  {format(fromUnixTime(launch.date_unix), 'Y')}
+                  {format(new Date(launch.date_local), 'Y')}
                 </Atoms.Text>
               </Atoms.Center>
             ) : (
@@ -109,7 +109,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
                     textTransform: 'uppercase',
                   }}
                 >
-                  {format(fromUnixTime(launch.date_unix), 'MMM')}
+                  {format(new Date(launch.date_local), 'MMM')}
                 </Atoms.Text>
 
                 <Atoms.Text
@@ -120,7 +120,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
                     textTransform: 'uppercase',
                   }}
                 >
-                  {format(fromUnixTime(launch.date_unix), 'd')}
+                  {format(new Date(launch.date_local), 'd')}
                 </Atoms.Text>
               </Atoms.Center>
             )}
@@ -195,7 +195,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
                 Date pending
               </Atoms.Text>
             ) : (
-              <Molecules.LaunchDate unixTime={launch.date_unix} />
+              <Molecules.LaunchDate date={launch.date_local} />
             )}
           </Atoms.Center>
         </Atoms.Row>
