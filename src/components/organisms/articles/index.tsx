@@ -4,9 +4,9 @@ import { Alert, FlatList } from 'react-native';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
-import withAnimatedBox from '@components/withAnimatedBox';
+import withAnimation from '@components/withAnimation';
 import { useArticles } from '@hooks/useArticles';
-import { ArticleProps } from '@types';
+import type { ArticleProps } from '@types';
 
 import { Article } from '../articlecard';
 
@@ -68,4 +68,4 @@ function Articles() {
   );
 }
 
-export default withAnimatedBox(Articles, 950);
+export default withAnimation(Articles, 950);

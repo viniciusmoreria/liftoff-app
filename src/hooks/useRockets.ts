@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { spacexApi } from '@config/api';
-import { RocketProps } from '@types';
+import type { RocketProps } from '@types';
 
 const getRockets = async (): Promise<RocketProps[]> => {
   const { data } = await spacexApi.get('/rockets');

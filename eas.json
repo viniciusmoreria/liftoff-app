@@ -3,28 +3,32 @@
     "version": ">= 0.40.0"
   },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
+    "base": {
+      "env": {}
     },
-    "preview": {
+    "development": {
+      "extends": "base",
+      "developmentClient": true,
       "distribution": "internal",
-      "ios": {
-        "simulator": true
-      },
+      "releaseChannel": "default",
       "android": {
         "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
       }
     },
-    "preview2": {
+    "production": {
+      "extends": "base",
+      "distribution": "store",
+      "releaseChannel": "stable",
       "android": {
-        "gradleCommand": ":app:assembleRelease"
+        "buildType": "app-bundle"
+      }, 
+      "ios": {
+        "simulator": true
       }
-    },
-    "preview3": {
-      "developmentClient": true
-    },
-    "production": {}
+    }
   },
   "submit": {
     "production": {}

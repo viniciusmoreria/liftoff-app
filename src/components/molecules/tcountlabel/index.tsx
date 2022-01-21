@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as Atoms from '@components/atoms';
-import { LaunchStageType } from '@utils/helpers';
+import type { LaunchStageType } from '@utils/helpers';
 
 const getLaunchColor = {
   'T-Minus': 'accent',

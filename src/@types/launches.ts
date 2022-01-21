@@ -281,21 +281,48 @@ export interface Launchpad {
 }
 
 export interface Core2 {
-  serial: string;
+  asds_attempts: number;
+  asds_landings: number;
+  block: number;
   id: string;
+  last_update: string;
+  launches: string[];
+  reuse_count: number;
+  rtls_attempts: number;
+  rtls_landings: number;
+  serial: string;
+  status: string;
+}
+
+export interface Landpad {
+  details: string;
+  full_name: string;
+  id: string;
+  images: {
+    small: string[];
+    large: string[];
+  };
+  landing_attempts: number;
+  landing_successes: number;
+  latitude: number;
+  launches: string[];
+  locality: string;
+  longitude: number;
+  name: string;
+  region: string;
+  status: string;
+  type: string;
+  wikipedia: string;
 }
 
 export interface Core {
   core: Core2;
   flight: number;
   gridfins: boolean;
+  landing_attempt: boolean;
+  landing_success: boolean;
+  landing_type: string;
+  landpad: Landpad;
   legs: boolean;
   reused: boolean;
-  landing_attempt: boolean;
-  landing_success?: boolean;
-  landing_type?: string;
-  landpad?: {
-    name: string;
-    id: string;
-  };
 }

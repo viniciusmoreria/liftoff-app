@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import { spacexApi } from '@config/api';
-import { LaunchProps, LaunchPaginationProps } from '@types';
+import type { LaunchProps, LaunchPaginationProps } from '@types';
 
 const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
   const { data } = await spacexApi.post<LaunchPaginationProps>(
@@ -23,11 +23,9 @@ const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
             populate: [
               {
                 path: 'landpad',
-                select: 'name',
               },
               {
                 path: 'core',
-                select: 'serial',
               },
             ],
           },
@@ -69,11 +67,9 @@ const getRecentLaunches = async (): Promise<LaunchProps[]> => {
             populate: [
               {
                 path: 'landpad',
-                select: 'name',
               },
               {
                 path: 'core',
-                select: 'serial',
               },
             ],
           },

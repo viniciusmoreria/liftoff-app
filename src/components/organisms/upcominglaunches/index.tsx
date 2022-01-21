@@ -4,9 +4,9 @@ import { Alert, FlatList } from 'react-native';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
-import withAnimatedBox from '@components/withAnimatedBox';
+import withAnimation from '@components/withAnimation';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
-import { LaunchProps } from '@types';
+import type { LaunchProps } from '@types';
 
 import { Launch } from '../launchcard';
 
@@ -62,4 +62,4 @@ function UpcomingLaunches() {
   );
 }
 
-export default withAnimatedBox(UpcomingLaunches, 650);
+export default withAnimation(UpcomingLaunches, 650);
