@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
 import { DripsyProvider } from 'dripsy';
 import { QueryClient, QueryClientProvider, focusManager } from 'react-query';
 
@@ -20,11 +19,9 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <DripsyProvider theme={theme}>
-        <NavigationContainer>
-          <BottomSheetProvider>
-            <Routes />
-          </BottomSheetProvider>
-        </NavigationContainer>
+        <BottomSheetProvider>
+          <Routes />
+        </BottomSheetProvider>
       </DripsyProvider>
     </QueryClientProvider>
   );

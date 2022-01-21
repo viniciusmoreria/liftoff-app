@@ -3,7 +3,7 @@ import React from 'react';
 import { Skeleton } from '@motify/skeleton';
 
 import * as Atoms from '@components/atoms';
-import { ArticleProps } from '@types';
+import type { ArticleProps } from '@types';
 import { formatRelativeDate } from '@utils/helpers';
 
 export function Article({ article }: { article: ArticleProps }) {

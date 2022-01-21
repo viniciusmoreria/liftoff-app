@@ -25,6 +25,7 @@ export default function Home() {
       <StatusBar animated barStyle="light-content" />
 
       <ScrollView
+        showsVerticalScrollIndicator={false}
         sx={{
           flex: 1,
           bg: 'background',
@@ -38,7 +39,7 @@ export default function Home() {
           />
         }
         contentContainerSx={{
-          pb: '36px',
+          pb: '60px',
         }}
       >
         <Organisms.Greeting />

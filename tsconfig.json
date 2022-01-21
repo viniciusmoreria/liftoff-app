@@ -1,8 +1,25 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
+    "allowJs": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "esModuleInterop": true,
+    "importsNotUsedAsValues": "error",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-native",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
     "baseUrl": "src",
     "paths": {
       "@pages/*": ["pages/*"],
@@ -12,14 +29,15 @@
       "@assets/*": ["assets/*"],
       "@utils/*": ["utils/*"],
       "@components/*": ["components/*"],
+      "@routes/*": ["routes/*"],
     }
   },
+  "include": [
+    "src",
+    ".eslintrc.js",
+    "babel.config.js",
+  ],
   "exclude": [
     "node_modules",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "**/*.d.ts",
   ]
 }
