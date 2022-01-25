@@ -44,7 +44,7 @@ function RecentLaunches() {
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
           title="Recent"
-          subtitle="Show more"
+          subtitle="See all"
           onPress={() => {
             // TODO - open all launches screen
             Alert.alert('In development');
@@ -63,4 +63,6 @@ function RecentLaunches() {
   );
 }
 
-export default withAnimation(RecentLaunches, 800);
+const RecentLaunchesWithAnimation = withAnimation(RecentLaunches, 800);
+
+export { RecentLaunchesWithAnimation as RecentLaunches };

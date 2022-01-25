@@ -46,11 +46,12 @@ const Routes = () => {
   const isLoading =
     isLoadingLaunches || isLoadingPastLaunches || isLoadingArticles;
 
-  if (!isFontsLoaded || isLoading) {
-    return <LoadingComponent />;
-  }
-
-  return <AppRoutes />;
+  return (
+    <Atoms.Box sx={{ flex: 1 }}>
+      {(!isFontsLoaded || isLoading) && <LoadingComponent />}
+      {isFontsLoaded && !isLoading && <AppRoutes />}
+    </Atoms.Box>
+  );
 };
 
 export { Routes };

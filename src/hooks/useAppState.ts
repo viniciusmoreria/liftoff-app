@@ -1,38 +1,17 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 import { AppState, AppStateStatus } from 'react-native';
 
-import { usePrevious } from './usePrevious';
-
-const AppStateTypes = {
-  active: 'active',
-  background: 'background',
-  inactive: 'inactive',
-};
-
-interface UseAppStateProps {
-  appState: AppStateStatus;
-  justBecameActive: boolean | undefined;
-}
-
-export function useAppState(): UseAppStateProps {
-  const [appState, setAppState] = React.useState(AppState.currentState);
-  const prevAppState = usePrevious(appState);
-
-  function onChange(newState: AppStateStatus) {
-    setAppState(newState);
-  }
-
-  React.useEffect(() => {
+/**
+ * "Use the AppState module to listen for changes in the app's state."
+ * @param onChange - (status: AppStateStatus) => void
+ */
+export function useAppState(onChange: (status: AppStateStatus) => void) {
+  useEffect(() => {
     AppState.addEventListener('change', onChange);
-    return () => AppState.removeEventListener('change', onChange);
-  }, []);
 
-  return {
-    appState,
-    justBecameActive:
-      appState === AppStateTypes.active &&
-      prevAppState &&
-      prevAppState !== AppStateTypes.active,
-  };
+    return () => {
+      AppState.removeEventListener('change', onChange);
+    };
+  }, [onChange]);
 }

@@ -59,4 +59,6 @@ function NextLaunch() {
   );
 }
 
-export default withAnimation(NextLaunch, 500);
+const NextLaunchWithAnimation = withAnimation(NextLaunch, 500);
+
+export { NextLaunchWithAnimation as NextLaunch };

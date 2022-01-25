@@ -43,7 +43,7 @@ function UpcomingLaunches() {
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
           title="Upcoming"
-          subtitle="Show more"
+          subtitle="See all"
           onPress={() => {
             // TODO - open all launches screen
             Alert.alert('In development');
@@ -62,4 +62,6 @@ function UpcomingLaunches() {
   );
 }
 
-export default withAnimation(UpcomingLaunches, 650);
+const UpcomingLaunchesWithAnimation = withAnimation(UpcomingLaunches, 650);
+
+export { UpcomingLaunchesWithAnimation as UpcomingLaunches };

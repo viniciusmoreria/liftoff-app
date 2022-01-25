@@ -45,8 +45,8 @@ export const BottomSheetProvider: React.FC = ({ children }) => {
   // Set the sheet content
   const setSheetContent = React.useCallback(
     ({ content, blockGestures, onHideCallback }: SetSheetProps) => {
-      if (onHideCallback) setCallbackFunc(() => onHideCallback);
       if (blockGestures) toggleGesture();
+      if (onHideCallback) setCallbackFunc(() => onHideCallback);
 
       setComponentState(content);
     },
@@ -60,7 +60,7 @@ export const BottomSheetProvider: React.FC = ({ children }) => {
       toggleGesture();
     }
     // executes callback function
-    if (callbackFunc) callbackFunc();
+    callbackFunc?.();
 
     bottomSheetRef.current?.close();
 
@@ -68,8 +68,33 @@ export const BottomSheetProvider: React.FC = ({ children }) => {
     setTimeout(() => {
       setComponentState(null);
       setCallbackFunc(undefined);
-    }, 200);
+    }, 150);
   }, [callbackFunc, isGestureActive]);
+
+  // Render header handle
+  const renderHeaderHandle = React.useCallback(
+    (props) => (
+      <Atoms.Box
+        {...props}
+        sx={{
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Atoms.Box
+          sx={{
+            bg: 'primary',
+            mt: '16px',
+            borderRadius: 8,
+            width: 35,
+            height: 4.5,
+          }}
+        />
+      </Atoms.Box>
+    ),
+    [],
+  );
 
   // Component to be placed as a sheet backdrop.
   const renderBackdrop = React.useCallback(
@@ -78,8 +103,8 @@ export const BottomSheetProvider: React.FC = ({ children }) => {
         {...props}
         pressBehavior="close"
         opacity={0.8}
-        disappearsOnIndex={-1}
         appearsOnIndex={0}
+        disappearsOnIndex={-1}
         style={{ ...props.style, backgroundColor: theme.colors.secondary }}
       />
     ),
@@ -112,25 +137,7 @@ export const BottomSheetProvider: React.FC = ({ children }) => {
           handleHeight={animatedHandleHeight}
           contentHeight={animatedContentHeight}
           backdropComponent={renderBackdrop}
-          handleComponent={() => (
-            <Atoms.Box
-              sx={{
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Atoms.Box
-                sx={{
-                  bg: 'primary',
-                  mt: '16px',
-                  borderRadius: 8,
-                  width: 35,
-                  height: 4.5,
-                }}
-              />
-            </Atoms.Box>
-          )}
+          handleComponent={renderHeaderHandle}
           enablePanDownToClose={isGestureActive}
           enableContentPanningGesture={isGestureActive}
           enableHandlePanningGesture={isGestureActive}
