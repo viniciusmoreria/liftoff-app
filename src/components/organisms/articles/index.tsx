@@ -49,7 +49,7 @@ function Articles() {
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
           title="News"
-          subtitle="Show more"
+          subtitle="See all"
           onPress={() => {
             // TODO - open all articles screen
             Alert.alert('In development');
@@ -68,4 +68,6 @@ function Articles() {
   );
 }
 
-export default withAnimation(Articles, 950);
+const ArticlesWithAnimation = withAnimation(Articles, 950);
+
+export { ArticlesWithAnimation as Articles };

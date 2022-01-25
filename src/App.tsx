@@ -1,20 +1,26 @@
 import React from 'react';
 
 import { DripsyProvider } from 'dripsy';
-import { QueryClient, QueryClientProvider, focusManager } from 'react-query';
+import { AppStateStatus, Platform } from 'react-native';
+import { focusManager, QueryClient, QueryClientProvider } from 'react-query';
 
-import { BottomSheetProvider, useAppState } from './hooks';
+import { BottomSheetProvider, useAppState, useOnlineManager } from './hooks';
 import { Routes } from './routes';
 import { theme } from './styles/theme';
 
-const queryClient = new QueryClient();
+function onAppStateChange(status: AppStateStatus) {
+  if (Platform.OS !== 'web') {
+    focusManager.setFocused(status === 'active');
+  }
+}
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: 2 } },
+});
 
 export default function App() {
-  const { justBecameActive } = useAppState();
-
-  React.useEffect(() => {
-    focusManager.setFocused(justBecameActive);
-  }, [justBecameActive]);
+  useOnlineManager();
+  useAppState(onAppStateChange);
 
   return (
     <QueryClientProvider client={queryClient}>

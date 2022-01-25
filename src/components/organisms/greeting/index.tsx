@@ -65,4 +65,6 @@ function Greeting() {
   );
 }
 
-export default withAnimation(Greeting);
+const GreetingWithAnimation = withAnimation(Greeting);
+
+export { GreetingWithAnimation as Greeting };
