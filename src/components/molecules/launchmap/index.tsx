@@ -15,6 +15,20 @@ function LaunchMap({ launchpad }: { launchpad: Launchpad }) {
 
   const [isZoomApplied, toggleZoom] = React.useReducer((s) => !s, false);
 
+  const mapInitialCamera = React.useMemo(
+    () => ({
+      center: {
+        latitude,
+        longitude,
+      },
+      heading: 0,
+      pitch: 0,
+      zoom: isZoomApplied ? 14 : 4.5,
+      altitude: 0,
+    }),
+    [isZoomApplied, latitude, longitude],
+  );
+
   const handleOpenGps = React.useCallback(() => {
     const scheme = Platform.select({
       ios: 'maps:0,0?q=',
@@ -42,15 +56,10 @@ function LaunchMap({ launchpad }: { launchpad: Launchpad }) {
           zoomEnabled={false}
           pitchEnabled={false}
           rotateEnabled={false}
-          region={{
-            latitude,
-            longitude,
-            latitudeDelta: isZoomApplied ? 0.1 : 13,
-            longitudeDelta: 0.01,
-          }}
           style={{ height: 200, width: '100%', borderRadius: 8 }}
           provider={PROVIDER_GOOGLE}
           customMapStyle={customMapStyle}
+          camera={mapInitialCamera}
         >
           <Marker
             coordinate={{
@@ -59,15 +68,13 @@ function LaunchMap({ launchpad }: { launchpad: Launchpad }) {
             }}
             opacity={0.8}
           >
-            <Atoms.Box>
-              <Atoms.Image
-                source={CaretDownIcon}
-                resizeMode="contain"
-                sx={{
-                  height: 30,
-                }}
-              />
-            </Atoms.Box>
+            <Atoms.Image
+              source={CaretDownIcon}
+              resizeMode="contain"
+              sx={{
+                height: 30,
+              }}
+            />
           </Marker>
         </MapView>
 

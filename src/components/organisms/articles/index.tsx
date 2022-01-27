@@ -8,8 +8,6 @@ import withAnimation from '@components/withAnimation';
 import { useArticles } from '@hooks/useArticles';
 import type { ArticleProps } from '@types';
 
-import { Article } from '../articlecard';
-
 function Articles() {
   const { data: articles } = useArticles();
 
@@ -37,7 +35,7 @@ function Articles() {
   }
 
   const renderItem = ({ item: article }: { item: ArticleProps }) => {
-    return <Article key={article.id} article={article} />;
+    return <Molecules.Article key={article.id} article={article} />;
   };
 
   return (

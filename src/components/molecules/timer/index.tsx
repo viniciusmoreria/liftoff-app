@@ -1,24 +1,24 @@
 import React from 'react';
 
 import * as Atoms from '@components/atoms';
-import { useDate } from '@hooks/index';
-import { getTMinus, LaunchStageType } from '@utils/helpers';
+import type { LaunchStageType } from '@utils/helpers';
 
-import { TimerDivider } from '../../molecules/timerdivider';
-import { TimerDoubleDigit } from '../../molecules/timerdoubledigit';
+import { TimerDivider } from '../timerdivider';
+import { TimerDoubleDigit } from '../timerdoubledigit';
 
 function Timer({
-  launchDate,
+  tMinus,
   stage,
 }: {
-  launchDate: Date;
+  tMinus: {
+    days: string;
+    hours: string;
+    minutes: string;
+    seconds: string;
+  };
   stage: LaunchStageType;
 }) {
-  const date = useDate({
-    date: launchDate,
-  });
-
-  const { days, hours, minutes, seconds } = getTMinus(date);
+  const { days, hours, minutes, seconds } = tMinus;
 
   return (
     <Atoms.Box>
@@ -29,19 +29,13 @@ function Timer({
             label={Number(days) > 1 ? 'days' : 'day'}
           />
           <TimerDivider />
-          <TimerDoubleDigit
-            digits={hours}
-            label={Number(hours) > 1 ? 'hours' : 'hour'}
-          />
+          <TimerDoubleDigit digits={hours} label="hours" />
         </Atoms.Row>
       ) : (
         <Atoms.Row>
           {Number(hours) >= 1 && (
             <Atoms.Row sx={{ alignItems: 'center' }}>
-              <TimerDoubleDigit
-                digits={hours}
-                label={Number(hours) > 1 ? 'hours' : 'hour'}
-              />
+              <TimerDoubleDigit digits={hours} label="hours" />
               <TimerDivider />
             </Atoms.Row>
           )}

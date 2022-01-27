@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useQueryClient } from 'react-query';
 
 import * as Atoms from '@components/atoms';
+import * as Molecules from '@components/molecules';
 import * as Organisms from '@components/organisms';
 
 export default function Home() {
@@ -34,15 +35,15 @@ export default function Home() {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={handleRefreshData}
-            tintColor="white"
-            colors={['white']}
+            tintColor="#d83545"
+            colors={['#d83545']}
           />
         }
         contentContainerSx={{
-          pb: '60px',
+          pb: 120,
         }}
       >
-        <Organisms.Greeting />
+        <Molecules.Greeting />
 
         <Organisms.NextLaunch />
 

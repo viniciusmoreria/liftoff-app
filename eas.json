@@ -12,7 +12,8 @@
       "distribution": "internal",
       "releaseChannel": "default",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
       },
       "ios": {
         "simulator": true
