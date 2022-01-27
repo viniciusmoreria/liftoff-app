@@ -4,9 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
 import { ScrollView } from 'dripsy';
-import { Linking } from 'react-native';
+import { Linking, StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -17,18 +16,21 @@ type Props = {
 };
 
 export default function LaunchDetail() {
-  const insets = useSafeAreaInsets();
-
   const { launch } = useRoute().params as Props;
+
+  const [isHeaderVisible, setIsHeaderVisible] = React.useState(false);
 
   const isPendingConfirmation =
     launch.date_precision !== 'hour' && launch.date_precision !== 'day';
-
   const hasLaunchPad = !!launch.cores[0]?.landpad?.name;
   const payload = launch.payloads[0];
 
   return (
-    <Atoms.Box sx={{ flex: 1, bg: 'background', pt: insets.top, px: '24px' }}>
+    <Atoms.Box sx={{ flex: 1, bg: 'background' }}>
+      <StatusBar
+        backgroundColor={isHeaderVisible ? '#252525c1' : 'transparent'}
+      />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         sx={{
@@ -36,21 +38,35 @@ export default function LaunchDetail() {
         }}
         contentContainerSx={{
           width: '100%',
-          pb: '60px',
+          pb: 120,
+        }}
+        stickyHeaderIndices={[0]}
+        scrollEventThrottle={16}
+        onScroll={({ nativeEvent: { contentOffset } }) => {
+          if (contentOffset.y > 35) {
+            setIsHeaderVisible(true);
+          }
+
+          if (contentOffset.y < 35) {
+            setIsHeaderVisible(false);
+          }
         }}
       >
-        <Animated.View entering={FadeIn.delay(150)}>
-          <Molecules.Header />
+        <Molecules.Header title={launch.name} showTitle={isHeaderVisible} />
 
+        <Animated.View
+          entering={FadeIn.delay(150)}
+          style={{ paddingHorizontal: 24 }}
+        >
           <Atoms.Text
             variant="text-2xl"
             sx={{
               color: 'white',
               fontWeight: 'bold',
-              mt: '24px',
+              mt: '16px',
             }}
           >
-            {launch.name}
+            {isHeaderVisible ? ' ' : launch.name}
           </Atoms.Text>
 
           <Atoms.Card>
@@ -93,7 +109,7 @@ export default function LaunchDetail() {
                 </Atoms.Center>
               </Atoms.Row>
 
-              {hasLaunchPad && (
+              {hasLaunchPad && launch.success !== null && (
                 <Atoms.Badge>
                   {launch.success ? (
                     <Ionicons name="checkmark-sharp" color="green" size={12} />

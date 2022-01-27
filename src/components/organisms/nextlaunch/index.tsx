@@ -6,11 +6,9 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
 import withAnimation from '@components/withAnimation';
-import { useUpcomingLaunches } from '@hooks/index';
+import { useDate, useUpcomingLaunches } from '@hooks/index';
 import type { Routes } from '@routes/app.routes';
 import { getLaunchStage, getTMinus } from '@utils/helpers';
-
-import { Timer } from '../timer';
 
 type NavigationParam = NativeStackNavigationProp<Routes, 'LaunchDetail'>;
 
@@ -18,14 +16,18 @@ function NextLaunch() {
   const { navigate } = useNavigation<NavigationParam>();
   const { data: launches } = useUpcomingLaunches();
 
+  const date = useDate({
+    date: launches?.length ? launches[0]?.date_local : new Date(),
+  });
+
+  const tMinus = getTMinus(new Date(date));
+  const stage = getLaunchStage(new Date(date));
+
   if (!launches?.length) {
     return <Atoms.Box />;
   }
 
-  const { days } = getTMinus(new Date(launches[0].date_local));
-  const stage = getLaunchStage(new Date(launches[0].date_local));
-
-  return Number(days) <= 7 ? (
+  return Number(tMinus.days) <= 7 ? (
     <Atoms.Pressable
       onPress={() =>
         navigate('LaunchDetail', {
@@ -41,6 +43,7 @@ function NextLaunch() {
           pr: '24px',
           width: '100%',
           justifyContent: 'space-between',
+          bg: 'background',
         }}
       >
         <Atoms.Box sx={{ justifyContent: 'space-around' }}>
@@ -51,7 +54,7 @@ function NextLaunch() {
           <Molecules.TCountLabel stage={stage} />
         </Atoms.Box>
 
-        <Timer launchDate={new Date(launches[0].date_local)} stage={stage} />
+        <Molecules.Timer stage={stage} tMinus={tMinus} />
       </Atoms.Row>
     </Atoms.Pressable>
   ) : (

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Liftoff",
     "slug": "Liftoff",
-    "description": "Spacex launches tracker",
+    "description": "A SpaceX Tracker App",
     "primaryColor": "#05050B",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,7 +23,8 @@
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#05050B"
       },
-      "package": "com.viniciusmoreria.liftoff"
+      "package": "com.viniciusmoreria.liftoff",
+      "versionCode": 3
     }
   }
 }

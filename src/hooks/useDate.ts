@@ -2,20 +2,17 @@ import { useEffect, useState } from 'react';
 
 type Interval = 'second' | 'minute' | 'hour' | number | undefined | null;
 
-const useDate = ({
-  date,
-  interval,
-}: { date?: Date; interval?: Interval } = {}) => {
-  const [newDate, setNewDate] = useState(date ?? new Date());
+const useDate = ({ date, interval }: { date: Date; interval?: Interval }) => {
+  const [newDate, setNewDate] = useState(new Date());
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | undefined;
 
     const bump = () => {
       timeoutId = setTimeout(() => {
-        setNewDate(date ?? new Date());
+        setNewDate(new Date());
         bump();
-      }, nextCallback(date ?? new Date(), interval));
+      }, nextCallback(newDate, interval));
     };
 
     bump();
@@ -23,7 +20,7 @@ const useDate = ({
     return () => clearTimeout(timeoutId!);
   });
 
-  return newDate;
+  return date;
 };
 
 export { useDate };

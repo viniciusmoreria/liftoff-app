@@ -99,17 +99,19 @@ function LaunchCore({ launchCore }: { launchCore: Core }) {
                   </Atoms.Row>
                 </Atoms.Badge>
 
-                <Atoms.Badge
-                  sx={{
-                    ml: '4px',
-                  }}
-                >
-                  {landing_success ? (
-                    <Ionicons name="checkmark-sharp" color="green" size={8} />
-                  ) : (
-                    <Ionicons name="close-sharp" color="red" size={8} />
-                  )}
-                </Atoms.Badge>
+                {landing_success !== null && (
+                  <Atoms.Badge
+                    sx={{
+                      ml: '4px',
+                    }}
+                  >
+                    {landing_success ? (
+                      <Ionicons name="checkmark-sharp" color="green" size={8} />
+                    ) : (
+                      <Ionicons name="close-sharp" color="red" size={8} />
+                    )}
+                  </Atoms.Badge>
+                )}
               </Atoms.Row>
             </Atoms.Box>
 

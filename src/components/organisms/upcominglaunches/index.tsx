@@ -8,7 +8,7 @@ import withAnimation from '@components/withAnimation';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
 import type { LaunchProps } from '@types';
 
-import { Launch } from '../launchcard';
+import { UpcomingLaunch } from '../launchcardupcoming';
 
 function UpcomingLaunches() {
   const { data: launches } = useUpcomingLaunches();
@@ -31,7 +31,7 @@ function UpcomingLaunches() {
   }
 
   const renderItem = ({ item: launch }: { item: LaunchProps }) => {
-    return <Launch key={launch.id} launch={launch} />;
+    return <UpcomingLaunch key={launch.id} launch={launch} />;
   };
 
   return (

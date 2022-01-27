@@ -17,5 +17,9 @@ jobs:
         with:
           expo-version: 4.x
           token: ${{ secrets.EXPO_TOKEN }}
+      - run: |
+          touch .env
+          echo GOOGLE_MAPS_ANDROID =${{ secrets.GOOGLE_MAPS_ANDROID }} >> .env
+          echo GOOGLE_MAPS_IOS =${{ secrets.GOOGLE_MAPS_IOS }} >> .env
       - run: yarn install
       - run: expo publish
