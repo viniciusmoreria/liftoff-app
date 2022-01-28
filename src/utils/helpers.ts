@@ -56,12 +56,12 @@ export type LaunchStageType = ReturnType<typeof getLaunchStage>;
 export function getLaunchStage(date: Date) {
   const tMinus = getTMinus(date);
 
-  if (isAfter(new Date(), date)) {
-    return 'T-Plus';
-  }
-
   if (isAfter(new Date(), date) && Number(tMinus.minutes) < 1) {
     return 'Liftoff';
+  }
+
+  if (isAfter(new Date(), date)) {
+    return 'T-Plus';
   }
 
   return 'T-Minus';

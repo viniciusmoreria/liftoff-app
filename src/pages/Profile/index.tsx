@@ -2,13 +2,31 @@ import React from 'react';
 
 import { ScrollView } from 'dripsy';
 import Constants from 'expo-constants';
+import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { ProfilePic } from '@assets/icons';
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
+import { ResetProfileSheet } from '@components/molecules';
+import { useDevice, useUsername, useUserProfilePicture } from '@hooks/index';
+import { useBottomSheet } from '@hooks/useBottomSheet';
 
 export default function Profile() {
   const insets = useSafeAreaInsets();
+
+  const { data: username } = useUsername();
+  const { data: userProfilePic } = useUserProfilePicture();
+  const { data: deviceReport } = useDevice();
+
+  const { setSheetContent } = useBottomSheet();
+
+  const getReportData = React.useCallback(
+    ({ title }: { title: string }) => {
+      return `mailto:viniciusmoreeira@gmail.com?subject=Liftoff ${title} Request (v${Constants.manifest?.version})&body=\n\n\n\n${deviceReport}`;
+    },
+    [deviceReport],
+  );
 
   return (
     <Atoms.Box
@@ -21,15 +39,15 @@ export default function Profile() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         sx={{
+          flex: 1,
           bg: 'background',
           px: '24px',
         }}
         contentContainerSx={{
-          flex: 1,
           pb: 120,
         }}
       >
-        <Atoms.Box sx={{ flex: 1, justifyContent: 'space-between' }}>
+        <Atoms.Box>
           <Atoms.Box>
             <Atoms.Text
               variant="text-2xl"
@@ -45,7 +63,11 @@ export default function Profile() {
 
             <Molecules.SectionCard
               title="Personal information"
-              onPress={() => null}
+              onPress={() =>
+                setSheetContent({
+                  content: <Molecules.UserProfileSheet />,
+                })
+              }
               clean
             />
 
@@ -53,31 +75,79 @@ export default function Profile() {
               title="News feed settings"
               onPress={() => null}
               clean
+              unavailable
             />
 
             <Molecules.SectionCard
               title="Notifications settings"
               onPress={() => null}
               clean
+              unavailable
             />
 
             <Molecules.SectionCard
               title="Leave a review"
               onPress={() => null}
               clean
+              unavailable
             />
 
             <Molecules.SectionCard
               title="Feature request"
-              onPress={() => null}
+              onPress={() =>
+                Linking.openURL(getReportData({ title: 'Feature' }))
+              }
               clean
             />
 
             <Molecules.SectionCard
               title="Report a problem"
-              onPress={() => null}
+              onPress={() =>
+                Linking.openURL(getReportData({ title: 'Support' }))
+              }
               clean
             />
+
+            <Atoms.Row sx={{ mt: '42px', alignItems: 'center' }}>
+              <Atoms.Image
+                source={userProfilePic ? { uri: userProfilePic } : ProfilePic}
+                sx={{
+                  height: 50,
+                  width: 50,
+                  borderRadius: 25,
+                  mr: '15px',
+                }}
+              />
+
+              <Atoms.Box>
+                <Atoms.Text
+                  variant="text-xs"
+                  sx={{
+                    color: 'white',
+                    fontWeight: 300,
+                  }}
+                >
+                  {username || 'crew member'}
+                </Atoms.Text>
+
+                <Atoms.Pressable
+                  onPress={() =>
+                    setSheetContent({ content: <ResetProfileSheet /> })
+                  }
+                >
+                  <Atoms.Text
+                    sx={{
+                      color: 'accent',
+                      fontWeight: 300,
+                      fontSize: 10,
+                      mt: '10px',
+                    }}
+                  >
+                    Reset information
+                  </Atoms.Text>
+                </Atoms.Pressable>
+              </Atoms.Box>
+            </Atoms.Row>
           </Atoms.Box>
 
           <Atoms.Text
@@ -86,6 +156,7 @@ export default function Profile() {
               color: 'white',
               fontWeight: 500,
               textAlign: 'center',
+              mt: '72px',
             }}
           >
             Version {Constants.manifest?.version ?? '1.0.0'}
