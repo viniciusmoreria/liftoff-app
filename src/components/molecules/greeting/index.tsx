@@ -65,6 +65,6 @@ function Greeting() {
   );
 }
 
-const GreetingWithAnimation = withAnimation(Greeting);
+const GreetingWithAnimation = React.memo(withAnimation(Greeting));
 
 export { GreetingWithAnimation as Greeting };

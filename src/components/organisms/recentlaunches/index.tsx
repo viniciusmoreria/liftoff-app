@@ -63,6 +63,8 @@ function RecentLaunches() {
   );
 }
 
-const RecentLaunchesWithAnimation = withAnimation(RecentLaunches, 800);
+const RecentLaunchesWithAnimation = React.memo(
+  withAnimation(RecentLaunches, 800),
+);
 
 export { RecentLaunchesWithAnimation as RecentLaunches };

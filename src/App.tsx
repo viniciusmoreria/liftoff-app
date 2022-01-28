@@ -2,6 +2,7 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { DripsyProvider } from 'dripsy';
+import * as Updates from 'expo-updates';
 import { AppStateStatus, Platform, StatusBar } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { focusManager, QueryClient, QueryClientProvider } from 'react-query';
@@ -23,6 +24,22 @@ const queryClient = new QueryClient({
 export default function App() {
   useOnlineManager();
   useAppState(onAppStateChange);
+
+  React.useEffect(() => {
+    async function updateApp() {
+      if (!__DEV__) {
+        const { isAvailable } = await Updates.checkForUpdateAsync();
+
+        if (isAvailable) {
+          await Updates.fetchUpdateAsync();
+
+          await Updates.reloadAsync();
+        }
+      }
+    }
+
+    updateApp();
+  }, []);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

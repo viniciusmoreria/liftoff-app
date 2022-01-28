@@ -66,6 +66,6 @@ function Articles() {
   );
 }
 
-const ArticlesWithAnimation = withAnimation(Articles, 950);
+const ArticlesWithAnimation = React.memo(withAnimation(Articles, 950));
 
 export { ArticlesWithAnimation as Articles };

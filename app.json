@@ -16,7 +16,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.viniciusmoreria.liftoff"
+      "bundleIdentifier": "com.viniciusmoreria.liftoff",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +25,7 @@
         "backgroundColor": "#05050B"
       },
       "package": "com.viniciusmoreria.liftoff",
-      "versionCode": 3
+      "versionCode": 4
     }
   }
 }
