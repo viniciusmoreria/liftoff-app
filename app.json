@@ -25,7 +25,15 @@
         "backgroundColor": "#05050B"
       },
       "package": "com.viniciusmoreria.liftoff",
-      "versionCode": 4
-    }
+      "versionCode": 5
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to customize your experience."
+        }
+      ]
+    ]
   }
 }

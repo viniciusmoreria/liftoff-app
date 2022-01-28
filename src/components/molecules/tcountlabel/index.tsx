@@ -5,7 +5,7 @@ import type { LaunchStageType } from '@utils/helpers';
 
 const getLaunchColor = {
   'T-Minus': 'accent',
-  Liftoff: 'orange',
+  Liftoff: '#df7341',
   'T-Plus': 'green',
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Ionicons } from '@expo/vector-icons';
+import { Linking } from 'react-native';
 
 import * as Atoms from '@components/atoms';
 import type { Core } from '@types';
@@ -17,7 +18,7 @@ function LaunchCore({ launchCore }: { launchCore: Core }) {
   const { core, landing_success, landing_type, landpad } = launchCore;
 
   return (
-    <Atoms.Pressable onPress={() => null}>
+    <Atoms.Pressable onPress={() => Linking.openURL(landpad.wikipedia)}>
       {launchCore && core && (
         <Atoms.Card>
           <Atoms.Row

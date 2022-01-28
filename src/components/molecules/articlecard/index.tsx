@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Skeleton } from '@motify/skeleton';
+import { Linking } from 'react-native';
 
 import * as Atoms from '@components/atoms';
 import type { ArticleProps } from '@types';
@@ -10,92 +11,98 @@ export function Article({ article }: { article: ArticleProps }) {
   const [hasLoadedImage, setHasLoadedImage] = React.useState(false);
 
   return (
-    <Atoms.Box
-      sx={{
-        bg: 'secondary',
-        mr: '16px',
-        mt: '16px',
-        borderRadius: 8,
+    <Atoms.Pressable
+      onPress={() => {
+        Linking.openURL(article.url);
       }}
     >
-      <Skeleton show={!hasLoadedImage}>
-        <Atoms.Image
-          source={{
-            uri: article.imageUrl,
-          }}
-          sx={{
-            height: 240,
-            width: 280,
-            borderRadius: 8,
-          }}
-          accessibilityLabel={`Published image of the article: ${article.title}`}
-          onLoadEnd={() => setHasLoadedImage(true)}
-        />
-      </Skeleton>
-
       <Atoms.Box
         sx={{
           bg: 'secondary',
-          p: '16px',
-          height: 100,
-          width: 280,
-          justifyContent: 'space-between',
-          position: 'absolute',
-          bottom: 0,
-          borderBottomLeftRadius: 8,
-          borderBottomRightRadius: 8,
+          mr: '16px',
+          mt: '16px',
+          borderRadius: 8,
         }}
       >
-        <Atoms.Row
+        <Skeleton show={!hasLoadedImage}>
+          <Atoms.Image
+            source={{
+              uri: article.imageUrl,
+            }}
+            sx={{
+              height: 240,
+              width: 280,
+              borderRadius: 8,
+            }}
+            accessibilityLabel={`Published image of the article: ${article.title}`}
+            onLoadEnd={() => setHasLoadedImage(true)}
+          />
+        </Skeleton>
+
+        <Atoms.Box
           sx={{
-            width: '100%',
-            alignItems: 'center',
+            bg: 'secondary',
+            p: '16px',
+            height: 100,
+            width: 280,
             justifyContent: 'space-between',
+            position: 'absolute',
+            bottom: 0,
+            borderBottomLeftRadius: 8,
+            borderBottomRightRadius: 8,
           }}
         >
-          <Atoms.Box
+          <Atoms.Row
             sx={{
-              borderBottomColor: 'accent',
-              borderBottomWidth: 1.5,
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
-            <Atoms.Text
+            <Atoms.Box
               sx={{
-                color: 'white',
-                fontWeight: 500,
-                fontSize: 9,
+                borderBottomColor: 'accent',
+                borderBottomWidth: 1.5,
               }}
             >
-              {article.newsSite}
-            </Atoms.Text>
-          </Atoms.Box>
+              <Atoms.Text
+                sx={{
+                  color: 'white',
+                  fontWeight: 500,
+                  fontSize: 9,
+                }}
+              >
+                {article.newsSite}
+              </Atoms.Text>
+            </Atoms.Box>
 
-          <Atoms.Badge>
-            <Atoms.Text
-              sx={{
-                color: 'white',
-                fontWeight: 500,
-                fontSize: 8,
-              }}
-            >
-              {formatRelativeDate(article.publishedAt)}
-            </Atoms.Text>
-          </Atoms.Badge>
-        </Atoms.Row>
+            <Atoms.Badge>
+              <Atoms.Text
+                sx={{
+                  color: 'white',
+                  fontWeight: 500,
+                  fontSize: 8,
+                }}
+              >
+                {formatRelativeDate(article.publishedAt)}
+              </Atoms.Text>
+            </Atoms.Badge>
+          </Atoms.Row>
 
-        <Atoms.Text
-          sx={{
-            flex: 1,
-            color: 'white',
-            fontWeight: 'bold',
-            fontSize: 11,
-            mt: '6px',
-          }}
-          numberOfLines={2}
-        >
-          {article.title}
-        </Atoms.Text>
+          <Atoms.Text
+            sx={{
+              flex: 1,
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: 11,
+              mt: '6px',
+            }}
+            numberOfLines={2}
+          >
+            {article.title}
+          </Atoms.Text>
+        </Atoms.Box>
       </Atoms.Box>
-    </Atoms.Box>
+    </Atoms.Pressable>
   );
 }
