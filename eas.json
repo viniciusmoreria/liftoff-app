@@ -10,7 +10,7 @@
       "extends": "base",
       "developmentClient": true,
       "distribution": "internal",
-      "releaseChannel": "default",
+      "releaseChannel": "development",
       "android": {
         "buildType": "apk",
         "gradleCommand": ":app:assembleRelease"
@@ -22,7 +22,7 @@
     "production": {
       "extends": "base",
       "distribution": "store",
-      "releaseChannel": "stable",
+      "releaseChannel": "production",
       "android": {
         "buildType": "app-bundle"
       }, 

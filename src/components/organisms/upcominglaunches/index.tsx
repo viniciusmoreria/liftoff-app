@@ -62,6 +62,8 @@ function UpcomingLaunches() {
   );
 }
 
-const UpcomingLaunchesWithAnimation = withAnimation(UpcomingLaunches, 650);
+const UpcomingLaunchesWithAnimation = React.memo(
+  withAnimation(UpcomingLaunches, 650),
+);
 
 export { UpcomingLaunchesWithAnimation as UpcomingLaunches };

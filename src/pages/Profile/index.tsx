@@ -37,7 +37,7 @@ export default function Profile() {
                 color: 'white',
                 fontWeight: 'bold',
                 mt: '42px',
-                mb: '42px',
+                pb: '12px',
               }}
             >
               Profile
@@ -88,7 +88,7 @@ export default function Profile() {
               textAlign: 'center',
             }}
           >
-            Version {Constants.manifest?.version}
+            Version {Constants.manifest?.version ?? '1.0.0'}
           </Atoms.Text>
         </Atoms.Box>
       </ScrollView>
