@@ -23,146 +23,134 @@ export default function Profile() {
 
   const getReportData = React.useCallback(
     ({ title }: { title: string }) => {
-      return `mailto:viniciusmoreeira@gmail.com?subject=Liftoff ${title} Request (v${Constants.manifest?.version})&body=\n\n\n\n${deviceReport}`;
+      return `mailto:appliftoff@gmail.com?subject=Liftoff ${title} Request (v${Constants.manifest?.version})&body=\n\n\n\n${deviceReport}`;
     },
     [deviceReport],
   );
 
   return (
-    <Atoms.Box
+    <ScrollView
+      showsVerticalScrollIndicator={false}
       sx={{
-        flex: 1,
         bg: 'background',
+        px: '24px',
         pt: insets.top,
       }}
+      contentContainerSx={{
+        flexGrow: 1,
+        justifyContent: 'space-between',
+        pb: 120,
+      }}
     >
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        sx={{
-          flex: 1,
-          bg: 'background',
-          px: '24px',
-        }}
-        contentContainerSx={{
-          pb: 120,
-        }}
-      >
-        <Atoms.Box>
+      <Atoms.Box>
+        <Atoms.Text
+          variant="text-2xl"
+          sx={{
+            color: 'white',
+            fontWeight: 'bold',
+            mt: '42px',
+            pb: '12px',
+          }}
+        >
+          Profile
+        </Atoms.Text>
+
+        <Molecules.SectionCard
+          title="Personal information"
+          onPress={() =>
+            setSheetContent({
+              content: <Molecules.UserProfileSheet />,
+            })
+          }
+          clean
+        />
+
+        <Molecules.SectionCard
+          title="News feed settings"
+          onPress={() => null}
+          clean
+          unavailable
+        />
+
+        <Molecules.SectionCard
+          title="Notifications settings"
+          onPress={() => null}
+          clean
+          unavailable
+        />
+
+        <Molecules.SectionCard
+          title="Leave a review"
+          onPress={() => null}
+          clean
+          unavailable
+        />
+
+        <Molecules.SectionCard
+          title="Feature request"
+          onPress={() => Linking.openURL(getReportData({ title: 'Feature' }))}
+          clean
+        />
+
+        <Molecules.SectionCard
+          title="Report a problem"
+          onPress={() => Linking.openURL(getReportData({ title: 'Support' }))}
+          clean
+        />
+
+        <Atoms.Row sx={{ mt: '42px', alignItems: 'center' }}>
+          <Atoms.Image
+            source={userProfilePic ? { uri: userProfilePic } : ProfilePic}
+            sx={{
+              height: 50,
+              width: 50,
+              borderRadius: 25,
+              mr: '15px',
+            }}
+          />
+
           <Atoms.Box>
             <Atoms.Text
-              variant="text-2xl"
+              variant="text-xs"
               sx={{
                 color: 'white',
-                fontWeight: 'bold',
-                mt: '42px',
-                pb: '12px',
+                fontWeight: 300,
               }}
             >
-              Profile
+              {username || 'crew member'}
             </Atoms.Text>
 
-            <Molecules.SectionCard
-              title="Personal information"
+            <Atoms.Pressable
               onPress={() =>
-                setSheetContent({
-                  content: <Molecules.UserProfileSheet />,
-                })
+                setSheetContent({ content: <ResetProfileSheet /> })
               }
-              clean
-            />
-
-            <Molecules.SectionCard
-              title="News feed settings"
-              onPress={() => null}
-              clean
-              unavailable
-            />
-
-            <Molecules.SectionCard
-              title="Notifications settings"
-              onPress={() => null}
-              clean
-              unavailable
-            />
-
-            <Molecules.SectionCard
-              title="Leave a review"
-              onPress={() => null}
-              clean
-              unavailable
-            />
-
-            <Molecules.SectionCard
-              title="Feature request"
-              onPress={() =>
-                Linking.openURL(getReportData({ title: 'Feature' }))
-              }
-              clean
-            />
-
-            <Molecules.SectionCard
-              title="Report a problem"
-              onPress={() =>
-                Linking.openURL(getReportData({ title: 'Support' }))
-              }
-              clean
-            />
-
-            <Atoms.Row sx={{ mt: '42px', alignItems: 'center' }}>
-              <Atoms.Image
-                source={userProfilePic ? { uri: userProfilePic } : ProfilePic}
+            >
+              <Atoms.Text
                 sx={{
-                  height: 50,
-                  width: 50,
-                  borderRadius: 25,
-                  mr: '15px',
+                  color: 'accent',
+                  fontWeight: 500,
+                  fontSize: 11,
+                  mt: '10px',
                 }}
-              />
-
-              <Atoms.Box>
-                <Atoms.Text
-                  variant="text-xs"
-                  sx={{
-                    color: 'white',
-                    fontWeight: 300,
-                  }}
-                >
-                  {username || 'crew member'}
-                </Atoms.Text>
-
-                <Atoms.Pressable
-                  onPress={() =>
-                    setSheetContent({ content: <ResetProfileSheet /> })
-                  }
-                >
-                  <Atoms.Text
-                    sx={{
-                      color: 'accent',
-                      fontWeight: 300,
-                      fontSize: 10,
-                      mt: '10px',
-                    }}
-                  >
-                    Reset information
-                  </Atoms.Text>
-                </Atoms.Pressable>
-              </Atoms.Box>
-            </Atoms.Row>
+              >
+                Reset information
+              </Atoms.Text>
+            </Atoms.Pressable>
           </Atoms.Box>
+        </Atoms.Row>
+      </Atoms.Box>
 
-          <Atoms.Text
-            variant="text-xs"
-            sx={{
-              color: 'white',
-              fontWeight: 500,
-              textAlign: 'center',
-              mt: '72px',
-            }}
-          >
-            Version {Constants.manifest?.version ?? '1.0.0'}
-          </Atoms.Text>
-        </Atoms.Box>
-      </ScrollView>
-    </Atoms.Box>
+      <Atoms.Text
+        variant="text-xs"
+        sx={{
+          color: 'white',
+          fontWeight: 500,
+          textAlign: 'center',
+          mt: 70,
+        }}
+      >
+        Version {Constants.manifest?.version ?? '1.0.0'}
+      </Atoms.Text>
+    </ScrollView>
   );
 }

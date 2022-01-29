@@ -54,9 +54,9 @@ export function getTMinus(date: Date) {
 export type LaunchStageType = ReturnType<typeof getLaunchStage>;
 
 export function getLaunchStage(date: Date) {
-  const tMinus = getTMinus(date);
+  const { hours, minutes } = getTMinus(date);
 
-  if (isAfter(new Date(), date) && Number(tMinus.minutes) < 1) {
+  if (isAfter(new Date(), date) && Number(hours) < 1 && Number(minutes) < 1) {
     return 'Liftoff';
   }
 

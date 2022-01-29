@@ -1,5 +1,6 @@
 import Constants from 'expo-constants';
 import * as Device from 'expo-device';
+import * as Localization from 'expo-localization';
 import { useQuery } from 'react-query';
 
 const getDeviceInfo = async (): Promise<string | null> => {
@@ -7,7 +8,7 @@ const getDeviceInfo = async (): Promise<string | null> => {
     'App version': Constants.manifest?.version,
     Device: `${Device.manufacturer} ${Device.modelName}`,
     OS: `${Device.osName} ${Device.osVersion}`,
-    Timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    Timezone: Localization.timezone,
   };
 
   return Object.entries(reportInfo)

@@ -22,4 +22,4 @@ jobs:
           echo GOOGLE_MAPS_ANDROID =${{ secrets.GOOGLE_MAPS_ANDROID }} >> .env
           echo GOOGLE_MAPS_IOS =${{ secrets.GOOGLE_MAPS_IOS }} >> .env
       - run: yarn install
-      - run: expo publish
+      - run: expo publish --release-channel production
