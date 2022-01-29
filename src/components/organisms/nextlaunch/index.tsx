@@ -29,7 +29,7 @@ function NextLaunch() {
 
       if (
         isAfter(new Date(), new Date(launches[0].date_local)) &&
-        Number(hours) > 2
+        Number(hours) >= 1
       ) {
         setNextLaunch(launches[1]);
 
