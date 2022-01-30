@@ -38,13 +38,13 @@ function Launch({ launch, sx }: LaunchInfoProps) {
     >
       <Atoms.Box sx={{ mt: hasYoutubeId ? '16px' : 0 }}>
         {hasYoutubeId && (
-          <Skeleton show={!hasLoadedImage}>
+          <Skeleton show={!hasLoadedImage} width={280}>
             <Atoms.Image
               source={{
                 uri: `https://img.youtube.com/vi/${launch.links.youtube_id}/0.jpg`,
               }}
               sx={{
-                height: 140,
+                height: 100,
                 width: 280,
                 borderTopRightRadius: 8,
                 borderTopLeftRadius: 8,

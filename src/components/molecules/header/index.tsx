@@ -6,19 +6,27 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Atoms from '@components/atoms';
+import type { SxProp } from '@components/atoms';
 
-function Header({ title, showTitle }: { title?: string; showTitle?: boolean }) {
+type HeaderProps = {
+  title: string;
+  showTitle?: boolean;
+  sx?: SxProp;
+};
+
+function Header({ title, showTitle, sx }: HeaderProps) {
   const { goBack } = useNavigation();
   const { top } = useSafeAreaInsets();
 
   return (
     <Atoms.Box
       sx={{
-        bg: showTitle ? 'secondary' : 'background',
+        bg: showTitle ? 'secondary' : 'transparent',
         pt: 24 + top,
         pb: '12px',
         px: '24px',
         justifyContent: 'center',
+        ...sx,
       }}
     >
       <Atoms.Row sx={{ alignItems: 'center' }}>

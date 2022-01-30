@@ -1,6 +1,7 @@
 import React from 'react';
 
 import * as Atoms from '@components/atoms';
+import DeviceUtils from '@utils/DeviceUtils';
 import type { LaunchStageType } from '@utils/helpers';
 
 const getLaunchColor = {
@@ -24,6 +25,7 @@ function TCountLabel({ stage }: { stage: LaunchStageType }) {
           color: 'white',
           fontWeight: 'bold',
           lineHeight: 22,
+          fontSize: DeviceUtils.isTinyPhone ? 9 : 12,
         }}
       >
         {stage}

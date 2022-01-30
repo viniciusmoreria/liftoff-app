@@ -4,7 +4,7 @@
     "slug": "Liftoff",
     "description": "A SpaceX Tracker App",
     "primaryColor": "#05050B",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "backgroundColor": "#05050B",
@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.1.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +25,8 @@
         "backgroundColor": "#05050B"
       },
       "package": "com.viniciusmoreria.liftoff",
-      "versionCode": 6
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
+      "versionCode": 440010100
     },
     "plugins": [
       [

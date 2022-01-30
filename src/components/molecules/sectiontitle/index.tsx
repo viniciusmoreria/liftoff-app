@@ -16,13 +16,14 @@ function SectionTitle({ title, subtitle, onPress }: SectionTitleProps) {
         pr: '24px',
         alignItems: 'center',
         justifyContent: 'space-between',
+        mb: '10px',
       }}
     >
       <Atoms.Text variant="text-sm" sx={{ color: 'white', fontWeight: 'bold' }}>
         {title}
       </Atoms.Text>
 
-      <Atoms.Pressable onPress={onPress}>
+      <Atoms.Pressable onPress={onPress} hitSlop={20}>
         <Atoms.Text
           variant="text-xs"
           sx={{ color: 'white', fontWeight: 'bold' }}

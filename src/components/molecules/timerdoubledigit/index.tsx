@@ -1,6 +1,7 @@
 import React from 'react';
 
 import * as Atoms from '@components/atoms';
+import DeviceUtils from '@utils/DeviceUtils';
 
 function TimerDoubleDigit({
   digits,
@@ -16,8 +17,8 @@ function TimerDoubleDigit({
           <Atoms.Center
             key={index.toString()}
             sx={{
-              height: 44,
-              width: 30,
+              height: DeviceUtils.isTinyPhone ? 39 : 44,
+              width: DeviceUtils.isTinyPhone ? 25 : 30,
               bg: 'secondary',
               px: '6px',
               borderRadius: 4,
@@ -25,7 +26,7 @@ function TimerDoubleDigit({
             }}
           >
             <Atoms.Text
-              variant="text-xl"
+              variant={DeviceUtils.isTinyPhone ? 'text-sm' : 'text-xl'}
               sx={{
                 color: 'white',
                 fontWeight: 'bold',

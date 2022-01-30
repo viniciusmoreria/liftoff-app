@@ -103,7 +103,10 @@ export default function LaunchDetail() {
                         {format(new Date(launch.date_local), 'Y')}
                       </Atoms.Text>
 
-                      <Molecules.LaunchDate date={launch.date_local} />
+                      <Molecules.LaunchDate
+                        date={launch.date_local}
+                        showLocalTime
+                      />
                     </Atoms.Box>
                   )}
                 </Atoms.Center>

@@ -13,7 +13,7 @@ type SectionCardProps = {
 
 function SectionCard({ title, onPress, clean, unavailable }: SectionCardProps) {
   return (
-    <Atoms.Pressable onPress={onPress}>
+    <Atoms.Pressable onPress={unavailable ? null : onPress}>
       <Atoms.Card sx={clean ? { bg: 'transparent', p: 0, mt: 30 } : {}}>
         <Atoms.Row
           sx={{ alignItems: 'center', justifyContent: 'space-between' }}

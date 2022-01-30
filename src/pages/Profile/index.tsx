@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ScrollView } from 'dripsy';
 import Constants from 'expo-constants';
+import * as StoreReview from 'expo-store-review';
 import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -11,6 +12,7 @@ import * as Molecules from '@components/molecules';
 import { ResetProfileSheet } from '@components/molecules';
 import { useDevice, useUsername, useUserProfilePicture } from '@hooks/index';
 import { useBottomSheet } from '@hooks/useBottomSheet';
+import { isIOS } from '@utils/helpers';
 
 export default function Profile() {
   const insets = useSafeAreaInsets();
@@ -27,6 +29,12 @@ export default function Profile() {
     },
     [deviceReport],
   );
+
+  const handleReview = React.useCallback(async () => {
+    if (await StoreReview.isAvailableAsync) {
+      StoreReview.requestReview();
+    }
+  }, []);
 
   return (
     <ScrollView
@@ -81,9 +89,9 @@ export default function Profile() {
 
         <Molecules.SectionCard
           title="Leave a review"
-          onPress={() => null}
+          onPress={() => handleReview()}
           clean
-          unavailable
+          unavailable={isIOS}
         />
 
         <Molecules.SectionCard
@@ -98,33 +106,36 @@ export default function Profile() {
           clean
         />
 
-        <Atoms.Row sx={{ mt: '42px', alignItems: 'center' }}>
-          <Atoms.Image
-            source={userProfilePic ? { uri: userProfilePic } : ProfilePic}
-            sx={{
-              height: 50,
-              width: 50,
-              borderRadius: 25,
-              mr: '15px',
-            }}
-          />
-
-          <Atoms.Box>
-            <Atoms.Text
-              variant="text-xs"
+        <Atoms.Pressable
+          onPress={() => setSheetContent({ content: <ResetProfileSheet /> })}
+          sx={{
+            width: '70%',
+          }}
+        >
+          <Atoms.Row sx={{ mt: '42px', alignItems: 'center' }}>
+            <Atoms.Image
+              source={userProfilePic ? { uri: userProfilePic } : ProfilePic}
               sx={{
-                color: 'white',
-                fontWeight: 300,
+                height: 50,
+                width: 50,
+                borderRadius: 25,
+                mr: '15px',
               }}
-            >
-              {username || 'crew member'}
-            </Atoms.Text>
+            />
 
-            <Atoms.Pressable
-              onPress={() =>
-                setSheetContent({ content: <ResetProfileSheet /> })
-              }
-            >
+            <Atoms.Box>
+              <Atoms.Text
+                variant="text-xs"
+                numberOfLines={2}
+                ellipsizeMode="tail"
+                sx={{
+                  color: 'white',
+                  fontWeight: 300,
+                }}
+              >
+                {username || 'crew member'}
+              </Atoms.Text>
+
               <Atoms.Text
                 sx={{
                   color: 'accent',
@@ -135,9 +146,9 @@ export default function Profile() {
               >
                 Reset information
               </Atoms.Text>
-            </Atoms.Pressable>
-          </Atoms.Box>
-        </Atoms.Row>
+            </Atoms.Box>
+          </Atoms.Row>
+        </Atoms.Pressable>
       </Atoms.Box>
 
       <Atoms.Text

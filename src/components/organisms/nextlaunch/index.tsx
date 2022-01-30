@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { intervalToDuration, isAfter } from 'date-fns';
+import { isAfter, differenceInHours } from 'date-fns';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -10,6 +10,7 @@ import withAnimation from '@components/withAnimation';
 import { useDate, useUpcomingLaunches } from '@hooks/index';
 import type { Routes } from '@routes/app.routes';
 import type { LaunchProps } from '@types';
+import DeviceUtils from '@utils/DeviceUtils';
 import { getLaunchStage, getTMinus } from '@utils/helpers';
 
 type NavigationParam = NativeStackNavigationProp<Routes, 'LaunchDetail'>;
@@ -22,14 +23,9 @@ function NextLaunch() {
 
   React.useLayoutEffect(() => {
     if (launches?.length) {
-      const { hours } = intervalToDuration({
-        start: new Date(),
-        end: new Date(launches[0].date_local),
-      });
-
       if (
         isAfter(new Date(), new Date(launches[0].date_local)) &&
-        Number(hours) >= 1
+        differenceInHours(new Date(), new Date(launches[0].date_local)) >= 1
       ) {
         setNextLaunch(launches[1]);
 
@@ -71,7 +67,13 @@ function NextLaunch() {
         }}
       >
         <Atoms.Box sx={{ justifyContent: 'space-around' }}>
-          <Atoms.Text sx={{ color: 'white', fontWeight: 'bold' }}>
+          <Atoms.Text
+            sx={{
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: DeviceUtils.isTinyPhone ? 12 : 16,
+            }}
+          >
             {nextLaunch.name}
           </Atoms.Text>
 

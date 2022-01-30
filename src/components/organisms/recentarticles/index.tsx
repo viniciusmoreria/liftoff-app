@@ -1,14 +1,21 @@
 import React from 'react';
 
-import { Alert, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { FlatList } from 'react-native';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
 import withAnimation from '@components/withAnimation';
 import { useArticles } from '@hooks/useArticles';
+import type { Routes } from '@routes/app.routes';
 import type { ArticleProps } from '@types';
 
-function Articles() {
+type NavigationParam = NativeStackNavigationProp<Routes, 'Articles'>;
+
+function RecentArticles() {
+  const { navigate } = useNavigation<NavigationParam>();
+
   const { data: articles } = useArticles();
 
   const articlesData = React.useMemo(
@@ -27,7 +34,7 @@ function Articles() {
         <Molecules.SectionTitle title="News" />
 
         <Atoms.Text variant="text-xs" sx={{ color: 'white', mt: '10px' }}>
-          Something went wrong while fetching recent news, please try again
+          Something went wrong while fetching the recent news, please try again
           later
         </Atoms.Text>
       </Atoms.Box>
@@ -49,8 +56,7 @@ function Articles() {
           title="News"
           subtitle="See all"
           onPress={() => {
-            // TODO - open all articles screen
-            Alert.alert('In development');
+            navigate('Articles');
           }}
         />
       </Atoms.Box>
@@ -66,6 +72,6 @@ function Articles() {
   );
 }
 
-const ArticlesWithAnimation = React.memo(withAnimation(Articles, 950));
+const ArticlesWithAnimation = React.memo(withAnimation(RecentArticles, 950));
 
-export { ArticlesWithAnimation as Articles };
+export { ArticlesWithAnimation as RecentArticles };
