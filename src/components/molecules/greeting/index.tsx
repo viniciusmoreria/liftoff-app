@@ -35,7 +35,7 @@ function Greeting() {
           justifyContent: 'space-between',
         }}
       >
-        <Atoms.Box>
+        <Atoms.Box sx={{ flex: 1 }}>
           <Atoms.Text
             variant="text-xl"
             sx={{ color: 'white', fontWeight: 500 }}
@@ -43,26 +43,36 @@ function Greeting() {
             {greet()},
           </Atoms.Text>
 
-          <Atoms.Box sx={{ alignSelf: 'flex-start' }}>
+          <Atoms.Box
+            sx={{
+              alignSelf: username ? 'auto' : 'flex-start',
+            }}
+          >
             <Atoms.Text
               variant="text-xl"
+              numberOfLines={2}
+              ellipsizeMode="tail"
               sx={{
                 color: 'white',
                 fontWeight: 'bold',
+                mr: '10px',
                 mt: '3px',
               }}
             >
               {username || 'crew member'}
             </Atoms.Text>
 
-            <Atoms.Box
-              sx={{
-                borderColor: 'accent',
-                borderStyle: 'dotted',
-                borderWidth: username ? 0 : 1,
-                mt: '3px',
-              }}
-            />
+            {!username && (
+              <Atoms.DashedLine
+                dashLength={4}
+                dashThickness={3}
+                dashGap={5}
+                dashColor="#c32626"
+                dashStyle={{
+                  mt: '3px',
+                }}
+              />
+            )}
           </Atoms.Box>
         </Atoms.Box>
 

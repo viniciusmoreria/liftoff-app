@@ -53,6 +53,8 @@ function ResetProfileSheet() {
 
       <Atoms.Text
         variant="text-xl"
+        numberOfLines={3}
+        ellipsizeMode="tail"
         sx={{
           color: 'white',
           fontWeight: 'bold',
@@ -60,7 +62,7 @@ function ResetProfileSheet() {
           textAlign: 'center',
         }}
       >
-        hi, {username ?? 'crew member'}
+        Hi, {username ?? 'crew member'}
       </Atoms.Text>
 
       <Atoms.Text
@@ -87,7 +89,7 @@ function ResetProfileSheet() {
         <Atoms.Button
           onPress={closeSheet}
           sx={{ bg: 'secondary' }}
-          title="Cancel"
+          title="Nop"
           textVariant="text-sm"
         />
 

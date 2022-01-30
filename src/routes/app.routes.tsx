@@ -11,12 +11,14 @@ import { useDripsyTheme } from 'dripsy';
 import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import ArticleDetail from '@pages/ArticleDetail';
+import Articles from '@pages/Articles';
 import Home from '@pages/Home';
 import LaunchDetail from '@pages/LaunchDetail';
 import Profile from '@pages/Profile';
 import Splash from '@pages/Splash';
 import Tweets from '@pages/Tweets';
-import type { LaunchProps } from '@types';
+import type { LaunchProps, ArticleProps } from '@types';
 
 type IoniconType = {
   [key: string]: React.ComponentProps<typeof Ionicons>['name'];
@@ -27,6 +29,10 @@ export type Routes = {
   HomeTabs: undefined;
   LaunchDetail: {
     launch: LaunchProps;
+  };
+  Articles: undefined;
+  ArticleDetail: {
+    article: ArticleProps;
   };
 };
 
@@ -104,6 +110,8 @@ const AppRoutes = () => (
       }}
     />
     <Stack.Screen name="LaunchDetail" component={LaunchDetail} />
+    <Stack.Screen name="Articles" component={Articles} />
+    <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
   </Stack.Navigator>
 );
 

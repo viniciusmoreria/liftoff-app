@@ -51,7 +51,7 @@ export default function Home() {
 
         <Organisms.RecentLaunches />
 
-        <Organisms.Articles />
+        <Organisms.RecentArticles />
       </ScrollView>
     </Atoms.Box>
   );
