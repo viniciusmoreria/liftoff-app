@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useDripsyTheme } from 'dripsy';
 import { FlatList, StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -9,6 +10,8 @@ import { useArticles } from '@hooks/useArticles';
 import type { ArticleProps } from '@types';
 
 export default function Articles() {
+  const { theme } = useDripsyTheme();
+
   const {
     data: articles,
     fetchNextPage,
@@ -97,7 +100,7 @@ export default function Articles() {
     }
 
     return (
-      <Animated.View entering={FadeIn}>
+      <Animated.View entering={FadeIn} style={{ paddingHorizontal: 24 }}>
         <Molecules.Article key={article.id} article={article} onDailyFeed />
       </Animated.View>
     );
@@ -106,7 +109,9 @@ export default function Articles() {
   return (
     <Atoms.Box sx={{ flex: 1, bg: 'background' }}>
       <StatusBar
-        backgroundColor={isHeaderVisible ? '#252525c1' : 'transparent'}
+        backgroundColor={
+          isHeaderVisible ? theme.colors.secondary : 'transparent'
+        }
       />
 
       <FlatList

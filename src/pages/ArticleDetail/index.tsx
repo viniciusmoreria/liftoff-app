@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Feather } from '@expo/vector-icons';
-import { Skeleton } from '@motify/skeleton';
 import { useRoute } from '@react-navigation/native';
 import { ScrollView } from 'dripsy';
+import { Skeleton } from 'moti/skeleton';
 import { Linking, StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 

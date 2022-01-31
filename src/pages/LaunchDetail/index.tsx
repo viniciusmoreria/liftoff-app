@@ -3,7 +3,7 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
-import { ScrollView } from 'dripsy';
+import { ScrollView, useDripsyTheme } from 'dripsy';
 import { Linking, StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -18,6 +18,8 @@ type Props = {
 export default function LaunchDetail() {
   const { launch } = useRoute().params as Props;
 
+  const { theme } = useDripsyTheme();
+
   const [isHeaderVisible, setIsHeaderVisible] = React.useState(false);
 
   const isPendingConfirmation =
@@ -28,7 +30,9 @@ export default function LaunchDetail() {
   return (
     <Atoms.Box sx={{ flex: 1, bg: 'background' }}>
       <StatusBar
-        backgroundColor={isHeaderVisible ? '#252525c1' : 'transparent'}
+        backgroundColor={
+          isHeaderVisible ? theme.colors.secondary : 'transparent'
+        }
       />
 
       <ScrollView
@@ -106,6 +110,7 @@ export default function LaunchDetail() {
                       <Molecules.LaunchDate
                         date={launch.date_local}
                         showLocalTime
+                        timezone={launch.launchpad.timezone}
                       />
                     </Atoms.Box>
                   )}

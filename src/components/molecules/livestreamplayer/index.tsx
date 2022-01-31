@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Skeleton } from '@motify/skeleton';
+import { Skeleton } from 'moti/skeleton';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import * as Atoms from '@components/atoms';

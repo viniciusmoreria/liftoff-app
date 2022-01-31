@@ -1,9 +1,9 @@
 import React, { ComponentProps } from 'react';
 
 import { Ionicons } from '@expo/vector-icons';
-import { Skeleton } from '@motify/skeleton';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Skeleton } from 'moti/skeleton';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -38,14 +38,14 @@ function Launch({ launch, sx }: LaunchInfoProps) {
     >
       <Atoms.Box sx={{ mt: hasYoutubeId ? '16px' : 0 }}>
         {hasYoutubeId && (
-          <Skeleton show={!hasLoadedImage} width={280}>
+          <Skeleton show={!hasLoadedImage} width={280} radius={0}>
             <Atoms.Image
               source={{
                 uri: `https://img.youtube.com/vi/${launch.links.youtube_id}/0.jpg`,
               }}
               sx={{
-                height: 100,
-                width: 280,
+                height: 120,
+                width: '100%',
                 borderTopRightRadius: 8,
                 borderTopLeftRadius: 8,
               }}
@@ -59,7 +59,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
           sx={{
             mt: hasYoutubeId ? 0 : '16px',
             height: 100,
-            width: 280,
+            width: '100%',
             borderTopRightRadius: hasYoutubeId ? 0 : 8,
             borderTopLeftRadius: hasYoutubeId ? 0 : 8,
             ...sx,

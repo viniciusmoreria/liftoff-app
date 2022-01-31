@@ -7,8 +7,8 @@ const fontName = 'Inter_400Regular';
 const theme = makeTheme({
   colors: {
     primary: '#c0c0c0',
-    secondary: '#252525c1',
-    background: '#05050B',
+    secondary: '#242529',
+    background: '#16171B',
     accent: '#d83545',
   },
   customFonts: {
@@ -76,6 +76,7 @@ const theme = makeTheme({
     '3px': 3,
     '4px': 4,
     '6px': 6,
+    '8px': 8,
     '10px': 10,
     '12px': 12,
     '15px': 15,
