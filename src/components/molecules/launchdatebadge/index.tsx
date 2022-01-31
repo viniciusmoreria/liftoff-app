@@ -10,43 +10,58 @@ function LaunchDateBadge({ launch }: { launch: LaunchProps }) {
     launch.date_precision !== 'hour' && launch.date_precision !== 'day';
 
   return (
-    <Atoms.Badge sx={{ px: 8 }}>
+    <Atoms.Badge sx={{ px: 0, bg: 'transparent' }}>
       {isPendingConfirmation ? (
-        <Atoms.Center>
+        <Atoms.Center sx={{ bg: 'transparent' }}>
           <Atoms.Text
             variant="text-xs"
             sx={{
               color: 'white',
-              fontSize: 9,
-              fontWeight: 500,
+              fontSize: 12,
+              fontWeight: 'bold',
               textTransform: 'uppercase',
             }}
           >
             {format(new Date(launch.date_local), 'Y')}
           </Atoms.Text>
-        </Atoms.Center>
-      ) : (
-        <Atoms.Center>
-          <Atoms.Text
-            sx={{
-              color: 'primary',
-              fontSize: 8,
-              fontWeight: 500,
-              textTransform: 'uppercase',
-            }}
-          >
-            {format(new Date(launch.date_local), 'MMM')}
-          </Atoms.Text>
 
           <Atoms.Text
             sx={{
-              color: 'white',
+              color: 'primary',
               fontSize: 9,
               fontWeight: 500,
-              textTransform: 'uppercase',
+              mt: '3px',
             }}
           >
-            {format(new Date(launch.date_local), 'd')}
+            Date pending
+          </Atoms.Text>
+        </Atoms.Center>
+      ) : (
+        <Atoms.Center sx={{ bg: 'transparent' }}>
+          <Atoms.Text
+            variant="text-sm"
+            sx={{
+              color: 'white',
+              fontSize: 12,
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            {format(new Date(launch.date_local), 'HH:mm ')}
+          </Atoms.Text>
+
+          <Atoms.Text
+            variant="text-sm"
+            sx={{
+              textAlign: 'center',
+
+              color: 'primary',
+              fontSize: 9,
+              fontWeight: 500,
+              mt: '3px',
+            }}
+          >
+            {format(new Date(launch.date_local), 'do MMM')}
           </Atoms.Text>
         </Atoms.Center>
       )}

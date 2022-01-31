@@ -17,9 +17,6 @@ type NavigationParam = NativeStackNavigationProp<Routes, 'LaunchDetail'>;
 function UpcomingLaunch({ launch, sx }: LaunchInfoProps) {
   const { navigate } = useNavigation<NavigationParam>();
 
-  const isPendingConfirmation =
-    launch.date_precision !== 'hour' && launch.date_precision !== 'day';
-
   return (
     <Atoms.Pressable
       onPress={() =>
@@ -28,7 +25,7 @@ function UpcomingLaunch({ launch, sx }: LaunchInfoProps) {
         })
       }
     >
-      <Atoms.Box sx={{ mt: 0 }}>
+      <Atoms.Box>
         <Atoms.Card
           sx={{
             mt: '16px',
@@ -41,11 +38,17 @@ function UpcomingLaunch({ launch, sx }: LaunchInfoProps) {
         >
           <Atoms.Row
             sx={{
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
+              flex: 1,
+              alignItems: 'center',
             }}
           >
-            <Atoms.Box>
+            <Molecules.LaunchDateBadge launch={launch} />
+
+            <Atoms.Box
+              sx={{ height: '100%', width: 1.5, bg: 'background', mx: '16px' }}
+            />
+
+            <Atoms.Box sx={{ flex: 1 }}>
               <Atoms.Text
                 variant="text-sm"
                 sx={{ color: 'white', fontSize: 12, fontWeight: 'bold' }}
@@ -57,7 +60,7 @@ function UpcomingLaunch({ launch, sx }: LaunchInfoProps) {
                 variant="text-sm"
                 sx={{
                   color: 'primary',
-                  fontSize: 10,
+                  fontSize: 9,
                   fontWeight: 500,
                   mt: '3px',
                 }}
@@ -66,45 +69,33 @@ function UpcomingLaunch({ launch, sx }: LaunchInfoProps) {
               </Atoms.Text>
             </Atoms.Box>
 
-            <Molecules.LaunchDateBadge launch={launch} />
-          </Atoms.Row>
+            <Atoms.Box>
+              <Atoms.Text
+                variant="text-sm"
+                sx={{
+                  color: 'white',
+                  fontSize: 9,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}
+              >
+                Orbit
+              </Atoms.Text>
 
-          <Atoms.Row
-            sx={{ alignItems: 'center', justifyContent: 'space-between' }}
-          >
-            <Atoms.Row
-              sx={{ alignItems: 'center', justifyContent: 'space-between' }}
-            >
-              <Atoms.Badge sx={{ height: 15 }}>
-                <Atoms.Text
-                  variant="text-xs"
-                  sx={{
-                    color: 'white',
-                    fontSize: 9,
-                    fontWeight: 500,
-                  }}
-                >
-                  {launch.payloads[0].orbit}
-                </Atoms.Text>
-              </Atoms.Badge>
-            </Atoms.Row>
+              <Atoms.Text
+                variant="text-sm"
+                sx={{
+                  textAlign: 'center',
 
-            <Atoms.Center sx={{ bg: 'transparent' }}>
-              {isPendingConfirmation ? (
-                <Atoms.Text
-                  variant="text-xs"
-                  sx={{
-                    color: 'primary',
-                    fontSize: 10,
-                    fontWeight: 500,
-                  }}
-                >
-                  Date pending
-                </Atoms.Text>
-              ) : (
-                <Molecules.LaunchDate date={launch.date_local} />
-              )}
-            </Atoms.Center>
+                  color: 'primary',
+                  fontSize: 9,
+                  fontWeight: 500,
+                  mt: '3px',
+                }}
+              >
+                {launch.payloads[0].orbit}
+              </Atoms.Text>
+            </Atoms.Box>
           </Atoms.Row>
         </Atoms.Card>
       </Atoms.Box>

@@ -27,23 +27,35 @@ function LaunchDate({
   }, [date, showLocalTime, timezone]);
 
   return (
-    <Atoms.Text
-      variant="text-xs"
-      sx={{ color: 'primary', fontSize: 9, fontWeight: 500 }}
-    >
+    <Atoms.Box>
       {showLocalTime ? (
-        <>
-          {getLocalTime()} Local ({format(new Date(date), 'iii ')}
-          {format(new Date(date), 'HH:mm ')}
-          {format(new Date(date), 'O')})
-        </>
+        <Atoms.Box>
+          <Atoms.Text
+            variant="text-xs"
+            sx={{ color: 'primary', fontSize: 9, fontWeight: 500 }}
+          >
+            {getLocalTime()} Local
+          </Atoms.Text>
+
+          <Atoms.Text
+            variant="text-xs"
+            sx={{ color: 'primary', fontSize: 9, fontWeight: 500, mt: '3px' }}
+          >
+            {format(new Date(date), 'iii ')}
+            {format(new Date(date), 'HH:mm ')}
+            {format(new Date(date), 'O')}
+          </Atoms.Text>
+        </Atoms.Box>
       ) : (
-        <>
+        <Atoms.Text
+          variant="text-xs"
+          sx={{ color: 'primary', fontSize: 9, fontWeight: 500 }}
+        >
           {format(new Date(date), 'HH:mm ')}
           {format(new Date(date), 'O')}
-        </>
+        </Atoms.Text>
       )}
-    </Atoms.Text>
+    </Atoms.Box>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { ComponentProps } from 'react';
 
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Skeleton } from 'moti/skeleton';
@@ -21,12 +20,8 @@ function Launch({ launch, sx }: LaunchInfoProps) {
 
   const [hasLoadedImage, setHasLoadedImage] = React.useState(false);
 
-  const isPendingConfirmation =
-    launch.date_precision !== 'hour' && launch.date_precision !== 'day';
-
   const hasYoutubeId = !!launch.links.youtube_id;
   const hasLaunchPad = !!launch.cores[0].landpad?.name;
-  const hasSuccedded = !!launch.success;
 
   return (
     <Atoms.Pressable
@@ -67,11 +62,17 @@ function Launch({ launch, sx }: LaunchInfoProps) {
         >
           <Atoms.Row
             sx={{
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
+              flex: 1,
+              alignItems: 'center',
             }}
           >
-            <Atoms.Box>
+            <Molecules.LaunchDateBadge launch={launch} />
+
+            <Atoms.Box
+              sx={{ height: '100%', width: 1.5, bg: 'background', mx: '16px' }}
+            />
+
+            <Atoms.Box sx={{ flex: 1 }}>
               <Atoms.Text
                 variant="text-sm"
                 sx={{ color: 'white', fontSize: 12, fontWeight: 'bold' }}
@@ -83,89 +84,43 @@ function Launch({ launch, sx }: LaunchInfoProps) {
                 variant="text-sm"
                 sx={{
                   color: 'primary',
-                  fontSize: 10,
+                  fontSize: 9,
                   fontWeight: 500,
                   mt: '3px',
                 }}
               >
-                {launch?.rocket.name}
+                {launch?.rocket.name}{' '}
+                {hasLaunchPad && `- ${launch.cores[0].landpad?.name}`}
               </Atoms.Text>
             </Atoms.Box>
 
-            <Molecules.LaunchDateBadge launch={launch} />
-          </Atoms.Row>
+            <Atoms.Box>
+              <Atoms.Text
+                variant="text-sm"
+                sx={{
+                  color: 'white',
+                  fontSize: 9,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}
+              >
+                Orbit
+              </Atoms.Text>
 
-          <Atoms.Row
-            sx={{ alignItems: 'center', justifyContent: 'space-between' }}
-          >
-            <Atoms.Row
-              sx={{ alignItems: 'center', justifyContent: 'space-between' }}
-            >
-              <Atoms.Badge sx={{ height: 15 }}>
-                <Atoms.Text
-                  variant="text-xs"
-                  sx={{
-                    color: 'white',
-                    fontSize: 9,
-                    fontWeight: 500,
-                  }}
-                >
-                  {launch.payloads[0].orbit}
-                </Atoms.Text>
-              </Atoms.Badge>
+              <Atoms.Text
+                variant="text-sm"
+                sx={{
+                  textAlign: 'center',
 
-              {hasLaunchPad && (
-                <Atoms.Row>
-                  <Atoms.Badge
-                    sx={{
-                      ml: '4px',
-                      height: 15,
-                    }}
-                  >
-                    <Atoms.Text
-                      variant="text-xs"
-                      sx={{
-                        color: 'white',
-                        fontSize: 9,
-                        fontWeight: 500,
-                      }}
-                    >
-                      {launch.cores[0].landpad?.name}
-                    </Atoms.Text>
-                  </Atoms.Badge>
-
-                  <Atoms.Badge
-                    sx={{
-                      ml: '4px',
-                      height: 15,
-                    }}
-                  >
-                    {hasSuccedded ? (
-                      <Ionicons name="checkmark-sharp" color="green" size={8} />
-                    ) : (
-                      <Ionicons name="close-sharp" color="red" size={8} />
-                    )}
-                  </Atoms.Badge>
-                </Atoms.Row>
-              )}
-            </Atoms.Row>
-
-            <Atoms.Center sx={{ bg: 'transparent' }}>
-              {isPendingConfirmation ? (
-                <Atoms.Text
-                  variant="text-xs"
-                  sx={{
-                    color: 'primary',
-                    fontSize: 10,
-                    fontWeight: 500,
-                  }}
-                >
-                  Date pending
-                </Atoms.Text>
-              ) : (
-                <Molecules.LaunchDate date={launch.date_local} />
-              )}
-            </Atoms.Center>
+                  color: 'primary',
+                  fontSize: 9,
+                  fontWeight: 500,
+                  mt: '3px',
+                }}
+              >
+                {launch.payloads[0].orbit}
+              </Atoms.Text>
+            </Atoms.Box>
           </Atoms.Row>
         </Atoms.Card>
       </Atoms.Box>
