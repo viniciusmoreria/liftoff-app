@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { FlatList } from 'react-native';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -61,12 +60,12 @@ function RecentArticles() {
         />
       </Atoms.Box>
 
-      <FlatList
+      <Molecules.Carousel
         data={articlesData}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingLeft: 24 }}
-        horizontal
         renderItem={renderItem}
+        slideStyle={{
+          paddingHorizontal: 24,
+        }}
       />
     </Atoms.Box>
   );

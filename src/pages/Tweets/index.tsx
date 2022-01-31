@@ -34,7 +34,7 @@ export default function Tweets() {
    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>\
    <style>
    body {
-   background-color: #05050B;
+   background-color: #16171B;
    padding: 12px 0 72px 0;
    }
    </style>\

@@ -21,7 +21,7 @@ function NextLaunch() {
 
   const [nextLaunch, setNextLaunch] = React.useState<LaunchProps | undefined>();
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (launches?.length) {
       if (
         isAfter(new Date(), new Date(launches[0].date_local)) &&

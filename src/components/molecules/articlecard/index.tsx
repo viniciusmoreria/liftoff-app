@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Feather } from '@expo/vector-icons';
-import { Skeleton } from '@motify/skeleton';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Skeleton } from 'moti/skeleton';
 
 import * as Atoms from '@components/atoms';
 import type { Routes } from '@routes/app.routes';
@@ -25,25 +25,24 @@ export function Article({
 
   return (
     <Atoms.Pressable onPress={() => navigate('ArticleDetail', { article })}>
-      <Atoms.Box
+      <Atoms.Row
         sx={{
           bg: 'secondary',
-          mr: '16px',
-          ml: onDailyFeed ? '24px' : 0,
           mt: '16px',
           mb: onDailyFeed ? '10px' : 0,
           borderRadius: 8,
         }}
       >
-        <Skeleton show={!hasLoadedImage}>
+        <Skeleton show={!hasLoadedImage} radius={0}>
           <Atoms.Image
             source={{
               uri: article.imageUrl,
             }}
             sx={{
-              height: 200,
-              width: onDailyFeed ? '100%' : 280,
-              borderRadius: 8,
+              height: 120,
+              width: 100,
+              borderTopLeftRadius: 8,
+              borderBottomLeftRadius: 8,
             }}
             accessibilityLabel={`Published image of the article: ${article.title}`}
             onLoadEnd={() => setHasLoadedImage(true)}
@@ -52,27 +51,19 @@ export function Article({
 
         <Atoms.Box
           sx={{
-            bg: 'secondary',
-            p: '16px',
-            height: 100,
-            width: onDailyFeed ? '100%' : 280,
+            flex: 1,
             justifyContent: 'space-between',
-            position: 'absolute',
-            bottom: 0,
-            borderBottomLeftRadius: 8,
-            borderBottomRightRadius: 8,
+            p: '16px',
           }}
         >
           <Atoms.Text
             variant="text-sm"
             sx={{
-              flex: 1,
               color: 'white',
               fontWeight: 'bold',
               fontSize: 11,
-              mt: '6px',
             }}
-            numberOfLines={2}
+            numberOfLines={3}
           >
             {article.title}
           </Atoms.Text>
@@ -84,7 +75,7 @@ export function Article({
               justifyContent: 'space-between',
             }}
           >
-            <Atoms.Row sx={{ alignItems: 'center' }}>
+            <Atoms.Row sx={{ flex: 1, alignItems: 'center' }}>
               <Feather name="clock" color="white" />
 
               <Atoms.Text
@@ -103,16 +94,18 @@ export function Article({
             <Atoms.Text
               variant="text-xs"
               sx={{
+                flex: 1,
                 color: 'white',
                 fontWeight: 500,
-                fontSize: 9,
+                fontSize: 8,
+                textAlign: 'right',
               }}
             >
               {article.newsSite}
             </Atoms.Text>
           </Atoms.Row>
         </Atoms.Box>
-      </Atoms.Box>
+      </Atoms.Row>
     </Atoms.Pressable>
   );
 }

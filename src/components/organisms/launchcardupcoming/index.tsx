@@ -33,7 +33,7 @@ function UpcomingLaunch({ launch, sx }: LaunchInfoProps) {
           sx={{
             mt: '16px',
             height: 100,
-            width: 280,
+            width: '100%',
             borderTopRightRadius: 8,
             borderTopLeftRadius: 8,
             ...sx,

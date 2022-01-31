@@ -1,4 +1,5 @@
 export * from './articlecard';
+export * from './carousel';
 export * from './greeting';
 export * from './header';
 export * from './launchdate';
