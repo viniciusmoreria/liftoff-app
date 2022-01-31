@@ -7,7 +7,7 @@ SpaceX Launches Tracker, built with React Native.
 [![Runs with Expo](https://img.shields.io/badge/runs%20with%20expo-try%20now-4630EB.svg?style=flat&colorA=000000&colorB=000000)](https://expo.dev/@viniciusmoreria/Liftoff)
 [![License](https://img.shields.io/github/license/viniciusmoreria/liftoff?style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff/blob/main/LICENSE)
 
-<img src="https://i.imgur.com/4utSP5A.png" width="100%" alt="Liftoff app presentation"/>
+<img src="https://i.imgur.com/Fs8KJps.png" width="100%" alt="Liftoff app presentation"/>
 
 ## Download
 
