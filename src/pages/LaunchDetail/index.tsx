@@ -74,48 +74,48 @@ export default function LaunchDetail() {
           </Atoms.Text>
 
           <Atoms.Card>
-            <Atoms.Row
-              sx={{ alignItems: 'center', justifyContent: 'space-between' }}
-            >
-              <Atoms.Row>
-                <Molecules.LaunchDateBadge launch={launch} />
+            <Atoms.Row sx={{ flex: 1, alignItems: 'center' }}>
+              <Atoms.Text
+                variant="text-sm"
+                sx={{
+                  color: 'white',
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}
+              >
+                {format(new Date(launch.date_local), 'Y')}
+              </Atoms.Text>
 
-                <Atoms.Center sx={{ bg: 'transparent', ml: '12px' }}>
-                  {isPendingConfirmation ? (
-                    <Atoms.Text
-                      variant="text-xs"
-                      sx={{
-                        color: 'primary',
-                        fontSize: 10,
-                        fontWeight: 500,
-                      }}
-                    >
-                      Date pending
-                    </Atoms.Text>
-                  ) : (
-                    <Atoms.Box>
-                      <Atoms.Text
-                        variant="text-xs"
-                        sx={{
-                          color: 'white',
-                          fontSize: 9,
-                          fontWeight: 700,
-                          textTransform: 'uppercase',
-                          mb: '4px',
-                        }}
-                      >
-                        {format(new Date(launch.date_local), 'Y')}
-                      </Atoms.Text>
+              <Atoms.Box
+                sx={{
+                  height: '100%',
+                  width: 1.5,
+                  bg: 'background',
+                  mx: '16px',
+                }}
+              />
 
-                      <Molecules.LaunchDate
-                        date={launch.date_local}
-                        showLocalTime
-                        timezone={launch.launchpad.timezone}
-                      />
-                    </Atoms.Box>
-                  )}
-                </Atoms.Center>
-              </Atoms.Row>
+              <Atoms.Box sx={{ flex: 1, bg: 'transparent' }}>
+                {isPendingConfirmation ? (
+                  <Atoms.Text
+                    variant="text-xs"
+                    sx={{
+                      color: 'primary',
+                      fontSize: 10,
+                      fontWeight: 500,
+                    }}
+                  >
+                    Date pending
+                  </Atoms.Text>
+                ) : (
+                  <Molecules.LaunchDate
+                    date={launch.date_local}
+                    showLocalTime
+                    timezone={launch.launchpad.timezone}
+                  />
+                )}
+              </Atoms.Box>
 
               {hasLaunchPad && launch.success !== null && (
                 <Atoms.Badge>
