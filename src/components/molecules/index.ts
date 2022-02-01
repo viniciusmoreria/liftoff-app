@@ -4,6 +4,7 @@ export * from './greeting';
 export * from './header';
 export * from './launchdate';
 export * from './launchdatebadge';
+export * from './launchestabbar';
 export * from './launchcore';
 export * from './launchmap';
 export * from './launchpayload';

@@ -112,7 +112,6 @@ export default function LaunchDetail() {
                   <Molecules.LaunchDate
                     date={launch.date_local}
                     showLocalTime
-                    timezone={launch.launchpad.timezone}
                   />
                 )}
               </Atoms.Box>
@@ -138,9 +137,7 @@ export default function LaunchDetail() {
             }}
           />
 
-          {launch.cores.length && (
-            <Molecules.LaunchCore launchCore={launch.cores[0]} />
-          )}
+          <Molecules.LaunchCore launchCore={launch.cores[0]} />
 
           <Molecules.LaunchPayload payload={payload} />
 

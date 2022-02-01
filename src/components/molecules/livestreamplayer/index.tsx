@@ -11,7 +11,7 @@ function LivestreamPlayer({ youtubeId }: { youtubeId: string }) {
   return (
     <Atoms.Box>
       {youtubeId ? (
-        <Atoms.Card sx={{ p: 0 }}>
+        <Atoms.Card sx={{ p: 0, overflow: 'hidden' }}>
           <Skeleton show={!hasLoadedVideo}>
             <YoutubePlayer
               height={220}

@@ -17,6 +17,10 @@ const getLandingType: LandingTypeProps = {
 function LaunchCore({ launchCore }: { launchCore: Core }) {
   const { core, landing_success, landing_type, landpad } = launchCore;
 
+  if (!core) {
+    return null;
+  }
+
   return (
     <Atoms.Pressable
       onPress={() => {
@@ -104,7 +108,7 @@ function LaunchCore({ launchCore }: { launchCore: Core }) {
                         ml: '4px',
                       }}
                     >
-                      {Number(core.reuse_count)}
+                      {core?.reuse_count}
                     </Atoms.Text>
                   </Atoms.Row>
                 </Atoms.Badge>

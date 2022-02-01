@@ -69,33 +69,35 @@ function UpcomingLaunch({ launch, sx }: LaunchInfoProps) {
               </Atoms.Text>
             </Atoms.Box>
 
-            <Atoms.Box>
-              <Atoms.Text
-                variant="text-sm"
-                sx={{
-                  color: 'white',
-                  fontSize: 9,
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                }}
-              >
-                Orbit
-              </Atoms.Text>
+            {!!launch.payloads.length && (
+              <Atoms.Box>
+                <Atoms.Text
+                  variant="text-sm"
+                  sx={{
+                    color: 'white',
+                    fontSize: 9,
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                  }}
+                >
+                  Orbit
+                </Atoms.Text>
 
-              <Atoms.Text
-                variant="text-sm"
-                sx={{
-                  textAlign: 'center',
+                <Atoms.Text
+                  variant="text-sm"
+                  sx={{
+                    textAlign: 'center',
 
-                  color: 'primary',
-                  fontSize: 9,
-                  fontWeight: 500,
-                  mt: '3px',
-                }}
-              >
-                {launch.payloads[0].orbit}
-              </Atoms.Text>
-            </Atoms.Box>
+                    color: 'primary',
+                    fontSize: 9,
+                    fontWeight: 500,
+                    mt: '3px',
+                  }}
+                >
+                  {launch.payloads[0].orbit}
+                </Atoms.Text>
+              </Atoms.Box>
+            )}
           </Atoms.Row>
         </Atoms.Card>
       </Atoms.Box>

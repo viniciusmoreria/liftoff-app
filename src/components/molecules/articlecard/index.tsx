@@ -31,6 +31,7 @@ export function Article({
           mt: '16px',
           mb: onDailyFeed ? '10px' : 0,
           borderRadius: 8,
+          overflow: 'hidden',
         }}
       >
         <Skeleton show={!hasLoadedImage} radius={0}>

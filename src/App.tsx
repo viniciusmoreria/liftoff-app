@@ -47,7 +47,11 @@ export default function App() {
         <DripsyProvider theme={theme}>
           <BottomSheetProvider>
             <NavigationContainer>
-              <StatusBar animated barStyle="light-content" />
+              <StatusBar
+                animated
+                barStyle="light-content"
+                backgroundColor={theme.colors.background}
+              />
               <Routes />
             </NavigationContainer>
           </BottomSheetProvider>

@@ -11,13 +11,11 @@ import { useDripsyTheme } from 'dripsy';
 import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import * as Organisms from '@components/organisms';
 import ArticleDetail from '@pages/ArticleDetail';
 import Articles from '@pages/Articles';
 import Home from '@pages/Home';
 import LaunchDetail from '@pages/LaunchDetail';
-import Completed from '@pages/Launches/Completed';
-import Upcoming from '@pages/Launches/Upcoming';
+import Launches from '@pages/Launches';
 import Profile from '@pages/Profile';
 import Splash from '@pages/Splash';
 import Tweets from '@pages/Tweets';
@@ -97,15 +95,6 @@ function HomeTabs() {
   );
 }
 
-function LaunchesTabs() {
-  return (
-    <Tab.Navigator tabBar={(props) => <Organisms.LaunchesTabBar {...props} />}>
-      <Tab.Screen name="Upcoming" component={Upcoming} />
-      <Tab.Screen name="Completed" component={Completed} />
-    </Tab.Navigator>
-  );
-}
-
 const AppRoutes = () => (
   <Stack.Navigator
     screenOptions={{
@@ -122,7 +111,7 @@ const AppRoutes = () => (
         animation: 'fade_from_bottom',
       }}
     />
-    <Stack.Screen name="Launches" component={LaunchesTabs} />
+    <Stack.Screen name="Launches" component={Launches} />
     <Stack.Screen name="LaunchDetail" component={LaunchDetail} />
     <Stack.Screen name="Articles" component={Articles} />
     <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
