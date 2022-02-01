@@ -10,7 +10,7 @@ function LaunchDateBadge({ launch }: { launch: LaunchProps }) {
     launch.date_precision !== 'hour' && launch.date_precision !== 'day';
 
   return (
-    <Atoms.Badge sx={{ px: 0, bg: 'transparent' }}>
+    <Atoms.Box sx={{ width: 65 }}>
       {isPendingConfirmation ? (
         <Atoms.Center sx={{ bg: 'transparent' }}>
           <Atoms.Text
@@ -65,7 +65,7 @@ function LaunchDateBadge({ launch }: { launch: LaunchProps }) {
           </Atoms.Text>
         </Atoms.Center>
       )}
-    </Atoms.Badge>
+    </Atoms.Box>
   );
 }
 

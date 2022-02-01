@@ -26,7 +26,8 @@ function LaunchPayload({ payload }: { payload: Payload }) {
           mt: '15px',
         }}
       >
-        {payload.manufacturers[0] ?? payload.customers[0]} - {payload.name}
+        {!!payload.manufacturers.length ?? `${payload.customers[0]} - `}
+        {payload.name}
       </Atoms.Text>
 
       <Atoms.Row sx={{ mt: '15px' }}>

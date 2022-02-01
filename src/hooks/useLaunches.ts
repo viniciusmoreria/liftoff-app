@@ -11,6 +11,7 @@ const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
         upcoming: true,
       },
       options: {
+        pagination: false,
         sort: {
           flight_number: 'asc',
         },
@@ -55,6 +56,7 @@ const getRecentLaunches = async (): Promise<LaunchProps[]> => {
         upcoming: false,
       },
       options: {
+        pagination: false,
         sort: {
           flight_number: 'desc',
         },
