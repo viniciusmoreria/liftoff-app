@@ -17,6 +17,7 @@ export default function Articles() {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
+    isLoading,
   } = useArticles();
 
   const [isHeaderVisible, setIsHeaderVisible] = React.useState(false);
@@ -53,7 +54,7 @@ export default function Articles() {
     return dataArr;
   }, [articles?.pages]);
 
-  if (!articlesData?.length) {
+  if (!articlesData?.length && !isLoading) {
     return (
       <Atoms.Box
         sx={{
@@ -100,8 +101,12 @@ export default function Articles() {
     }
 
     return (
-      <Animated.View entering={FadeIn} style={{ paddingHorizontal: 24 }}>
-        <Molecules.Article key={article.id} article={article} onDailyFeed />
+      <Animated.View
+        key={article.id}
+        entering={FadeIn}
+        style={{ paddingHorizontal: 24 }}
+      >
+        <Molecules.Article article={article} onDailyFeed />
       </Animated.View>
     );
   };

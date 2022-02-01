@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0 (2022-02-01)
+
+
+### Features
+
+* Carousel cards style ([#41](https://github.com/viniciusmoreria/liftoff/issues/41)) ([57b8b9f](https://github.com/viniciusmoreria/liftoff/commit/57b8b9fb71b088c235fc168899c5f735661c18da))
+* implements new launch card styles ([#42](https://github.com/viniciusmoreria/liftoff/issues/42)) ([eccffea](https://github.com/viniciusmoreria/liftoff/commit/eccffea9672052c1add017d0a76406d2096ac8c6))
+* implements new page to access all launches, upcoming and past ([1a6c905](https://github.com/viniciusmoreria/liftoff/commit/1a6c905c23f9c6a18d84f1cd6108c3bf27d53f0b))
+
+### Bug Fixes
+
+* old launches breaking when certain data was not returned ([24e5266](https://github.com/viniciusmoreria/liftoff/commit/24e5266e431ba7bbe720be0dff938cf508816868))
+
 ## 1.1.0 (2022-01-30)
 
 

@@ -138,7 +138,9 @@ export default function LaunchDetail() {
             }}
           />
 
-          <Molecules.LaunchCore launchCore={launch.cores[0]} />
+          {launch.cores.length && (
+            <Molecules.LaunchCore launchCore={launch.cores[0]} />
+          )}
 
           <Molecules.LaunchPayload payload={payload} />
 

@@ -1,16 +1,22 @@
 import React from 'react';
 
-import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
 import withAnimation from '@components/withAnimation';
 import { useUpcomingLaunches } from '@hooks/useLaunches';
+import type { Routes } from '@routes/app.routes';
 import type { LaunchProps } from '@types';
 
 import { UpcomingLaunch } from '../launchcardupcoming';
 
+type NavigationParam = NativeStackNavigationProp<Routes, 'Launches'>;
+
 function UpcomingLaunches() {
+  const { navigate } = useNavigation<NavigationParam>();
+
   const { data: launches } = useUpcomingLaunches();
 
   if (!launches?.length) {
@@ -44,10 +50,7 @@ function UpcomingLaunches() {
         <Molecules.SectionTitle
           title="Upcoming"
           subtitle="See all"
-          onPress={() => {
-            // TODO - open all launches screen
-            Alert.alert('In development');
-          }}
+          onPress={() => navigate('Launches')}
         />
       </Atoms.Box>
 
