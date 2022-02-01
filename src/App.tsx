@@ -7,7 +7,12 @@ import { AppStateStatus, Platform, StatusBar } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { focusManager, QueryClient, QueryClientProvider } from 'react-query';
 
-import { BottomSheetProvider, useAppState, useOnlineManager } from './hooks';
+import {
+  BottomSheetProvider,
+  useAppState,
+  useOnlineManager,
+  NotificationProvider,
+} from './hooks';
 import { Routes } from './routes';
 import { theme } from './styles/theme';
 
@@ -44,18 +49,20 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
-        <DripsyProvider theme={theme}>
-          <BottomSheetProvider>
-            <NavigationContainer>
-              <StatusBar
-                animated
-                barStyle="light-content"
-                backgroundColor={theme.colors.background}
-              />
-              <Routes />
-            </NavigationContainer>
-          </BottomSheetProvider>
-        </DripsyProvider>
+        <NavigationContainer>
+          <DripsyProvider theme={theme}>
+            <BottomSheetProvider>
+              <NotificationProvider>
+                <StatusBar
+                  animated
+                  barStyle="light-content"
+                  backgroundColor={theme.colors.background}
+                />
+                <Routes />
+              </NotificationProvider>
+            </BottomSheetProvider>
+          </DripsyProvider>
+        </NavigationContainer>
       </QueryClientProvider>
     </GestureHandlerRootView>
   );
