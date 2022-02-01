@@ -18,7 +18,7 @@ import LaunchDetail from '@pages/LaunchDetail';
 import Launches from '@pages/Launches';
 import Profile from '@pages/Profile';
 import Splash from '@pages/Splash';
-import Tweets from '@pages/Tweets';
+// import Tweets from '@pages/Tweets';
 import type { LaunchProps, ArticleProps } from '@types';
 
 type IoniconType = {
@@ -80,7 +80,7 @@ function HomeTabs() {
         tabBarIcon: ({ color }) => {
           const icons: IoniconType = {
             Home: 'home',
-            Tweets: 'logo-twitter',
+            // Tweets: 'logo-twitter',
             Profile: 'person',
           };
 
@@ -89,8 +89,8 @@ function HomeTabs() {
       })}
     >
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Tweets" component={Tweets} />
       <Tab.Screen name="Profile" component={Profile} />
+      {/* <Tab.Screen name="Tweets" component={Tweets} /> */}
     </Tab.Navigator>
   );
 }

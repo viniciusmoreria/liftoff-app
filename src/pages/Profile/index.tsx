@@ -82,9 +82,12 @@ export default function Profile() {
 
         <Molecules.SectionCard
           title="Notifications settings"
-          onPress={() => null}
+          onPress={() =>
+            setSheetContent({
+              content: <Molecules.NotificationSheet />,
+            })
+          }
           clean
-          unavailable
         />
 
         <Molecules.SectionCard

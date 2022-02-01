@@ -7,7 +7,7 @@ import { isAfter, differenceInHours } from 'date-fns';
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
 import withAnimation from '@components/withAnimation';
-import { useDate, useUpcomingLaunches } from '@hooks/index';
+import { useDate, useNotification, useUpcomingLaunches } from '@hooks/index';
 import type { Routes } from '@routes/app.routes';
 import type { LaunchProps } from '@types';
 import DeviceUtils from '@utils/DeviceUtils';
@@ -17,6 +17,8 @@ type NavigationParam = NativeStackNavigationProp<Routes, 'LaunchDetail'>;
 
 function NextLaunch() {
   const { navigate } = useNavigation<NavigationParam>();
+  const { scheduleNotification } = useNotification();
+
   const { data: launches } = useUpcomingLaunches();
 
   const [nextLaunch, setNextLaunch] = React.useState<LaunchProps | undefined>();
@@ -29,12 +31,16 @@ function NextLaunch() {
       ) {
         setNextLaunch(launches[1]);
 
+        scheduleNotification(launches[1]);
+
         return;
       }
 
+      scheduleNotification(launches[0]);
+
       setNextLaunch(launches[0]);
     }
-  }, [launches]);
+  }, [launches, scheduleNotification]);
 
   const date = useDate({
     date: nextLaunch?.date_local ? nextLaunch.date_local : new Date(),
