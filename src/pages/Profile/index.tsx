@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ScrollView } from 'dripsy';
-import Constants from 'expo-constants';
+import * as Application from 'expo-application';
 import * as StoreReview from 'expo-store-review';
 import { Linking } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -25,7 +25,7 @@ export default function Profile() {
 
   const getReportData = React.useCallback(
     ({ title }: { title: string }) => {
-      return `mailto:appliftoff@gmail.com?subject=Liftoff ${title} Request (v${Constants.manifest?.version})&body=\n\n\n\n${deviceReport}`;
+      return `mailto:appliftoff@gmail.com?subject=Liftoff ${title} Request (v${Application.nativeApplicationVersion})&body=\n\n\n\n${deviceReport}`;
     },
     [deviceReport],
   );
@@ -163,7 +163,7 @@ export default function Profile() {
           mt: 70,
         }}
       >
-        Version {Constants.manifest?.version ?? '1.0.0'}
+        Version {Application.nativeApplicationVersion}
       </Atoms.Text>
     </ScrollView>
   );

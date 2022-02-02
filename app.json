@@ -41,7 +41,8 @@
           "icon": "./src/assets/icon.png",
           "color": "#16171B"
         }
-      ]
+      ],
+      "sentry-expo"
     ]
   }
 }
