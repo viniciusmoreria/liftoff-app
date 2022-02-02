@@ -13,10 +13,22 @@ type SectionCardProps = {
 
 function SectionCard({ title, onPress, clean, unavailable }: SectionCardProps) {
   return (
-    <Atoms.Pressable onPress={unavailable ? null : onPress}>
-      <Atoms.Card sx={clean ? { bg: 'transparent', p: 0, mt: 30 } : {}}>
+    <Atoms.Pressable
+      onPress={onPress}
+      disabled={unavailable}
+      {...(clean && {
+        sx: {
+          mt: clean ? '30px' : 0,
+        },
+        hitSlop: 10,
+      })}
+    >
+      <Atoms.Card sx={clean ? { bg: 'transparent', p: 0, mt: 0 } : {}}>
         <Atoms.Row
-          sx={{ alignItems: 'center', justifyContent: 'space-between' }}
+          sx={{
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
         >
           <Atoms.Text
             variant="text-xs"
