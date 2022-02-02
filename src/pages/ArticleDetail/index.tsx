@@ -3,8 +3,9 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import { ScrollView } from 'dripsy';
+import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
-import { Linking, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 import * as Atoms from '@components/atoms';
@@ -145,7 +146,9 @@ export default function ArticleDetail() {
 
                 <Atoms.Row sx={{ mt: '36px' }}>
                   <Atoms.Button
-                    onPress={() => Linking.openURL(article.url)}
+                    onPress={async () => {
+                      await WebBrowser.openBrowserAsync(article.url);
+                    }}
                     title={`Continue reading on ${article.newsSite}`}
                     textVariant="text-xs"
                     sx={{ bg: 'secondary' }}
