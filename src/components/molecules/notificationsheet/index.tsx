@@ -74,7 +74,8 @@ function NotificationSheet() {
           textAlign: 'center',
         }}
       >
-        We will send you a notification at T-minus 10 and 5 minutes stages
+        Notifications will be sheduled 24 hours, 1 hour, 10 minutes and 5
+        minutes before every upcoming Liftoff
       </Atoms.Text>
 
       <Atoms.Row

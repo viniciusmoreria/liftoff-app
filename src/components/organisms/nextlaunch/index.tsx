@@ -31,12 +31,11 @@ function NextLaunch() {
       ) {
         setNextLaunch(launches[1]);
 
-        scheduleNotification(launches[1]);
-
         return;
       }
 
       scheduleNotification(launches[0]);
+      scheduleNotification(launches[1]);
 
       setNextLaunch(launches[0]);
     }
