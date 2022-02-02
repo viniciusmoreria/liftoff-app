@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Ionicons } from '@expo/vector-icons';
-import { Linking } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
 
 import * as Atoms from '@components/atoms';
 import type { Core } from '@types';
@@ -23,9 +23,9 @@ function LaunchCore({ launchCore }: { launchCore: Core }) {
 
   return (
     <Atoms.Pressable
-      onPress={() => {
+      onPress={async () => {
         if (landpad?.wikipedia) {
-          Linking.openURL(landpad.wikipedia);
+          await WebBrowser.openBrowserAsync(landpad.wikipedia);
         }
       }}
     >

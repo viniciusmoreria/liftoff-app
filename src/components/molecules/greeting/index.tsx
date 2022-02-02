@@ -46,6 +46,7 @@ function Greeting() {
           <Atoms.Box
             sx={{
               alignSelf: username ? 'auto' : 'flex-start',
+              mr: '10px',
             }}
           >
             <Atoms.Text
@@ -55,7 +56,6 @@ function Greeting() {
               sx={{
                 color: 'white',
                 fontWeight: 'bold',
-                mr: '10px',
                 mt: '3px',
               }}
             >

@@ -50,7 +50,7 @@ function LaunchMap({ launchpad }: { launchpad: Launchpad }) {
         handleOpenGps();
       }}
     >
-      <Atoms.Card sx={{ p: 0 }}>
+      <Atoms.Card sx={{ p: 0, overflow: 'hidden' }}>
         <MapView
           scrollEnabled={false}
           zoomEnabled={false}

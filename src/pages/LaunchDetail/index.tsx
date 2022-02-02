@@ -4,7 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
 import { ScrollView, useDripsyTheme } from 'dripsy';
-import { Linking, StatusBar } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
+import { StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 import * as Atoms from '@components/atoms';
@@ -132,8 +133,8 @@ export default function LaunchDetail() {
 
           <Molecules.SectionCard
             title={launch.rocket.name}
-            onPress={() => {
-              Linking.openURL(launch.rocket.wikipedia);
+            onPress={async () => {
+              await WebBrowser.openBrowserAsync(launch.rocket.wikipedia);
             }}
           />
 
@@ -173,8 +174,8 @@ export default function LaunchDetail() {
           {launch.links.wikipedia && (
             <Molecules.SectionCard
               title="Wikipedia"
-              onPress={() => {
-                Linking.openURL(launch.links.wikipedia);
+              onPress={async () => {
+                await WebBrowser.openBrowserAsync(launch.links.wikipedia);
               }}
             />
           )}
