@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/viniciusmoreria/liftoff/compare/v1.3.0...v1.3.1) (2022-02-02)
+
+
+### ✨ Features
+
+* implements expo web browser to improve ux when handling with external links ([#46](https://github.com/viniciusmoreria/liftoff/issues/46)) ([fbbb4e2](https://github.com/viniciusmoreria/liftoff/commit/fbbb4e20bfffe3212522eb877daa03eb2129a9b8))
+* implements schedule notifications for the upcoming launch ([#45](https://github.com/viniciusmoreria/liftoff/issues/45)) ([f4f92ee](https://github.com/viniciusmoreria/liftoff/commit/f4f92ee71d1bb0e54a74a1b95a6a08b423d33307))
+* implements sentry to catch errors in production ([#47](https://github.com/viniciusmoreria/liftoff/issues/47)) ([206e481](https://github.com/viniciusmoreria/liftoff/commit/206e481252a4f9540deafa1bf06938fd83968102))
+
+
+### 🐛 Bug Fixes
+
+* improve clickable areas on profile page ([#48](https://github.com/viniciusmoreria/liftoff/issues/48)) ([77b2c11](https://github.com/viniciusmoreria/liftoff/commit/77b2c112e492ea4b73867942981fb45cb4c626e0))
+
 ## 1.3.0 (2022-02-01)
 
 
