@@ -30,14 +30,13 @@ function NextLaunch() {
         differenceInHours(new Date(), new Date(launches[0].date_local)) >= 1
       ) {
         setNextLaunch(launches[1]);
+        scheduleNotification(launches[1]);
 
         return;
       }
 
-      scheduleNotification(launches[0]);
-      scheduleNotification(launches[1]);
-
       setNextLaunch(launches[0]);
+      scheduleNotification(launches[0]);
     }
   }, [launches, scheduleNotification]);
 
