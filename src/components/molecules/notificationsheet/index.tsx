@@ -74,8 +74,8 @@ function NotificationSheet() {
           textAlign: 'center',
         }}
       >
-        Notifications will be sheduled 24 hours, 1 hour, 10 minutes and 5
-        minutes before every upcoming Liftoff
+        Notifications will be sheduled 24 hours, 1 hour and 10 minutes before
+        Liftoff
       </Atoms.Text>
 
       <Atoms.Row

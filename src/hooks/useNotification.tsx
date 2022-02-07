@@ -69,17 +69,6 @@ const NotificationProvider: React.FC = ({ children }) => {
           seconds: secondsToLaunch - 600,
         },
       });
-
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: `${launch.name} aboard ${launch.rocket.name}`,
-          body: `Liftoff in T-Minus 5 minutes. Livestream is now available`,
-        },
-        trigger: {
-          // 5 minutes before launch
-          seconds: secondsToLaunch - 300,
-        },
-      });
     } catch (err) {
       Sentry.Native.captureException(err);
     }
