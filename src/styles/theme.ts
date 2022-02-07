@@ -8,6 +8,7 @@ const theme = makeTheme({
   colors: {
     primary: '#c0c0c0',
     secondary: '#242529',
+    secondaryLighter: '#252525c1',
     background: '#16171B',
     accent: '#d83545',
   },

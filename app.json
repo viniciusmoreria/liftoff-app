@@ -29,6 +29,13 @@
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
       "versionCode": 440010301
     },
+    "notification": {
+      "icon": "./src/assets/push-icon.png",
+      "color": "#16171B",
+      "iosDisplayInForeground": true,
+      "androidMode": "collapse",
+      "androidCollapsedTitle": "#{unread_notifications} new updates"
+    },
     "plugins": [
       [
         "expo-image-picker",
@@ -39,7 +46,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./src/assets/icon.png",
+          "icon": "./src/assets/push-icon.png",
           "color": "#16171B"
         }
       ],

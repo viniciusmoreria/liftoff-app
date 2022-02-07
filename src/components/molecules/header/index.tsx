@@ -21,7 +21,7 @@ function Header({ title, showTitle, sx }: HeaderProps) {
   return (
     <Atoms.Box
       sx={{
-        bg: showTitle ? 'secondary' : 'transparent',
+        bg: showTitle ? 'secondaryLighter' : 'transparent',
         pt: 24 + top,
         pb: '12px',
         px: '24px',
@@ -33,7 +33,7 @@ function Header({ title, showTitle, sx }: HeaderProps) {
         <Atoms.Pressable onPress={() => goBack()}>
           <Atoms.Badge
             sx={{
-              bg: showTitle ? 'background' : 'secondary',
+              bg: showTitle ? 'background' : 'secondaryLighter',
               borderRadius: 8,
             }}
           >
