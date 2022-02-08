@@ -1,15 +1,18 @@
 import React from 'react';
 
 import { Ionicons } from '@expo/vector-icons';
-import {
-  createMaterialTopTabNavigator,
-  MaterialTopTabBar,
-  MaterialTopTabBarProps,
-} from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useDripsyTheme } from 'dripsy';
 import { BlurView } from 'expo-blur';
+import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  TabView,
+  SceneMap,
+  SceneRendererProps,
+  TabBar,
+  NavigationState,
+} from 'react-native-tab-view';
 
 import ArticleDetail from '@pages/ArticleDetail';
 import Articles from '@pages/Articles';
@@ -21,9 +24,13 @@ import Splash from '@pages/Splash';
 import Tweets from '@pages/Tweets';
 import type { LaunchProps, ArticleProps } from '@types';
 
-type IoniconType = {
-  [key: string]: React.ComponentProps<typeof Ionicons>['name'];
+type Route = {
+  key: string;
+  title: string;
+  icon: React.ComponentProps<typeof Ionicons>['name'];
 };
+
+type State = NavigationState<Route>;
 
 export type Routes = {
   Splash: undefined;
@@ -38,10 +45,20 @@ export type Routes = {
   };
 };
 
-const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator<Routes>();
 
-const CustomTabBar = (props: MaterialTopTabBarProps) => {
+const renderScene = SceneMap({
+  home: Home,
+  tweets: Tweets,
+  profile: Profile,
+});
+
+const CustomTabBar = (
+  props: SceneRendererProps & { navigationState: State },
+) => {
+  const { theme } = useDripsyTheme();
+  const { bottom: bottomNotchHeight } = useSafeAreaInsets();
+
   return (
     <BlurView
       style={{
@@ -53,45 +70,45 @@ const CustomTabBar = (props: MaterialTopTabBarProps) => {
       tint="dark"
       intensity={100}
     >
-      <MaterialTopTabBar {...props} />
+      <TabBar
+        {...props}
+        renderLabel={() => null}
+        renderIcon={({ route, color }) => (
+          <Ionicons name={route.icon} color={color} size={20} />
+        )}
+        renderIndicator={() => null}
+        inactiveColor={theme.colors.primary}
+        activeColor={theme.colors.accent}
+        style={{
+          backgroundColor: '#05050b8d',
+          paddingBottom: bottomNotchHeight,
+        }}
+      />
     </BlurView>
   );
 };
 
 function HomeTabs() {
-  const { theme } = useDripsyTheme();
-  const { bottom: bottomNotchHeight } = useSafeAreaInsets();
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = React.useState(0);
+
+  const [routes] = React.useState<Route[]>([
+    { key: 'home', title: 'home', icon: 'home' },
+    { key: 'tweets', title: 'tweets', icon: 'logo-twitter' },
+    { key: 'profile', title: 'profile', icon: 'person' },
+  ]);
 
   return (
-    <Tab.Navigator
-      tabBar={(props: MaterialTopTabBarProps) => <CustomTabBar {...props} />}
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      renderTabBar={(props) => <CustomTabBar {...props} />}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+      swipeEnabled={false}
       tabBarPosition="bottom"
-      screenOptions={({ route }) => ({
-        tabBarShowLabel: false,
-        tabBarShowIcon: true,
-        tabBarActiveTintColor: theme.colors.accent,
-        tabBarInactiveTintColor: theme.colors.primary,
-        tabBarStyle: {
-          backgroundColor: '#05050b8d',
-          paddingBottom: bottomNotchHeight,
-        },
-        swipeEnabled: false,
-        tabBarIndicator: () => null,
-        tabBarIcon: ({ color }) => {
-          const icons: IoniconType = {
-            Home: 'home',
-            Tweets: 'logo-twitter',
-            Profile: 'person',
-          };
-
-          return <Ionicons name={icons[route.name]} color={color} size={20} />;
-        },
-      })}
-    >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Tweets" component={Tweets} />
-      <Tab.Screen name="Profile" component={Profile} />
-    </Tab.Navigator>
+    />
   );
 }
 

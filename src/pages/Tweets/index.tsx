@@ -66,9 +66,7 @@ export default function Tweets() {
         source={{ html }}
         showsVerticalScrollIndicator={false}
         onLoadEnd={() => {
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 1500);
+          setIsLoading(false);
         }}
         onShouldStartLoadWithRequest={(event) => {
           if (allowedUrls.includes(event.url)) {
