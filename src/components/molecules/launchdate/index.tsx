@@ -26,9 +26,7 @@ function LaunchDate({
             variant="text-xs"
             sx={{ color: 'primary', fontSize: 9, fontWeight: 500, mt: '3px' }}
           >
-            {format(new Date(date), 'iii ')}
-            {format(new Date(date), 'HH:mm ')}
-            {format(new Date(date), 'O')}
+            {format(new Date(date), 'do MMM, iii HH:mm O')}
           </Atoms.Text>
         </Atoms.Box>
       ) : (
@@ -36,8 +34,7 @@ function LaunchDate({
           variant="text-xs"
           sx={{ color: 'primary', fontSize: 9, fontWeight: 500 }}
         >
-          {format(new Date(date), 'HH:mm ')}
-          {format(new Date(date), 'O')}
+          {format(new Date(date), 'HH:mm O')}
         </Atoms.Text>
       )}
     </Atoms.Box>
