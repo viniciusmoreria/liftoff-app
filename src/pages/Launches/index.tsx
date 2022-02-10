@@ -40,6 +40,19 @@ const CustomTabBar = (
         backgroundColor: theme.colors.accent,
         borderRadius: 8,
       }}
+      renderTabBarItem={({ route, onPress }) => (
+        <Atoms.Button
+          key={route.key}
+          onPress={onPress}
+          sx={{ bg: 'transparent' }}
+          title={route.title}
+          textVariant="text-xs"
+          textProps={{
+            fontWeight: 500,
+            textTransform: 'uppercase',
+          }}
+        />
+      )}
       style={{
         backgroundColor: 'transparent',
         marginHorizontal: 24,

@@ -32,9 +32,7 @@
     "notification": {
       "icon": "./src/assets/push-icon.png",
       "color": "#16171B",
-      "iosDisplayInForeground": true,
-      "androidMode": "collapse",
-      "androidCollapsedTitle": "#{unread_notifications} new updates"
+      "iosDisplayInForeground": true
     },
     "plugins": [
       [

@@ -3,6 +3,7 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import * as ImagePicker from 'expo-image-picker';
+import { Alert, ActionSheetIOS } from 'react-native';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { ProfilePic } from '@assets/icons';
@@ -13,7 +14,7 @@ import {
   useBottomSheet,
   useUserProfilePicture,
 } from '@hooks/index';
-import { isNameValid } from '@utils/helpers';
+import { isIOS, isNameValid } from '@utils/helpers';
 
 function UserProfileSheet() {
   const queryClient = useQueryClient();
@@ -45,18 +46,87 @@ function UserProfileSheet() {
     closeSheet();
   }, [closeSheet, mutateAsync, name]);
 
-  const pickImage = async () => {
+  const pickImage = React.useCallback(async () => {
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      Alert.alert(
+        'Permission to access camera roll is required to upload an image.',
+      );
+      return;
+    }
+
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
     });
 
     if (!result.cancelled) {
       mutateAsyncPicture(result.uri);
     }
-  };
+  }, [mutateAsyncPicture]);
+
+  const openCamera = React.useCallback(async () => {
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      Alert.alert(
+        'Permission to access camera is required to upload an image.',
+      );
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync({
+      aspect: [4, 3],
+    });
+
+    if (!result.cancelled) {
+      mutateAsyncPicture(result.uri);
+    }
+  }, [mutateAsyncPicture]);
+
+  const handleOpenSheet = React.useCallback(() => {
+    if (isIOS) {
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Cancel', 'Take Photo', 'Choose Photo'],
+          cancelButtonIndex: 0,
+          userInterfaceStyle: 'dark',
+        },
+        async (buttonIndex) => {
+          if (buttonIndex === 1) {
+            openCamera();
+          }
+
+          if (buttonIndex === 2) {
+            pickImage();
+          }
+        },
+      );
+    } else {
+      Alert.alert(
+        'Update Profile Picture',
+        '',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Take Photo',
+            onPress: openCamera,
+          },
+          {
+            text: 'Choose Photo',
+            onPress: pickImage,
+          },
+        ],
+        {
+          cancelable: true,
+        },
+      );
+    }
+  }, [openCamera, pickImage]);
 
   return (
     <Atoms.Box sx={{ pt: '12px', pb: '42px' }}>
@@ -64,7 +134,7 @@ function UserProfileSheet() {
         sx={{
           alignItems: 'center',
         }}
-        onPress={pickImage}
+        onPress={handleOpenSheet}
       >
         <Atoms.Box>
           <Atoms.Image
