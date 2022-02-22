@@ -36,12 +36,13 @@ function addLeadingZeros(number: number, targetLength = 2): string {
 }
 
 export function getTMinus(date: Date) {
-  const { days, hours, minutes, seconds } = intervalToDuration({
+  const { months, days, hours, minutes, seconds } = intervalToDuration({
     start: new Date(),
     end: date,
   });
 
   const tMinus = {
+    months: addLeadingZeros(months as number),
     days: addLeadingZeros(days as number),
     hours: addLeadingZeros(hours as number),
     minutes: addLeadingZeros(minutes as number),
