@@ -43,7 +43,6 @@ function NextLaunch() {
   const date = useDate({
     date: nextLaunch?.date_local ? nextLaunch.date_local : new Date(),
   });
-
   const tMinus = getTMinus(new Date(date));
   const stage = getLaunchStage(new Date(date));
 
@@ -51,7 +50,7 @@ function NextLaunch() {
     return <Atoms.Box />;
   }
 
-  return Number(tMinus.days) <= 7 ? (
+  return Number(tMinus.months) < 1 && Number(tMinus.days) <= 7 ? (
     <Atoms.Pressable
       onPress={() =>
         navigate('LaunchDetail', {

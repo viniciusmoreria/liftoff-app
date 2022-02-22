@@ -37,11 +37,16 @@ const getUpcomingLaunches = async (): Promise<LaunchProps[]> => {
 
   const launchOrder = ['hour', 'day', 'month', 'year', 'quarter', 'half'];
 
-  return data.docs.sort(
-    (a, b) =>
+  return data.docs.sort((a, b) => {
+    if (a.date_precision === 'hour' && b.date_precision === 'day') {
+      return a.date_unix - b.date_unix;
+    }
+
+    return (
       launchOrder.indexOf(a.date_precision) -
-      launchOrder.indexOf(b.date_precision),
-  );
+      launchOrder.indexOf(b.date_precision)
+    );
+  });
 };
 
 export function useUpcomingLaunches() {
