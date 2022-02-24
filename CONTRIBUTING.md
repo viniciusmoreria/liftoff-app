@@ -11,18 +11,17 @@ Follow the `Expo CLI Quickstart` section as Liftoff runs on Expo managed flow.
 
 ### How to run
 
-Clone repository and install dependencies:
+Fork this repository and clone it to your local machine.
+
+Install dependencies:
+
 ```sh
-git@github.com:viniciusmoreria/liftoff.git
-
-cd liftoff
-
-yarn
-
-npm install -g expo-cli
+yarn global add expo-cli
+yarn install
 ```
 
 Run the app:
+
 ```sh
 yarn ios
 ```
