@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIntl } from 'react-intl';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -16,6 +17,7 @@ type NavigationParam = NativeStackNavigationProp<Routes, 'Launches'>;
 
 function UpcomingLaunches() {
   const { navigate } = useNavigation<NavigationParam>();
+  const { formatMessage } = useIntl();
 
   const { data: launches } = useUpcomingLaunches();
 
@@ -48,7 +50,7 @@ function UpcomingLaunches() {
     >
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
-          title="Upcoming"
+          title={formatMessage({ id: 'UPCOMING_LAUNCHES.TITLE' })}
           subtitle="See all"
           onPress={() => navigate('Launches')}
         />

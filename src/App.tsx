@@ -1,12 +1,21 @@
 import React from 'react';
+import 'intl';
+import 'intl/locale-data/jsonp/en';
+import 'intl/locale-data/jsonp/en-US';
+import 'intl/locale-data/jsonp/pt-BR';
+import 'intl/locale-data/jsonp/es-CO';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { DripsyProvider } from 'dripsy';
+import * as Localization from 'expo-localization';
 import * as Updates from 'expo-updates';
+import { IntlProvider } from 'react-intl';
 import { AppStateStatus, LogBox, Platform, StatusBar } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { focusManager, QueryClient, QueryClientProvider } from 'react-query';
 import * as Sentry from 'sentry-expo';
+
+import { useInternationalization } from '@hooks/useInternationalization';
 
 import {
   BottomSheetProvider,
@@ -48,6 +57,7 @@ function onAppStateChange(status: AppStateStatus) {
 export default function App() {
   useOnlineManager();
   useAppState(onAppStateChange);
+  const [language, messages] = useInternationalization(Localization.locale);
 
   React.useEffect(() => {
     async function updateApp() {
@@ -70,16 +80,18 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <NavigationContainer>
           <DripsyProvider theme={theme}>
-            <BottomSheetProvider>
-              <NotificationProvider>
-                <StatusBar
-                  animated
-                  barStyle="light-content"
-                  backgroundColor={theme.colors.background}
-                />
-                <Routes />
-              </NotificationProvider>
-            </BottomSheetProvider>
+            <IntlProvider locale={language as string} messages={messages}>
+              <BottomSheetProvider>
+                <NotificationProvider>
+                  <StatusBar
+                    animated
+                    barStyle="light-content"
+                    backgroundColor={theme.colors.background}
+                  />
+                  <Routes />
+                </NotificationProvider>
+              </BottomSheetProvider>
+            </IntlProvider>
           </DripsyProvider>
         </NavigationContainer>
       </QueryClientProvider>
