@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.2](https://github.com/viniciusmoreria/liftoff/compare/v1.3.1...v1.3.2) (2022-02-28)
+
+
+### 🐛 Bug Fixes
+
+* android notification icon ([#51](https://github.com/viniciusmoreria/liftoff/issues/51)) ([31cc099](https://github.com/viniciusmoreria/liftoff/commit/31cc099910e70ff651a8ce2e042ab9c1a21545c1))
+* improve notifications messages ([#49](https://github.com/viniciusmoreria/liftoff/issues/49)) ([43dd712](https://github.com/viniciusmoreria/liftoff/commit/43dd7124514a4c36f1d7f9f6dbc600c85016be5a))
+* notification scheduling calculation ([#50](https://github.com/viniciusmoreria/liftoff/issues/50)) ([bfe4fa7](https://github.com/viniciusmoreria/liftoff/commit/bfe4fa7503f7e71e5127aca44c2fa5f934338de8))
+* upcoming launches order giving the date precision ([#55](https://github.com/viniciusmoreria/liftoff/issues/55)) ([502d0b6](https://github.com/viniciusmoreria/liftoff/commit/502d0b62b64aaa4c18eb3469a428361528fc637b))
+
+
+### 📚 Documentation
+
+* small adjust in the contributing guide ([#58](https://github.com/viniciusmoreria/liftoff/issues/58)) ([e227a7b](https://github.com/viniciusmoreria/liftoff/commit/e227a7b25de86c7492c59793fbbd17fd8eac8254))
+
+
+### ✨ Features
+
+* implements translations to spanish and portuguese ([#60](https://github.com/viniciusmoreria/liftoff/issues/60)) ([71c4332](https://github.com/viniciusmoreria/liftoff/commit/71c43327064482f777b9be3222da5b477058afc7))
+* replaces material topbar with rn tabview ([#52](https://github.com/viniciusmoreria/liftoff/issues/52)) ([8da2c84](https://github.com/viniciusmoreria/liftoff/commit/8da2c846e1039452a95e8f726dd862f4b7410ecc))
+* snap profile picture ([#53](https://github.com/viniciusmoreria/liftoff/issues/53)) ([c0336e0](https://github.com/viniciusmoreria/liftoff/commit/c0336e066065d2448742ff468b63f2b2fd171d35))
+
 ### [1.3.1](https://github.com/viniciusmoreria/liftoff/compare/v1.3.0...v1.3.1) (2022-02-02)
 
 
