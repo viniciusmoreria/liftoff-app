@@ -29,10 +29,12 @@ function UpcomingLaunches() {
           pl: '24px',
         }}
       >
-        <Molecules.SectionTitle title="Upcoming" />
+        <Molecules.SectionTitle
+          title={formatMessage({ id: 'UPCOMING_LAUNCHES.TITLE' })}
+        />
 
         <Atoms.Text variant="text-xs" sx={{ color: 'white', mt: '10px' }}>
-          No Spacex upcoming launches at the moment
+          {formatMessage({ id: 'UPCOMING_LAUNCHES.NO_UPCOMING_LAUNCHES' })}
         </Atoms.Text>
       </Atoms.Box>
     );
@@ -51,7 +53,7 @@ function UpcomingLaunches() {
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
           title={formatMessage({ id: 'UPCOMING_LAUNCHES.TITLE' })}
-          subtitle="See all"
+          subtitle={formatMessage({ id: 'LABELS.SEE_ALL' })}
           onPress={() => navigate('Launches')}
         />
       </Atoms.Box>

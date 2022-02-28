@@ -1,11 +1,14 @@
 import React from 'react';
 
+import { useIntl } from 'react-intl';
+
 import * as Atoms from '@components/atoms';
 import type { Payload } from '@types';
 
 import { ListItem } from '../listitem';
 
 function LaunchPayload({ payload }: { payload: Payload }) {
+  const { formatMessage } = useIntl();
   return (
     <Atoms.Card>
       <Atoms.Text
@@ -74,23 +77,30 @@ function LaunchPayload({ payload }: { payload: Payload }) {
       </Atoms.Row>
 
       <Atoms.Box>
-        <ListItem title="Lifespan" value={payload.lifespan_years} />
+        <ListItem
+          title={formatMessage({ id: 'LABELS.LIFESPAN' })}
+          value={payload.lifespan_years}
+        />
 
         <ListItem
-          title="Reference System"
+          title={formatMessage({ id: 'LABELS.REFERENCE_SYSTEM' })}
           value={payload.reference_system}
           capitalize
         />
 
-        <ListItem title="Regime" value={payload.regime} capitalize />
+        <ListItem
+          title={formatMessage({ id: 'LABELS.REGIME' })}
+          value={payload.regime}
+          capitalize
+        />
 
         <ListItem
-          title="Apoapsis"
+          title={formatMessage({ id: 'LABELS.APOAPSIS' })}
           value={payload.apoapsis_km ? `${payload.apoapsis_km} km` : '-'}
         />
 
         <ListItem
-          title="Periapsis"
+          title={formatMessage({ id: 'LABELS.PERIAPSIS' })}
           value={payload.periapsis_km ? `${payload.periapsis_km} km` : '-'}
         />
       </Atoms.Box>

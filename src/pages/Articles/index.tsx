@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useDripsyTheme } from 'dripsy';
+import { useIntl } from 'react-intl';
 import { FlatList, StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -11,6 +12,7 @@ import type { ArticleProps } from '@types';
 
 export default function Articles() {
   const { theme } = useDripsyTheme();
+  const { formatMessage } = useIntl();
 
   const {
     data: articles,
@@ -59,14 +61,17 @@ export default function Articles() {
       <Atoms.Box
         sx={{
           mt: '36px',
-          pl: '24px',
         }}
       >
-        <Molecules.SectionTitle title="News" />
+        <Molecules.Header
+          title={formatMessage({ id: 'RECENT_ARTICLES.DAILY_FEED' })}
+        />
 
-        <Atoms.Text variant="text-xs" sx={{ color: 'white', mt: '10px' }}>
-          Something went wrong while fetching the recent news, please try again
-          later
+        <Atoms.Text
+          variant="text-xs"
+          sx={{ color: 'white', mt: '10px', px: '24px' }}
+        >
+          {formatMessage({ id: 'RECENT_ARTICLES.FETCH_ERROR' })}
         </Atoms.Text>
       </Atoms.Box>
     );
@@ -94,7 +99,9 @@ export default function Articles() {
               mb: '24px',
             }}
           >
-            {isHeaderVisible ? ' ' : "What's new?"}
+            {isHeaderVisible
+              ? ' '
+              : formatMessage({ id: 'RECENT_ARTICLES.WHATS_NEW' })}
           </Atoms.Text>
         </Animated.View>
       );
@@ -139,7 +146,10 @@ export default function Articles() {
           paddingBottom: 120,
         }}
         ListHeaderComponent={
-          <Molecules.Header title="Daily feed" showTitle={isHeaderVisible} />
+          <Molecules.Header
+            title={formatMessage({ id: 'RECENT_ARTICLES.DAILY_FEED' })}
+            showTitle={isHeaderVisible}
+          />
         }
         ListEmptyComponent={<Molecules.Loading />}
         stickyHeaderIndices={[0]}

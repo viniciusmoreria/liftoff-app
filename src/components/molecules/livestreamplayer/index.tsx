@@ -1,11 +1,14 @@
 import React from 'react';
 
 import { Skeleton } from 'moti/skeleton';
+import { useIntl } from 'react-intl';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import * as Atoms from '@components/atoms';
 
 function LivestreamPlayer({ youtubeId }: { youtubeId: string }) {
+  const { formatMessage } = useIntl();
+
   const [hasLoadedVideo, setHasLoadedVideo] = React.useState(false);
 
   return (
@@ -41,7 +44,7 @@ function LivestreamPlayer({ youtubeId }: { youtubeId: string }) {
                 fontSize: 10,
               }}
             >
-              Waiting for livestream to start
+              {formatMessage({ id: 'LABELS.PENDING_LIVESTREAM' })}
             </Atoms.Text>
           </Atoms.Center>
         </Atoms.Card>

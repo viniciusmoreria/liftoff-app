@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 
 import * as Atoms from '@components/atoms';
 import type { LaunchProps } from '@types';
+import { locale, returnLocalization } from '@utils/helpers';
 
 function LaunchDateBadge({ launch }: { launch: LaunchProps }) {
   const isPendingConfirmation =
@@ -61,7 +62,9 @@ function LaunchDateBadge({ launch }: { launch: LaunchProps }) {
               mt: '3px',
             }}
           >
-            {format(new Date(launch.date_local), 'do MMM')}
+            {format(new Date(launch.date_local), 'do MMM', {
+              locale: returnLocalization[locale],
+            })}
           </Atoms.Text>
         </Atoms.Center>
       )}

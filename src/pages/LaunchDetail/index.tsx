@@ -5,6 +5,7 @@ import { useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
 import { ScrollView, useDripsyTheme } from 'dripsy';
 import * as WebBrowser from 'expo-web-browser';
+import { useIntl } from 'react-intl';
 import { StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -19,6 +20,7 @@ type Props = {
 export default function LaunchDetail() {
   const { launch } = useRoute().params as Props;
 
+  const { formatMessage } = useIntl();
   const { theme } = useDripsyTheme();
 
   const [isHeaderVisible, setIsHeaderVisible] = React.useState(false);
@@ -107,7 +109,7 @@ export default function LaunchDetail() {
                       fontWeight: 500,
                     }}
                   >
-                    Date pending
+                    {formatMessage({ id: 'LABELS.DATE_PENDING' })}
                   </Atoms.Text>
                 ) : (
                   <Molecules.LaunchDate
@@ -154,7 +156,7 @@ export default function LaunchDetail() {
                     fontWeight: 'bold',
                   }}
                 >
-                  Mission Brief
+                  {formatMessage({ id: 'LABELS.MISSION_BRIEF' })}
                 </Atoms.Text>
 
                 <Atoms.Text

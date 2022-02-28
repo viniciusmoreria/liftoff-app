@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useDripsyTheme } from 'dripsy';
+import { useIntl } from 'react-intl';
 import { FlatList } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -13,6 +14,7 @@ import type { LaunchProps } from '@types';
 export default function Completed() {
   const { theme } = useDripsyTheme();
 
+  const { formatMessage } = useIntl();
   const { data: launches, isLoading } = useRecentLaunches();
 
   if (!launches?.length && !isLoading) {
@@ -23,11 +25,8 @@ export default function Completed() {
           pl: '24px',
         }}
       >
-        <Molecules.SectionTitle title="News" />
-
         <Atoms.Text variant="text-xs" sx={{ color: 'white', mt: '10px' }}>
-          Something went wrong while fetching the upcoming launches, please try
-          again later
+          {formatMessage({ id: 'UPCOMING_LAUNCHES.FETCH_ERROR' })}
         </Atoms.Text>
       </Atoms.Box>
     );

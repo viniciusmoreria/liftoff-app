@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useIntl } from 'react-intl';
+
 import { ProfilePic } from '@assets/icons';
 import * as Atoms from '@components/atoms';
 import withAnimation from '@components/withAnimation';
@@ -16,6 +18,7 @@ function Greeting() {
   const { data: username } = useUsername();
   const { data: userProfilePic } = useUserProfilePicture();
 
+  const { formatMessage } = useIntl();
   const { setSheetContent } = useBottomSheet();
 
   return (
@@ -40,7 +43,7 @@ function Greeting() {
             variant="text-xl"
             sx={{ color: 'white', fontWeight: 500 }}
           >
-            {greet()},
+            {formatMessage({ id: `GREETING.${greet()}` })},
           </Atoms.Text>
 
           <Atoms.Box

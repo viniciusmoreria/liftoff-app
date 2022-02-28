@@ -5,6 +5,7 @@ import { useRoute } from '@react-navigation/native';
 import { ScrollView } from 'dripsy';
 import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
+import { useIntl } from 'react-intl';
 import { StatusBar } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
@@ -22,6 +23,7 @@ type Props = {
 export default function ArticleDetail() {
   const { article } = useRoute().params as Props;
 
+  const { formatMessage } = useIntl();
   const { screen } = useDimensions();
 
   const [hasLoadedImage, setHasLoadedImage] = React.useState(false);
@@ -51,8 +53,8 @@ export default function ArticleDetail() {
             }}
           />
 
-          <Skeleton show={!hasLoadedImage}>
-            <Atoms.Box>
+          <Atoms.Box>
+            <Skeleton show={!hasLoadedImage}>
               <Atoms.Image
                 source={{
                   uri: article.imageUrl,
@@ -64,28 +66,26 @@ export default function ArticleDetail() {
                 onLoadEnd={() => setHasLoadedImage(true)}
                 accessibilityLabel={`Published image of the article: ${article.title}`}
               />
+            </Skeleton>
 
-              <Atoms.Box
+            <Atoms.Box
+              sx={{
+                px: '24px',
+                position: 'absolute',
+                bottom: '48px',
+              }}
+            >
+              <Atoms.Text
+                variant={deviceDimensions.isTinyPhone ? 'text-lg' : 'text-2xl'}
                 sx={{
-                  px: '24px',
-                  position: 'absolute',
-                  bottom: '48px',
+                  color: 'white',
+                  fontWeight: 'bold',
                 }}
               >
-                <Atoms.Text
-                  variant={
-                    deviceDimensions.isTinyPhone ? 'text-lg' : 'text-2xl'
-                  }
-                  sx={{
-                    color: 'white',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {article.title}
-                </Atoms.Text>
-              </Atoms.Box>
+                {article.title}
+              </Atoms.Text>
             </Atoms.Box>
-          </Skeleton>
+          </Atoms.Box>
 
           <Atoms.Box
             sx={{
@@ -149,7 +149,9 @@ export default function ArticleDetail() {
                     onPress={async () => {
                       await WebBrowser.openBrowserAsync(article.url);
                     }}
-                    title={`Continue reading on ${article.newsSite}`}
+                    title={`${formatMessage({
+                      id: 'RECENT_ARTICLES.CONTINUE_BUTTON',
+                    })} ${article.newsSite}`}
                     textVariant="text-xs"
                     sx={{ bg: 'secondary' }}
                   />

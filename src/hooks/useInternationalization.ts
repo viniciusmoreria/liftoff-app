@@ -3,9 +3,9 @@ import { defineMessages } from 'react-intl';
 
 import type MessageMap from 'i18n/i18n';
 
-import enUS from '../i18n/languages/en-US';
-import esCO from '../i18n/languages/es-CO';
-import ptBR from '../i18n/languages/pt-BR';
+import en from '../i18n/languages/en-US';
+import es from '../i18n/languages/es-CO';
+import pt from '../i18n/languages/pt-BR';
 
 export function flattenObject(nestedMessages: MessageMap) {
   return reduce(
@@ -19,18 +19,16 @@ export function flattenObject(nestedMessages: MessageMap) {
   );
 }
 
-export const useInternationalization = (language = 'en-us') => {
-  const DEFAULT_LANGUAGES_KEY = 'enUS';
+export const useInternationalization = (language = 'en') => {
+  const DEFAULT_LANGUAGES_KEY = 'en';
   const LANGUAGE_MESSAGES: { [language: string]: MessageMap } = {
-    enUS,
-    esCO,
-    ptBR,
+    en,
+    es,
+    pt,
   };
   const languageToUse =
     Object.keys(LANGUAGE_MESSAGES).find(
-      (key) =>
-        key.toLocaleLowerCase() ===
-        language.toLocaleLowerCase().replace('-', ''),
+      (key) => key.toLocaleLowerCase() === language.split('-')[0],
     ) || DEFAULT_LANGUAGES_KEY;
   const messagesByLanguage = LANGUAGE_MESSAGES[languageToUse];
   const messages = defineMessages(flattenObject(messagesByLanguage));
