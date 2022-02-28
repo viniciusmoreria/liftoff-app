@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from 'react';
 
 import * as Notifications from 'expo-notifications';
+import { useIntl } from 'react-intl';
 import * as Sentry from 'sentry-expo';
 
 import type { LaunchProps } from '@types';
@@ -22,6 +23,8 @@ Notifications.setNotificationHandler({
 });
 
 const NotificationProvider: React.FC = ({ children }) => {
+  const { formatMessage } = useIntl();
+
   async function scheduleNotification(launch: LaunchProps) {
     await Notifications.cancelAllScheduledNotificationsAsync();
 
@@ -39,8 +42,12 @@ const NotificationProvider: React.FC = ({ children }) => {
 
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: 'Upcoming Launch',
-          body: `${launch.name} will attempt launch from ${launch.launchpad.locality} - ${launch.launchpad.region} in 24 hours`,
+          title: formatMessage({ id: 'NOTIFICATIONS.TITLE' }),
+          body: `${launch.name} ${formatMessage({
+            id: 'NOTIFICATIONS.SUBTITLE',
+          })} ${launch.launchpad.locality} - ${
+            launch.launchpad.region
+          } ${formatMessage({ id: 'NOTIFICATIONS.TWENTY_FOUR_HOURS' })}`,
         },
         trigger: {
           // 24 hours before launch
@@ -50,8 +57,12 @@ const NotificationProvider: React.FC = ({ children }) => {
 
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: 'Upcoming Launch',
-          body: `${launch.name} will attempt launch from ${launch.launchpad.locality} - ${launch.launchpad.region} in 1 hour`,
+          title: formatMessage({ id: 'NOTIFICATIONS.TITLE' }),
+          body: `${launch.name} ${formatMessage({
+            id: 'NOTIFICATIONS.SUBTITLE',
+          })} ${launch.launchpad.locality} - ${
+            launch.launchpad.region
+          } ${formatMessage({ id: 'NOTIFICATIONS.ONE_HOUR' })}`,
         },
         trigger: {
           // 1 hour before launch
@@ -61,8 +72,12 @@ const NotificationProvider: React.FC = ({ children }) => {
 
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: `${launch.name}: T-Minus 10 minutes`,
-          body: `Flight #${launch?.flight_number} ready for launch at ${launch.launchpad.locality}`,
+          title: `${launch.name}: ${formatMessage({
+            id: 'NOTIFICATIONS.T_MINUS_TEN_MINS',
+          })}`,
+          body: `${formatMessage({ id: 'NOTIFICATIONS.FLIGHT' })} #${
+            launch?.flight_number
+          } ${formatMessage({ id: 'NOTIFICATIONS.READY_FOR_LAUNCH' })}`,
         },
         trigger: {
           // 10 minutes before launch

@@ -3,6 +3,7 @@ import React, { ComponentProps } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Skeleton } from 'moti/skeleton';
+import { useIntl } from 'react-intl';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -17,6 +18,8 @@ type NavigationParam = NativeStackNavigationProp<Routes, 'LaunchDetail'>;
 
 function Launch({ launch, sx }: LaunchInfoProps) {
   const { navigate } = useNavigation<NavigationParam>();
+
+  const { formatMessage } = useIntl();
 
   const [hasLoadedImage, setHasLoadedImage] = React.useState(false);
 
@@ -110,7 +113,7 @@ function Launch({ launch, sx }: LaunchInfoProps) {
                   textAlign: 'center',
                 }}
               >
-                Orbit
+                {formatMessage({ id: 'LABELS.ORBIT' })}
               </Atoms.Text>
 
               <Atoms.Text

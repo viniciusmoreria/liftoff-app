@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useIntl } from 'react-intl';
 import { useWindowDimensions } from 'react-native';
 import {
   NavigationState,
@@ -62,13 +63,17 @@ const CustomTabBar = (
 };
 
 export default function Launches() {
+  const { formatMessage } = useIntl();
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
 
   const [routes] = React.useState<Route[]>([
-    { key: 'upcoming', title: 'Upcoming' },
-    { key: 'completed', title: 'Completed' },
+    {
+      key: 'upcoming',
+      title: formatMessage({ id: 'UPCOMING_LAUNCHES.TITLE' }),
+    },
+    { key: 'completed', title: formatMessage({ id: 'LABELS.COMPLETED' }) },
   ]);
 
   return (
@@ -78,7 +83,7 @@ export default function Launches() {
         bg: 'background',
       }}
     >
-      <Molecules.Header title="Launches" />
+      <Molecules.Header title="" />
 
       <TabView
         navigationState={{ index, routes }}

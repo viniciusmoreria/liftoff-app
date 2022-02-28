@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIntl } from 'react-intl';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -17,21 +18,23 @@ type NavigationParam = NativeStackNavigationProp<Routes, 'Launches'>;
 function RecentLaunches() {
   const { navigate } = useNavigation<NavigationParam>();
 
+  const { formatMessage } = useIntl();
   const { data: launches } = useRecentLaunches();
 
   if (!launches?.length) {
     return (
       <Atoms.Box
         sx={{
-          mt: '36px',
           pl: '24px',
+          height: 220,
         }}
       >
-        <Molecules.SectionTitle title="Recent" />
+        <Molecules.SectionTitle
+          title={formatMessage({ id: 'RECENT_LAUNCHES.TITLE' })}
+        />
 
-        <Atoms.Text variant="text-xs" sx={{ color: 'white', mt: '10px' }}>
-          Something went wrong while fetching recent launches, please try again
-          later
+        <Atoms.Text variant="text-xs" sx={{ flex: 1, color: 'white' }}>
+          {formatMessage({ id: 'RECENT_LAUNCHES.FETCH_ERROR' })}
         </Atoms.Text>
       </Atoms.Box>
     );
@@ -49,8 +52,8 @@ function RecentLaunches() {
     >
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
-          title="Recent"
-          subtitle="See all"
+          title={formatMessage({ id: 'RECENT_LAUNCHES.TITLE' })}
+          subtitle={formatMessage({ id: 'LABELS.SEE_ALL' })}
           onPress={() => navigate('Launches')}
         />
       </Atoms.Box>

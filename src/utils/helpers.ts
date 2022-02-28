@@ -1,5 +1,8 @@
-import { formatRelative, intervalToDuration, isAfter } from 'date-fns';
+import { formatRelative, intervalToDuration, isAfter, Locale } from 'date-fns';
 import en from 'date-fns/locale/en-US';
+import es from 'date-fns/locale/es';
+import ptBR from 'date-fns/locale/pt-BR';
+import * as Localization from 'expo-localization';
 import { Platform } from 'react-native';
 
 export const isAndroid = Platform.OS === 'android';
@@ -21,14 +24,14 @@ export const greet = () => {
   const hour = date.getHours();
 
   if (hour < 12) {
-    return 'Good morning';
+    return 'MORNING';
   }
 
   if (hour < 18) {
-    return 'Good afternoon';
+    return 'AFTERNOON';
   }
 
-  return 'Good evening';
+  return 'EVENING';
 };
 
 function addLeadingZeros(number: number, targetLength = 2): string {
@@ -68,7 +71,7 @@ export function getLaunchStage(date: Date) {
   return 'T-Minus';
 }
 
-const formatRelativeLocale: { [key: string]: string } = {
+const formatRelativeLocaleEN: { [key: string]: string } = {
   lastWeek: "'Last' eeee",
   yesterday: "'Yesterday'",
   today: "'Today'",
@@ -77,9 +80,42 @@ const formatRelativeLocale: { [key: string]: string } = {
   other: 'E, LLL d',
 };
 
+const formatRelativeLocaleES: { [key: string]: string } = {
+  lastWeek: "'El' eeee 'pasado'",
+  yesterday: "'Ayer'",
+  today: "'Hoy'",
+  tomorrow: "'Mañana'",
+  nextWeek: 'eeee',
+  other: 'E, d LLL',
+};
+
+const formatRelativeLocalePT: { [key: string]: string } = {
+  lastWeek: 'eeee',
+  yesterday: "'Ontem'",
+  today: "'Hoje'",
+  tomorrow: "'Amanhã'",
+  nextWeek: 'eeee',
+  other: 'E, d LLL',
+};
+
+export const returnLocalization: { [key: string]: Locale } = {
+  en,
+  es,
+  pt: ptBR,
+};
+
+const returnFormatRelativeLocale: { [key: string]: { [key: string]: string } } =
+  {
+    en: formatRelativeLocaleEN,
+    es: formatRelativeLocaleES,
+    pt: formatRelativeLocalePT,
+  };
+
+export const locale = Localization.locale.split('-')[0];
+
 export const dateLocale = {
-  ...en,
-  formatRelative: (token: string) => formatRelativeLocale[token],
+  ...(returnLocalization[locale] || en),
+  formatRelative: (token: string) => returnFormatRelativeLocale[locale][token],
 };
 
 export const formatRelativeDate = (date: string) => {

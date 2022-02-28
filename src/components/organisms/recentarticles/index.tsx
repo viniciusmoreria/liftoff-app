@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useIntl } from 'react-intl';
 
 import * as Atoms from '@components/atoms';
 import * as Molecules from '@components/molecules';
@@ -15,6 +16,7 @@ type NavigationParam = NativeStackNavigationProp<Routes, 'Articles'>;
 function RecentArticles() {
   const { navigate } = useNavigation<NavigationParam>();
 
+  const { formatMessage } = useIntl();
   const { data: articles } = useArticles();
 
   const articlesData = React.useMemo(
@@ -30,11 +32,12 @@ function RecentArticles() {
           pl: '24px',
         }}
       >
-        <Molecules.SectionTitle title="News" />
+        <Molecules.SectionTitle
+          title={formatMessage({ id: 'RECENT_ARTICLES.TITLE' })}
+        />
 
         <Atoms.Text variant="text-xs" sx={{ color: 'white', mt: '10px' }}>
-          Something went wrong while fetching the recent news, please try again
-          later
+          {formatMessage({ id: 'RECENT_ARTICLES.FETCH_ERROR' })}
         </Atoms.Text>
       </Atoms.Box>
     );
@@ -52,8 +55,8 @@ function RecentArticles() {
     >
       <Atoms.Box sx={{ pl: '24px' }}>
         <Molecules.SectionTitle
-          title="News"
-          subtitle="See all"
+          title={formatMessage({ id: 'RECENT_ARTICLES.TITLE' })}
+          subtitle={formatMessage({ id: 'LABELS.SEE_ALL_NEWS' })}
           onPress={() => {
             navigate('Articles');
           }}
