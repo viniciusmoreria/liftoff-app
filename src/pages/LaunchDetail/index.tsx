@@ -142,7 +142,7 @@ export default function LaunchDetail() {
 
           <Molecules.LaunchCore launchCore={launch.cores[0]} />
 
-          <Molecules.LaunchPayload payload={payload} />
+          {payload && <Molecules.LaunchPayload payload={payload} />}
 
           <Molecules.LaunchMap launchpad={launch.launchpad} />
 

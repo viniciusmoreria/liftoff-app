@@ -27,7 +27,7 @@ function LaunchDate({
             variant="text-xs"
             sx={{ color: 'primary', fontSize: 9, fontWeight: 500, mt: '3px' }}
           >
-            {format(new Date(date), 'do MMM, iii HH:mm O', {
+            {format(new Date(date), 'MMM do, iii HH:mm O', {
               locale: returnLocalization[locale],
             })}
           </Atoms.Text>
