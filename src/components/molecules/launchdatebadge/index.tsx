@@ -62,7 +62,7 @@ function LaunchDateBadge({ launch }: { launch: LaunchProps }) {
               mt: '3px',
             }}
           >
-            {format(new Date(launch.date_local), 'do MMM', {
+            {format(new Date(launch.date_local), 'MMM do', {
               locale: returnLocalization[locale],
             })}
           </Atoms.Text>
