@@ -3,7 +3,6 @@ import React from 'react';
 import { format } from 'date-fns';
 
 import * as Atoms from '@components/atoms';
-import { locale, returnLocalization } from '@utils/helpers';
 
 function LaunchDate({
   date,
@@ -27,9 +26,7 @@ function LaunchDate({
             variant="text-xs"
             sx={{ color: 'primary', fontSize: 9, fontWeight: 500, mt: '3px' }}
           >
-            {format(new Date(date), 'MMM do, iii HH:mm O', {
-              locale: returnLocalization[locale],
-            })}
+            {format(new Date(date), 'MMM do, iii HH:mm O')}
           </Atoms.Text>
         </Atoms.Box>
       ) : (

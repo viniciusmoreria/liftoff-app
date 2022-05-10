@@ -26,11 +26,7 @@ export const useInternationalization = (language = 'en') => {
     es,
     pt,
   };
-  const languageToUse =
-    Object.keys(LANGUAGE_MESSAGES).find(
-      (key) => key.toLocaleLowerCase() === language.split('-')[0],
-    ) || DEFAULT_LANGUAGES_KEY;
-  const messagesByLanguage = LANGUAGE_MESSAGES[languageToUse];
+  const messagesByLanguage = LANGUAGE_MESSAGES[DEFAULT_LANGUAGES_KEY];
   const messages = defineMessages(flattenObject(messagesByLanguage));
   return [language, messages];
 };

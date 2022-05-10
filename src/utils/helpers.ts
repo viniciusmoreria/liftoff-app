@@ -1,7 +1,5 @@
-import { formatRelative, intervalToDuration, isAfter, Locale } from 'date-fns';
+import { formatRelative, intervalToDuration, isAfter } from 'date-fns';
 import en from 'date-fns/locale/en-US';
-import es from 'date-fns/locale/es';
-import ptBR from 'date-fns/locale/pt-BR';
 import * as Localization from 'expo-localization';
 import { Platform } from 'react-native';
 
@@ -71,7 +69,7 @@ export function getLaunchStage(date: Date) {
   return 'T-Minus';
 }
 
-const formatRelativeLocaleEN: { [key: string]: string } = {
+const formatRelativeLocale: { [key: string]: string } = {
   lastWeek: "'Last' eeee",
   yesterday: "'Yesterday'",
   today: "'Today'",
@@ -80,42 +78,11 @@ const formatRelativeLocaleEN: { [key: string]: string } = {
   other: 'E, LLL d',
 };
 
-const formatRelativeLocaleES: { [key: string]: string } = {
-  lastWeek: "'El' eeee 'pasado'",
-  yesterday: "'Ayer'",
-  today: "'Hoy'",
-  tomorrow: "'Mañana'",
-  nextWeek: 'eeee',
-  other: 'E, d LLL',
-};
-
-const formatRelativeLocalePT: { [key: string]: string } = {
-  lastWeek: 'eeee',
-  yesterday: "'Ontem'",
-  today: "'Hoje'",
-  tomorrow: "'Amanhã'",
-  nextWeek: 'eeee',
-  other: 'E, d LLL',
-};
-
-export const returnLocalization: { [key: string]: Locale } = {
-  en,
-  es,
-  pt: ptBR,
-};
-
-const returnFormatRelativeLocale: { [key: string]: { [key: string]: string } } =
-  {
-    en: formatRelativeLocaleEN,
-    es: formatRelativeLocaleES,
-    pt: formatRelativeLocalePT,
-  };
-
 export const locale = Localization.locale.split('-')[0];
 
 export const dateLocale = {
-  ...(returnLocalization[locale] || en),
-  formatRelative: (token: string) => returnFormatRelativeLocale[locale][token],
+  ...en,
+  formatRelative: (token: string) => formatRelativeLocale[token],
 };
 
 export const formatRelativeDate = (date: string) => {
