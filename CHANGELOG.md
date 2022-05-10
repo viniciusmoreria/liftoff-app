@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.4](https://github.com/viniciusmoreria/liftoff/compare/v1.3.2...v1.3.4) (2022-05-10)
+
+
+### 🐛 Bug Fixes
+
+* nullable payload treatment ([#61](https://github.com/viniciusmoreria/liftoff/issues/61)) ([949e8a9](https://github.com/viniciusmoreria/liftoff/commit/949e8a9883bf2517d656d29136f2dddd39640a9e))
+* temporarily disable localization ([#62](https://github.com/viniciusmoreria/liftoff/issues/62)) ([e80f61e](https://github.com/viniciusmoreria/liftoff/commit/e80f61e92fd6bc9f2f581994350fe5aabd820ae2))
+
+
+### ✨ Features
+
+* enable hermes ([#63](https://github.com/viniciusmoreria/liftoff/issues/63)) ([32c320c](https://github.com/viniciusmoreria/liftoff/commit/32c320c79fc1af38569d1c5191f5147b4d300cef))
+
 ### [1.3.2](https://github.com/viniciusmoreria/liftoff/compare/v1.3.1...v1.3.2) (2022-02-28)
 
 
