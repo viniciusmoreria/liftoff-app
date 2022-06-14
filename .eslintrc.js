@@ -1,71 +1,47 @@
 module.exports = {
   env: {
     es2021: true,
+    node: true,
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:prettier/recommended',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
   ],
-  parser: '@typescript-eslint/parser',
+  globals: {
+    __DEV__: "readonly",
+  },
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 12,
-    sourceType: 'module',
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: ['react', 'react-hooks', 'prettier', '@typescript-eslint'],
+  plugins: ["@typescript-eslint", "react", "react-hooks", "unused-imports"],
   rules: {
-    'prettier/prettier': 'error',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    'react/require-default-props': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'react/prop-types': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
-    'no-use-before-define': 'off',
-    'no-console': ['error', { allow: ['tron'] }],
-    'import/no-duplicates': 'off',
-    'import/prefer-default-export': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    camelcase: 'off',
-    'import/extensions': [
-      'error',
-      'ignorePackages',
+    "no-undef": "warn",
+    "no-unused-vars": "warn",
+    "react/no-unescaped-entities": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "error",
       {
-        ts: 'never',
-        tsx: 'never',
+        additionalHooks:
+          "(useMotiPressableTransition|useMotiPressable|useMotiPressables|useMotiPressableAnimatedProps|useInterpolateMotiPressable)",
       },
     ],
-    'import/order': [
-      'error',
-      {
-        'newlines-between': 'always',
-        groups: ['builtin', 'external', 'internal'],
-        pathGroups: [
-          {
-            pattern: 'react',
-            group: 'external',
-            position: 'before',
-          },
-        ],
-        pathGroupsExcludedImportTypes: ['react'],
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
-      },
-    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "no-empty": "warn",
+    "react/display-name": "warn",
+    "no-async-promise-executor": "warn",
   },
   settings: {
-    'import/resolver': {
-      typescript: {},
+    react: {
+      version: "detect",
     },
-  },
-  globals: {
-    __DEV__: true,
-    NodeJS: true,
-    JSX: true,
   },
 };
