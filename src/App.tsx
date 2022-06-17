@@ -4,13 +4,14 @@ import { Sentry } from "@libs/sentry";
 import { RootStackNavigator } from "@navigation/root-stack-navigator";
 import { AppProviders } from "@providers/app-providers";
 import { StatusBar } from "expo-status-bar";
+import * as Updates from "expo-updates";
 import { enableScreens } from "react-native-screens";
 
 enableScreens(true);
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
-  environment: process.env.STAGE,
+  environment: Updates.releaseChannel,
 });
 
 export default function App() {

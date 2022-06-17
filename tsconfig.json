@@ -5,12 +5,12 @@
     "baseUrl": "src",
     "paths": {
       "@assets/*": ["assets/*"],
+      "@constants/*": ["constants/*"],
       "@hooks/*": ["hooks/*"],
       "@libs/*": ["libs/*"],
       "@navigation/*": ["navigation/*"],
-      "@pages/*": ["pages/*"],
-      "@providers/*": ["providers/*"],
-      "@screens/*": ["screens/*"]
+      "@features/*": ["features/*"],
+      "@providers/*": ["providers/*"]
     }
   }
 }

@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     "no-undef": "warn",
     "no-unused-vars": "warn",
+    "react/self-closing-comp": "warn",
     "react/no-unescaped-entities": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": [

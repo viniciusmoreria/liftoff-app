@@ -12,7 +12,7 @@ const SplashScreen = () => {
     }, 2500);
   }, [dispatch]);
 
-  return <View style={{ flex: 1, backgroundColor: "#16171B" }}></View>;
+  return <View style={{ flex: 1, backgroundColor: "#16171B" }} />;
 };
 
 export { SplashScreen };
