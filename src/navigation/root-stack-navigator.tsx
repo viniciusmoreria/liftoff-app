@@ -1,5 +1,4 @@
-import { ProfileNavigator } from "@pages/profile";
-import { SplashNavigator } from "@pages/splash";
+import { SplashScreen } from "@features/splash/splash-screen";
 import {
   TransitionPresets,
   createStackNavigator,
@@ -18,7 +17,7 @@ export function RootStackNavigator() {
     <Stack.Navigator>
       <Stack.Screen
         name="splash"
-        component={SplashNavigator}
+        component={SplashScreen}
         options={{ headerShown: false }}
       />
       <Stack.Group screenOptions={screenOptions({ safeAreaTop })}>
@@ -29,10 +28,6 @@ export function RootStackNavigator() {
             ...TransitionPresets.FadeFromBottomAndroid,
           }}
         />
-        <Stack.Screen
-          name="profile"
-          component={ProfileNavigator}
-        ></Stack.Screen>
       </Stack.Group>
     </Stack.Navigator>
   );

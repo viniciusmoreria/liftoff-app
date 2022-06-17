@@ -2,8 +2,8 @@ import React from "react";
 import { useWindowDimensions } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-import { HomeNavigator } from "@pages/home";
-import { ProfileNavigator } from "@pages/profile";
+import { HomeScreen } from "@features/home/home-screen";
+import { ProfileScreen } from "@features/profile/profile-screen";
 import {
   MaterialTopTabBar,
   createMaterialTopTabNavigator,
@@ -50,7 +50,7 @@ export function BottomTabNavigator() {
     >
       <BottomTab.Screen
         name="Home"
-        component={HomeNavigator}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => {
             return <Ionicons name="home" color={color} size={20} />;
@@ -59,7 +59,7 @@ export function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Profile"
-        component={ProfileNavigator}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => {
             return <Ionicons name="person" color={color} size={20} />;
