@@ -1,4 +1,4 @@
-import { Platform } from "react-native";
+import { Platform } from 'react-native';
 
 export const screenOptions = ({
   safeAreaTop,
@@ -12,11 +12,11 @@ export const screenOptions = ({
   animationEnabled: true,
   headerShown: false,
   headerLeft: headerLeft,
-  headerTitleAlign: "center" as "center",
+  headerTitleAlign: 'center' as 'center',
   headerRight: headerRight ?? null,
-  headerTintColor: "#000",
-  headerTransparent: Platform.OS === "android" ? false : true,
-  headerBlurEffect: "dark",
+  headerTintColor: '#000',
+  headerTransparent: Platform.OS === 'android' ? false : true,
+  headerBlurEffect: 'dark',
   headerBackVisible: false,
   headerBackTitleVisible: false,
   headerShadowVisible: false,
@@ -24,6 +24,6 @@ export const screenOptions = ({
     height: 64 + safeAreaTop,
     borderBottomWidth: 0,
   },
-  cardStyle: { flex: 1, backgroundColor: "transparent" },
+  cardStyle: { flex: 1, backgroundColor: 'transparent' },
   cardOverlayEnabled: false,
 });
