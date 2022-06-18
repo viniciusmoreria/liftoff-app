@@ -6,4 +6,4 @@ export {
   useIsFocused,
   useFocusEffect,
   NavigationContainer,
-} from "@react-navigation/native";
+} from '@react-navigation/native';

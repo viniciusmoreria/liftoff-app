@@ -1,5 +1,5 @@
-import axios from "axios";
-import type { AxiosRequestHeaders, Method } from "axios";
+import axios from 'axios';
+import type { AxiosRequestHeaders, Method } from 'axios';
 
 export type AxiosOverrides = {
   forceAccessTokenAuthorization?: boolean;
@@ -25,7 +25,7 @@ const axiosAPI = async ({ url, method, data, unmountSignal }: AxiosParams) => {
   try {
     return await axios(request).then((res) => res.data);
   } catch (error) {
-    console.log("Failed request:", request);
+    console.log('Failed request:', request);
     console.error(error);
     throw error;
   }

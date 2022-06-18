@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer } from '@react-navigation/native';
 
-export function NavigationProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function NavigationProvider({ children }: { children: React.ReactNode }) {
   return <NavigationContainer>{children}</NavigationContainer>;
 }
