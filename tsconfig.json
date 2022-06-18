@@ -10,7 +10,8 @@
       "@libs/*": ["libs/*"],
       "@navigation/*": ["navigation/*"],
       "@features/*": ["features/*"],
-      "@providers/*": ["providers/*"]
+      "@providers/*": ["providers/*"],
+      "@styles/*": ["styles/*"]
     }
   }
 }
