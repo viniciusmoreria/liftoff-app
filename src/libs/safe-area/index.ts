@@ -3,4 +3,4 @@ export {
   SafeAreaView,
   useSafeAreaFrame,
   useSafeAreaInsets,
-} from "react-native-safe-area-context";
+} from 'react-native-safe-area-context';

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { Sentry } from "@libs/sentry";
-import { RootStackNavigator } from "@navigation/root-stack-navigator";
-import { AppProviders } from "@providers/app-providers";
-import { StatusBar } from "expo-status-bar";
-import * as Updates from "expo-updates";
-import { enableScreens } from "react-native-screens";
+import { Sentry } from '@libs/sentry';
+import { RootStackNavigator } from '@navigation/root-stack-navigator';
+import { AppProviders } from '@providers/app-providers';
+import { StatusBar } from 'expo-status-bar';
+import * as Updates from 'expo-updates';
+import { enableScreens } from 'react-native-screens';
 
 enableScreens(true);
 
