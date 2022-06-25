@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 import { Sentry } from '@libs/sentry';
 import { NavigationContainer } from '@react-navigation/native';

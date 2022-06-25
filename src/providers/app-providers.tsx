@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SafeAreaProvider } from '@libs/safe-area';
 import { NavigationProvider } from '@navigation/navigation-provider';
 import { tw } from '@styles/twrnc';
