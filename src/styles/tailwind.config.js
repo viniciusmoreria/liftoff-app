@@ -1,9 +1,9 @@
-const { plugin } = require('twrnc');
-const { colors } = require('./colors');
-const { textSizes } = require('./typography');
+// const plugin = require('tailwindcss/plugin');
+// const { colors } = require('./colors.ts');
+// const { textSizes } = require('./typography');
 
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['../../src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       boxShadow: {
@@ -17,7 +17,7 @@ module.exports = {
         secondary: '#242529',
         darkGray: '#252525c1',
         dark: '#16171B',
-        gray: colors.gray,
+        gray: '#c0c0c0',
       },
       fontSize: {},
       fontFamily: {
@@ -26,30 +26,27 @@ module.exports = {
         'inter-semibold': 'Inter_600SemiBold',
         'inter-bold': 'Inter_700Bold',
       },
-      zIndex: {
-        1: 1,
-        2: 2,
-      },
     },
   },
-  plugins: [
-    plugin(({ addUtilities }) => {
-      addUtilities({
-        'text-xs': textSizes['text-xs'],
-        'text-sm': textSizes['text-sm'],
-        'text-base': textSizes['text-base'],
-        'text-lg': {
-          ...textSizes['text-lg'],
-          fontFamily: 'Inter_400Regular',
-        },
-        'text-xl': textSizes['text-xl'],
-        'text-2xl': {
-          ...textSizes['text-2xl'],
-          fontFamily: 'Inter_400Regular',
-        },
-        'text-3xl': textSizes['text-3xl'],
-        'text-4xl': textSizes['text-4xl'],
-      });
-    }),
-  ],
+  // plugins: [
+  //   require('@tailwindcss/typography'),
+  //   plugin(({ addUtilities }) => {
+  //     addUtilities({
+  //       'text-xs': textSizes['text-xs'],
+  //       'text-sm': textSizes['text-sm'],
+  //       'text-base': textSizes['text-base'],
+  //       'text-lg': {
+  //         ...textSizes['text-lg'],
+  //         fontFamily: 'Inter_400Regular',
+  //       },
+  //       'text-xl': textSizes['text-xl'],
+  //       'text-2xl': {
+  //         ...textSizes['text-2xl'],
+  //         fontFamily: 'Inter_400Regular',
+  //       },
+  //       'text-3xl': textSizes['text-3xl'],
+  //       'text-4xl': textSizes['text-4xl'],
+  //     });
+  //   }),
+  // ],
 };
