@@ -1,14 +1,8 @@
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
+    presets: [['babel-preset-expo', { jsxRuntime: 'automatic' }]],
     plugins: [
-      [
-        '@babel/plugin-transform-react-jsx',
-        {
-          runtime: 'automatic',
-        },
-      ],
       [
         'module-resolver',
         {
