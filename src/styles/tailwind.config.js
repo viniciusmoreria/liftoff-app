@@ -15,17 +15,16 @@ module.exports = {
       colors: {
         primary: '#d83545',
         secondary: '#242529',
-        black: '#000',
-        white: '#fff',
         darkGray: '#252525c1',
         dark: '#16171B',
         gray: colors.gray,
       },
       fontSize: {},
       fontFamily: {
-        inter: 'Inter-Regular',
-        'inter-semibold': 'Inter-SemiBold',
-        'inter-bold': 'Inter-Bold',
+        inter: 'Inter_400Regular',
+        'inter-medium': 'Inter_500Medium',
+        'inter-semibold': 'Inter_600SemiBold',
+        'inter-bold': 'Inter_700Bold',
       },
       zIndex: {
         1: 1,
@@ -41,12 +40,12 @@ module.exports = {
         'text-base': textSizes['text-base'],
         'text-lg': {
           ...textSizes['text-lg'],
-          fontFamily: 'Inter-Regular',
+          fontFamily: 'Inter_400Regular',
         },
         'text-xl': textSizes['text-xl'],
         'text-2xl': {
           ...textSizes['text-2xl'],
-          fontFamily: 'Inter-Regular',
+          fontFamily: 'Inter_400Regular',
         },
         'text-3xl': textSizes['text-3xl'],
         'text-4xl': textSizes['text-4xl'],

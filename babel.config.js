@@ -4,9 +4,27 @@ module.exports = function (api) {
     presets: ['babel-preset-expo'],
     plugins: [
       [
+        '@babel/plugin-transform-react-jsx',
+        {
+          runtime: 'automatic',
+        },
+      ],
+      [
         'module-resolver',
         {
           root: ['./'],
+          extensions: [
+            '.ios.ts',
+            '.android.ts',
+            '.ts',
+            '.ios.tsx',
+            '.android.tsx',
+            '.tsx',
+            '.jsx',
+            '.js',
+            '.json',
+            '.png',
+          ],
           alias: {
             '@assets': './assets',
             '@constants': './constants',
