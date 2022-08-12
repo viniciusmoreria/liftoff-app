@@ -9,7 +9,6 @@ import {
   useFonts,
 } from '@expo-google-fonts/inter';
 import { StackActions, useNavigation } from '@react-navigation/native';
-import { tw } from '@styles/twrnc';
 import LottieView from 'lottie-react-native';
 
 import { LoadingAnimation } from '../../assets/animations';
@@ -33,7 +32,7 @@ const SplashScreen = () => {
   }, [dispatch, isFontsLoaded]);
 
   return (
-    <View style={tw`flex-1 bg-dark items-center justify-center`}>
+    <View className="bg-dark flex-1 items-center justify-center">
       <LottieView source={LoadingAnimation} autoPlay style={{ width: 50 }} />
     </View>
   );

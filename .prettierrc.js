@@ -7,5 +7,5 @@ module.exports = {
   importOrderSeparation: true,
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
-  plugins: [require('./merged-prettier-plugin')],
+  plugins: [require.resolve('@trivago/prettier-plugin-sort-imports')],
 };
