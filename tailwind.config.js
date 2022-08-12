@@ -2,13 +2,13 @@
 module.exports = {
   content: ['./src/App.{js,jsx,ts,tsx}', './src/features/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    fontFamily: {
-      inter: 'Inter_400Regular',
-      'inter-medium': 'Inter_500Medium',
-      'inter-semibold': 'Inter_600SemiBold',
-      'inter-bold': 'Inter_700Bold',
-    },
     extend: {
+      fontFamily: {
+        regular: 'Inter_400Regular',
+        medium: 'Inter_500Medium',
+        semibold: 'Inter_600SemiBold',
+        bold: 'Inter_700Bold',
+      },
       boxShadow: {
         dropdown:
           '0px 16px 48px 0px #0000001A, 0px 12px 16px 0px #0000001A, 0px 1px 3px 0px #0000000D',
