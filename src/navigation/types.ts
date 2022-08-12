@@ -1,9 +1,5 @@
-type HomeStackParams = {
+export type RootStackParams = {
+  splash: undefined;
   home: undefined;
-};
-
-type ProfileStackParams = {
   profile: undefined;
 };
-
-export { HomeStackParams, ProfileStackParams };
