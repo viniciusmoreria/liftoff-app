@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 
 import {
@@ -23,13 +23,17 @@ const SplashScreen = () => {
     Inter_700Bold,
   });
 
+  const handleNavigateToHome = useCallback(() => {
+    setTimeout(() => {
+      dispatch(StackActions.replace('home'));
+    }, 2500);
+  }, [dispatch]);
+
   useEffect(() => {
     if (isFontsLoaded) {
-      setTimeout(() => {
-        dispatch(StackActions.replace('home'));
-      }, 2500);
+      handleNavigateToHome();
     }
-  }, [dispatch, isFontsLoaded]);
+  }, [handleNavigateToHome, isFontsLoaded]);
 
   return (
     <View className="bg-dark flex-1 items-center justify-center">
