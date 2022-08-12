@@ -8,7 +8,6 @@
     },
     "development": {
       "extends": "base",
-      "developmentClient": true,
       "distribution": "internal",
       "releaseChannel": "development",
       "android": {
@@ -25,7 +24,7 @@
       "releaseChannel": "production",
       "android": {
         "buildType": "app-bundle"
-      }, 
+      },
       "ios": {
         "simulator": true
       }

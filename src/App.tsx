@@ -8,7 +8,7 @@ enableScreens(true);
 export default function App() {
   return (
     <AppProviders>
-      <StatusBar animated style="auto" />
+      <StatusBar animated style="light" />
       <RootStackNavigator />
     </AppProviders>
   );
