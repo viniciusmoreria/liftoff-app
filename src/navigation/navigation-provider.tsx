@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 
 import { Sentry } from '@libs/sentry';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +15,7 @@ Sentry.init({
     }),
   ],
 });
-export function NavigationProvider({ children }: { children: React.ReactNode }) {
+export function NavigationProvider({ children }: { children: ReactNode }) {
   const navigation = useRef(null);
 
   return (
