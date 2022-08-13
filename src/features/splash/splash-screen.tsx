@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 
+import { LoadingAnimation } from '@assets/animations';
 import {
   Inter_400Regular,
   Inter_500Medium,
@@ -10,8 +11,6 @@ import {
 } from '@expo-google-fonts/inter';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-
-import { LoadingAnimation } from '../../assets/animations';
 
 const SplashScreen = () => {
   const { dispatch } = useNavigation();
