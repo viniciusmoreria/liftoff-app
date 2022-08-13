@@ -7,7 +7,7 @@ module.exports = function (api) {
       [
         'module-resolver',
         {
-          root: ['./'],
+          root: ['./src'],
           extensions: [
             '.ios.ts',
             '.android.ts',
@@ -21,9 +21,9 @@ module.exports = function (api) {
             '.png',
           ],
           alias: {
-            '@assets': './assets',
-            '@constants': './constants',
-            '@hooks': './hooks',
+            '@assets': './src/assets',
+            '@constants': './src/constants',
+            '@hooks': './src/hooks',
             '@libs': './src/libs',
             '@navigation': './src/navigation',
             '@features': './src/features',
