@@ -1,4 +1,5 @@
 import { HomeScreen } from '@features/home/home-screen';
+import { ProfileScreen } from '@features/profile/profile-screen';
 import { SplashScreen } from '@features/splash/splash-screen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -20,6 +21,13 @@ export function RootStackNavigator() {
           component={HomeScreen}
           options={{
             animation: 'fade_from_bottom',
+          }}
+        />
+        <Stack.Screen
+          name="profile"
+          component={ProfileScreen}
+          options={{
+            presentation: 'modal',
           }}
         />
       </Stack.Group>

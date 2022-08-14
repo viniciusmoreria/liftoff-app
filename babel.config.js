@@ -22,6 +22,7 @@ module.exports = function (api) {
           ],
           alias: {
             '@assets': './src/assets',
+            '@components': './src/components',
             '@constants': './src/constants',
             '@hooks': './src/hooks',
             '@libs': './src/libs',
