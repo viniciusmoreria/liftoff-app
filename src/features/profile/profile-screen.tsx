@@ -1,7 +1,13 @@
-import { View } from 'react-native';
+import { Text } from 'react-native';
+
+import { Container } from '@components/container';
 
 const ProfileScreen = () => {
-  return <View style={{ flex: 1, backgroundColor: '#16171B' }} />;
+  return (
+    <Container>
+      <Text className="text-2xl text-white">Profile</Text>
+    </Container>
+  );
 };
 
 export { ProfileScreen };

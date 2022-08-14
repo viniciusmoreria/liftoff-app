@@ -1,12 +1,14 @@
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 
 import { PlaceholderUserPicture } from '@assets/images';
+import { Container } from '@components/container';
 import { useUser } from '@hooks/use-user';
-import { HEADER_HEIGHT } from '@libs/utilities';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { RootStackParams } from '@navigation/types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const HomeScreen = () => {
-  const insets = useSafeAreaInsets();
+type Props = NativeStackScreenProps<RootStackParams, 'profile'>;
+
+const HomeScreen = ({ navigation }: Props) => {
   const { username } = useUser();
 
   function timeOfTheDay() {
@@ -21,21 +23,18 @@ const HomeScreen = () => {
   }
 
   return (
-    <ScrollView
-      className="flex-1 bg-dark px-8"
-      style={{
-        paddingTop: insets.top + HEADER_HEIGHT,
-      }}
-    >
+    <Container useScrollView>
       <View className="flex-row items-center">
         <View className="flex-1">
           <Text className="text-xl text-white font-regular">Good {timeOfTheDay()},</Text>
           <Text className="text-xl text-white font-semibold">{username ?? 'crew member'}</Text>
         </View>
 
-        <Image className="h-14 w-14 rounded-full" source={PlaceholderUserPicture} />
+        <Pressable onPress={() => navigation.navigate('profile')}>
+          <Image className="h-16 w-16 rounded-full" source={PlaceholderUserPicture} />
+        </Pressable>
       </View>
-    </ScrollView>
+    </Container>
   );
 };
 
