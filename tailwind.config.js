@@ -1,10 +1,12 @@
+const plugin = require('tailwindcss/plugin');
+const { textSizes } = require('./src/styles/typography');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
   content: [
     './src/App.{js,jsx,ts,tsx}',
-    './src/features/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/{features,components,providers,styles}/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -13,12 +15,7 @@ module.exports = {
         medium: 'Inter_500Medium',
         semibold: 'Inter_600SemiBold',
         bold: 'Inter_700Bold',
-      },
-      boxShadow: {
-        dropdown:
-          '0px 16px 48px 0px #0000001A, 0px 12px 16px 0px #0000001A, 0px 1px 3px 0px #0000000D',
-        modal:
-          '0px 16px 48px 0px #00000033, 0px 12px 16px 0px #00000066, 0px 0px 2px 0px #FFFFFF80',
+        sans: 'Inter_400Regular',
       },
       colors: {
         primary: '#d83545',
@@ -29,4 +26,18 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        'text-xs': textSizes['text-xs'],
+        'text-sm': textSizes['text-sm'],
+        'text-base': textSizes['text-base'],
+        'text-lg': textSizes['text-lg'],
+        'text-xl': textSizes['text-xl'],
+        'text-2xl': textSizes['text-2xl'],
+        'text-3xl': textSizes['text-3xl'],
+        'text-4xl': textSizes['text-4xl'],
+      });
+    }),
+  ],
 };

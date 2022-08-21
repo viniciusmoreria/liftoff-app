@@ -9,12 +9,14 @@ import {
   Inter_700Bold,
   useFonts,
 } from '@expo-google-fonts/inter';
-import { StackActions, useNavigation } from '@react-navigation/native';
+import { RootStackParams } from '@navigation/types';
+import { StackActions } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import LottieView from 'lottie-react-native';
 
-const SplashScreen = () => {
-  const { dispatch } = useNavigation();
+type Props = NativeStackScreenProps<RootStackParams, 'splash'>;
 
+const SplashScreen = ({ navigation }: Props) => {
   const [isFontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -24,9 +26,9 @@ const SplashScreen = () => {
 
   const handleNavigateToHome = useCallback(() => {
     setTimeout(() => {
-      dispatch(StackActions.replace('home'));
+      navigation.dispatch(StackActions.replace('home'));
     }, 2500);
-  }, [dispatch]);
+  }, [navigation]);
 
   useEffect(() => {
     if (isFontsLoaded) {
