@@ -18,7 +18,7 @@ import LottieView from 'lottie-react-native';
 
 type Props = NativeStackScreenProps<RootStackParams, 'splash'>;
 
-const SplashScreen = ({ navigation }: Props) => {
+export const SplashScreen = ({ navigation }: Props) => {
   const [isFontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -62,5 +62,3 @@ const SplashScreen = ({ navigation }: Props) => {
     </View>
   );
 };
-
-export { SplashScreen };
