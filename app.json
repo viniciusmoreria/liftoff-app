@@ -13,10 +13,11 @@
       "backgroundColor": "#16171B"
     },
     "assetBundlePatterns": ["**/*"],
-    "jsEngine": "hermes",
+    "jsEngine": "jsc",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
+      "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist",
       "buildNumber": "1.3.4"
     },
     "android": {
@@ -26,6 +27,7 @@
       },
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
+      "googleServicesFile": "./src/libs/firebase/google-services.json",
       "versionCode": 440010304
     },
     "notification": {
@@ -47,6 +49,16 @@
           "color": "#16171B"
         }
       ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/perf",
       "sentry-expo"
     ]
   }
