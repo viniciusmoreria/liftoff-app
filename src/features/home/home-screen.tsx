@@ -9,7 +9,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<RootStackParams, 'profile'>;
 
-const HomeScreen = ({ navigation }: Props) => {
+export const HomeScreen = ({ navigation }: Props) => {
   const { username } = useUser();
 
   return (
@@ -28,5 +28,3 @@ const HomeScreen = ({ navigation }: Props) => {
     </Container>
   );
 };
-
-export { HomeScreen };
