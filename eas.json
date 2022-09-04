@@ -10,6 +10,7 @@
       "extends": "base",
       "distribution": "internal",
       "releaseChannel": "development",
+      "developmentClient": true,
       "android": {
         "buildType": "apk",
         "gradleCommand": ":app:assembleRelease"
