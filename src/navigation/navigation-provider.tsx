@@ -1,7 +1,8 @@
 import { ReactNode, useRef } from 'react';
 
 import { Sentry } from '@libs/sentry';
-import { NavigationContainer } from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 
 const routingInstrumentation = new Sentry.Native.ReactNavigationInstrumentation();
 
@@ -15,14 +16,28 @@ Sentry.init({
     }),
   ],
 });
+
 export function NavigationProvider({ children }: { children: ReactNode }) {
-  const navigation = useRef(null);
+  const navigationRef = useNavigationContainerRef();
+  const routeNameRef = useRef<string>();
 
   return (
     <NavigationContainer
-      ref={navigation}
+      ref={navigationRef}
       onReady={() => {
-        routingInstrumentation.registerNavigationContainer(navigation);
+        routingInstrumentation.registerNavigationContainer(navigationRef);
+        routeNameRef.current = navigationRef?.getCurrentRoute()?.name;
+      }}
+      onStateChange={async () => {
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navigationRef?.getCurrentRoute()?.name;
+        if (previousRouteName !== currentRouteName) {
+          await analytics().logScreenView({
+            screen_name: currentRouteName,
+            screen_class: currentRouteName,
+          });
+        }
+        routeNameRef.current = currentRouteName;
       }}
     >
       {children}

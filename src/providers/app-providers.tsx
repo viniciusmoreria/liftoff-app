@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
+import { ErrorBoundary } from '@components/error-boundary';
 import { SafeAreaProvider } from '@libs/safe-area';
 import { NavigationProvider } from '@navigation/navigation-provider';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -17,7 +18,9 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          <NavigationProvider>{children}</NavigationProvider>
+          <NavigationProvider>
+            <ErrorBoundary>{children}</ErrorBoundary>
+          </NavigationProvider>
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

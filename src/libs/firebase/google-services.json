@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "280032682288",
+    "project_id": "liftoff-339516",
+    "storage_bucket": "liftoff-339516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280032682288:android:38dec26a171a41cebfa8f5",
+        "android_client_info": {
+          "package_name": "com.viniciusmoreria.liftoff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280032682288-oir93n9be3thdrp5s68mblf1p60vlv9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK28fkfZmnqeUvZEEoJnd3W_vSOAqiOYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280032682288-oir93n9be3thdrp5s68mblf1p60vlv9b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "280032682288-uuto4pm633l8u43137mt78bqopjt7lm0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.viniciusmoreria.liftoff"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
