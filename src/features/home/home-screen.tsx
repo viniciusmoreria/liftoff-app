@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 
 import { PlaceholderUserPicture } from '@assets/images';
@@ -7,7 +8,9 @@ import { getTimeOfTheDay } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type Props = NativeStackScreenProps<RootStackParams, 'profile'>;
+import { Countdown } from './components/countdown';
+
+type Props = NativeStackScreenProps<RootStackParams, 'home'>;
 
 export const HomeScreen = ({ navigation }: Props) => {
   const { username } = useUser();
@@ -25,6 +28,8 @@ export const HomeScreen = ({ navigation }: Props) => {
           <Image className="h-16 w-16 rounded-full ml-4" source={PlaceholderUserPicture} />
         </Pressable>
       </View>
+
+      <Countdown />
     </Container>
   );
 };

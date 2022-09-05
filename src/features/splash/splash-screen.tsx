@@ -9,6 +9,7 @@ import {
   Inter_700Bold,
   useFonts,
 } from '@expo-google-fonts/inter';
+import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { RemoteConfig } from '@libs/firebase/remote-config';
 import { Logger } from '@libs/logger';
 import { RootStackParams } from '@navigation/types';
@@ -19,6 +20,8 @@ import LottieView from 'lottie-react-native';
 type Props = NativeStackScreenProps<RootStackParams, 'splash'>;
 
 export const SplashScreen = ({ navigation }: Props) => {
+  const { isLoading } = useUpcomingLaunches();
+
   const [isFontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -51,10 +54,10 @@ export const SplashScreen = ({ navigation }: Props) => {
   }, [fetchRemoteData]);
 
   useEffect(() => {
-    if (isFontsLoaded && fetchedRemoteConfig) {
+    if (isFontsLoaded && fetchedRemoteConfig && !isLoading) {
       handleNavigate();
     }
-  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded]);
+  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoading]);
 
   return (
     <View className="bg-dark flex-1 items-center justify-center">
