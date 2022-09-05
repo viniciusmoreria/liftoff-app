@@ -17,8 +17,8 @@ export const Fallback = ({ resetErrorBoundary }: FallbackProps) => {
       <Animated.View entering={FadeIn} className="items-center justify-center space-y-6">
         <Text className="text-lg text-white">{maintenance?.title ?? 'Something is wrong'}</Text>
 
-        <Pressable className="bg-white py-2 px-4 rounded" onPress={resetErrorBoundary}>
-          <Text className="text-md text-dark">Try again</Text>
+        <Pressable className="bg-white py-3 px-4 rounded items-center" onPress={resetErrorBoundary}>
+          <Text className="text-base text-dark">Try again</Text>
         </Pressable>
       </Animated.View>
     </View>
