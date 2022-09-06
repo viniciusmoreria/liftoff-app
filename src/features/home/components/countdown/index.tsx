@@ -38,15 +38,22 @@ export const Countdown = () => {
           <View className="items-center bg-secondary px-2 py-4 rounded-md min-w-[50]">
             <Text className="text-white text-2xl font-bold">{days}</Text>
           </View>
-          <Text className="text-gray text-sm mt-1">{Number(days) > 1 ? 'days' : 'day'}</Text>
+          <Text className="text-gray text-xs mt-1">{Number(days) > 1 ? 'days' : 'day'}</Text>
         </View>
       )}
-
       {Number(hours) >= 1 && (
-        <CountdownDigit digit={hours} label={Number(hours) > 1 ? 'hours' : 'hour'} />
+        <CountdownDigit
+          digit={hours}
+          label={Number(hours) > 1 ? 'hours' : 'hour'}
+          showSeparator={Number(days) >= 1}
+        />
       )}
       {Number(days) < 1 && (
-        <CountdownDigit digit={minutes} label={Number(minutes) > 1 ? 'mins' : 'min'} />
+        <CountdownDigit
+          digit={minutes}
+          label={Number(minutes) > 1 ? 'mins' : 'min'}
+          showSeparator={Number(hours) >= 1}
+        />
       )}
       {Number(days) < 1 && Number(hours) < 1 && (
         <CountdownDigit digit={seconds} label={Number(seconds) > 1 ? 'secs' : 'sec'} />
@@ -55,16 +62,24 @@ export const Countdown = () => {
   );
 };
 
-const CountdownDigit = ({ digit, label }: { digit: string; label: string }) => {
+type CountdownDigitProps = {
+  digit: string;
+  label: string;
+  showSeparator?: boolean;
+};
+
+const CountdownDigit = ({ digit, label, showSeparator = true }: CountdownDigitProps) => {
   return (
-    <View>
-      <View className="flex-row items-center">
-        <Text className="text-white text-2xl mx-1">:</Text>
-        <View className="items-center bg-secondary px-2 py-4 rounded-md min-w-[50]">
-          <Text className="text-white text-2xl font-bold">{digit}</Text>
+    <View className="flex-row">
+      {showSeparator && <Text className="text-white text-2xl mx-1 mt-3">:</Text>}
+      <View>
+        <View className="flex-row items-center">
+          <View className="items-center bg-secondary px-2 py-4 rounded-md min-w-[50]">
+            <Text className="text-white text-2xl font-bold">{digit}</Text>
+          </View>
         </View>
+        <Text className="text-gray text-xs mt-1">{label}</Text>
       </View>
-      <Text className="text-gray text-sm mt-1 ml-4">{label}</Text>
     </View>
   );
 };
