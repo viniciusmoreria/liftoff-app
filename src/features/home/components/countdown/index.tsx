@@ -26,6 +26,11 @@ export const Countdown = () => {
     return null;
   }
 
+  const shouldShowDays = Number(days) > 0;
+  const shouldShowHours = Number(hours) > 0 || shouldShowDays;
+  const shouldShowMinutes = !shouldShowDays;
+  const shouldShowSeconds = !shouldShowDays && !shouldShowHours;
+
   return (
     <Animated.View entering={FadeIn} className="flex-row mt-8">
       <View className="flex-1 justify-between mr-6">
@@ -33,7 +38,7 @@ export const Countdown = () => {
         <Text className="text-xs text-white font-bold underline decoration-primary">{stage}</Text>
       </View>
 
-      {Number(days) >= 1 && (
+      {shouldShowDays && (
         <View>
           <View className="items-center bg-secondary px-2 py-4 rounded-md min-w-[50]">
             <Text className="text-white text-2xl font-bold">{days}</Text>
@@ -41,21 +46,21 @@ export const Countdown = () => {
           <Text className="text-gray text-xs mt-1">{Number(days) > 1 ? 'days' : 'day'}</Text>
         </View>
       )}
-      {Number(hours) >= 1 && (
+      {shouldShowHours && (
         <CountdownDigit
           digit={hours}
           label={Number(hours) > 1 ? 'hours' : 'hour'}
           showSeparator={Number(days) >= 1}
         />
       )}
-      {Number(days) < 1 && (
+      {shouldShowMinutes && (
         <CountdownDigit
           digit={minutes}
           label={Number(minutes) > 1 ? 'mins' : 'min'}
           showSeparator={Number(hours) >= 1}
         />
       )}
-      {Number(days) < 1 && Number(hours) < 1 && (
+      {shouldShowSeconds && (
         <CountdownDigit digit={seconds} label={Number(seconds) > 1 ? 'secs' : 'sec'} />
       )}
     </Animated.View>
