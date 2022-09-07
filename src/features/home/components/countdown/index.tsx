@@ -33,9 +33,11 @@ export const Countdown = () => {
 
   return (
     <Animated.View entering={FadeIn} className="flex-row mt-8">
-      <View className="flex-1 justify-between mr-6">
-        <Text className="text-base text-white font-bold">{nextLaunch?.mission?.name}</Text>
-        <View className="self-start">
+      <View className="flex-1 justify-around mr-6">
+        <Text className="text-base text-white font-bold">
+          {nextLaunch?.mission?.name ?? nextLaunch?.name}
+        </Text>
+        <View className="self-start mt-4">
           <Text className="text-xs text-white font-bold">{stage}</Text>
           <View className="border-b-4 border-primary mt-1" />
         </View>
