@@ -14,6 +14,7 @@
     "lint": "eslint --ext '.js,.ts,.tsx' --fix src",
     "format": "yarn prettier --write --list-different '**/*.{ts,tsx}'",
     "check-types": "yarn tsc -p tsconfig.json --noEmit",
+    "eas-build-pre-install": "bash ./scripts/eas-build-pre-install.sh",
     "prepare": "husky install"
   },
   "dependencies": {
