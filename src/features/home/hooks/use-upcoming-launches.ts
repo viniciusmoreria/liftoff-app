@@ -15,5 +15,5 @@ async function getUpcomingLaunches() {
 }
 
 export function useUpcomingLaunches() {
-  return useQuery<Launch[]>(['@liftoff/upcoming-launches'], getUpcomingLaunches);
+  return useQuery<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY], getUpcomingLaunches);
 }

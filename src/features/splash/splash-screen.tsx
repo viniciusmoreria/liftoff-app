@@ -9,6 +9,7 @@ import {
   Inter_700Bold,
   useFonts,
 } from '@expo-google-fonts/inter';
+import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { RemoteConfig } from '@libs/firebase/remote-config';
 import { Logger } from '@libs/logger';
@@ -21,6 +22,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'splash'>;
 
 export const SplashScreen = ({ navigation }: Props) => {
   const { isLoading } = useUpcomingLaunches();
+  const { isLoading: isLoadingPrevious } = usePreviousLaunches();
 
   const [isFontsLoaded] = useFonts({
     Inter_400Regular,
@@ -54,10 +56,10 @@ export const SplashScreen = ({ navigation }: Props) => {
   }, [fetchRemoteData]);
 
   useEffect(() => {
-    if (isFontsLoaded && fetchedRemoteConfig && !isLoading) {
+    if (isFontsLoaded && fetchedRemoteConfig && !isLoading && !isLoadingPrevious) {
       handleNavigate();
     }
-  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoading]);
+  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoading, isLoadingPrevious]);
 
   return (
     <View className="bg-dark flex-1 items-center justify-center">
