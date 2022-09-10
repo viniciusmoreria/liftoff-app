@@ -14,6 +14,7 @@
     "lint": "eslint --ext '.js,.ts,.tsx' --fix src",
     "format": "yarn prettier --write --list-different '**/*.{ts,tsx}'",
     "check-types": "yarn tsc -p tsconfig.json --noEmit",
+    "eas-build-pre-install": "bash ./scripts/eas-build-pre-install.sh",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -23,12 +24,14 @@
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-firebase/analytics": "^15.4.0",
     "@react-native-firebase/app": "^15.4.0",
+    "@react-native-firebase/firestore": "^15.4.0",
     "@react-native-firebase/perf": "^15.4.0",
     "@react-native-firebase/remote-config": "^15.4.0",
     "@react-native-masked-view/masked-view": "0.2.6",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.7.0",
     "@sentry/react-native": "^3.4.3",
+    "@shopify/flash-list": "^1.2.2",
     "@tanstack/react-query": "^4.2.3",
     "axios": "^0.27.2",
     "date-fns": "^2.29.2",

@@ -7,14 +7,15 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 
 export const MaintenanceScreen = () => {
   const maintenance = JSON.parse(RemoteConfig.getRemoteValue('under_maintenance').asString());
-
   return (
     <View className="bg-dark flex-1 items-center justify-center">
       <LottieView source={SpaceManAnimation} autoPlay style={{ width: 100 }} />
 
       <Animated.View entering={FadeIn} className="items-center justify-center space-y-2">
-        <Text className="text-lg text-white">{maintenance.title}</Text>
-        <Text className="text-lg text-white">{maintenance.description}</Text>
+        <Text className="text-lg text-white">{maintenance?.title ?? 'Something is wrong'}</Text>
+        <Text className="text-lg text-white">
+          {maintenance?.description ?? 'We are already working on it'}
+        </Text>
       </Animated.View>
     </View>
   );

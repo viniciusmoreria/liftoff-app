@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { addLeadingZeros } from '@libs/utilities';
+import { intervalToDuration } from 'date-fns';
 
 export function useCountdown(targetDate: Date) {
   const countDownDate = new Date(targetDate).getTime();
@@ -19,10 +20,10 @@ export function useCountdown(targetDate: Date) {
 }
 
 const getReturnValues = (countDown: number) => {
-  const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+  const { days, hours, minutes, seconds } = intervalToDuration({
+    start: new Date(),
+    end: new Date(countDown + new Date().getTime()),
+  });
 
   return {
     days: addLeadingZeros(days),

@@ -12,6 +12,9 @@
     "splash": {
       "backgroundColor": "#16171B"
     },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "assetBundlePatterns": ["**/*"],
     "jsEngine": "jsc",
     "ios": {

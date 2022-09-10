@@ -33,9 +33,11 @@ export const Countdown = () => {
 
   return (
     <Animated.View entering={FadeIn} className="flex-row mt-8">
-      <View className="flex-1 justify-between mr-6">
-        <Text className="text-base text-white font-bold">{nextLaunch?.mission?.name}</Text>
-        <View className="self-start">
+      <View className="flex-1 justify-around mr-6">
+        <Text className="text-sm text-white font-bold" numberOfLines={2}>
+          {nextLaunch?.mission?.name ?? nextLaunch?.name}
+        </Text>
+        <View className="self-start mt-4">
           <Text className="text-xs text-white font-bold">{stage}</Text>
           <View className="border-b-4 border-primary mt-1" />
         </View>
@@ -46,7 +48,7 @@ export const Countdown = () => {
           <View className="items-center bg-secondary px-2 py-4 rounded-md min-w-[50]">
             <Text className="text-white text-2xl font-bold">{days}</Text>
           </View>
-          <Text className="text-gray text-xs mt-1">{Number(days) > 1 ? 'days' : 'day'}</Text>
+          <Text className="text-gray text-xs mt-1 pb-1">{Number(days) > 1 ? 'days' : 'day'}</Text>
         </View>
       )}
       {shouldShowHours && (
@@ -86,7 +88,7 @@ const CountdownDigit = ({ digit, label, showSeparator = true }: CountdownDigitPr
             <Text className="text-white text-2xl font-bold">{digit}</Text>
           </View>
         </View>
-        <Text className="text-gray text-xs mt-1">{label}</Text>
+        <Text className="text-gray text-xs mt-1 pb-1">{label}</Text>
       </View>
     </View>
   );
