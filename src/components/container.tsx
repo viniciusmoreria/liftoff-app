@@ -16,7 +16,7 @@ export const Container = ({ children, useScrollView }: Props) => {
 
   return useScrollView ? (
     <ScrollView
-      className="bg-dark px-8"
+      className="bg-dark"
       contentContainerStyle={{
         flexGrow: 1,
         paddingTop: safeAreaTop,
@@ -27,7 +27,7 @@ export const Container = ({ children, useScrollView }: Props) => {
     </ScrollView>
   ) : (
     <View
-      className="flex-1 bg-dark px-8"
+      className="flex-1 bg-dark"
       style={{
         paddingTop: safeAreaTop,
         paddingBottom: insets.bottom,

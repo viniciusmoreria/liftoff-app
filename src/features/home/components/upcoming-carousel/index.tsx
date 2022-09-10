@@ -23,7 +23,10 @@ export const UpcomingCarousel = () => {
 
   const renderItem = ({ item }: { item: Launch }) => {
     return (
-      <View className="bg-secondary p-4 rounded-lg h-28" style={{ width, marginRight: SPACING }}>
+      <View
+        className="bg-secondary p-4 rounded-lg h-28"
+        style={{ width, marginHorizontal: SPACING }}
+      >
         <View className="flex-1 flex-row items-center">
           <View className="items-center">
             <Text className="text-white text-xs font-bold">{format(new Date(item.net), 'p')}</Text>
@@ -49,7 +52,7 @@ export const UpcomingCarousel = () => {
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-12">
-      <View className="flex-row justify-between mb-4">
+      <View className="flex-row justify-between mb-4 px-8">
         <Text className="text-sm font-bold text-white">Upcoming</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
       </View>
@@ -60,7 +63,7 @@ export const UpcomingCarousel = () => {
         horizontal
         pagingEnabled
         bounces={false}
-        snapToInterval={width + SPACING}
+        snapToInterval={width + SPACING * 2}
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => String(item.id)}

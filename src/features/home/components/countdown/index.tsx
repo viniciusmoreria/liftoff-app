@@ -32,7 +32,7 @@ export const Countdown = () => {
   const shouldShowSeconds = !shouldShowDays && !shouldShowHours;
 
   return (
-    <Animated.View entering={FadeIn} className="flex-row mt-8">
+    <Animated.View entering={FadeIn} className="flex-row mt-8 px-8">
       <View className="flex-1 justify-around mr-6">
         <Text className="text-sm text-white font-bold" numberOfLines={2}>
           {nextLaunch?.mission?.name ?? nextLaunch?.name}
