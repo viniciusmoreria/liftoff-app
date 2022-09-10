@@ -7,7 +7,7 @@ import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
-import { Pagination } from './pagination';
+import { Pagination } from '../pagination';
 
 const SPACING = 32;
 

@@ -9,6 +9,7 @@ import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { Countdown } from './components/countdown';
+import { PreviousCarousel } from './components/previous-carousel';
 import { UpcomingCarousel } from './components/upcoming-carousel';
 
 type Props = NativeStackScreenProps<RootStackParams, 'home'>;
@@ -31,6 +32,7 @@ export const HomeScreen = ({ navigation }: Props) => {
       </View>
       <Countdown />
       <UpcomingCarousel />
+      <PreviousCarousel />
     </Container>
   );
 };

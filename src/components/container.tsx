@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { HEADER_HEIGHT } from '@libs/utilities';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -15,19 +15,25 @@ export const Container = ({ children, useScrollView }: Props) => {
   const safeAreaTop = insets.top + HEADER_HEIGHT;
 
   return useScrollView ? (
-    <ScrollView className="flex-1 bg-dark px-8" style={styles(safeAreaTop).container}>
+    <ScrollView
+      className="bg-dark px-8"
+      contentContainerStyle={{
+        flexGrow: 1,
+        paddingTop: safeAreaTop,
+        paddingBottom: insets.bottom,
+      }}
+    >
       {children}
     </ScrollView>
   ) : (
-    <View className="flex-1 bg-dark px-8" style={styles(safeAreaTop).container}>
+    <View
+      className="flex-1 bg-dark px-8"
+      style={{
+        paddingTop: safeAreaTop,
+        paddingBottom: insets.bottom,
+      }}
+    >
       {children}
     </View>
   );
 };
-
-const styles = (safeAreaTop: number) =>
-  StyleSheet.create({
-    container: {
-      paddingTop: safeAreaTop,
-    },
-  });
