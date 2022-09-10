@@ -71,10 +71,10 @@ export const UpcomingCarousel = () => {
 
       <View className="mt-14">
         <Pagination
-          marginHorizontal={5}
+          marginHorizontal={8}
           data={data?.slice(0, 5) ?? []}
           scrollX={scrollX}
-          dotSize={6}
+          dotSize={5}
         />
       </View>
     </View>
