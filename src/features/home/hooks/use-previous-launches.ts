@@ -1,16 +1,25 @@
-import firestore from '@react-native-firebase/firestore';
-import { useQuery } from '@tanstack/react-query';
-
-import { Launch } from './types';
+import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 export const PREVIOUS_LAUNCHES_QUERY_KEY = '@liftoff/previous-launches';
 
-async function getPreviousLaunches() {
-  const query = firestore().collection('previous_launches');
+async function getPreviousLaunches(
+  cursor?: FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>
+) {
+  let query = firestore().collection('previous_launches').limit(5);
+  if (cursor) {
+    query = firestore().collection('previous_launches').limit(5).startAfter(cursor);
+  }
   const snapshot = await query.get();
-  return snapshot.docs.map((doc) => doc.data() as Launch);
+  return snapshot.docs;
 }
 
 export function usePreviousLaunches() {
-  return useQuery<Launch[]>([PREVIOUS_LAUNCHES_QUERY_KEY], getPreviousLaunches);
+  return useInfiniteQuery(
+    [PREVIOUS_LAUNCHES_QUERY_KEY],
+    ({ pageParam }) => getPreviousLaunches(pageParam),
+    {
+      getNextPageParam: (lastPage) => lastPage[lastPage.length - 1],
+    }
+  );
 }
