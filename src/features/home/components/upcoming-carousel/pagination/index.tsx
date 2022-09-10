@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, StyleSheet, View, ViewStyle, useWindowDimensions } from 'react-native';
 
-export interface SlidingDotProps {
+export interface PaginationProps {
   data: Array<Object>;
   scrollX: Animated.Value;
   dotSize?: number;
@@ -12,7 +12,7 @@ export interface SlidingDotProps {
   marginHorizontal?: number;
 }
 
-const SlidingDot = ({
+export const Pagination = ({
   scrollX,
   data,
   dotSize,
@@ -20,7 +20,7 @@ const SlidingDot = ({
   dotStyle,
   slidingIndicatorStyle,
   marginHorizontal,
-}: SlidingDotProps) => {
+}: PaginationProps) => {
   const { width } = useWindowDimensions();
 
   const defaultProps = {
@@ -39,6 +39,23 @@ const SlidingDot = ({
 
   return (
     <View style={[{ height: defaultProps.dotSize }, styles.containerStyle, containerStyle]}>
+      {data.map((_item, index) => {
+        return (
+          <View
+            key={index}
+            className="bg-gray"
+            style={[
+              {
+                width: defaultProps.dotSize,
+                height: defaultProps.dotSize,
+                marginHorizontal: defaultProps.marginHorizontal,
+                borderRadius: defaultProps.dotSize / 2,
+              },
+              dotStyle,
+            ]}
+          />
+        );
+      })}
       <Animated.View
         className="bg-primary"
         style={[
@@ -55,23 +72,6 @@ const SlidingDot = ({
           slidingIndicatorStyle,
         ]}
       />
-      {data.map((_item, index) => {
-        return (
-          <View
-            key={index}
-            className="bg-primary opacity-40"
-            style={[
-              {
-                width: defaultProps.dotSize,
-                height: defaultProps.dotSize,
-                marginHorizontal: defaultProps.marginHorizontal,
-                borderRadius: defaultProps.dotSize / 2,
-              },
-              dotStyle,
-            ]}
-          />
-        );
-      })}
     </View>
   );
 };
@@ -90,5 +90,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-
-export default SlidingDot;
