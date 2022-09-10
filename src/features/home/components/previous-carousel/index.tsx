@@ -22,7 +22,7 @@ export const PreviousCarousel = () => {
 
   const renderItem = ({ item }: { item: Launch }) => {
     return (
-      <View className="bg-secondary rounded-lg" style={{ width, marginRight: SPACING }}>
+      <View className="bg-secondary rounded-lg" style={{ width, marginHorizontal: SPACING }}>
         <Image
           source={{ uri: item.image }}
           className="h-32 rounded-t-lg"
@@ -67,7 +67,7 @@ export const PreviousCarousel = () => {
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-0">
-      <View className="flex-row justify-between mb-4">
+      <View className="flex-row justify-between mb-4 px-8">
         <Text className="text-sm font-bold text-white">Recent</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
       </View>
@@ -78,7 +78,7 @@ export const PreviousCarousel = () => {
         horizontal
         pagingEnabled
         bounces={false}
-        snapToInterval={width + SPACING}
+        snapToInterval={width + SPACING * 2}
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
         estimatedItemSize={375}
