@@ -1,22 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Animated, Image, Text, View, useWindowDimensions } from 'react-native';
 
 import { Launch } from '@features/home/hooks/types';
-import { PREVIOUS_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-previous-launches';
+import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { FlashList } from '@shopify/flash-list';
-import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
 
 const SPACING = 32;
 
 export const PreviousCarousel = () => {
-  const queryClient = useQueryClient();
-  const data = queryClient.getQueryData<Launch[]>([PREVIOUS_LAUNCHES_QUERY_KEY]);
+  const { data: docs } = usePreviousLaunches();
+
+  const { width: windowWidth } = useWindowDimensions();
 
   const scrollX = useRef(new Animated.Value(0)).current;
-  const { width: windowWidth } = useWindowDimensions();
 
   const width = windowWidth - SPACING * 2;
 
@@ -57,15 +57,23 @@ export const PreviousCarousel = () => {
     );
   };
 
+  const data = useMemo(() => {
+    return docs?.pages?.flat().map((doc) => doc.data() as Launch);
+  }, [docs]);
+
+  if (!data) {
+    return null;
+  }
+
   return (
-    <View className="mt-0">
+    <Reanimated.View entering={FadeIn} className="mt-0">
       <View className="flex-row justify-between mb-4">
         <Text className="text-sm font-bold text-white">Recent</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
       </View>
 
       <FlashList
-        data={data?.slice(0, 5)}
+        data={data ?? []}
         renderItem={renderItem}
         horizontal
         pagingEnabled
@@ -81,13 +89,8 @@ export const PreviousCarousel = () => {
       />
 
       <View className="mt-14">
-        <Pagination
-          marginHorizontal={8}
-          data={data?.slice(0, 5) ?? []}
-          scrollX={scrollX}
-          dotSize={5}
-        />
+        <Pagination marginHorizontal={8} data={data ?? []} scrollX={scrollX} dotSize={5} />
       </View>
-    </View>
+    </Reanimated.View>
   );
 };

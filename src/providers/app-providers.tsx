@@ -6,12 +6,11 @@ import { NavigationProvider } from '@navigation/navigation-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-const oneMinute = 1000 * 60;
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 2,
-      staleTime: oneMinute,
+      staleTime: Infinity,
       cacheTime: 1000 * 60 * 60 * 24, // 24 hours
     },
   },

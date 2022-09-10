@@ -6,6 +6,7 @@ import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-l
 import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
 
@@ -47,7 +48,7 @@ export const UpcomingCarousel = () => {
   };
 
   return (
-    <View className="mt-12">
+    <Reanimated.View entering={FadeIn} className="mt-12">
       <View className="flex-row justify-between mb-4">
         <Text className="text-sm font-bold text-white">Upcoming</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
@@ -77,6 +78,6 @@ export const UpcomingCarousel = () => {
           dotSize={5}
         />
       </View>
-    </View>
+    </Reanimated.View>
   );
 };
