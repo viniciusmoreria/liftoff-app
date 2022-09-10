@@ -1,44 +1,44 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useRef } from 'react';
+import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
 import { Launch } from '@features/home/hooks/types';
 import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-launches';
-import { useDimensions } from '@hooks/use-dimensions';
 import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
-const SPACING = 16;
+import Pagination from './pagination';
+
+const SPACING = 32;
 
 export const UpcomingCarousel = () => {
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
 
-  const { window } = useDimensions();
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const { width: windowWidth } = useWindowDimensions();
 
-  const width = window.width - SPACING * 4;
+  const width = windowWidth - SPACING * 2;
 
   const renderItem = ({ item }: { item: Launch }) => {
     return (
-      <View className="bg-secondary p-4 rounded-lg h-24" style={{ width, marginRight: SPACING }}>
+      <View className="bg-secondary p-4 rounded-lg h-28" style={{ width, marginRight: SPACING }}>
         <View className="flex-1 flex-row items-center">
-          <View className="flex-1 items-center min-w-[55]">
-            <Text className="text-white text-xs font-bold">
-              {format(new Date(item.net), 'HH:mm ')}
-            </Text>
-            <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM do')}</Text>
+          <View className="items-center">
+            <Text className="text-white text-xs font-bold">{format(new Date(item.net), 'p')}</Text>
+            <Text className="text-gray text-xs mt-3">{format(new Date(item.net), 'MMM do')}</Text>
           </View>
           <View className="h-full mx-4 w-px bg-black" />
           <View className="flex-1 mr-2">
             <Text className="text-white text-xs font-bold" numberOfLines={2}>
               {item?.mission?.name ?? item?.name}
             </Text>
-            <Text className="text-gray text-xs mt-2">{item?.rocket?.configuration?.full_name}</Text>
+            <Text className="text-gray text-xs mt-3">{item?.rocket?.configuration?.full_name}</Text>
           </View>
           {item?.mission?.orbit?.abbrev && (
             <View>
               <Text className="text-white text-xs font-bold">Orbit</Text>
-              <Text className="text-gray text-xs mt-2">{item?.mission?.orbit?.abbrev}</Text>
+              <Text className="text-gray text-xs mt-3">{item?.mission?.orbit?.abbrev}</Text>
             </View>
           )}
         </View>
@@ -47,7 +47,7 @@ export const UpcomingCarousel = () => {
   };
 
   return (
-    <View className="mt-10">
+    <View className="mt-12">
       <View className="flex-row justify-between mb-4">
         <Text className="text-sm font-bold text-white">Upcoming</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
@@ -63,8 +63,20 @@ export const UpcomingCarousel = () => {
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => String(item.id)}
-        estimatedItemSize={316}
+        estimatedItemSize={343}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+          useNativeDriver: false,
+        })}
       />
+
+      <View className="mt-14">
+        <Pagination
+          marginHorizontal={5}
+          data={data?.slice(0, 5) ?? []}
+          scrollX={scrollX}
+          dotSize={6}
+        />
+      </View>
     </View>
   );
 };
