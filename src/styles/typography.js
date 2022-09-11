@@ -63,7 +63,7 @@ const fontMetricsInter = {
 
 const textSizes = {
   'text-xs': createTextSize({
-    fontSize: 12,
+    fontSize: 10,
     letterSpacing: 0.6,
     lineHeight: 15,
     marginCorrection: {
@@ -73,7 +73,7 @@ const textSizes = {
     fontMetrics: fontMetricsInter,
   }),
   'text-sm': createTextSize({
-    fontSize: 14,
+    fontSize: 12,
     letterSpacing: 0.6,
     lineHeight: 17,
     marginCorrection: {
@@ -83,7 +83,7 @@ const textSizes = {
     fontMetrics: fontMetricsInter,
   }),
   'text-base': createTextSize({
-    fontSize: 16,
+    fontSize: 14,
     letterSpacing: 0.5,
     lineHeight: 19,
     marginCorrection: {
@@ -93,7 +93,7 @@ const textSizes = {
     fontMetrics: fontMetricsInter,
   }),
   'text-lg': createTextSize({
-    fontSize: 18,
+    fontSize: 16,
     letterSpacing: 0.5,
     lineHeight: 21,
     marginCorrection: {
@@ -103,7 +103,7 @@ const textSizes = {
     fontMetrics: fontMetricsInter,
   }),
   'text-xl': createTextSize({
-    fontSize: 20,
+    fontSize: 18,
     letterSpacing: 0.6,
     lineHeight: 23,
     marginCorrection: {
@@ -113,7 +113,7 @@ const textSizes = {
     fontMetrics: fontMetricsInter,
   }),
   'text-2xl': createTextSize({
-    fontSize: 24,
+    fontSize: 20,
     letterSpacing: 0.6,
     lineHeight: 27,
     marginCorrection: {
@@ -123,7 +123,7 @@ const textSizes = {
     fontMetrics: fontMetricsInter,
   }),
   'text-3xl': createTextSize({
-    fontSize: 30,
+    fontSize: 24,
     letterSpacing: 0.6,
     lineHeight: 33,
     marginCorrection: {
@@ -133,7 +133,7 @@ const textSizes = {
     fontMetrics: fontMetricsInter,
   }),
   'text-4xl': createTextSize({
-    fontSize: 36,
+    fontSize: 30,
     letterSpacing: 0.6,
     lineHeight: 41,
     marginCorrection: {

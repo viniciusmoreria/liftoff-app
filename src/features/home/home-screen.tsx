@@ -9,6 +9,7 @@ import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { Countdown } from './components/countdown';
+import { PreviousCarousel } from './components/previous-carousel';
 import { UpcomingCarousel } from './components/upcoming-carousel';
 
 type Props = NativeStackScreenProps<RootStackParams, 'home'>;
@@ -18,7 +19,7 @@ export const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <Container useScrollView>
-      <View className="flex-row items-center">
+      <View className="flex-row items-center px-8">
         <View className="flex-1 justify-items-center space-y-1">
           <Text className="text-lg text-white">Good {getTimeOfTheDay()},</Text>
           <Text numberOfLines={2} className="text-lg text-white font-semibold">
@@ -31,6 +32,7 @@ export const HomeScreen = ({ navigation }: Props) => {
       </View>
       <Countdown />
       <UpcomingCarousel />
+      <PreviousCarousel />
     </Container>
   );
 };
