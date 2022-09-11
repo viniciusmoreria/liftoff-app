@@ -1,13 +1,12 @@
 import React, { useRef } from 'react';
 import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
-import { LoadingAnimation } from '@assets/animations';
+import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
 import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-launches';
 import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import LottieView from 'lottie-react-native';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -50,10 +49,9 @@ export const UpcomingCarousel = () => {
             </View>
           )}
         </View>
-
         {hasLiftoff && (
-          <View className="absolute top-2 right-3">
-            <LottieView source={LoadingAnimation} autoPlay style={{ width: 20 }} />
+          <View className="absolute bottom-0 left-0 right-0">
+            <ProgressBar height={3} backgroundColor="#d83545" />
           </View>
         )}
       </View>
