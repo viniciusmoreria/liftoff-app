@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
+import { LoadingAnimation } from '@assets/animations';
 import { Launch } from '@features/home/hooks/types';
 import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-launches';
 import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import LottieView from 'lottie-react-native';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -22,6 +24,8 @@ export const UpcomingCarousel = () => {
   const width = windowWidth - SPACING * 2;
 
   const renderItem = ({ item }: { item: Launch }) => {
+    const hasLiftoff = new Date(item.net) < new Date();
+
     return (
       <View
         className="bg-secondary p-4 rounded-lg h-24"
@@ -46,6 +50,12 @@ export const UpcomingCarousel = () => {
             </View>
           )}
         </View>
+
+        {hasLiftoff && (
+          <View className="absolute top-2 right-3">
+            <LottieView source={LoadingAnimation} autoPlay style={{ width: 20 }} />
+          </View>
+        )}
       </View>
     );
   };
@@ -73,7 +83,7 @@ export const UpcomingCarousel = () => {
         })}
       />
 
-      <View className="mt-10">
+      <View className="mt-14">
         <Pagination
           marginHorizontal={8}
           data={data?.slice(0, 5) ?? []}

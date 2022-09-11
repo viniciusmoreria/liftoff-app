@@ -27,7 +27,7 @@ export const Pagination = ({
     dotSize: dotSize || 12,
     marginHorizontal: marginHorizontal || 3,
   };
-  const inputRange = [-width, 0, width - 32];
+  const inputRange = [-width, 0, width];
   const translateX = scrollX.interpolate({
     inputRange,
     outputRange: [

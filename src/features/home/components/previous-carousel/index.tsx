@@ -88,7 +88,7 @@ export const PreviousCarousel = () => {
         })}
       />
 
-      <View className="mt-10">
+      <View className="mt-14">
         <Pagination marginHorizontal={8} data={data ?? []} scrollX={scrollX} dotSize={5} />
       </View>
     </Reanimated.View>
