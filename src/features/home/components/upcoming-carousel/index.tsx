@@ -6,8 +6,9 @@ import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-l
 import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import Reanimated, { FadeIn } from 'react-native-reanimated';
 
-import { Pagination } from './pagination';
+import { Pagination } from '../pagination';
 
 const SPACING = 32;
 
@@ -22,23 +23,26 @@ export const UpcomingCarousel = () => {
 
   const renderItem = ({ item }: { item: Launch }) => {
     return (
-      <View className="bg-secondary p-4 rounded-lg h-28" style={{ width, marginRight: SPACING }}>
+      <View
+        className="bg-secondary p-4 rounded-lg h-24"
+        style={{ width, marginHorizontal: SPACING }}
+      >
         <View className="flex-1 flex-row items-center">
           <View className="items-center">
             <Text className="text-white text-xs font-bold">{format(new Date(item.net), 'p')}</Text>
-            <Text className="text-gray text-xs mt-3">{format(new Date(item.net), 'MMM do')}</Text>
+            <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM do')}</Text>
           </View>
-          <View className="h-full mx-4 w-px bg-black" />
+          <View className="h-full mx-3 w-px bg-dark" />
           <View className="flex-1 mr-2">
             <Text className="text-white text-xs font-bold" numberOfLines={2}>
               {item?.mission?.name ?? item?.name}
             </Text>
-            <Text className="text-gray text-xs mt-3">{item?.rocket?.configuration?.full_name}</Text>
+            <Text className="text-gray text-xs mt-2">{item?.rocket?.configuration?.full_name}</Text>
           </View>
           {item?.mission?.orbit?.abbrev && (
             <View>
               <Text className="text-white text-xs font-bold">Orbit</Text>
-              <Text className="text-gray text-xs mt-3">{item?.mission?.orbit?.abbrev}</Text>
+              <Text className="text-gray text-xs mt-2">{item?.mission?.orbit?.abbrev}</Text>
             </View>
           )}
         </View>
@@ -47,8 +51,8 @@ export const UpcomingCarousel = () => {
   };
 
   return (
-    <View className="mt-12">
-      <View className="flex-row justify-between mb-4">
+    <Reanimated.View entering={FadeIn} className="mt-12">
+      <View className="flex-row justify-between mb-4 px-8">
         <Text className="text-sm font-bold text-white">Upcoming</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
       </View>
@@ -59,7 +63,7 @@ export const UpcomingCarousel = () => {
         horizontal
         pagingEnabled
         bounces={false}
-        snapToInterval={width + SPACING}
+        snapToInterval={width + SPACING * 2}
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => String(item.id)}
@@ -69,7 +73,7 @@ export const UpcomingCarousel = () => {
         })}
       />
 
-      <View className="mt-14">
+      <View className="mt-10">
         <Pagination
           marginHorizontal={8}
           data={data?.slice(0, 5) ?? []}
@@ -77,6 +81,6 @@ export const UpcomingCarousel = () => {
           dotSize={5}
         />
       </View>
-    </View>
+    </Reanimated.View>
   );
 };
