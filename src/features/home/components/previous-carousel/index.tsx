@@ -1,13 +1,13 @@
 import React, { useMemo, useRef } from 'react';
-import { Animated, Image, Text, View, useWindowDimensions } from 'react-native';
+import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
 import { Launch } from '@features/home/hooks/types';
 import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { FlashList } from '@shopify/flash-list';
-import { format } from 'date-fns';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
+import { PreviousLaunch } from './components/previous-launch';
 
 const SPACING = 32;
 
@@ -21,40 +21,7 @@ export const PreviousCarousel = () => {
   const width = windowWidth - SPACING * 2;
 
   const renderItem = ({ item }: { item: Launch }) => {
-    return (
-      <View className="bg-secondary rounded-lg" style={{ width, marginHorizontal: SPACING }}>
-        <Image
-          source={{ uri: item.image }}
-          className="h-32 rounded-t-lg"
-          accessibilityLabel={`${item.name} launch image`}
-        />
-        <View className="h-24 p-4">
-          <View className="flex-1 flex-row items-center">
-            <View className="items-center">
-              <Text className="text-white text-xs font-bold">
-                {format(new Date(item.net), 'p')}
-              </Text>
-              <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM do')}</Text>
-            </View>
-            <View className="h-full mx-4 w-px bg-dark" />
-            <View className="flex-1 mr-2">
-              <Text className="text-white text-xs font-bold" numberOfLines={2}>
-                {item?.mission?.name ?? item?.name}
-              </Text>
-              <Text className="text-gray text-xs mt-2">
-                {item?.rocket?.configuration?.full_name}
-              </Text>
-            </View>
-            {item?.mission?.orbit?.abbrev && (
-              <View>
-                <Text className="text-white text-xs font-bold">Orbit</Text>
-                <Text className="text-gray text-xs mt-2">{item?.mission?.orbit?.abbrev}</Text>
-              </View>
-            )}
-          </View>
-        </View>
-      </View>
-    );
+    return <PreviousLaunch launch={item} />;
   };
 
   const data = useMemo(() => {
