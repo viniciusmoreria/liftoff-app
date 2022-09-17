@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
 import { ProgressBar } from '@components/progress-bar';
@@ -15,7 +15,7 @@ const SPACING = 32;
 
 export const UpcomingCarousel = () => {
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
+  const launches = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const { width: windowWidth } = useWindowDimensions();
@@ -27,7 +27,7 @@ export const UpcomingCarousel = () => {
 
     return (
       <View
-        className="bg-secondary p-4 rounded-lg h-24"
+        className="bg-secondary p-4 rounded-lg h-24 overflow-hidden"
         style={{ width, marginHorizontal: SPACING }}
       >
         <View className="flex-1 flex-row items-center">
@@ -57,6 +57,12 @@ export const UpcomingCarousel = () => {
       </View>
     );
   };
+
+  const data = useMemo(() => {
+    return launches?.filter(
+      (launch) => new Date(launch.net) > new Date(Date.now() - 4 * 60 * 60 * 1000) // 4 hours ago
+    );
+  }, [launches]);
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-12">

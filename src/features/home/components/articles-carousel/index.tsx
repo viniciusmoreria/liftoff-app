@@ -1,18 +1,18 @@
 import React, { useMemo, useRef } from 'react';
 import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
-import { Launch } from '@features/home/hooks/types';
-import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
+import { Article as ArticleType } from '@features/home/hooks/types';
+import { useArticles } from '@features/home/hooks/use-articles';
 import { FlashList } from '@shopify/flash-list';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
-import { PreviousLaunch } from './components/previous-launch';
+import { Article } from './components/article';
 
 const SPACING = 32;
 
-export const PreviousCarousel = () => {
-  const { data: docs } = usePreviousLaunches();
+export const ArticlesCarousel = () => {
+  const { data: articles } = useArticles();
 
   const { width: windowWidth } = useWindowDimensions();
 
@@ -20,13 +20,16 @@ export const PreviousCarousel = () => {
 
   const width = windowWidth - SPACING * 2;
 
-  const renderItem = ({ item }: { item: Launch }) => {
-    return <PreviousLaunch launch={item} />;
+  const renderItem = ({ item }: { item: ArticleType }) => {
+    return <Article article={item} />;
   };
 
   const data = useMemo(() => {
-    return docs?.pages?.flat().map((doc) => doc.data() as Launch);
-  }, [docs]);
+    return articles?.pages
+      ?.flat()
+      .slice(0, 5)
+      .map((article) => article);
+  }, [articles]);
 
   if (!data) {
     return null;
@@ -35,7 +38,7 @@ export const PreviousCarousel = () => {
   return (
     <Reanimated.View entering={FadeIn} className="mt-0">
       <View className="flex-row justify-between mb-4 px-8">
-        <Text className="text-sm font-bold text-white">Recent</Text>
+        <Text className="text-sm font-bold text-white">News</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
       </View>
 

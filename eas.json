@@ -3,30 +3,16 @@
     "version": ">= 0.40.0"
   },
   "build": {
-    "base": {
-      "env": {}
-    },
     "development": {
-      "extends": "base",
       "distribution": "internal",
       "releaseChannel": "development",
-      "developmentClient": true,
-      "android": {
-        "gradleCommand": ":app:assembleDebug"
-      },
-      "ios": {
-        "simulator": true
-      }
+      "developmentClient": true
     },
     "production": {
-      "extends": "base",
       "distribution": "store",
       "releaseChannel": "production",
       "android": {
         "buildType": "app-bundle"
-      },
-      "ios": {
-        "simulator": true
       }
     }
   },
