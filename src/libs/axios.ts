@@ -1,24 +1,18 @@
-import axios from 'axios';
-import type { AxiosRequestHeaders, Method } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
+import type { Method } from 'axios';
 
 import { Logger } from './logger';
-
-export type AxiosOverrides = {
-  forceAccessTokenAuthorization?: boolean;
-};
 
 export type AxiosParams = {
   url: string;
   method: Method;
   data?: any;
   unmountSignal?: AbortSignal;
-  overrides?: AxiosOverrides;
-  headers?: AxiosRequestHeaders;
   params?: any;
 };
 
 const axiosAPI = async ({ url, method, data, unmountSignal, params }: AxiosParams) => {
-  const request = {
+  const request: AxiosRequestConfig = {
     url,
     method,
     data,

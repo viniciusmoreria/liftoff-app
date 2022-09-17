@@ -15,30 +15,22 @@ export interface PaginationProps {
 export const Pagination = ({
   scrollX,
   data,
-  dotSize,
+  dotSize = 12,
   containerStyle,
   dotStyle,
   slidingIndicatorStyle,
-  marginHorizontal,
+  marginHorizontal = 3,
 }: PaginationProps) => {
   const { width } = useWindowDimensions();
 
-  const defaultProps = {
-    dotSize: dotSize || 12,
-    marginHorizontal: marginHorizontal || 3,
-  };
   const inputRange = [-width, 0, width];
   const translateX = scrollX.interpolate({
     inputRange,
-    outputRange: [
-      -defaultProps.dotSize + defaultProps.marginHorizontal * 2,
-      0,
-      defaultProps.dotSize + defaultProps.marginHorizontal * 2,
-    ],
+    outputRange: [-dotSize + marginHorizontal * 2, 0, dotSize + marginHorizontal * 2],
   });
 
   return (
-    <View style={[{ height: defaultProps.dotSize }, styles.containerStyle, containerStyle]}>
+    <View style={[{ height: dotSize }, styles.containerStyle, containerStyle]}>
       {data.map((_item, index) => {
         return (
           <View
@@ -46,10 +38,10 @@ export const Pagination = ({
             className="bg-gray"
             style={[
               {
-                width: defaultProps.dotSize,
-                height: defaultProps.dotSize,
-                marginHorizontal: defaultProps.marginHorizontal,
-                borderRadius: defaultProps.dotSize / 2,
+                width: dotSize,
+                height: dotSize,
+                marginHorizontal: marginHorizontal,
+                borderRadius: dotSize / 2,
               },
               dotStyle,
             ]}
@@ -60,9 +52,9 @@ export const Pagination = ({
         className="bg-primary"
         style={[
           {
-            width: defaultProps.dotSize,
-            height: defaultProps.dotSize,
-            borderRadius: defaultProps.dotSize / 2,
+            width: dotSize,
+            height: dotSize,
+            borderRadius: dotSize / 2,
           },
           {
             position: 'absolute',

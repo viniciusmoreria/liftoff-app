@@ -8,6 +8,7 @@ import { getTimeOfTheDay } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { ArticlesCarousel } from './components/articles-carousel';
 import { Countdown } from './components/countdown';
 import { PreviousCarousel } from './components/previous-carousel';
 import { UpcomingCarousel } from './components/upcoming-carousel';
@@ -33,6 +34,7 @@ export const HomeScreen = ({ navigation }: Props) => {
       <Countdown />
       <UpcomingCarousel />
       <PreviousCarousel />
+      <ArticlesCarousel />
     </Container>
   );
 };
