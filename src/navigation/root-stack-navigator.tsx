@@ -31,13 +31,7 @@ export function RootStackNavigator() {
             animation: 'fade_from_bottom',
           }}
         />
-        <Stack.Screen
-          name="profile"
-          component={ProfileScreen}
-          options={{
-            presentation: 'modal',
-          }}
-        />
+        <Stack.Screen name="profile" component={ProfileScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

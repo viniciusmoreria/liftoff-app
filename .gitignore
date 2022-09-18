@@ -17,3 +17,4 @@ web-build/
 #Firebase
 google-services.json
 GoogleService-Info.plist
+service-account-key.json

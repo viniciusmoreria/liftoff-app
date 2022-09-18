@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "@capsizecss/core": "^3.0.0",
-    "@expo-google-fonts/inter": "^0.2.2",
     "@expo/vector-icons": "^13.0.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-firebase/analytics": "^15.4.0",
     "@react-native-firebase/app": "^15.4.0",
     "@react-native-firebase/firestore": "^15.4.0",
+    "@react-native-firebase/messaging": "^15.5.0",
     "@react-native-firebase/perf": "^15.4.0",
     "@react-native-firebase/remote-config": "^15.4.0",
     "@react-native-masked-view/masked-view": "0.2.6",
@@ -50,7 +50,7 @@
     "expo-updates": "~0.13.4",
     "lottie-react-native": "5.1.1",
     "moti": "^0.18.0",
-    "nativewind": "^2.0.0-next.58",
+    "nativewind": "^2.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
@@ -61,7 +61,8 @@
     "react-native-screens": "~3.11.1",
     "react-native-tab-view": "^3.1.1",
     "react-native-web": "0.17.7",
-    "sentry-expo": "^4.2.0"
+    "sentry-expo": "^4.2.0",
+    "zustand": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

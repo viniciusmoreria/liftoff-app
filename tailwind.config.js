@@ -3,19 +3,16 @@ const { textSizes } = require('./src/styles/typography');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
-  content: [
-    './src/App.{js,jsx,ts,tsx}',
-    './src/{features,components,providers,styles}/**/*.{js,jsx,ts,tsx}',
-  ],
+  content: ['./src/App.tsx', './src/{features,components,providers,styles}/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        regular: 'Inter_400Regular',
-        medium: 'Inter_500Medium',
-        semibold: 'Inter_600SemiBold',
-        bold: 'Inter_700Bold',
-        sans: 'Inter_400Regular',
+        regular: 'Inter',
+        medium: 'Inter-Medium',
+        semibold: 'Inter-SemiBold',
+        bold: 'Inter-Bold',
+        light: 'Inter-Light',
+        sans: ['Inter', 'sans-serif'],
       },
       colors: {
         primary: '#d83545',

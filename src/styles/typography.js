@@ -44,7 +44,6 @@ const createTextSize = ({
     letterSpacing: styles.letterSpacing,
     marginTop: roundToNearestPixel(styles.marginTop + marginCorrectionForPlatform),
     marginBottom: roundToNearestPixel(styles.marginBottom - marginCorrectionForPlatform),
-    fontFamily: 'Inter_400Regular',
   };
 
   return newStyle;
