@@ -32,8 +32,10 @@ export const UpcomingCarousel = () => {
       >
         <View className="flex-1 flex-row items-center">
           <View className="items-center">
-            <Text className="text-white text-xs font-bold">{format(new Date(item.net), 'p')}</Text>
-            <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM do')}</Text>
+            <Text className="text-white text-xs font-bold">
+              {format(new Date(item.net), 'H:mm')}
+            </Text>
+            <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM d')}</Text>
           </View>
           <View className="h-full mx-3 w-px bg-dark" />
           <View className="flex-1 mr-2">

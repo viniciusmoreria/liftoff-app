@@ -29,6 +29,7 @@ module.exports = function (api) {
             '@navigation': './src/navigation',
             '@features': './src/features',
             '@providers': './src/providers',
+            '@store': './src/store',
             '@styles': './src/styles',
           },
         },
