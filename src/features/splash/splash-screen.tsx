@@ -56,6 +56,16 @@ export const SplashScreen = ({ navigation }: Props) => {
     }
   }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoading]);
 
+  useEffect(() => {
+    const timetout = setTimeout(() => {
+      navigation.dispatch(StackActions.replace('maintenance'));
+    }, 10000);
+
+    return () => {
+      clearTimeout(timetout);
+    };
+  }, [navigation]);
+
   return (
     <View className="bg-dark flex-1 items-center justify-center">
       <LottieView source={LoadingAnimation} autoPlay style={{ width: 50 }} />

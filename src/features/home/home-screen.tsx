@@ -21,7 +21,7 @@ export const HomeScreen = ({ navigation }: Props) => {
   return (
     <Container useScrollView>
       <Pressable onPress={() => navigation.navigate('profile')}>
-        <View className="flex-row items-center px-8">
+        <View className="flex-row items-center px-8 mt-4">
           <View className="flex-1 justify-items-center space-y-1">
             <Text className="text-lg text-white">Good {getTimeOfTheDay()},</Text>
             <Text numberOfLines={2} className="text-lg text-white font-semibold">

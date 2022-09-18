@@ -5,7 +5,6 @@ import en from 'date-fns/locale/en-US';
 
 export const isIOS = Platform.OS === 'ios';
 export const isAndroid = Platform.OS === 'android';
-export const HEADER_HEIGHT = 36;
 
 export function getTimeOfTheDay() {
   const hour = new Date().getHours();

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { ErrorBoundary } from '@components/error-boundary';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { SafeAreaProvider } from '@libs/safe-area';
 import { NavigationProvider } from '@navigation/navigation-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -22,7 +23,9 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <NavigationProvider>
-            <ErrorBoundary>{children}</ErrorBoundary>
+            <ErrorBoundary>
+              <BottomSheetModalProvider>{children}</BottomSheetModalProvider>
+            </ErrorBoundary>
           </NavigationProvider>
         </QueryClientProvider>
       </SafeAreaProvider>

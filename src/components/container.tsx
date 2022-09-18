@@ -1,18 +1,20 @@
 import { ReactNode } from 'react';
-import { View } from 'react-native';
+import { ScrollViewProps, View } from 'react-native';
 
-import { HEADER_HEIGHT } from '@libs/utilities';
+import { useHeaderHeight } from '@react-navigation/elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
   children: ReactNode;
   useScrollView?: boolean;
+  scrollViewProps?: ScrollViewProps;
 };
 
-export const Container = ({ children, useScrollView }: Props) => {
+export const Container = ({ children, useScrollView = false, ...rest }: Props) => {
   const insets = useSafeAreaInsets();
-  const safeAreaTop = insets.top + HEADER_HEIGHT;
+  const headerHeight = useHeaderHeight();
+  const safeAreaTop = insets.top + headerHeight / 1.5;
 
   return useScrollView ? (
     <ScrollView
@@ -22,6 +24,7 @@ export const Container = ({ children, useScrollView }: Props) => {
         paddingTop: safeAreaTop,
         paddingBottom: insets.bottom,
       }}
+      {...rest}
     >
       {children}
     </ScrollView>

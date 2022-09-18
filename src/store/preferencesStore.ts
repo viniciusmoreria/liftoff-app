@@ -11,6 +11,10 @@ interface PreferencesState {
   setAllowOneHourNotifications: (allow: boolean) => void;
   allowOneDayNotifications: boolean;
   setAllowOneDayNotifications: (allow: boolean) => void;
+  allowLivestreamNotifications: boolean;
+  setAllowLivestreamNotifications: (allow: boolean) => void;
+  allowLaunchUpdateNotifications: boolean;
+  setAllowLaunchUpdateNotifications: (allow: boolean) => void;
 }
 
 const usePreferencesStoreBase = create(
@@ -22,6 +26,10 @@ const usePreferencesStoreBase = create(
       setAllowOneHourNotifications: (allow) => set({ allowOneHourNotifications: allow }),
       allowOneDayNotifications: false,
       setAllowOneDayNotifications: (allow) => set({ allowOneDayNotifications: allow }),
+      allowLivestreamNotifications: false,
+      setAllowLivestreamNotifications: (allow) => set({ allowLivestreamNotifications: allow }),
+      allowLaunchUpdateNotifications: false,
+      setAllowLaunchUpdateNotifications: (allow) => set({ allowLaunchUpdateNotifications: allow }),
     }),
     {
       name: '@liftoff-preferences-store',
