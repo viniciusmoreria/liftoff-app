@@ -5,7 +5,7 @@ const { textSizes } = require('./src/styles/typography');
 module.exports = {
   content: [
     './src/App.tsx',
-    './src/{features,components,providers,styles,navigation}/**/*.{js,jsx,ts,tsx}',
+    './src/{features,components,providers,styles,navigation,hooks}/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
