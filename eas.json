@@ -13,6 +13,7 @@
     },
     "development": {
       "extends": "base",
+      "developmentClient": true,
       "distribution": "internal",
       "env": {
         "STAGE": "development"
