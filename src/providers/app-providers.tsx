@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 
 import { ErrorBoundary } from '@components/error-boundary';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { useExpoUpdates } from '@hooks/use-expo-updates';
 import { SafeAreaProvider } from '@libs/safe-area';
 import { NavigationProvider } from '@navigation/navigation-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -20,8 +19,6 @@ const queryClient = new QueryClient({
 });
 
 export const AppProviders = ({ children }: { children: ReactNode }) => {
-  useExpoUpdates();
-
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>

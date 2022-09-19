@@ -25,11 +25,11 @@
         "simulator": true
       },
       "env": {
-        "STAGE": "staging"
+        "STAGE": "development"
       }
     },
     "preview": {
-      "channel": "staging",
+      "channel": "preview",
       "distribution": "internal",
       "android": {
         "buildType": "apk"
