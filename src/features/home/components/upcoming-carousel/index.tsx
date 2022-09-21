@@ -1,8 +1,9 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
 import { ProgressBar } from '@components/progress-bar';
-import { Launch } from '@features/home/hooks/types';
+import { Launch, PreviousQueryCacheType } from '@features/home/hooks/types';
+import { PREVIOUS_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-previous-launches';
 import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-launches';
 import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
@@ -16,6 +17,9 @@ const SPACING = 32;
 export const UpcomingCarousel = () => {
   const queryClient = useQueryClient();
   const launches = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
+  const previousLaunches = queryClient.getQueryData<PreviousQueryCacheType>([
+    PREVIOUS_LAUNCHES_QUERY_KEY,
+  ]);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const { width: windowWidth } = useWindowDimensions();
@@ -60,12 +64,15 @@ export const UpcomingCarousel = () => {
     );
   };
 
-  const data = useMemo(() => {
-    return launches?.filter(
-      (launch) => new Date(launch.net) > new Date(Date.now() - 4 * 60 * 60 * 1000) // 4 hours ago
-    );
-  }, [launches]);
+  const mostRecentPreviousLaunch = previousLaunches?.pages.flat()[0].data() as Launch;
 
+  console.log('mostRecentPreviousLaunch', mostRecentPreviousLaunch?.name);
+
+  const data = launches?.filter(
+    (launch) =>
+      new Date(launch.net) > new Date(Date.now() - 4 * 60 * 60 * 1000) ||
+      mostRecentPreviousLaunch?.id !== launch.id
+  );
   return (
     <Reanimated.View entering={FadeIn} className="mt-12">
       <View className="flex-row justify-between mb-4 px-8">

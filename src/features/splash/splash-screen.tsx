@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { LoadingAnimation } from '@assets/animations';
+import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { RemoteConfig } from '@libs/firebase/remote-config';
 import { Logger } from '@libs/logger';
@@ -15,6 +16,9 @@ type Props = NativeStackScreenProps<RootStackParams, 'splash'>;
 
 export const SplashScreen = ({ navigation }: Props) => {
   const { isLoading } = useUpcomingLaunches();
+  const { isLoading: isLoadingPreviousLaunches } = usePreviousLaunches();
+
+  const isLoadingQueries = isLoading || isLoadingPreviousLaunches;
 
   const [isFontsLoaded] = useFonts({
     Inter: require('../../assets/fonts/Inter-Regular.otf'),
@@ -51,10 +55,10 @@ export const SplashScreen = ({ navigation }: Props) => {
   }, [fetchRemoteData]);
 
   useEffect(() => {
-    if (isFontsLoaded && fetchedRemoteConfig && !isLoading) {
+    if (isFontsLoaded && fetchedRemoteConfig && !isLoadingQueries) {
       handleNavigate();
     }
-  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoading]);
+  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoadingQueries]);
 
   useEffect(() => {
     const timetout = setTimeout(() => {

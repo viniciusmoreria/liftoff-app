@@ -1,3 +1,6 @@
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { InfiniteData } from '@tanstack/react-query';
+
 export interface Status {
   id: number;
   name: string;
@@ -520,3 +523,9 @@ export interface Article {
     }
   ];
 }
+
+export type PreviousQueryCacheType =
+  | InfiniteData<
+      FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
+    >
+  | undefined;
