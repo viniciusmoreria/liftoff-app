@@ -8,7 +8,10 @@ export const SupportSection = () => {
       <Text className="text-lg text-white font-bold">Support</Text>
       <View className="justify-items-center space-y-6 bg-secondary p-4 rounded-lg mt-4">
         <View>
-          <MenuItem title="Contact Support" onPress={() => null} />
+          <MenuItem title="Bug Report" onPress={() => null} />
+        </View>
+        <View>
+          <MenuItem title="Feature Request" onPress={() => null} />
         </View>
         <View>
           <MenuItem title="Rate Our App" onPress={() => null} />

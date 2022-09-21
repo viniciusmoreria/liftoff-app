@@ -41,7 +41,6 @@ export const NotificationSection = () => {
   return (
     <View>
       <Text className="text-lg text-white font-bold">Notifications</Text>
-      <Text className="text-md text-white mt-2">configure how you want to be notified</Text>
       <View className="justify-items-center space-y-4 bg-secondary p-4 rounded-lg mt-4">
         <View>
           <MenuItem title="Settings" onPress={enableNotificationModal} />

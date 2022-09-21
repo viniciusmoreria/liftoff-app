@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { Text, View } from 'react-native';
 
 import { Launch } from '@features/home/hooks/types';
@@ -14,9 +13,12 @@ export const Countdown = () => {
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
 
-  const nextLaunch = useMemo(() => {
-    return data?.find((launch) => isAfter(new Date(launch.net), new Date()));
-  }, [data]);
+  const nextLaunch = data?.find((launch) =>
+    isAfter(
+      new Date(launch.net),
+      new Date(Date.now() - 1000 * 60 * 45) // 45 minutes ago
+    )
+  );
 
   const { days, hours, minutes, seconds } = useCountdown(nextLaunch?.net ?? new Date());
 

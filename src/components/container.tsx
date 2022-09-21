@@ -22,7 +22,7 @@ export const Container = ({ children, useScrollView = false, ...rest }: Props) =
       contentContainerStyle={{
         flexGrow: 1,
         paddingTop: safeAreaTop,
-        paddingBottom: insets.bottom,
+        paddingBottom: insets.bottom + 16,
       }}
       {...rest}
     >
@@ -33,7 +33,7 @@ export const Container = ({ children, useScrollView = false, ...rest }: Props) =
       className="flex-1 bg-dark"
       style={{
         paddingTop: safeAreaTop,
-        paddingBottom: insets.bottom,
+        paddingBottom: insets.bottom + 16,
       }}
     >
       {children}

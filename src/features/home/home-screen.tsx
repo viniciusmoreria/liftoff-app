@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
 
 import { PlaceholderUserPicture } from '@assets/images';
@@ -7,6 +7,7 @@ import { getTimeOfTheDay } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useUserStore } from '@store/userStore';
+import * as Notifications from 'expo-notifications';
 
 import { ArticlesCarousel } from './components/articles-carousel';
 import { Countdown } from './components/countdown';
@@ -17,6 +18,31 @@ type Props = NativeStackScreenProps<RootStackParams, 'home'>;
 
 export const HomeScreen = ({ navigation }: Props) => {
   const { username } = useUserStore();
+
+  async function getNotificationPermissionStatus() {
+    const status = await Notifications.getPermissionsAsync();
+    return status.granted;
+  }
+
+  const requestNotificationPermission = useCallback(async () => {
+    let granted = await getNotificationPermissionStatus();
+
+    if (!granted) {
+      const status = await Notifications.requestPermissionsAsync({
+        ios: {
+          allowAlert: true,
+          allowBadge: true,
+          allowSound: true,
+          allowAnnouncements: true,
+        },
+      });
+      granted = status.granted;
+    }
+  }, []);
+
+  useEffect(() => {
+    requestNotificationPermission();
+  }, [requestNotificationPermission]);
 
   return (
     <Container useScrollView>
