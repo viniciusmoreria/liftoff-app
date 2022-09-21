@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect } from 'react';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Image, Pressable, RefreshControl, Text, View } from 'react-native';
 
 import { PlaceholderUserPicture } from '@assets/images';
 import { Container } from '@components/container';
 import { getTimeOfTheDay } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { usePreferencesStore } from '@store/preferencesStore';
 import { useUserStore } from '@store/userStore';
+import { useQueryClient } from '@tanstack/react-query';
 import * as Notifications from 'expo-notifications';
 
 import { ArticlesCarousel } from './components/articles-carousel';
@@ -17,7 +19,10 @@ import { UpcomingCarousel } from './components/upcoming-carousel';
 type Props = NativeStackScreenProps<RootStackParams, 'home'>;
 
 export const HomeScreen = ({ navigation }: Props) => {
+  const queryClient = useQueryClient();
+
   const { username } = useUserStore();
+  const { setNotificationPreference } = usePreferencesStore();
 
   async function getNotificationPermissionStatus() {
     const status = await Notifications.getPermissionsAsync();
@@ -25,7 +30,7 @@ export const HomeScreen = ({ navigation }: Props) => {
   }
 
   const requestNotificationPermission = useCallback(async () => {
-    let granted = await getNotificationPermissionStatus();
+    const granted = await getNotificationPermissionStatus();
 
     if (!granted) {
       const status = await Notifications.requestPermissionsAsync({
@@ -36,16 +41,30 @@ export const HomeScreen = ({ navigation }: Props) => {
           allowAnnouncements: true,
         },
       });
-      granted = status.granted;
+      if (status.granted) {
+        setNotificationPreference({ type: 'all', value: true });
+      }
     }
-  }, []);
+  }, [setNotificationPreference]);
 
   useEffect(() => {
     requestNotificationPermission();
   }, [requestNotificationPermission]);
 
   return (
-    <Container useScrollView>
+    <Container
+      useScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={false}
+          tintColor="white"
+          colors={['white']}
+          onRefresh={() => {
+            queryClient.invalidateQueries();
+          }}
+        />
+      }
+    >
       <Pressable onPress={() => navigation.navigate('profile')}>
         <View className="flex-row items-center px-8 mt-4">
           <View className="flex-1 justify-items-center space-y-1">

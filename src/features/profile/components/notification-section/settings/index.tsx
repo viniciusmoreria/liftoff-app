@@ -8,6 +8,9 @@ import {
   useBottomSheetDynamicSnapPoints,
 } from '@gorhom/bottom-sheet';
 import { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
+import { usePreferencesStore } from '@store/preferencesStore';
+
+import { MenuItem } from '../../menu-item';
 
 type Props = {
   present: boolean;
@@ -15,6 +18,13 @@ type Props = {
 };
 
 export const NotificationSettings = ({ present, onDismiss }: Props) => {
+  const {
+    allowOneDayNotifications,
+    allowOneHourNotifications,
+    allowTenMinutesNotifications,
+    setNotificationPreference,
+  } = usePreferencesStore();
+
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   const initialSnapPoints = useMemo(() => ['CONTENT_HEIGHT'], []);
@@ -60,9 +70,56 @@ export const NotificationSettings = ({ present, onDismiss }: Props) => {
       backdropComponent={renderBackdrop}
       handleComponent={renderHeaderHandle}
       enableOverDrag={false}
+      style={{
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        overflow: 'hidden',
+      }}
     >
-      <View onLayout={handleContentLayout} className="flex-1 items-center bg-dark py-8">
-        <Text className="text-white text-2xl h-56">Awesome</Text>
+      <View onLayout={handleContentLayout} className="flex-1 bg-dark pt-8 pb-14 px-8">
+        <Text className="text-xl text-white font-bold">Default reminders</Text>
+
+        <View className="bg-secondary p-4 rounded-lg mt-10 space-y-4">
+          <View>
+            <MenuItem
+              title="24 hours before launch"
+              useSwitch
+              isEnabled={allowOneDayNotifications}
+              onPress={() =>
+                setNotificationPreference({
+                  type: 'twentyFourHour',
+                  value: !allowOneDayNotifications,
+                })
+              }
+            />
+          </View>
+          <View>
+            <MenuItem
+              title="1 hour before launch"
+              useSwitch
+              isEnabled={allowOneHourNotifications}
+              onPress={() =>
+                setNotificationPreference({
+                  type: 'oneHour',
+                  value: !allowOneHourNotifications,
+                })
+              }
+            />
+          </View>
+          <View>
+            <MenuItem
+              title="10 minutes before launch"
+              useSwitch
+              isEnabled={allowTenMinutesNotifications}
+              onPress={() =>
+                setNotificationPreference({
+                  type: 'tenMinutes',
+                  value: !allowTenMinutesNotifications,
+                })
+              }
+            />
+          </View>
+        </View>
       </View>
     </BottomSheetModal>
   );

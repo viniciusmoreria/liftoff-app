@@ -9,9 +9,10 @@ type Props = {
   children: ReactNode;
   useScrollView?: boolean;
   scrollViewProps?: ScrollViewProps;
+  refreshControl?: ScrollViewProps['refreshControl'];
 };
 
-export const Container = ({ children, useScrollView = false, ...rest }: Props) => {
+export const Container = ({ children, useScrollView = false, refreshControl, ...rest }: Props) => {
   const insets = useSafeAreaInsets();
   const headerHeight = useHeaderHeight();
   const safeAreaTop = insets.top + headerHeight / 1.5;
@@ -19,6 +20,7 @@ export const Container = ({ children, useScrollView = false, ...rest }: Props) =
   return useScrollView ? (
     <ScrollView
       className="bg-dark"
+      refreshControl={refreshControl}
       contentContainerStyle={{
         flexGrow: 1,
         paddingTop: safeAreaTop,

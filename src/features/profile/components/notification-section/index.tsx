@@ -1,7 +1,6 @@
 import { useReducer } from 'react';
 import { Text, View } from 'react-native';
 
-import messaging from '@react-native-firebase/messaging';
 import { usePreferencesStore } from '@store/preferencesStore';
 
 import { MenuItem } from '../menu-item';
@@ -10,33 +9,14 @@ import { NotificationSettings } from './settings';
 export const NotificationSection = () => {
   const {
     allowLaunchUpdateNotifications,
-    setAllowLaunchUpdateNotifications,
     allowLivestreamNotifications,
-    setAllowLivestreamNotifications,
+    setNotificationPreference,
   } = usePreferencesStore();
 
   const [isNotificationModalEnabled, enableNotificationModal] = useReducer(
     (state) => !state,
     false
   );
-
-  const switchLaunchUpdateNotifications = async () => {
-    setAllowLaunchUpdateNotifications(!allowLaunchUpdateNotifications);
-    if (allowLaunchUpdateNotifications) {
-      await messaging().unsubscribeFromTopic('updates');
-    } else {
-      await messaging().subscribeToTopic('updates');
-    }
-  };
-
-  const switchLivestreamNotifications = async () => {
-    setAllowLivestreamNotifications(!allowLivestreamNotifications);
-    if (allowLivestreamNotifications) {
-      await messaging().unsubscribeFromTopic('webcastLive');
-    } else {
-      await messaging().subscribeToTopic('webcastLive');
-    }
-  };
 
   return (
     <View>
@@ -50,7 +30,9 @@ export const NotificationSection = () => {
             title="Launch Updates"
             useSwitch
             isEnabled={allowLaunchUpdateNotifications}
-            onPress={switchLaunchUpdateNotifications}
+            onPress={() =>
+              setNotificationPreference({ type: 'updates', value: !allowLaunchUpdateNotifications })
+            }
           />
         </View>
         <View>
@@ -58,7 +40,12 @@ export const NotificationSection = () => {
             title="Available Livestream"
             useSwitch
             isEnabled={allowLivestreamNotifications}
-            onPress={switchLivestreamNotifications}
+            onPress={() =>
+              setNotificationPreference({
+                type: 'webcastLive',
+                value: !allowLivestreamNotifications,
+              })
+            }
           />
         </View>
       </View>
