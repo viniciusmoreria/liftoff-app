@@ -5,17 +5,46 @@ import { persist } from 'zustand/middleware';
 
 import { createSelectors } from './createSelectors';
 
+type RemindersType =
+  | 'twentyFourHour'
+  | 'oneHour'
+  | 'tenMinutes'
+  | 'updates'
+  | 'webcastLive'
+  | 'all';
+
+type LocationType =
+  | 'cape'
+  | 'van'
+  | 'wallops'
+  | 'china'
+  | 'russia'
+  | 'india'
+  | 'japan'
+  | 'french_guiana'
+  | 'new_zealand';
+
 export type NotificationPreference = {
-  type: 'twentyFourHour' | 'oneHour' | 'tenMinutes' | 'updates' | 'webcastLive' | 'all';
+  type: RemindersType | LocationType;
   value: boolean;
 };
 
 interface PreferencesState {
-  allowTenMinutesNotifications: boolean;
-  allowOneHourNotifications: boolean;
-  allowOneDayNotifications: boolean;
-  allowLivestreamNotifications: boolean;
-  allowLaunchUpdateNotifications: boolean;
+  all: boolean;
+  twentyFourHour: boolean;
+  oneHour: boolean;
+  tenMinutes: boolean;
+  updates: boolean;
+  webcastLive: boolean;
+  cape: boolean;
+  van: boolean;
+  wallops: boolean;
+  china: boolean;
+  russia: boolean;
+  india: boolean;
+  japan: boolean;
+  french_guiana: boolean;
+  new_zealand: boolean;
   setNotificationPreference: ({ type, value }: NotificationPreference) => void;
 }
 
@@ -25,56 +54,55 @@ async function changeSubscription(
 ) {
   if (value) {
     await messaging().subscribeToTopic(topic);
+    console.log(`Subscribed to ${topic}`);
   } else {
     await messaging().unsubscribeFromTopic(topic);
+    console.log(`Unsubscribed from ${topic}`);
   }
 }
+
+const topics = [
+  'all',
+  'twentyFourHour',
+  'oneHour',
+  'tenMinutes',
+  'cape',
+  'van',
+  'wallops',
+  'china',
+  'russia',
+  'india',
+  'japan',
+  'french_guiana',
+  'new_zealand',
+];
 
 const usePreferencesStoreBase = create(
   persist<PreferencesState>(
     (set) => ({
-      allowTenMinutesNotifications: false,
-      allowOneHourNotifications: false,
-      allowOneDayNotifications: false,
-      allowLivestreamNotifications: false,
-      allowLaunchUpdateNotifications: false,
+      all: false,
+      twentyFourHour: false,
+      oneHour: false,
+      tenMinutes: false,
+      updates: false,
+      webcastLive: false,
+      cape: false,
+      van: false,
+      wallops: false,
+      china: false,
+      russia: false,
+      india: false,
+      japan: false,
+      french_guiana: false,
+      new_zealand: false,
       setNotificationPreference: async ({ type, value }: NotificationPreference) => {
-        switch (type) {
-          case 'twentyFourHour':
-            set({ allowOneDayNotifications: value });
-            changeSubscription('twentyFourHour', value);
-            break;
-          case 'oneHour':
-            set({ allowOneHourNotifications: value });
-            changeSubscription('oneHour', value);
-            break;
-          case 'tenMinutes':
-            set({ allowTenMinutesNotifications: value });
-            changeSubscription('tenMinutes', value);
-            break;
-          case 'updates':
-            set({ allowLaunchUpdateNotifications: value });
-            changeSubscription('updates', value);
-            break;
-          case 'webcastLive':
-            set({ allowLivestreamNotifications: value });
-            changeSubscription('webcastLive', value);
-            break;
-          case 'all':
-            set({
-              allowOneDayNotifications: value,
-              allowOneHourNotifications: value,
-              allowTenMinutesNotifications: value,
-              allowLivestreamNotifications: value,
-              allowLaunchUpdateNotifications: value,
-            });
-            changeSubscription('twentyFourHour', value);
-            changeSubscription('oneHour', value);
-            changeSubscription('tenMinutes', value);
-            changeSubscription('updates', value);
-            changeSubscription('webcastLive', value);
-            break;
+        if (type === 'all') {
+          topics.map((topic) => set({ [topic]: value }));
+          changeSubscription('all', value);
+          return;
         }
+        set({ [type]: value });
+        changeSubscription(type, value);
       },
     }),
     {

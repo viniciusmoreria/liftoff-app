@@ -4,12 +4,13 @@ import { Ionicons } from '@expo/vector-icons';
 
 type MenuItemProps = {
   title: string;
+  label?: string;
   onPress: () => void;
   useSwitch?: boolean;
   isEnabled?: boolean;
 };
 
-export const MenuItem = ({ title, onPress, useSwitch, isEnabled }: MenuItemProps) => {
+export const MenuItem = ({ title, label, onPress, useSwitch, isEnabled }: MenuItemProps) => {
   return (
     <Pressable onPress={useSwitch ? undefined : onPress}>
       <View className="flex-row items-center justify-between">
@@ -24,7 +25,10 @@ export const MenuItem = ({ title, onPress, useSwitch, isEnabled }: MenuItemProps
             style={{ transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
           />
         ) : (
-          <Ionicons name="ios-chevron-forward" color="white" size={16} />
+          <View className="flex-row items-center">
+            {label && <Text className="text-md text-gray font-medium mr-1">{label}</Text>}
+            <Ionicons name="ios-chevron-forward" color="#c0c0c0" size={16} />
+          </View>
         )}
       </View>
     </Pressable>
