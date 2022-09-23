@@ -18,7 +18,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'unused-imports'],
   rules: {
     'no-undef': 'warn',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'no-constant-binary-expression': 'error',
     'react/self-closing-comp': 'warn',
     'react/no-unescaped-entities': 'warn',
@@ -36,6 +36,7 @@ module.exports = {
     'no-empty': 'warn',
     'react/display-name': 'warn',
     'no-async-promise-executor': 'warn',
+    '@typescript-eslint/no-unused-vars': 0,
   },
   settings: {
     react: {

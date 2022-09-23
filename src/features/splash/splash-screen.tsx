@@ -2,32 +2,33 @@ import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { LoadingAnimation } from '@assets/animations';
-import {
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-  useFonts,
-} from '@expo-google-fonts/inter';
+import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { RemoteConfig } from '@libs/firebase/remote-config';
 import { Logger } from '@libs/logger';
 import { RootStackParams } from '@navigation/types';
 import { StackActions } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useFonts } from 'expo-font';
 import LottieView from 'lottie-react-native';
 
 type Props = NativeStackScreenProps<RootStackParams, 'splash'>;
 
 export const SplashScreen = ({ navigation }: Props) => {
   const { isLoading } = useUpcomingLaunches();
+  const { isLoading: isLoadingPreviousLaunches } = usePreviousLaunches();
+
+  const isLoadingQueries = isLoading || isLoadingPreviousLaunches;
 
   const [isFontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
+    Inter: require('../../assets/fonts/Inter-Regular.otf'),
+    'Inter-Light': require('../../assets/fonts/Inter-Light.otf'),
+    'Inter-Regular': require('../../assets/fonts/Inter-Regular.otf'),
+    'Inter-Medium': require('../../assets/fonts/Inter-Medium.otf'),
+    'Inter-SemiBold': require('../../assets/fonts/Inter-SemiBold.otf'),
+    'Inter-Bold': require('../../assets/fonts/Inter-Bold.otf'),
   });
+
   const [fetchedRemoteConfig, setFetchedRemoteConfig] = useState(false);
   const [isUnderMaintenance, setIsUnderMaintenance] = useState(false);
 
@@ -54,10 +55,20 @@ export const SplashScreen = ({ navigation }: Props) => {
   }, [fetchRemoteData]);
 
   useEffect(() => {
-    if (isFontsLoaded && fetchedRemoteConfig && !isLoading) {
+    if (isFontsLoaded && fetchedRemoteConfig && !isLoadingQueries) {
       handleNavigate();
     }
-  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoading]);
+  }, [fetchedRemoteConfig, handleNavigate, isFontsLoaded, isLoadingQueries]);
+
+  useEffect(() => {
+    const timetout = setTimeout(() => {
+      navigation.dispatch(StackActions.replace('maintenance'));
+    }, 10000);
+
+    return () => {
+      clearTimeout(timetout);
+    };
+  }, [navigation]);
 
   return (
     <View className="bg-dark flex-1 items-center justify-center">

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Animated, Text, View, useWindowDimensions } from 'react-native';
 
 import { ProgressBar } from '@components/progress-bar';
@@ -24,7 +24,6 @@ export const UpcomingCarousel = () => {
 
   const renderItem = ({ item }: { item: Launch }) => {
     const hasLiftoff = new Date(item.net) < new Date();
-
     return (
       <View
         className="bg-secondary p-4 rounded-lg h-24 overflow-hidden"
@@ -32,8 +31,10 @@ export const UpcomingCarousel = () => {
       >
         <View className="flex-1 flex-row items-center">
           <View className="items-center">
-            <Text className="text-white text-xs font-bold">{format(new Date(item.net), 'p')}</Text>
-            <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM do')}</Text>
+            <Text className="text-white text-xs font-bold">
+              {format(new Date(item.net), 'H:mm')}
+            </Text>
+            <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM d')}</Text>
           </View>
           <View className="h-full mx-3 w-px bg-dark" />
           <View className="flex-1 mr-2">
@@ -58,11 +59,7 @@ export const UpcomingCarousel = () => {
     );
   };
 
-  const data = useMemo(() => {
-    return launches?.filter(
-      (launch) => new Date(launch.net) > new Date(Date.now() - 4 * 60 * 60 * 1000) // 4 hours ago
-    );
-  }, [launches]);
+  const data = launches?.filter((launch) => new Date(launch.net) > new Date()) ?? [];
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-12">

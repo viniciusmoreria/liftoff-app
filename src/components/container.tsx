@@ -1,27 +1,32 @@
 import { ReactNode } from 'react';
-import { View } from 'react-native';
+import { ScrollViewProps, View } from 'react-native';
 
-import { HEADER_HEIGHT } from '@libs/utilities';
+import { useHeaderHeight } from '@react-navigation/elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
   children: ReactNode;
   useScrollView?: boolean;
+  scrollViewProps?: ScrollViewProps;
+  refreshControl?: ScrollViewProps['refreshControl'];
 };
 
-export const Container = ({ children, useScrollView }: Props) => {
+export const Container = ({ children, useScrollView = false, refreshControl, ...rest }: Props) => {
   const insets = useSafeAreaInsets();
-  const safeAreaTop = insets.top + HEADER_HEIGHT;
+  const headerHeight = useHeaderHeight();
+  const safeAreaTop = insets.top + headerHeight / 1.5;
 
   return useScrollView ? (
     <ScrollView
       className="bg-dark"
+      refreshControl={refreshControl}
       contentContainerStyle={{
         flexGrow: 1,
         paddingTop: safeAreaTop,
-        paddingBottom: insets.bottom,
+        paddingBottom: insets.bottom + 16,
       }}
+      {...rest}
     >
       {children}
     </ScrollView>
@@ -30,7 +35,7 @@ export const Container = ({ children, useScrollView }: Props) => {
       className="flex-1 bg-dark"
       style={{
         paddingTop: safeAreaTop,
-        paddingBottom: insets.bottom,
+        paddingBottom: insets.bottom + 16,
       }}
     >
       {children}

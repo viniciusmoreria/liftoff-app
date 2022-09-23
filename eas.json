@@ -1,22 +1,67 @@
 {
   "cli": {
-    "version": ">= 0.40.0"
+    "version": ">= 0.52.0"
   },
   "build": {
+    "base": {
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "image": "latest"
+      }
+    },
     "development": {
+      "extends": "base",
+      "developmentClient": true,
       "distribution": "internal",
-      "releaseChannel": "development",
-      "developmentClient": true
+      "env": {
+        "STAGE": "development"
+      }
+    },
+    "simulator": {
+      "extends": "base",
+      "developmentClient": true,
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "STAGE": "development"
+      }
+    },
+    "preview": {
+      "channel": "preview",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "STAGE": "staging",
+        "FLIPPER_DISABLE": "1"
+      }
     },
     "production": {
+      "extends": "base",
+      "channel": "production",
       "distribution": "store",
-      "releaseChannel": "production",
       "android": {
         "buildType": "app-bundle"
+      },
+      "env": {
+        "STAGE": "production",
+        "FLIPPER_DISABLE": "1"
       }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "./src/libs/firebase/service-account-key.json"
+      },
+      "ios": {
+        "appName": "Liftoff: Rocket Launch Tracker",
+        "ascAppId": "1645685152"
+      }
+    }
   }
 }

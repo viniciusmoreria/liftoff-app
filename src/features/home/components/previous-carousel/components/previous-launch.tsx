@@ -33,9 +33,9 @@ export const PreviousLaunch = ({ launch }: { launch: Launch }) => {
         <View className="flex-1 flex-row items-center">
           <View className="items-center">
             <Text className="text-white text-xs font-bold">
-              {format(new Date(launch.net), 'p')}
+              {format(new Date(launch.net), 'H:mm')}
             </Text>
-            <Text className="text-gray text-xs mt-2">{format(new Date(launch.net), 'MMM do')}</Text>
+            <Text className="text-gray text-xs mt-2">{format(new Date(launch.net), 'MMM d')}</Text>
           </View>
           <View className="h-full mx-4 w-px bg-dark" />
           <View className="flex-1 mr-2">
