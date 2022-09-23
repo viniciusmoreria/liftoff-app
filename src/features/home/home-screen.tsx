@@ -43,8 +43,6 @@ export const HomeScreen = ({ navigation }: Props) => {
       });
       if (status.granted) {
         setNotificationPreference({ type: 'all', value: true });
-        setNotificationPreference({ type: 'updates', value: true });
-        setNotificationPreference({ type: 'webcastLive', value: true });
       }
     }
   }, [setNotificationPreference]);

@@ -7,7 +7,8 @@ import { MenuItem } from '../menu-item';
 import { NotificationSettings } from './settings';
 
 export const NotificationSection = () => {
-  const { all, updates, webcastLive, setNotificationPreference } = usePreferencesStore();
+  const { leastOneReminder, updates, webcastLive, setNotificationPreference } =
+    usePreferencesStore();
 
   const [isNotificationModalEnabled, enableNotificationModal] = useReducer(
     (state) => !state,
@@ -21,7 +22,7 @@ export const NotificationSection = () => {
         <View>
           <MenuItem
             title="Reminders"
-            label={all ? 'On' : 'Off'}
+            label={leastOneReminder ? 'On' : 'Off'}
             onPress={enableNotificationModal}
           />
         </View>

@@ -45,6 +45,7 @@ interface PreferencesState {
   japan: boolean;
   french_guiana: boolean;
   new_zealand: boolean;
+  leastOneReminder: boolean;
   setNotificationPreference: ({ type, value }: NotificationPreference) => void;
 }
 
@@ -54,15 +55,12 @@ async function changeSubscription(
 ) {
   if (value) {
     await messaging().subscribeToTopic(topic);
-    console.log(`Subscribed to ${topic}`);
   } else {
     await messaging().unsubscribeFromTopic(topic);
-    console.log(`Unsubscribed from ${topic}`);
   }
 }
 
-const topics = [
-  'all',
+const topics: NotificationPreference['type'][] = [
   'twentyFourHour',
   'oneHour',
   'tenMinutes',
@@ -79,7 +77,7 @@ const topics = [
 
 const usePreferencesStoreBase = create(
   persist<PreferencesState>(
-    (set) => ({
+    (set, get) => ({
       all: false,
       twentyFourHour: false,
       oneHour: false,
@@ -95,14 +93,35 @@ const usePreferencesStoreBase = create(
       japan: false,
       french_guiana: false,
       new_zealand: false,
+      leastOneReminder: false,
       setNotificationPreference: async ({ type, value }: NotificationPreference) => {
         if (type === 'all') {
-          topics.map((topic) => set({ [topic]: value }));
           changeSubscription('all', value);
+          changeSubscription('updates', value);
+          changeSubscription('webcastLive', value);
+          set({ leastOneReminder: value });
+          set({ all: value });
+          set({ updates: value });
+          set({ webcastLive: value });
+          topics.map((topic) => {
+            changeSubscription(topic, value);
+            set({ [topic]: value });
+          });
           return;
         }
-        set({ [type]: value });
         changeSubscription(type, value);
+        set({ [type]: value });
+        const leastOneReminder = topics.some((topic) => get()[topic]);
+        set({ leastOneReminder });
+
+        const all = topics.every((topic) => get()[topic]);
+        if (all) {
+          set({ all });
+          changeSubscription('all', true);
+        } else if (get().all) {
+          set({ all });
+          changeSubscription('all', false);
+        }
       },
     }),
     {
