@@ -1,19 +1,16 @@
-import { useReducer } from 'react';
 import { Text, View } from 'react-native';
 
+import { useBottomSheet } from '@hooks/use-bottom-sheet';
 import { usePreferencesStore } from '@store/preferencesStore';
 
 import { MenuItem } from '../menu-item';
 import { NotificationSettings } from './settings';
 
 export const NotificationSection = () => {
+  const { setSheetContent } = useBottomSheet();
+
   const { leastOneReminder, updates, webcastLive, setNotificationPreference } =
     usePreferencesStore();
-
-  const [isNotificationModalEnabled, enableNotificationModal] = useReducer(
-    (state) => !state,
-    false
-  );
 
   return (
     <View>
@@ -23,7 +20,11 @@ export const NotificationSection = () => {
           <MenuItem
             title="Reminders"
             label={leastOneReminder ? 'On' : 'Off'}
-            onPress={enableNotificationModal}
+            onPress={() => {
+              setSheetContent({
+                content: <NotificationSettings />,
+              });
+            }}
           />
         </View>
         <View>
@@ -48,11 +49,6 @@ export const NotificationSection = () => {
           />
         </View>
       </View>
-
-      <NotificationSettings
-        present={isNotificationModalEnabled}
-        onDismiss={enableNotificationModal}
-      />
     </View>
   );
 };

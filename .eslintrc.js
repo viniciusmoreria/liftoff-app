@@ -5,7 +5,9 @@ module.exports = {
   },
   extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   globals: {
-    __DEV__: 'readonly',
+    __DEV__: true,
+    NodeJS: true,
+    JSX: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

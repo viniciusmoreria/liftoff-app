@@ -4,6 +4,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "jsx": "react-native",
     "baseUrl": "src",
     "paths": {
       "@assets/*": ["assets/*"],

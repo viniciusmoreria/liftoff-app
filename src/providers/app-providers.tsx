@@ -1,7 +1,7 @@
-import React, { ReactNode, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { ErrorBoundary } from '@components/error-boundary';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { BottomSheetProvider } from '@hooks/use-bottom-sheet';
 import { SafeAreaProvider } from '@libs/safe-area';
 import { isAndroid } from '@libs/utilities';
 import { NavigationProvider } from '@navigation/navigation-provider';
@@ -29,7 +29,7 @@ const queryClient = new QueryClient({
   },
 });
 
-export const AppProviders = ({ children }: { children: ReactNode }) => {
+export const AppProviders = ({ children }: { children: JSX.Element }) => {
   const { setNotificationPreference } = usePreferencesStore();
 
   async function getNotificationPermissionStatus() {
@@ -73,10 +73,8 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
         <QueryClientProvider client={queryClient}>
           <NavigationProvider>
             <ErrorBoundary>
-              <BottomSheetModalProvider>
-                {children}
-                <FlashMessage position="bottom" />
-              </BottomSheetModalProvider>
+              <BottomSheetProvider>{children}</BottomSheetProvider>
+              <FlashMessage position="bottom" />
             </ErrorBoundary>
           </NavigationProvider>
         </QueryClientProvider>
