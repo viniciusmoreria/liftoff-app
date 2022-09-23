@@ -63,7 +63,7 @@ export const SplashScreen = ({ navigation }: Props) => {
   useEffect(() => {
     const timetout = setTimeout(() => {
       navigation.dispatch(StackActions.replace('maintenance'));
-    }, 10000);
+    }, 15000);
 
     return () => {
       clearTimeout(timetout);

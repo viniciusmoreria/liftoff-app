@@ -98,7 +98,7 @@ export const NotificationSettings = ({ present, onDismiss }: Props) => {
         }}
         contentContainerStyle={{
           paddingTop: 32,
-          paddingBottom: insets.bottom * 5,
+          paddingBottom: 124 + insets.bottom,
           paddingHorizontal: 32,
         }}
       >

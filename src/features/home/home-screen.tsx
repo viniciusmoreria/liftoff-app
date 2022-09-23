@@ -1,4 +1,3 @@
-import React, { useCallback, useEffect } from 'react';
 import { Image, Pressable, RefreshControl, Text, View } from 'react-native';
 
 import { PlaceholderUserPicture } from '@assets/images';
@@ -6,10 +5,8 @@ import { Container } from '@components/container';
 import { getTimeOfTheDay } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { usePreferencesStore } from '@store/preferencesStore';
 import { useUserStore } from '@store/userStore';
 import { useQueryClient } from '@tanstack/react-query';
-import * as Notifications from 'expo-notifications';
 
 import { ArticlesCarousel } from './components/articles-carousel';
 import { Countdown } from './components/countdown';
@@ -22,34 +19,6 @@ export const HomeScreen = ({ navigation }: Props) => {
   const queryClient = useQueryClient();
 
   const { username } = useUserStore();
-  const { setNotificationPreference } = usePreferencesStore();
-
-  async function getNotificationPermissionStatus() {
-    const status = await Notifications.getPermissionsAsync();
-    return status.granted;
-  }
-
-  const requestNotificationPermission = useCallback(async () => {
-    const granted = await getNotificationPermissionStatus();
-
-    if (!granted) {
-      const status = await Notifications.requestPermissionsAsync({
-        ios: {
-          allowAlert: true,
-          allowBadge: true,
-          allowSound: true,
-          allowAnnouncements: true,
-        },
-      });
-      if (status.granted) {
-        setNotificationPreference({ type: 'all', value: true });
-      }
-    }
-  }, [setNotificationPreference]);
-
-  useEffect(() => {
-    requestNotificationPermission();
-  }, [requestNotificationPermission]);
 
   return (
     <Container
