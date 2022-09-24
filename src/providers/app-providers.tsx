@@ -8,6 +8,7 @@ import { NavigationProvider } from '@navigation/navigation-provider';
 import { usePreferencesStore } from '@store/preferencesStore';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as Notifications from 'expo-notifications';
+import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -73,6 +74,7 @@ export const AppProviders = ({ children }: { children: JSX.Element }) => {
         <QueryClientProvider client={queryClient}>
           <NavigationProvider>
             <ErrorBoundary>
+              <StatusBar animated style="light" />
               <BottomSheetProvider>{children}</BottomSheetProvider>
               <FlashMessage position="bottom" />
             </ErrorBoundary>

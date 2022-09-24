@@ -5,7 +5,7 @@ import { Launch } from '@features/home/hooks/types';
 import { format } from 'date-fns';
 import { Skeleton } from 'moti/skeleton';
 
-const SPACING = 32;
+const SPACING = 24;
 
 export const PreviousLaunch = ({ launch }: { launch: Launch }) => {
   const { width: windowWidth } = useWindowDimensions();

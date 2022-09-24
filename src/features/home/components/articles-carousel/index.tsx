@@ -9,7 +9,7 @@ import Reanimated, { FadeIn } from 'react-native-reanimated';
 import { Pagination } from '../pagination';
 import { Article } from './components/article';
 
-const SPACING = 32;
+const SPACING = 24;
 
 export const ArticlesCarousel = () => {
   const { data: articles } = useArticles();
@@ -37,7 +37,7 @@ export const ArticlesCarousel = () => {
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-0">
-      <View className="flex-row justify-between mb-4 px-8">
+      <View className="flex-row justify-between mb-4 px-4">
         <Text className="text-sm font-bold text-white">News</Text>
         <Text className="text-sm font-bold text-white">See all</Text>
       </View>

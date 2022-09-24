@@ -39,7 +39,7 @@ export const Countdown = ({ navigateToLaunchDetail }: Props) => {
 
   return (
     <Pressable onPress={() => navigateToLaunchDetail(nextLaunch)}>
-      <Animated.View entering={FadeIn} className="flex-row mt-8 px-8">
+      <Animated.View entering={FadeIn} className="flex-row mt-8 px-4">
         <View className="flex-1 justify-around mr-6">
           <Text className="text-sm text-white font-bold" numberOfLines={2}>
             {nextLaunch?.mission?.name ?? nextLaunch?.name}

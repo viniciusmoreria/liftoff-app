@@ -149,7 +149,7 @@ export const BottomSheetProvider = ({ children }: Props) => {
             contentContainerStyle={{
               paddingTop: 32,
               paddingBottom: 24 + insets.bottom,
-              paddingHorizontal: 32,
+              paddingHorizontal: 24,
             }}
           >
             {Component}

@@ -19,7 +19,7 @@ export const ProfileScreen = () => {
 
   return (
     <Container useScrollView>
-      <View className={`flex-1 px-8 mt-${[isIOS ? '12' : '4']}`}>
+      <View className={`flex-1 px-4 mt-${[isIOS ? '12' : '4']}`}>
         <View className="flex-1">
           <Pressable
             className="items-center"
