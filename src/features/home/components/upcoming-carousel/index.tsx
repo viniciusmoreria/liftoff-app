@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Animated, Text, View, useWindowDimensions } from 'react-native';
+import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-native';
 
 import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
@@ -13,7 +13,11 @@ import { Pagination } from '../pagination';
 
 const SPACING = 32;
 
-export const UpcomingCarousel = () => {
+type Props = {
+  navigateToLaunchDetail: (launch: Launch) => void;
+};
+
+export const UpcomingCarousel = ({ navigateToLaunchDetail }: Props) => {
   const queryClient = useQueryClient();
   const launches = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
 
@@ -25,37 +29,41 @@ export const UpcomingCarousel = () => {
   const renderItem = ({ item }: { item: Launch }) => {
     const hasLiftoff = new Date(item.net) < new Date();
     return (
-      <View
-        className="bg-secondary p-4 rounded-lg h-24 overflow-hidden"
-        style={{ width, marginHorizontal: SPACING }}
-      >
-        <View className="flex-1 flex-row items-center">
-          <View className="items-center">
-            <Text className="text-white text-xs font-bold">
-              {format(new Date(item.net), 'H:mm')}
-            </Text>
-            <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM d')}</Text>
+      <Pressable onPress={() => navigateToLaunchDetail(item)}>
+        <View
+          className="bg-secondary p-4 rounded-lg h-24 overflow-hidden"
+          style={{ width, marginHorizontal: SPACING }}
+        >
+          <View className="flex-1 flex-row items-center">
+            <View className="items-center">
+              <Text className="text-white text-xs font-bold">
+                {format(new Date(item.net), 'H:mm')}
+              </Text>
+              <Text className="text-gray text-xs mt-2">{format(new Date(item.net), 'MMM d')}</Text>
+            </View>
+            <View className="h-full mx-3 w-px bg-dark" />
+            <View className="flex-1 mr-2">
+              <Text className="text-white text-xs font-bold" numberOfLines={2}>
+                {item?.mission?.name ?? item?.name}
+              </Text>
+              <Text className="text-gray text-xs mt-2">
+                {item?.rocket?.configuration?.full_name}
+              </Text>
+            </View>
+            {item?.mission?.orbit?.abbrev && (
+              <View>
+                <Text className="text-white text-xs font-bold">Orbit</Text>
+                <Text className="text-gray text-xs mt-2">{item?.mission?.orbit?.abbrev}</Text>
+              </View>
+            )}
           </View>
-          <View className="h-full mx-3 w-px bg-dark" />
-          <View className="flex-1 mr-2">
-            <Text className="text-white text-xs font-bold" numberOfLines={2}>
-              {item?.mission?.name ?? item?.name}
-            </Text>
-            <Text className="text-gray text-xs mt-2">{item?.rocket?.configuration?.full_name}</Text>
-          </View>
-          {item?.mission?.orbit?.abbrev && (
-            <View>
-              <Text className="text-white text-xs font-bold">Orbit</Text>
-              <Text className="text-gray text-xs mt-2">{item?.mission?.orbit?.abbrev}</Text>
+          {hasLiftoff && (
+            <View className="absolute bottom-0 left-0 right-0">
+              <ProgressBar height={3} backgroundColor="#d83545" />
             </View>
           )}
         </View>
-        {hasLiftoff && (
-          <View className="absolute bottom-0 left-0 right-0">
-            <ProgressBar height={3} backgroundColor="#d83545" />
-          </View>
-        )}
-      </View>
+      </Pressable>
     );
   };
 

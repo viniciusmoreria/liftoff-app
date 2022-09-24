@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from 'react';
-import { Animated, Text, View, useWindowDimensions } from 'react-native';
+import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-native';
 
 import { Launch, PreviousQueryCacheType } from '@features/home/hooks/types';
 import { PREVIOUS_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-previous-launches';
@@ -12,7 +12,11 @@ import { PreviousLaunch } from './components/previous-launch';
 
 const SPACING = 32;
 
-export const PreviousCarousel = () => {
+type Props = {
+  navigateToLaunchDetail: (launch: Launch) => void;
+};
+
+export const PreviousCarousel = ({ navigateToLaunchDetail }: Props) => {
   const queryClient = useQueryClient();
   const docs = queryClient.getQueryData<PreviousQueryCacheType>([PREVIOUS_LAUNCHES_QUERY_KEY]);
 
@@ -23,7 +27,11 @@ export const PreviousCarousel = () => {
   const width = windowWidth - SPACING * 2;
 
   const renderItem = ({ item }: { item: Launch }) => {
-    return <PreviousLaunch launch={item} />;
+    return (
+      <Pressable onPress={() => navigateToLaunchDetail(item)}>
+        <PreviousLaunch launch={item} />
+      </Pressable>
+    );
   };
 
   const data = useMemo(() => {

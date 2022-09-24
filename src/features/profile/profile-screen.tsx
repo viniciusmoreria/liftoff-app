@@ -2,8 +2,9 @@ import { Image, Pressable, Text, View } from 'react-native';
 
 import { PlaceholderUserPicture } from '@assets/images';
 import { Container } from '@components/container';
-import { Feather, Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { useBottomSheet } from '@hooks/use-bottom-sheet';
+import { isIOS } from '@libs/utilities';
 import { useUserStore } from '@store/userStore';
 import * as Application from 'expo-application';
 
@@ -18,7 +19,7 @@ export const ProfileScreen = () => {
 
   return (
     <Container useScrollView>
-      <View className="flex-1 px-8 mt-4">
+      <View className={`flex-1 px-8 mt-${[isIOS ? '12' : '4']}`}>
         <View className="flex-1">
           <Pressable
             className="items-center"

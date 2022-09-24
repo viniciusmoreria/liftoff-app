@@ -47,9 +47,15 @@ export const HomeScreen = ({ navigation }: Props) => {
           />
         </View>
       </Pressable>
-      <Countdown />
-      <UpcomingCarousel />
-      <PreviousCarousel />
+      <Countdown
+        navigateToLaunchDetail={(launch) => navigation.navigate('launch-detail', { launch })}
+      />
+      <UpcomingCarousel
+        navigateToLaunchDetail={(launch) => navigation.navigate('launch-detail', { launch })}
+      />
+      <PreviousCarousel
+        navigateToLaunchDetail={(launch) => navigation.navigate('launch-detail', { launch })}
+      />
       <ArticlesCarousel />
     </Container>
   );
