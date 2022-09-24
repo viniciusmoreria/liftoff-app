@@ -6,7 +6,7 @@ import { Article as ArticleType } from '@features/home/hooks/types';
 import { formatRelativeDate } from '@libs/utilities';
 import { Skeleton } from 'moti/skeleton';
 
-const SPACING = 24;
+const SPACING = 18;
 
 export const Article = ({ article }: { article: ArticleType }) => {
   const { width: windowWidth } = useWindowDimensions();

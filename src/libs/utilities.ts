@@ -1,5 +1,7 @@
+import { ComponentProps } from 'react';
 import { Platform } from 'react-native';
 
+import { Ionicons } from '@expo/vector-icons';
 import { formatRelative, intervalToDuration, isAfter } from 'date-fns';
 import en from 'date-fns/locale/en-US';
 
@@ -59,3 +61,29 @@ export const formatRelativeDate = (date: string) => {
 };
 
 export const isNameValid = /^[A-Za-zÀ-ú\s]+(([',. -][A-Za-zÀ-ú ])?[A-Za-zÀ-ú]*)*$/;
+
+export const extractPadLocationName = (padName: string) => {
+  return padName.substring(0, padName.indexOf(','));
+};
+
+export const getLaunchStatusIcon: { [key: string]: ComponentProps<typeof Ionicons>['name'] } = {
+  1: 'time-sharp',
+  2: 'ios-help-circle',
+  3: 'checkmark-sharp',
+  4: 'close-sharp',
+  5: 'ios-pause-circle',
+  6: 'ios-airplane',
+  7: 'ios-warning',
+  8: 'ios-help-circle',
+};
+
+export const getLaunchStatusColor: { [key: string]: string } = {
+  1: '#c0c0c0',
+  2: '#c0c0c0',
+  3: 'green',
+  4: '#d83545',
+  5: '#c0c0c0',
+  6: 'green',
+  7: 'orange',
+  8: '#c0c0c0',
+};

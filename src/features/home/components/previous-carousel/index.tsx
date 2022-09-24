@@ -10,7 +10,7 @@ import Reanimated, { FadeIn } from 'react-native-reanimated';
 import { Pagination } from '../pagination';
 import { PreviousLaunch } from './components/previous-launch';
 
-const SPACING = 24;
+const SPACING = 18;
 
 type Props = {
   navigateToLaunchDetail: (launch: Launch) => void;

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { LoadingAnimation } from '@assets/animations';
+import { useArticles } from '@features/home/hooks/use-articles';
 import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { RemoteConfig } from '@libs/firebase/remote-config';
@@ -17,8 +18,9 @@ type Props = NativeStackScreenProps<RootStackParams, 'splash'>;
 export const SplashScreen = ({ navigation }: Props) => {
   const { isLoading } = useUpcomingLaunches();
   const { isLoading: isLoadingPreviousLaunches } = usePreviousLaunches();
+  const { isLoading: isLoadingArticles } = useArticles();
 
-  const isLoadingQueries = isLoading || isLoadingPreviousLaunches;
+  const isLoadingQueries = isLoading || isLoadingPreviousLaunches || isLoadingArticles;
 
   const [isFontsLoaded] = useFonts({
     Inter: require('../../assets/fonts/Inter-Regular.otf'),

@@ -529,3 +529,5 @@ export type PreviousQueryCacheType =
       FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>[]
     >
   | undefined;
+
+export type ArticleQueryCacheType = InfiniteData<Article[]> | undefined;

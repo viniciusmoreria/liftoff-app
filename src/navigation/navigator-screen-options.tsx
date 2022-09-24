@@ -15,7 +15,7 @@ export const screenOptions = ({ navigation, headerTitle }: Props) =>
     headerLargeTitle: true,
     headerLargeTitleStyle: {
       fontFamily: 'Inter-Bold',
-      fontSize: 32,
+      fontSize: 28,
     },
     headerTitle: headerTitle,
     headerTitleAlign: 'center',
