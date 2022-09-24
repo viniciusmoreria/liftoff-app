@@ -57,3 +57,5 @@ export const formatRelativeDate = (date: string) => {
 
   return formattedDate;
 };
+
+export const isNameValid = /^[A-Za-zÀ-ú\s]+(([',. -][A-Za-zÀ-ú ])?[A-Za-zÀ-ú]*)*$/;

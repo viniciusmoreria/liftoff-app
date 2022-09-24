@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
-import { ScrollViewProps, View } from 'react-native';
+import { ScrollView, ScrollViewProps, View } from 'react-native';
 
 import { useHeaderHeight } from '@react-navigation/elements';
-import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {

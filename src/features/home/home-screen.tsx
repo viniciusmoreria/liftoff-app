@@ -17,8 +17,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'home'>;
 
 export const HomeScreen = ({ navigation }: Props) => {
   const queryClient = useQueryClient();
-
-  const { username } = useUserStore();
+  const { username, profilePicture } = useUserStore();
 
   return (
     <Container
@@ -27,7 +26,7 @@ export const HomeScreen = ({ navigation }: Props) => {
         <RefreshControl
           refreshing={false}
           tintColor="white"
-          colors={['white']}
+          colors={['#000']}
           onRefresh={() => {
             queryClient.invalidateQueries();
           }}
@@ -42,7 +41,10 @@ export const HomeScreen = ({ navigation }: Props) => {
               {username ?? 'crew member'}
             </Text>
           </View>
-          <Image className="h-14 w-14 rounded-full ml-4" source={PlaceholderUserPicture} />
+          <Image
+            className="h-14 w-14 rounded-full ml-4"
+            source={profilePicture ? { uri: profilePicture } : PlaceholderUserPicture}
+          />
         </View>
       </Pressable>
       <Countdown />

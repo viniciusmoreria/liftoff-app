@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { ErrorBoundary } from '@components/error-boundary';
 import { BottomSheetProvider } from '@hooks/use-bottom-sheet';

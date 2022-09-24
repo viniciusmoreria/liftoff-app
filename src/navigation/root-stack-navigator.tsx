@@ -5,6 +5,7 @@ import { HomeScreen } from '@features/home/home-screen';
 import { MaintenanceScreen } from '@features/maintenance/maintenance-screen';
 import { ProfileScreen } from '@features/profile/profile-screen';
 import { SplashScreen } from '@features/splash/splash-screen';
+import { isIOS } from '@libs/utilities';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { RootStackParams } from './types';
@@ -42,8 +43,11 @@ export function RootStackNavigator() {
             headerTitle: 'Profile',
             headerTitleAlign: 'center',
             headerTintColor: '#fff',
-            headerTransparent: true,
+            headerTransparent: isIOS,
             headerBlurEffect: 'dark',
+            headerStyle: {
+              backgroundColor: isIOS ? 'transparent' : '#252525c1',
+            },
             headerTitleStyle: {
               fontFamily: 'Inter-Bold',
             },

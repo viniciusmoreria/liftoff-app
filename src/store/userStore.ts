@@ -7,6 +7,8 @@ import { createSelectors } from './createSelectors';
 interface UserState {
   username: string;
   setUsername: (username: string) => void;
+  profilePicture: string;
+  setProfilePicture: (profilePicture: string) => void;
 }
 
 const useUserStoreBase = create(
@@ -14,6 +16,8 @@ const useUserStoreBase = create(
     (set) => ({
       username: 'crew member',
       setUsername: (username) => set({ username }),
+      profilePicture: '',
+      setProfilePicture: (profilePicture) => set({ profilePicture }),
     }),
     {
       name: '@liftoff-user-store',
