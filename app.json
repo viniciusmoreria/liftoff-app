@@ -42,6 +42,11 @@
     "runtimeVersion": {
       "policy": "nativeVersion"
     },
+    "extra": {
+      "eas": {
+        "projectId": "992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
+      }
+    },
     "plugins": [
       [
         "expo-image-picker",
@@ -60,7 +65,7 @@
         "expo-build-properties",
         {
           "ios": {
-            "useFrameworks": "static"
+            "deploymentTarget": "13.0"
           }
         }
       ],

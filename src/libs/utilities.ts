@@ -87,3 +87,22 @@ export const getLaunchStatusColor: { [key: string]: string } = {
   7: 'orange',
   8: '#c0c0c0',
 };
+
+export const formatToDollar = (value: string) => {
+  return Number(value).toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    notation: 'compact',
+  });
+};
+
+export const formatToUnit = (value?: number, unit?: string) => {
+  if (!value) {
+    return null;
+  }
+  return value.toLocaleString('en-US', {
+    style: 'unit',
+    unit: unit,
+    unitDisplay: 'short',
+  });
+};
