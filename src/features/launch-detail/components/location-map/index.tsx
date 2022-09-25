@@ -44,7 +44,7 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
 
   return (
     <Pressable onPress={handleOpenGps} className="mt-6">
-      <View className="overflow-hidden">
+      <View className="bg-secondary overflow-hidden rounded-lg">
         <MapView
           scrollEnabled={false}
           zoomEnabled={false}

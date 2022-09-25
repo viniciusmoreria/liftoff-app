@@ -47,7 +47,7 @@ export const LaunchDetailScreen = () => {
                 {format(new Date(launch.net), 'MMM d, iii')}
               </Text>
               <Text className="text-white text-xs mt-2 font-medium">
-                {format(new Date(launch.net), 'HH:mm O')} - {String(launch.net).slice(11, 16)} GMT
+                {format(new Date(launch.net), 'HH:mm O')}
               </Text>
             </View>
             {launch?.status && (
@@ -62,7 +62,7 @@ export const LaunchDetailScreen = () => {
           </View>
         </View>
 
-        <View className="overflow-hidden mt-6">
+        <View className="overflow-hidden mt-6 rounded-lg">
           {livestreamId ? (
             <Skeleton show={!hasLoadedVideo}>
               <YoutubePlayer
