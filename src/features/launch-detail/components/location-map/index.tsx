@@ -67,15 +67,14 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
         </MapView>
 
         <Pressable className="absolute right-4 top-4 z-10" onPress={toggleZoom}>
-          <View className="bg-darkGray items-center justify-center rounded-md w-8 h-8">
+          <View className="bg-darkGray items-center justify-center rounded-md w-8 h-8 border-gray border-[0.5px]">
             <Ionicons name={isZoomApplied ? 'remove' : 'add'} color="white" size={18} />
           </View>
         </Pressable>
 
-        <View className="bg-secondary absolute bottom-0 rounded-b-lg w-full px-2 py-4">
-          <View className="flex-row items-center justify-between">
+        <View className="bg-secondary w-full absolute bottom-0 rounded-b-lg py-3 px-2">
+          <View className="flex-row items-center justify-between flex-wrap space-y-4">
             <Text className="text-white text-xs font-bold">{name}</Text>
-
             <Text className="text-white text-xs">{location?.name}</Text>
           </View>
         </View>
