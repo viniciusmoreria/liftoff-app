@@ -17,6 +17,6 @@ const getArticles = async (start: number): Promise<Article[]> => {
 
 export function useArticles() {
   return useInfiniteQuery([ARTICLES_QUERY_KEY], ({ pageParam = 0 }) => getArticles(pageParam), {
-    getNextPageParam: (lastPage) => lastPage.length,
+    getNextPageParam: (lastPage, pages) => (lastPage.length ? pages.length * 10 : undefined),
   });
 }

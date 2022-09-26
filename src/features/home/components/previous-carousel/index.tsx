@@ -36,7 +36,10 @@ export const PreviousCarousel = ({ navigateToLaunchDetail, navigateToPreviousLau
   };
 
   const data = useMemo(() => {
-    return docs?.pages?.flat().map((doc) => doc.data() as Launch);
+    return docs?.pages
+      ?.flat()
+      .slice(0, 5)
+      .map((doc) => doc.data() as Launch);
   }, [docs]);
 
   if (!data) {

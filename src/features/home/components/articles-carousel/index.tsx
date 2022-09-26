@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from 'react';
-import { Animated, Text, View, useWindowDimensions } from 'react-native';
+import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-native';
 
 import { ArticleQueryCacheType, Article as ArticleType } from '@features/home/hooks/types';
 import { ARTICLES_QUERY_KEY } from '@features/home/hooks/use-articles';
@@ -12,7 +12,11 @@ import { Article } from './components/article';
 
 const SPACING = 18;
 
-export const ArticlesCarousel = () => {
+type Props = {
+  navigateToNews: () => void;
+};
+
+export const ArticlesCarousel = ({ navigateToNews }: Props) => {
   const queryClient = useQueryClient();
   const articles = queryClient.getQueryData<ArticleQueryCacheType>([ARTICLES_QUERY_KEY]);
 
@@ -41,7 +45,9 @@ export const ArticlesCarousel = () => {
     <Reanimated.View entering={FadeIn} className="mt-0">
       <View className="flex-row justify-between mb-4 px-4">
         <Text className="text-sm font-bold text-white">News</Text>
-        <Text className="text-sm font-bold text-white">See all</Text>
+        <Pressable onPress={navigateToNews}>
+          <Text className="text-sm font-bold text-white">See all</Text>
+        </Pressable>
       </View>
 
       <FlashList

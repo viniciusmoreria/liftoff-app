@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableWithoutFeedback } from 'react-native';
+import { Pressable } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 import { isIOS } from '@libs/utilities';
@@ -30,8 +30,8 @@ export const screenOptions = ({ navigation, headerTitle }: Props) =>
       fontSize: 16,
     },
     headerLeft: () => (
-      <TouchableWithoutFeedback onPress={navigation.goBack} style={{ marginLeft: 4 }}>
+      <Pressable onPress={navigation.goBack}>
         <Ionicons name="chevron-back" color="#fff" size={28} />
-      </TouchableWithoutFeedback>
+      </Pressable>
     ),
   } as {});

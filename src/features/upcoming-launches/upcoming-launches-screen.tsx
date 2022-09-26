@@ -87,7 +87,7 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
         keyExtractor={(item) => String(item.id)}
-        estimatedItemSize={343}
+        estimatedItemSize={110}
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
           paddingTop: 48,

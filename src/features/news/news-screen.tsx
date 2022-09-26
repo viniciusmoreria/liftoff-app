@@ -2,42 +2,30 @@ import React, { useMemo } from 'react';
 import { Pressable, RefreshControl, View } from 'react-native';
 
 import { Container } from '@components/container';
-import { PreviousLaunch } from '@features/home/components/previous-carousel/components/previous-launch';
-import { Launch } from '@features/home/hooks/types';
-import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
-import { RootStackParams } from '@navigation/types';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Article } from '@features/home/components/articles-carousel/components/article';
+import { Article as ArticleType } from '@features/home/hooks/types';
+import { useArticles } from '@features/home/hooks/use-articles';
+// import { RootStackParams } from '@navigation/types';
+// import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-type Props = NativeStackScreenProps<RootStackParams, 'previous-launches'>;
+// type Props = NativeStackScreenProps<RootStackParams, 'news'>;
 
-export const PreviousLaunchesScreen = ({ navigation }: Props) => {
+export const NewsScreen = () => {
   const insets = useSafeAreaInsets();
-  const {
-    data: docs,
-    fetchNextPage,
-    refetch,
-    isFetchingNextPage,
-    isFetching,
-  } = usePreviousLaunches();
+  const { data: articles, fetchNextPage, refetch, isFetchingNextPage, isFetching } = useArticles();
 
   const data = useMemo(() => {
-    return docs?.pages?.flat().map((doc) => doc.data() as Launch);
-  }, [docs]);
+    return articles?.pages?.flat().map((article) => article);
+  }, [articles]);
 
-  const renderItem = ({ item }: { item: Launch }) => {
+  const renderItem = ({ item }: { item: ArticleType }) => {
     return (
       <Animated.View entering={FadeIn}>
-        <Pressable
-          onPress={() =>
-            navigation.navigate('launch-detail', {
-              launch: item,
-            })
-          }
-        >
-          <PreviousLaunch launch={item} />
+        <Pressable onPress={() => null}>
+          <Article article={item} />
         </Pressable>
       </Animated.View>
     );
@@ -67,7 +55,7 @@ export const PreviousLaunchesScreen = ({ navigation }: Props) => {
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
         keyExtractor={(item) => String(item.id)}
-        estimatedItemSize={207}
+        estimatedItemSize={143}
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
           paddingTop: 48,

@@ -58,7 +58,7 @@ export const HomeScreen = ({ navigation }: Props) => {
         navigateToPreviousLaunches={() => navigation.navigate('previous-launches')}
         navigateToLaunchDetail={(launch) => navigation.navigate('launch-detail', { launch })}
       />
-      <ArticlesCarousel />
+      <ArticlesCarousel navigateToNews={() => navigation.navigate('news')} />
     </Container>
   );
 };

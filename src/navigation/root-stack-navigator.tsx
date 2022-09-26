@@ -1,6 +1,7 @@
 import { HomeScreen } from '@features/home/home-screen';
 import { LaunchDetailScreen } from '@features/launch-detail/launch-detail-screen';
 import { MaintenanceScreen } from '@features/maintenance/maintenance-screen';
+import { NewsScreen } from '@features/news/news-screen';
 import { PreviousLaunchesScreen } from '@features/previous-launches/previous-launches';
 import { ProfileScreen } from '@features/profile/profile-screen';
 import { SplashScreen } from '@features/splash/splash-screen';
@@ -61,11 +62,10 @@ export function RootStackNavigator() {
           options={({ navigation }) =>
             screenOptions({
               navigation,
-              headerTitle: 'Previous',
+              headerTitle: 'Completed',
             })
           }
         />
-
         <Stack.Screen
           name="launch-detail"
           component={LaunchDetailScreen}
@@ -73,6 +73,16 @@ export function RootStackNavigator() {
             screenOptions({
               navigation,
               headerTitle: route?.params?.launch?.mission?.name ?? route?.params?.launch.name,
+            })
+          }
+        />
+        <Stack.Screen
+          name="news"
+          component={NewsScreen}
+          options={({ navigation }) =>
+            screenOptions({
+              navigation,
+              headerTitle: 'Whats new?',
             })
           }
         />

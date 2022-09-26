@@ -8,4 +8,5 @@ export type RootStackParams = {
   'upcoming-launches': undefined;
   'previous-launches': undefined;
   'launch-detail': { launch: Launch };
+  news: undefined;
 };
