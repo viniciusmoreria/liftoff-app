@@ -19,10 +19,14 @@
     "assetBundlePatterns": ["**/*"],
     "jsEngine": "jsc",
     "ios": {
+      "bitcode": false,
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist",
-      "buildNumber": "1.3.4"
+      "buildNumber": "1.3.4",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
