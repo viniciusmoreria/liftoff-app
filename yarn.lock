@@ -2400,10 +2400,10 @@
     prompts "^2.4.0"
     semver "^6.3.0"
 
-"@react-native-firebase/analytics@^15.6.0":
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/analytics/-/analytics-15.6.0.tgz#dfebc9b36bd07bcd71fe418549502d3866ad8c8b"
-  integrity sha512-hfqqOYebajahqZuvPWfsa8fvkEHnSoi31L7q/HOA0x0gALSNMf39F0ficL77WtpzkYYMAgvLpeRYviwxyoLLOA==
+"@react-native-firebase/analytics@~15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/analytics/-/analytics-15.4.0.tgz#28cffb1c1a9e64a74d818f9cddc6bff38ed163d1"
+  integrity sha512-pshC2Po4Zfe5rafiexjK2lCpIGUq5Flc/swSbpvANGB64FBP3phxftQAwkO/F3sSL/I/uJTEsZ0GoKz3d1g0Jg==
 
 "@react-native-firebase/app@~15.4.0":
   version "15.4.0"
@@ -2414,27 +2414,27 @@
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/firestore@^15.6.0":
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-15.6.0.tgz#c44354cc7ab2b199d41b5e790f91bf3a7d783ec4"
-  integrity sha512-gcFbYKoAJZzSR2zKl0vOw0aTcJhvVG9DRhin0dHuTc2VEfw+wD/GL3jFJBM2jxtCoLz9QKou/tbzt2Gbn1RxeA==
+"@react-native-firebase/firestore@~15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-15.4.0.tgz#9941cc2e256a11c1ea0d7614776fae54ed3a17d0"
+  integrity sha512-7Kiqn9c4uzQyURFQ4LGCZ4waeZb/hZb/IWl6MlpfkCtII9PnpdqbvQwEKKKg8RQMocP5sbw0qPsKEdYEYUNKhg==
 
-"@react-native-firebase/messaging@^15.6.0":
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-15.6.0.tgz#94f178708384478f18d1940be1d3037deb3b608c"
-  integrity sha512-wm9LT6ndxbTenjIjPUJoF+qlo+rrKZCtF7D9vLLpUWY+w1QjCEhR2mlly5fxLrsOpkS2hgaB6NGEnxAmKurquQ==
+"@react-native-firebase/messaging@~15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-15.4.0.tgz#1a6834cebe90c520a8b23180dcd52bf38dc90e08"
+  integrity sha512-irmmkAWwD0PqZc3Nua4vdDS5liPfJzis5/zC1XxZw/AS4AfoEj2yv3+r273bqx/E9aZ2Udl1GBPV2nWBDDR/yA==
 
-"@react-native-firebase/perf@^15.6.0":
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/perf/-/perf-15.6.0.tgz#00e206f7cce5cd12ac97f95d28122cbf706e547a"
-  integrity sha512-YRkupcKIwoC4da9bM+ohiAg3wUvPEvJ0zAv0sIrk9AcTlwzAkLpXfmf5k9lplII+YpQGYChD1fF8DJYaTwg4AA==
+"@react-native-firebase/perf@~15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/perf/-/perf-15.4.0.tgz#eee580e6475e7786e0a4993d9302426b2bb254cc"
+  integrity sha512-UB43eB9Tgox+llclye2fGIOenag/YMfpTLGkNzwO54vDn2QcVTMylg/Hs09vy3WRc9lFYWTUeX6fN1uE1nB7Tw==
   dependencies:
     "@expo/config-plugins" "^5.0.1"
 
-"@react-native-firebase/remote-config@^15.6.0":
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/remote-config/-/remote-config-15.6.0.tgz#3dea277120f6dcf2deb8510decc7454db4f8ec9d"
-  integrity sha512-KkflaTL9Lp5o1afONkarGxJAZ1ySgDNgwmRM6VePFj6oaDdciYQ4D8zOxE1ENJhx2Ie+6b3z0w5JZN+IPgINTQ==
+"@react-native-firebase/remote-config@~15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/remote-config/-/remote-config-15.4.0.tgz#793161f2364db80873dd3fefb7372b833b08abc2"
+  integrity sha512-jFdC2NT85fqvZFcT5BEY/CY4YlMZyEu7U8BksvYBMlrORalGpc/V/jgaZ7zJzjeBMrP6h8AutXKI3R/JVhgXSg==
 
 "@react-native-masked-view/masked-view@0.2.7":
   version "0.2.7"
@@ -2446,7 +2446,7 @@
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
   integrity sha512-KrwSpS1tKI70wuKl68DwJZYEvXktDHdZMG0k2AXD/rJVSlB23/X2CB2cutVR0HwNMJIal9HOUOBB2rVfa6UGtQ==
 
-"@react-native/normalize-color@*", "@react-native/normalize-color@2.0.0", "@react-native/normalize-color@^2.0.0":
+"@react-native/normalize-color@2.0.0", "@react-native/normalize-color@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/normalize-color/-/normalize-color-2.0.0.tgz#da955909432474a9a0fe1cbffc66576a0447f567"
   integrity sha512-Wip/xsc5lw8vsBlmY2MO/gFLp3MvuZ2baBZjDeTjjndMgM0h5sxz7AZR62RDPGgstp8Np7JzjvVqVT7tpFZqsw==
@@ -2689,7 +2689,7 @@
     javascript-natural-sort "0.7.1"
     lodash "4.17.21"
 
-"@types/geojson@^7946.0.7":
+"@types/geojson@^7946.0.8":
   version "7946.0.10"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.10.tgz#6dfbf5ea17142f7f9a043809f1cd4c448cb68249"
   integrity sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA==
@@ -4550,15 +4550,6 @@ depd@~1.1.2:
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==
 
-deprecated-react-native-prop-types@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-2.3.0.tgz#c10c6ee75ff2b6de94bb127f142b814e6e08d9ab"
-  integrity sha512-pWD0voFtNYxrVqvBMYf5gq3NA2GCpfodS1yNynTPc93AYA/KEMGeWDqqeUB6R2Z9ZofVhks2aeJXiuQqKNpesA==
-  dependencies:
-    "@react-native/normalize-color" "*"
-    invariant "*"
-    prop-types "*"
-
 destroy@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.2.0.tgz#4803735509ad8be552934c67df614f94e66fa015"
@@ -5308,7 +5299,7 @@ expo-web-browser@~11.0.0:
   dependencies:
     compare-urls "^2.0.0"
 
-expo@^46.0.0:
+expo@~46.0.9:
   version "46.0.10"
   resolved "https://registry.yarnpkg.com/expo/-/expo-46.0.10.tgz#a352057489474279b0207cc6b01540edc04e1806"
   integrity sha512-MUDLTnBYOOabzFo2HATTMXiAYoQ4n1IWBM3HlOmsQVoMBKOs6FcZDqte/lwK80KkhHIpr1Q37JD8Dq1Fk4b9eA==
@@ -6315,7 +6306,7 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-invariant@*, invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -8759,7 +8750,14 @@ prompts@^2.3.2, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@*, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@15.5.8:
+  version "15.5.8"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
+  integrity sha512-QiDx7s0lWoAVxmEmOYnn3rIZGduup2PZgj3rta5O5y0NfPKu3ApWi+GdMfTto7PmO/5+p4yamSLMZkj0jaTL4A==
+  dependencies:
+    fbjs "^0.8.9"
+
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8767,13 +8765,6 @@ prop-types@*, prop-types@^15.7.2, prop-types@^15.8.1:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.13.1"
-
-prop-types@15.5.8:
-  version "15.5.8"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
-  integrity sha512-QiDx7s0lWoAVxmEmOYnn3rIZGduup2PZgj3rta5O5y0NfPKu3ApWi+GdMfTto7PmO/5+p4yamSLMZkj0jaTL4A==
-  dependencies:
-    fbjs "^0.8.9"
 
 proxy-from-env@^1.1.0:
   version "1.1.0"
@@ -8889,15 +8880,6 @@ react-devtools-core@4.24.0:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-dom@17.0.2:
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
-  integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    scheduler "^0.20.2"
-
 react-dom@18.0.0:
   version "18.0.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.0.0.tgz#26b88534f8f1dbb80853e1eabe752f24100d8023"
@@ -8965,13 +8947,12 @@ react-native-iphone-x-helper@^1.3.1:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
-react-native-maps@0.31.1:
-  version "0.31.1"
-  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.31.1.tgz#574be035a52287e3ab1c1da35e2ce3e2116f0fd6"
-  integrity sha512-vipeOPykqLRMCLcLUCZEB+cTdNSlq88NLb0jChY4UGTY5fgOS7GYWkfswy6bW1ayTRLxJS3zpMGFDUY59/ZrXA==
+react-native-maps@1.3.2-beta.1:
+  version "1.3.2-beta.1"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-1.3.2-beta.1.tgz#19107fdade3637559d30fc7216a9f1a4623f6fac"
+  integrity sha512-3wOhTRDScIUsF8plcMylu1ILpuOQc8qE/NOBx6VMuwtmWGfQR6ZoQSofD2OLhW+iAH3etmVJsR6RqAEJBasB6g==
   dependencies:
-    "@types/geojson" "^7946.0.7"
-    deprecated-react-native-prop-types "^2.3.0"
+    "@types/geojson" "^7946.0.8"
 
 react-native-pager-view@5.4.24:
   version "5.4.24"
@@ -8991,11 +8972,6 @@ react-native-reanimated@~2.9.1:
     lodash.isequal "^4.5.0"
     setimmediate "^1.0.5"
     string-hash-64 "^1.0.3"
-
-react-native-safe-area-context@4.2.4:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.2.4.tgz#4df42819759c4d3c74252c8678c2772cfa2271a6"
-  integrity sha512-OOX+W2G4YYufvryonn6Kw6YnyT8ZThkxPHZBD04NLHaZmicUaaDVII/PZ3M5fD1o5N62+T+8K4bCS5Un2ggvkA==
 
 react-native-safe-area-context@4.3.1:
   version "4.3.1"
@@ -9101,14 +9077,6 @@ react-shallow-renderer@16.15.0:
   dependencies:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
-
-react@17.0.2:
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 react@18.0.0:
   version "18.0.0"
@@ -9522,14 +9490,6 @@ sax@>=0.6.0, sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
-
-scheduler@^0.20.2:
-  version "0.20.2"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
-  integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 scheduler@^0.21.0:
   version "0.21.0"

@@ -18,5 +18,7 @@
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
