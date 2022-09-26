@@ -69,6 +69,7 @@ export const LaunchDetailScreen = () => {
                 height={220}
                 videoId={livestreamId}
                 webViewProps={{
+                  androidLayerType: 'hardware',
                   injectedJavaScript: `
                 var element = document.getElementsByClassName('container')[0];
                 element.style.position = 'unset';
