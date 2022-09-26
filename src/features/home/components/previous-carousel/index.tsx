@@ -14,9 +14,10 @@ const SPACING = 18;
 
 type Props = {
   navigateToLaunchDetail: (launch: Launch) => void;
+  navigateToPreviousLaunches: () => void;
 };
 
-export const PreviousCarousel = ({ navigateToLaunchDetail }: Props) => {
+export const PreviousCarousel = ({ navigateToLaunchDetail, navigateToPreviousLaunches }: Props) => {
   const queryClient = useQueryClient();
   const docs = queryClient.getQueryData<PreviousQueryCacheType>([PREVIOUS_LAUNCHES_QUERY_KEY]);
 
@@ -46,7 +47,9 @@ export const PreviousCarousel = ({ navigateToLaunchDetail }: Props) => {
     <Reanimated.View entering={FadeIn} className="mt-0">
       <View className="flex-row justify-between mb-4 px-4">
         <Text className="text-sm font-bold text-white">Recent</Text>
-        <Text className="text-sm font-bold text-white">See all</Text>
+        <Pressable onPress={navigateToPreviousLaunches}>
+          <Text className="text-sm font-bold text-white">See all</Text>
+        </Pressable>
       </View>
 
       <FlashList

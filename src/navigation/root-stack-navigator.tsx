@@ -1,6 +1,7 @@
 import { HomeScreen } from '@features/home/home-screen';
 import { LaunchDetailScreen } from '@features/launch-detail/launch-detail-screen';
 import { MaintenanceScreen } from '@features/maintenance/maintenance-screen';
+import { PreviousLaunchesScreen } from '@features/previous-launches/previous-launches';
 import { ProfileScreen } from '@features/profile/profile-screen';
 import { SplashScreen } from '@features/splash/splash-screen';
 import { UpcomingLaunchesScreen } from '@features/upcoming-launches/upcoming-launches-screen';
@@ -54,6 +55,17 @@ export function RootStackNavigator() {
             })
           }
         />
+        <Stack.Screen
+          name="previous-launches"
+          component={PreviousLaunchesScreen}
+          options={({ navigation }) =>
+            screenOptions({
+              navigation,
+              headerTitle: 'Previous',
+            })
+          }
+        />
+
         <Stack.Screen
           name="launch-detail"
           component={LaunchDetailScreen}

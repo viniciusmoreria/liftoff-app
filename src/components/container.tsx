@@ -20,6 +20,8 @@ export const Container = ({ children, useScrollView = false, refreshControl, ...
     <ScrollView
       className="bg-dark"
       refreshControl={refreshControl}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
         flexGrow: 1,
         paddingTop: safeAreaTop,
@@ -34,7 +36,6 @@ export const Container = ({ children, useScrollView = false, refreshControl, ...
       className="flex-1 bg-dark"
       style={{
         paddingTop: safeAreaTop,
-        paddingBottom: insets.bottom + 16,
       }}
     >
       {children}

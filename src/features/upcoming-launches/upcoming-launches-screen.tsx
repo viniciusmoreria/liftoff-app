@@ -11,10 +11,12 @@ import { FlashList } from '@shopify/flash-list';
 import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = NativeStackScreenProps<RootStackParams, 'upcoming-launches'>;
 
 export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
+  const insets = useSafeAreaInsets();
   const queryClient = useQueryClient();
   const launches = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
 
@@ -69,21 +71,19 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <Container
-      useScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={false}
-          tintColor="white"
-          colors={['#000']}
-          onRefresh={() => {
-            queryClient.invalidateQueries([UPCOMING_LAUNCHES_QUERY_KEY]);
-          }}
-        />
-      }
-    >
+    <Container>
       <FlashList
         data={data}
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            tintColor="white"
+            colors={['#000']}
+            onRefresh={() => {
+              queryClient.invalidateQueries([UPCOMING_LAUNCHES_QUERY_KEY]);
+            }}
+          />
+        }
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
         keyExtractor={(item) => String(item.id)}
@@ -91,6 +91,7 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
           paddingTop: 48,
+          paddingBottom: insets.bottom + 16,
         }}
       />
     </Container>
