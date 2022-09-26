@@ -5,5 +5,6 @@ export type RootStackParams = {
   maintenance: undefined;
   home: undefined;
   profile: undefined;
+  'upcoming-launches': undefined;
   'launch-detail': { launch: Launch };
 };

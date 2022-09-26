@@ -51,6 +51,7 @@ export const HomeScreen = ({ navigation }: Props) => {
         navigateToLaunchDetail={(launch) => navigation.navigate('launch-detail', { launch })}
       />
       <UpcomingCarousel
+        navigateToUpcomingLaunches={() => navigation.navigate('upcoming-launches')}
         navigateToLaunchDetail={(launch) => navigation.navigate('launch-detail', { launch })}
       />
       <PreviousCarousel

@@ -3,6 +3,7 @@ import { LaunchDetailScreen } from '@features/launch-detail/launch-detail-screen
 import { MaintenanceScreen } from '@features/maintenance/maintenance-screen';
 import { ProfileScreen } from '@features/profile/profile-screen';
 import { SplashScreen } from '@features/splash/splash-screen';
+import { UpcomingLaunchesScreen } from '@features/upcoming-launches/upcoming-launches-screen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { screenOptions } from './navigator-screen-options';
@@ -40,6 +41,16 @@ export function RootStackNavigator() {
             screenOptions({
               headerTitle: 'Profile',
               navigation,
+            })
+          }
+        />
+        <Stack.Screen
+          name="upcoming-launches"
+          component={UpcomingLaunchesScreen}
+          options={({ navigation }) =>
+            screenOptions({
+              navigation,
+              headerTitle: 'Upcoming',
             })
           }
         />
