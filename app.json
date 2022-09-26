@@ -17,7 +17,7 @@
       "url": "https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
     },
     "assetBundlePatterns": ["**/*"],
-    "jsEngine": "hermes",
+    "jsEngine": "jsc",
     "ios": {
       "bitcode": false,
       "supportsTablet": true,
