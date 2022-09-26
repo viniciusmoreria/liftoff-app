@@ -70,7 +70,7 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
             opacity={0.8}
             image={CaretDownIcon}
             style={{
-              height: 32,
+              height: 16,
             }}
           />
         </MapView>

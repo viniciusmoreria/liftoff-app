@@ -89,26 +89,137 @@ export const LaunchDetailScreen = () => {
           )}
         </View>
 
+        {launch.mission && (
+          <View className="bg-secondary rounded-lg p-4 justify-between mt-6">
+            <View className="flex-1 space-y-3 mr-5">
+              <Text className="text-white text-sm font-bold">Payload</Text>
+
+              <Text className="text-gray text-xs font-medium">
+                {launch?.mission?.type} - {launch?.launch_service_provider?.name}
+              </Text>
+
+              {launch?.mission?.description && (
+                <Text className="text-white text-xs">{launch?.mission?.description}</Text>
+              )}
+            </View>
+
+            <View className="space-y-4 mt-6">
+              <View className="flex-row justify-between">
+                <Text className="text-gray text-xs font-medium">Orbit</Text>
+                <Text className="text-white text-xs font-medium">
+                  {launch?.mission?.orbit?.name ?? '-'}
+                </Text>
+              </View>
+            </View>
+          </View>
+        )}
+
         {rocketName && (
           <Pressable
             className="mt-6"
             disabled={!rocketInfoURL}
             onPress={async () => await WebBrowser.openBrowserAsync(rocketInfoURL)}
           >
-            <View className="flex-row bg-secondary rounded-lg p-4 items-center justify-between">
-              <View className="flex-1 space-y-3 mr-5">
-                <Text className="text-white text-sm font-bold">
-                  {launch.rocket?.configuration?.name}
-                </Text>
-
-                {launch?.rocket?.configuration?.description && (
-                  <Text className="text-gray text-xs">
-                    {launch?.rocket?.configuration?.description}
+            <View className="bg-secondary rounded-lg p-4">
+              <View className="flex-row items-center justify-between">
+                <View className="flex-1 space-y-3 mr-5">
+                  <Text className="text-white text-sm font-bold">
+                    {launch.rocket?.configuration?.name}
                   </Text>
-                )}
+
+                  {launch?.rocket?.configuration?.description && (
+                    <Text className="text-gray text-xs">
+                      {launch?.rocket?.configuration?.description}
+                    </Text>
+                  )}
+                </View>
+
+                {rocketInfoURL && <Ionicons name="chevron-forward" color="white" size={18} />}
               </View>
 
-              {rocketInfoURL && <Ionicons name="chevron-forward" color="white" size={18} />}
+              <View className="space-y-4 mt-6">
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Successfull launches</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launch?.rocket?.configuration?.successful_launches ?? '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">
+                    Consecutives successfull launches
+                  </Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launch?.rocket?.configuration?.consecutive_successful_launches ?? '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Failed launches</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launch?.rocket?.configuration?.failed_launches ?? '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">LEO Capacity</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {formatToUnit(launch?.rocket?.configuration?.leo_capacity, 'kilogram') ?? '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">GTO Capacity</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {formatToUnit(launch?.rocket?.configuration?.gto_capacity, 'kilogram') ?? '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Thrust</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launch?.rocket?.configuration?.to_thrust
+                      ? `${launch?.rocket?.configuration?.to_thrust} kN`
+                      : '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Apogee</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launch?.rocket?.configuration?.apogee
+                      ? `${formatToUnit(launch?.rocket?.configuration?.apogee, 'kilometer')}`
+                      : '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Diameter</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launch?.rocket?.configuration?.diameter
+                      ? `${launch?.rocket?.configuration?.diameter} m`
+                      : '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Length</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launch?.rocket?.configuration?.length
+                      ? `${launch?.rocket?.configuration?.length} m`
+                      : '-'}
+                  </Text>
+                </View>
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Cost</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {Number(launch?.rocket?.configuration?.launch_cost) > 0
+                      ? formatToDollar(launch?.rocket?.configuration?.launch_cost)
+                      : '-'}
+                  </Text>
+                </View>
+              </View>
             </View>
           </Pressable>
         )}
@@ -163,72 +274,6 @@ export const LaunchDetailScreen = () => {
               <Ionicons name="chevron-forward" color="white" size={18} />
             </View>
           </Pressable>
-        )}
-
-        {launch.mission && (
-          <View className="bg-secondary rounded-lg p-4 justify-between mt-6">
-            <View className="flex-1 space-y-3 mr-5">
-              <Text className="text-white text-sm font-bold">Payload</Text>
-
-              <Text className="text-gray text-xs font-medium">
-                {launch?.mission?.type} - {launch?.launch_service_provider?.name}
-              </Text>
-
-              {launch?.mission?.description && (
-                <Text className="text-white text-xs">{launch?.mission?.description}</Text>
-              )}
-            </View>
-
-            <View className="space-y-4 mt-6">
-              <View className="flex-row justify-between">
-                <Text className="text-gray text-xs font-medium">Orbit</Text>
-                <Text className="text-white text-xs font-medium">
-                  {launch?.mission?.orbit?.name ?? '-'}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between">
-                <Text className="text-gray text-xs font-medium">LEO Capacity</Text>
-                <Text className="text-white text-xs font-medium">
-                  {formatToUnit(launch?.rocket?.configuration?.leo_capacity, 'kilogram') ?? '-'}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between">
-                <Text className="text-gray text-xs font-medium">GTO Capacity</Text>
-                <Text className="text-white text-xs font-medium">
-                  {formatToUnit(launch?.rocket?.configuration?.gto_capacity, 'kilogram') ?? '-'}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between">
-                <Text className="text-gray text-xs font-medium">Thrust</Text>
-                <Text className="text-white text-xs font-medium">
-                  {launch?.rocket?.configuration?.to_thrust
-                    ? `${launch?.rocket?.configuration?.to_thrust} kN`
-                    : '-'}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between">
-                <Text className="text-gray text-xs font-medium">Apogee</Text>
-                <Text className="text-white text-xs font-medium">
-                  {launch?.rocket?.configuration?.apogee
-                    ? `${formatToUnit(launch?.rocket?.configuration?.apogee, 'kilometer')}`
-                    : '-'}
-                </Text>
-              </View>
-
-              <View className="flex-row justify-between">
-                <Text className="text-gray text-xs font-medium">Cost</Text>
-                <Text className="text-white text-xs font-medium">
-                  {Number(launch?.rocket?.configuration?.launch_cost) > 0
-                    ? formatToDollar(launch?.rocket?.configuration?.launch_cost)
-                    : '-'}
-                </Text>
-              </View>
-            </View>
-          </View>
         )}
 
         {launch?.pad && <LocationMap pad={launch?.pad} />}

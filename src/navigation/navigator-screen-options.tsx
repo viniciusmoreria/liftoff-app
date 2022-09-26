@@ -23,7 +23,7 @@ export const screenOptions = ({ navigation, headerTitle }: Props) =>
     headerTransparent: isIOS,
     headerBlurEffect: 'dark',
     headerStyle: {
-      backgroundColor: isIOS ? 'transparent' : '#252525c1',
+      backgroundColor: '#16171B',
     },
     headerTitleStyle: {
       fontFamily: 'Inter-Bold',
