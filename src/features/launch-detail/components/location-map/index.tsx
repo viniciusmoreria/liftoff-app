@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useReducer } from 'react';
-import { Image, Linking, Platform, Pressable, Text, View } from 'react-native';
+import { Linking, Platform, Pressable, Text, View } from 'react-native';
 
 import { CaretDownIcon } from '@assets/images';
 import { Ionicons } from '@expo/vector-icons';
@@ -54,6 +54,13 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
           provider={PROVIDER_GOOGLE}
           customMapStyle={customMapStyle}
           camera={mapInitialCamera}
+          initialCamera={mapInitialCamera}
+          initialRegion={{
+            latitude: Number(latitude),
+            longitude: Number(longitude),
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
         >
           <Marker
             coordinate={{
@@ -61,9 +68,11 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
               longitude: Number(longitude),
             }}
             opacity={0.8}
-          >
-            <Image source={CaretDownIcon} resizeMode="contain" className="h-8" />
-          </Marker>
+            image={CaretDownIcon}
+            style={{
+              height: 32,
+            }}
+          />
         </MapView>
 
         <Pressable className="absolute right-4 top-4 z-10" onPress={toggleZoom}>
