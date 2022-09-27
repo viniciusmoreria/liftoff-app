@@ -5,6 +5,7 @@ import { Container } from '@components/container';
 import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
 import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-launches';
+import { isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
@@ -90,7 +91,7 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
         estimatedItemSize={110}
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
-          paddingTop: 56,
+          paddingTop: isIOS ? 56 : 18,
           paddingBottom: insets.bottom + 16,
         }}
       />

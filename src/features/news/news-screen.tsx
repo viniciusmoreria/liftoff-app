@@ -5,6 +5,7 @@ import { Container } from '@components/container';
 import { Article } from '@features/home/components/articles-carousel/components/article';
 import { Article as ArticleType } from '@features/home/hooks/types';
 import { useArticles } from '@features/home/hooks/use-articles';
+import { isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
@@ -64,7 +65,7 @@ export const NewsScreen = ({ navigation }: Props) => {
         estimatedItemSize={143}
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
-          paddingTop: 56,
+          paddingTop: isIOS ? 56 : 18,
           paddingBottom: insets.bottom + 16,
         }}
         onEndReached={handleGetNextPage}
