@@ -90,7 +90,7 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
         estimatedItemSize={110}
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
-          paddingTop: 48,
+          paddingTop: 56,
           paddingBottom: insets.bottom + 16,
         }}
       />

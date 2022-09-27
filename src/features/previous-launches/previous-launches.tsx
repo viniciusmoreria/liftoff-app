@@ -70,7 +70,7 @@ export const PreviousLaunchesScreen = ({ navigation }: Props) => {
         estimatedItemSize={207}
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
-          paddingTop: 48,
+          paddingTop: 56,
           paddingBottom: insets.bottom + 16,
         }}
         onEndReached={handleGetNextPage}

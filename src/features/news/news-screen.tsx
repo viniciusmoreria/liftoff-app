@@ -64,7 +64,7 @@ export const NewsScreen = ({ navigation }: Props) => {
         estimatedItemSize={143}
         ItemSeparatorComponent={() => <View className="h-4" />}
         contentContainerStyle={{
-          paddingTop: 48,
+          paddingTop: 56,
           paddingBottom: insets.bottom + 16,
         }}
         onEndReached={handleGetNextPage}

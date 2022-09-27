@@ -36,7 +36,7 @@
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "versionCode": 440010304
+      "versionCode": 440020000
     },
     "notification": {
       "icon": "./src/assets/push-icon.png",

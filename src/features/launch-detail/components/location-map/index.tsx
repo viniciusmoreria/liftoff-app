@@ -67,8 +67,7 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
               latitude: Number(latitude),
               longitude: Number(longitude),
             }}
-            opacity={0.8}
-            image={CaretDownIcon}
+            icon={CaretDownIcon}
             style={{
               height: 16,
             }}

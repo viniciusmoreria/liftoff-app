@@ -77,7 +77,11 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
           </View>
 
           <Pressable
-            onPress={() => WebBrowser.openBrowserAsync(article.url)}
+            onPress={() =>
+              WebBrowser.openBrowserAsync(article.url, {
+                readerMode: true,
+              })
+            }
             className="bg-secondary w-full p-4 rounded-lg items-center mt-16"
           >
             <Text className="text-white font-bold text-md">
