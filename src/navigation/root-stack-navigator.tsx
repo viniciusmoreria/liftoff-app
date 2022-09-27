@@ -1,6 +1,7 @@
 import { HomeScreen } from '@features/home/home-screen';
 import { LaunchDetailScreen } from '@features/launch-detail/launch-detail-screen';
 import { MaintenanceScreen } from '@features/maintenance/maintenance-screen';
+import { NewsDetailScreen } from '@features/news-detail/news-detail';
 import { NewsScreen } from '@features/news/news-screen';
 import { PreviousLaunchesScreen } from '@features/previous-launches/previous-launches';
 import { ProfileScreen } from '@features/profile/profile-screen';
@@ -86,6 +87,7 @@ export function RootStackNavigator() {
             })
           }
         />
+        <Stack.Screen name="news-detail" component={NewsDetailScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

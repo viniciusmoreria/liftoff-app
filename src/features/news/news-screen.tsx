@@ -5,15 +5,15 @@ import { Container } from '@components/container';
 import { Article } from '@features/home/components/articles-carousel/components/article';
 import { Article as ArticleType } from '@features/home/hooks/types';
 import { useArticles } from '@features/home/hooks/use-articles';
-// import { RootStackParams } from '@navigation/types';
-// import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '@navigation/types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-// type Props = NativeStackScreenProps<RootStackParams, 'news'>;
+type Props = NativeStackScreenProps<RootStackParams, 'news'>;
 
-export const NewsScreen = () => {
+export const NewsScreen = ({ navigation }: Props) => {
   const insets = useSafeAreaInsets();
   const { data: articles, fetchNextPage, refetch, isFetchingNextPage, isFetching } = useArticles();
 
@@ -24,7 +24,13 @@ export const NewsScreen = () => {
   const renderItem = ({ item }: { item: ArticleType }) => {
     return (
       <Animated.View entering={FadeIn}>
-        <Pressable onPress={() => null}>
+        <Pressable
+          onPress={() =>
+            navigation.navigate('news-detail', {
+              article: item,
+            })
+          }
+        >
           <Article article={item} />
         </Pressable>
       </Animated.View>

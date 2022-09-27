@@ -1,4 +1,4 @@
-import { Launch } from '@features/home/hooks/types';
+import { Article, Launch } from '@features/home/hooks/types';
 
 export type RootStackParams = {
   splash: undefined;
@@ -9,4 +9,5 @@ export type RootStackParams = {
   'previous-launches': undefined;
   'launch-detail': { launch: Launch };
   news: undefined;
+  'news-detail': { article: Article };
 };

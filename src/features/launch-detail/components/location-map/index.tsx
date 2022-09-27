@@ -76,8 +76,8 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
         </MapView>
 
         <Pressable className="absolute right-4 top-4 z-10" onPress={toggleZoom}>
-          <View className="bg-gray items-center justify-center rounded-md w-8 h-8">
-            <Ionicons name={isZoomApplied ? 'remove' : 'ios-add'} color="#252525c1" size={18} />
+          <View className="bg-dark items-center justify-center rounded-md w-8 h-8">
+            <Ionicons name={isZoomApplied ? 'remove' : 'ios-add'} color="white" size={18} />
           </View>
         </Pressable>
 

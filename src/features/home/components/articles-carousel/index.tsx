@@ -14,9 +14,10 @@ const SPACING = 18;
 
 type Props = {
   navigateToNews: () => void;
+  navigateToNewsDetail: (article: ArticleType) => void;
 };
 
-export const ArticlesCarousel = ({ navigateToNews }: Props) => {
+export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props) => {
   const queryClient = useQueryClient();
   const articles = queryClient.getQueryData<ArticleQueryCacheType>([ARTICLES_QUERY_KEY]);
 
@@ -27,7 +28,11 @@ export const ArticlesCarousel = ({ navigateToNews }: Props) => {
   const width = windowWidth - SPACING * 2;
 
   const renderItem = ({ item }: { item: ArticleType }) => {
-    return <Article article={item} />;
+    return (
+      <Pressable onPress={() => navigateToNewsDetail(item)}>
+        <Article article={item} />
+      </Pressable>
+    );
   };
 
   const data = useMemo(() => {

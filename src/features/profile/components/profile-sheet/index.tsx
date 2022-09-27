@@ -140,7 +140,7 @@ export const UserProfileSheet = () => {
         <Pressable
           onPress={handleSubmitName}
           disabled={!isNameValid.test(name)}
-          className="bg-secondary w-full py-3 px-4 rounded items-center"
+          className="bg-secondary w-full py-3 px-4 rounded-lg items-center"
           style={{
             opacity: isNameValid.test(name) ? 1 : 0.5,
           }}
