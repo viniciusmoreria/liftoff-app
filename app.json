@@ -2,7 +2,8 @@
   "expo": {
     "name": "Liftoff",
     "slug": "Liftoff",
-    "description": "A SpaceX Tracker App",
+    "description": "Liftoff allows you to track all upcoming launches from SpaceX, NASA, ULA and more",
+    "owner": "viniciusmoreria",
     "privacy": "public",
     "primaryColor": "#16171B",
     "version": "2.0.0",

@@ -1,6 +1,6 @@
 # Liftoff
 
-SpaceX Launches Tracker, built with React Native.
+Liftoff allows you to track all upcoming launches from SpaceX, NASA, ULA and more
 
 [![Build Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff/Build?style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff/actions/workflows/ci.yml)
 [![Deploy Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff/Deployment?label=deployment&style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff/actions/workflows/cd-expo.yml)
