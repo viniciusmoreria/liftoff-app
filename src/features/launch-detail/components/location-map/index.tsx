@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useReducer } from 'react';
-import { Linking, Platform, Pressable, Text, View } from 'react-native';
+import { Dimensions, Linking, Platform, Pressable, Text, View } from 'react-native';
 
 import { CaretDownIcon } from '@assets/images';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,12 @@ import { Pad } from '@features/home/hooks/types';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import { customMapStyle } from './style';
+
+const { width, height } = Dimensions.get('window');
+
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export const LocationMap = ({ pad }: { pad: Pad }) => {
   const { latitude, longitude, location, name } = pad;
@@ -18,10 +24,12 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
       center: {
         latitude: Number(latitude),
         longitude: Number(longitude),
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
       },
+      zoom: isZoomApplied ? 12 : 4.5,
       heading: 0,
       pitch: 0,
-      zoom: isZoomApplied ? 14 : 4.5,
       altitude: 0,
     }),
     [isZoomApplied, latitude, longitude]
@@ -55,19 +63,14 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
           customMapStyle={customMapStyle}
           camera={mapInitialCamera}
           initialCamera={mapInitialCamera}
-          initialRegion={{
-            latitude: Number(latitude),
-            longitude: Number(longitude),
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
         >
           <Marker
+            anchor={{ x: 0.5, y: 0.5 }}
             coordinate={{
               latitude: Number(latitude),
               longitude: Number(longitude),
             }}
-            icon={CaretDownIcon}
+            image={CaretDownIcon}
             style={{
               height: 16,
             }}

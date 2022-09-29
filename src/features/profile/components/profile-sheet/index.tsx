@@ -31,6 +31,8 @@ export const UserProfileSheet = () => {
 
     const result = await ImagePicker.launchImageLibraryAsync({
       aspect: [4, 3],
+      allowsEditing: true,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
     });
 
     if (!result.cancelled) {
@@ -48,6 +50,8 @@ export const UserProfileSheet = () => {
 
     const result = await ImagePicker.launchCameraAsync({
       aspect: [4, 3],
+      allowsEditing: true,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
     });
 
     if (!result.cancelled) {

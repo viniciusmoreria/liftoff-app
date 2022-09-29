@@ -23,10 +23,11 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist",
-      "buildNumber": "2.0.0",
+      "buildNumber": "2.0.2",
       "config": {
         "usesNonExemptEncryption": false
-      }
+      },
+      "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +37,7 @@
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "versionCode": 440020000
+      "versionCode": 440020001
     },
     "notification": {
       "icon": "./src/assets/push-icon.png",
@@ -55,7 +56,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "The app accesses your photos to customize your experience."
+          "photosPermission": "The photo will be used only to customize your profile picture and will not be upload to any server.",
+          "cameraPermission": "The photo will be used only to customize your profile picture and will not be upload to any server."
         }
       ],
       [
