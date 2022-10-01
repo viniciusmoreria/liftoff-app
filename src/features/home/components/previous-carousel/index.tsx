@@ -1,10 +1,9 @@
 import React, { useMemo, useRef } from 'react';
 import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-native';
 
-import { Launch, PreviousQueryCacheType } from '@features/home/hooks/types';
-import { PREVIOUS_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-previous-launches';
+import { Launch } from '@features/home/hooks/types';
+import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { FlashList } from '@shopify/flash-list';
-import { useQueryClient } from '@tanstack/react-query';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -18,8 +17,7 @@ type Props = {
 };
 
 export const PreviousCarousel = ({ navigateToLaunchDetail, navigateToPreviousLaunches }: Props) => {
-  const queryClient = useQueryClient();
-  const docs = queryClient.getQueryData<PreviousQueryCacheType>([PREVIOUS_LAUNCHES_QUERY_KEY]);
+  const { data: docs } = usePreviousLaunches();
 
   const { width: windowWidth } = useWindowDimensions();
 

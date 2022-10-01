@@ -1,10 +1,9 @@
 import React, { useMemo, useRef } from 'react';
 import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-native';
 
-import { ArticleQueryCacheType, Article as ArticleType } from '@features/home/hooks/types';
-import { ARTICLES_QUERY_KEY } from '@features/home/hooks/use-articles';
+import { Article as ArticleType } from '@features/home/hooks/types';
+import { useArticles } from '@features/home/hooks/use-articles';
 import { FlashList } from '@shopify/flash-list';
-import { useQueryClient } from '@tanstack/react-query';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -18,8 +17,7 @@ type Props = {
 };
 
 export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props) => {
-  const queryClient = useQueryClient();
-  const articles = queryClient.getQueryData<ArticleQueryCacheType>([ARTICLES_QUERY_KEY]);
+  const { data: articles } = useArticles();
 
   const { width: windowWidth } = useWindowDimensions();
 

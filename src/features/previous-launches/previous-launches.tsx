@@ -51,19 +51,18 @@ export const PreviousLaunchesScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <Container
-      refreshControl={
-        <RefreshControl
-          refreshing={false}
-          tintColor="white"
-          colors={['#000']}
-          onRefresh={() => {
-            refetch();
-          }}
-        />
-      }
-    >
+    <Container>
       <FlashList
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            tintColor="white"
+            colors={['#000']}
+            onRefresh={() => {
+              refetch();
+            }}
+          />
+        }
         data={data}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}

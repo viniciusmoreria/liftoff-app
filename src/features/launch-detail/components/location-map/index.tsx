@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useReducer } from 'react';
-import { Dimensions, Linking, Platform, Pressable, Text, View } from 'react-native';
+import { Dimensions, Image, Linking, Platform, Pressable, Text, View } from 'react-native';
 
 import { CaretDownIcon } from '@assets/images';
 import { Ionicons } from '@expo/vector-icons';
@@ -70,11 +70,9 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
               latitude: Number(latitude),
               longitude: Number(longitude),
             }}
-            image={CaretDownIcon}
-            style={{
-              height: 16,
-            }}
-          />
+          >
+            <Image source={CaretDownIcon} resizeMode="contain" className="h-4" />
+          </Marker>
         </MapView>
 
         <Pressable className="absolute right-4 top-4 z-10" onPress={toggleZoom}>

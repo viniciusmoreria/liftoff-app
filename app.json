@@ -18,7 +18,7 @@
       "url": "https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
     },
     "assetBundlePatterns": ["**/*"],
-    "jsEngine": "jsc",
+    "jsEngine": "hermes",
     "ios": {
       "bitcode": false,
       "supportsTablet": true,
@@ -72,12 +72,12 @@
         "expo-build-properties",
         {
           "ios": {
-            "useFrameworks": "static",
             "deploymentTarget": "13.0"
           }
         }
       ],
-      "./plugins/with-rn-maps-workaround.js",
+      "expo-community-flipper",
+      "./plugins/with-rn-firebase",
       "@react-native-firebase/app",
       "@react-native-firebase/perf",
       "sentry-expo"

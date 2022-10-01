@@ -45,20 +45,19 @@ export const NewsScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <Container
-      refreshControl={
-        <RefreshControl
-          refreshing={false}
-          tintColor="white"
-          colors={['#000']}
-          onRefresh={() => {
-            refetch();
-          }}
-        />
-      }
-    >
+    <Container>
       <FlashList
         data={data}
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            tintColor="white"
+            colors={['#000']}
+            onRefresh={() => {
+              refetch();
+            }}
+          />
+        }
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
         keyExtractor={(item) => String(item.id)}

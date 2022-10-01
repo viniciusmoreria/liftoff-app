@@ -5,6 +5,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react-native",
+    "module": "esnext",
     "baseUrl": "src",
     "paths": {
       "@assets/*": ["assets/*"],

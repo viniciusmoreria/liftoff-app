@@ -3,9 +3,8 @@ import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-nati
 
 import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
-import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-launches';
+import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { FlashList } from '@shopify/flash-list';
-import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
@@ -19,8 +18,7 @@ type Props = {
 };
 
 export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLaunches }: Props) => {
-  const queryClient = useQueryClient();
-  const launches = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
+  const { data: launches } = useUpcomingLaunches();
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const { width: windowWidth } = useWindowDimensions();
@@ -68,7 +66,7 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
     );
   };
 
-  const data = launches?.filter((launch) => new Date(launch.net) > new Date()) ?? [];
+  const data = launches?.filter((launch) => new Date(launch.net) > new Date()).slice(0, 5) ?? [];
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-12">
@@ -80,7 +78,7 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
       </View>
 
       <FlashList
-        data={data?.slice(0, 5)}
+        data={data}
         renderItem={renderItem}
         horizontal
         pagingEnabled
@@ -96,12 +94,7 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
       />
 
       <View className="mt-14">
-        <Pagination
-          marginHorizontal={8}
-          data={data?.slice(0, 5) ?? []}
-          scrollX={scrollX}
-          dotSize={5}
-        />
+        <Pagination marginHorizontal={8} data={data ?? []} scrollX={scrollX} dotSize={5} />
       </View>
     </Reanimated.View>
   );

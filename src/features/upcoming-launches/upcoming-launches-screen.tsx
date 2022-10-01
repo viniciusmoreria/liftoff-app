@@ -4,12 +4,11 @@ import { Pressable, RefreshControl, Text, View } from 'react-native';
 import { Container } from '@components/container';
 import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
-import { UPCOMING_LAUNCHES_QUERY_KEY } from '@features/home/hooks/use-upcoming-launches';
+import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
-import { useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -18,8 +17,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'upcoming-launches'>;
 
 export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
   const insets = useSafeAreaInsets();
-  const queryClient = useQueryClient();
-  const launches = queryClient.getQueryData<Launch[]>([UPCOMING_LAUNCHES_QUERY_KEY]);
+  const { data: launches, refetch } = useUpcomingLaunches();
 
   const data = launches?.filter((launch) => new Date(launch.net) > new Date()) ?? [];
 
@@ -81,7 +79,7 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
             tintColor="white"
             colors={['#000']}
             onRefresh={() => {
-              queryClient.invalidateQueries([UPCOMING_LAUNCHES_QUERY_KEY]);
+              refetch();
             }}
           />
         }
