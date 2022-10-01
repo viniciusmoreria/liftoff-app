@@ -13,7 +13,6 @@
     "publish-prod": "expo publish --release-channel production",
     "lint": "eslint --ext '.js,.ts,.tsx' --fix src",
     "format": "yarn prettier --write --list-different '**/*.{ts,tsx}'",
-    "check-types": "yarn tsc -p tsconfig.json --noEmit",
     "eas-build-pre-install": "bash ./scripts/eas-build-pre-install.sh",
     "prepare": "husky install"
   },
@@ -107,8 +106,7 @@
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "yarn lint",
-      "yarn format",
-      "bash -c 'yarn check-types'"
+      "yarn format"
     ]
   },
   "private": true
