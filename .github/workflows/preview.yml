@@ -57,6 +57,15 @@ jobs:
         run: NODE_OPTIONS=--max-old-space-size=5120 EXPO_DEBUG=true STAGE=staging eas update --branch pr-${{ steps.PR.outputs.number }} --message "Deploy to PR preview"
 
       - name: Comment preview
-        uses: expo/expo-github-action/preview-comment@v7
+        uses: expo/expo-github-action/preview-comment@7.2.0
         with:
-          channel: pr-${{ github.event.number }}
+          message: |
+            ## PR Preview - App
+
+            This pull request preview deployment is now available.
+
+            ✅ Preview: <a href="${{ steps.publish-url.outputs.url }}">${{ steps.publish-url.outputs.url }}</a>
+
+            <a href="${{ steps.publish-url.outputs.url }}"><img src="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=${{ steps.publish-url.outputs.url }}" height="512px" width="512px" /></a>
+
+            Comment ID: ${{ steps.existing-comment.outputs.comment-id }}
