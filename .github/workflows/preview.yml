@@ -53,19 +53,22 @@ jobs:
         run: yarn install --immutable
 
       - name: EAS Update
-        if: success() && steps.PR.outputs.number != ''
-        run: NODE_OPTIONS=--max-old-space-size=5120 EXPO_DEBUG=true STAGE=staging eas update --branch pr-${{ steps.PR.outputs.number }} --message "Deploy to PR preview"
+        run: eas update --branch pr-${{ github.event.number }} --message 'Update with commit ${{ github.sha }}'
+
+      - name: Preview Deep Link
+        id: publish-url
+        run: echo "::set-output name=url::exp+com.viniciusmoreria.liftoff://expo-development-client/?url=https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb&channel-name=pr-${{ steps.PR.outputs.number }}"
 
       - name: Comment preview
         uses: expo/expo-github-action/preview-comment@7.2.0
         with:
           message: |
-            ## PR Preview - App
+            ## PR Preview - ${{ github.event.pull_request.title }}
 
             This pull request preview deployment is now available.
 
             ✅ Preview: <a href="${{ steps.publish-url.outputs.url }}">${{ steps.publish-url.outputs.url }}</a>
 
-            <a href="${{ steps.publish-url.outputs.url }}"><img src="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=${{ steps.publish-url.outputs.url }}" height="512px" width="512px" /></a>
+            <a href="${{ steps.publish-url.outputs.url }}"><img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=${{ steps.publish-url.outputs.url }}" height="256px" width="256px" /></a>
 
             Comment ID: ${{ steps.existing-comment.outputs.comment-id }}
