@@ -1,0 +1,49 @@
+name: Lint
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up repository
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setting up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Obtain Yarn Cache directory
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Installing dependencies
+        run: yarn install --immutable
+
+      - name: Running Prettier Format
+        run: yarn format
+
+      - name: Running Linter
+        run: yarn lint
+
+      - name: Annotate Code Linting Results
+        uses: ataylorme/eslint-annotate-action@1.2.0
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          report-json: 'lint-results/eslint_report.json'
+
+      - name: Upload ESLint report
+        uses: actions/upload-artifact@v2
+        with:
+          name: eslint_report.json
+          path: ./lint-results/eslint_report.json
