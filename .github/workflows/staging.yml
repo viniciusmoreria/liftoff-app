@@ -53,4 +53,4 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Build on EAS
-        run: STAGE=staging eas build --profile preview --platform all --non-interactive --no-wait --resource-class=large
+        run: eas build --profile preview --platform all --non-interactive --no-wait --resource-class=large
