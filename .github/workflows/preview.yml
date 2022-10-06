@@ -57,7 +57,7 @@ jobs:
 
       - name: Preview Deep Link
         id: publish-url
-        run: echo "::set-output name=url::exp+com.viniciusmoreria.liftoff://expo-development-client/?url=https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb&channel-name=pr-${{ steps.PR.outputs.number }}"
+        run: echo "::set-output name=url::exp+com.viniciusmoreria.liftoff://expo-development-client/?url=https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb&channel-name=pr-${{ github.event.number }}"
 
       - name: Comment preview
         uses: expo/expo-github-action/preview-comment@7.2.0
@@ -67,4 +67,4 @@ jobs:
 
             Channel: PR-${{ github.event.number }}
 
-            <a href="${{ steps.publish-url.outputs.url }}"><img src="https://qr.expo.dev/development-client?appScheme=com.viniciusmoreria.liftoff&url=https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb&channel-name=pr-${{ steps.PR.outputs.number }}" height="200px" width="200px"></a>'
+            <a href="${{ steps.publish-url.outputs.url }}"><img src="https://qr.expo.dev/development-client?appScheme=com.viniciusmoreria.liftoff&url=https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb&channel-name=pr-${{ github.event.number }}" height="200px" width="200px"></a>'
