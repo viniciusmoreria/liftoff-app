@@ -53,7 +53,7 @@ jobs:
         run: yarn install --immutable
 
       - name: EAS Update
-        run: NODE_OPTIONS=--max-old-space-size=8192 EXPO_DEBUG=true eas update --branch pr-${{ github.event.number }} --message 'Update with commit ${{ github.sha }}'
+        run: NODE_OPTIONS=--max-old-space-size=8192 EXPO_DEBUG=true eas update --branch pr-${{ github.event.number }} --message '${{ github.event.pull_request.title }}' --platform all
 
       - name: Preview Deep Link
         id: publish-url
