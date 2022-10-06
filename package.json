@@ -19,6 +19,11 @@
   "dependencies": {
     "@capsizecss/core": "^3.0.0",
     "@expo/vector-icons": "^13.0.0",
+    "@formatjs/intl-datetimeformat": "^6.2.0",
+    "@formatjs/intl-getcanonicallocales": "^2.0.4",
+    "@formatjs/intl-locale": "^3.0.6",
+    "@formatjs/intl-numberformat": "^8.1.3",
+    "@formatjs/intl-pluralrules": "^5.1.3",
     "@gorhom/bottom-sheet": "^4",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-firebase/analytics": "~15.4.0",
