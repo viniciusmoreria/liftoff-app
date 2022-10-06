@@ -11,7 +11,7 @@ export const customMapStyle = [
     elementType: 'labels.icon',
     stylers: [
       {
-        visibility: 'simplified',
+        visibility: 'off',
       },
     ],
   },
