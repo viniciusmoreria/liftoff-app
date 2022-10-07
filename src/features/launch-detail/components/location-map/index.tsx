@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useReducer } from 'react';
-import { Dimensions, Image, Linking, Platform, Pressable, Text, View } from 'react-native';
+import { Alert, Dimensions, Image, Linking, Platform, Pressable, Text, View } from 'react-native';
 
 import { CaretDownIcon } from '@assets/images';
 import { Ionicons } from '@expo/vector-icons';
@@ -50,8 +50,21 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
     Linking.openURL(String(url));
   }, [latitude, location?.name, longitude]);
 
+  const handleOpenExternalLink = () => {
+    Alert.alert('Open in Maps?', '', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Open',
+        onPress: handleOpenGps,
+      },
+    ]);
+  };
+
   return (
-    <Pressable onPress={handleOpenGps} className="mt-6">
+    <Pressable onPress={handleOpenExternalLink} className="mt-6">
       <View className="bg-secondary overflow-hidden rounded-lg">
         <MapView
           scrollEnabled={false}

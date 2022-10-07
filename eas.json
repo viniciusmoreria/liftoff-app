@@ -17,6 +17,9 @@
       "distribution": "internal",
       "env": {
         "STAGE": "development"
+      },
+      "cache": {
+        "key": "liftoff-1"
       }
     },
     "simulator": {
@@ -27,6 +30,9 @@
       },
       "env": {
         "STAGE": "development"
+      },
+      "cache": {
+        "key": "liftoff-1"
       }
     },
     "preview": {
@@ -38,6 +44,9 @@
       "env": {
         "STAGE": "staging",
         "FLIPPER_DISABLE": "1"
+      },
+      "cache": {
+        "key": "liftoff-1"
       }
     },
     "production": {
@@ -50,6 +59,9 @@
       "env": {
         "STAGE": "production",
         "FLIPPER_DISABLE": "1"
+      },
+      "cache": {
+        "key": "liftoff-1"
       }
     }
   },
