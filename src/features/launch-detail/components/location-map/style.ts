@@ -12,6 +12,7 @@ export const customMapStyle = [
     stylers: [
       {
         visibility: 'off',
+        color: '#212121',
       },
     ],
   },

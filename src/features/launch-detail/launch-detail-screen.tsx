@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, Pressable, Text, View } from 'react-native';
 
 import { Container } from '@components/container';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,14 +12,18 @@ import {
 } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { RouteProp, useRoute } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format } from 'date-fns';
 import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
+import { LaunchArticles } from './components/launch-articles';
 import { LocationMap } from './components/location-map';
 
-export const LaunchDetailScreen = () => {
+type Props = NativeStackScreenProps<RootStackParams, 'launch-detail'>;
+
+export const LaunchDetailScreen = ({ navigation }: Props) => {
   const { params } = useRoute<RouteProp<RootStackParams, 'launch-detail'>>();
   const { launch } = params;
 
@@ -30,6 +34,23 @@ export const LaunchDetailScreen = () => {
   const rocketInfoURL =
     launch.rocket?.configuration?.wiki_url || launch.rocket?.configuration?.info_url;
   const launcherCore = launch?.rocket?.launcher_stage?.[0];
+
+  const handleOpenExternalLink = async (url: string) => {
+    Alert.alert('Open in browser?', '', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Open',
+        onPress: async () => {
+          await WebBrowser.openBrowserAsync(url, {
+            readerMode: true,
+          });
+        },
+      },
+    ]);
+  };
 
   return (
     <Container useScrollView>
@@ -66,15 +87,18 @@ export const LaunchDetailScreen = () => {
           {livestreamId ? (
             <Skeleton show={!hasLoadedVideo}>
               <YoutubePlayer
+                initialPlayerParams={{
+                  modestbranding: true,
+                }}
                 height={220}
                 videoId={livestreamId}
                 webViewProps={{
                   androidLayerType: 'hardware',
                   injectedJavaScript: `
-                var element = document.getElementsByClassName('container')[0];
-                element.style.position = 'unset';
-                true;
-              `,
+                  var element = document.getElementsByClassName('container')[0];
+                  element.style.position = 'unset';
+                  true;
+                  `,
                 }}
                 webViewStyle={{
                   borderRadius: 8,
@@ -83,7 +107,7 @@ export const LaunchDetailScreen = () => {
               />
             </Skeleton>
           ) : (
-            <View className="bg-secondary items-center justify-center rounded-lg h-[220]">
+            <View className="bg-secondary items-center justify-center rounded-lg h-[80]">
               <Text className="text-white text-xs font-medium">Livestream not available</Text>
             </View>
           )}
@@ -91,7 +115,7 @@ export const LaunchDetailScreen = () => {
 
         {launch.mission && (
           <View className="bg-secondary rounded-lg p-4 justify-between mt-6">
-            <View className="flex-1 space-y-3 mr-5">
+            <View className="flex-1 space-y-3">
               <Text className="text-white text-sm font-bold">Payload</Text>
 
               <Text className="text-gray text-xs font-medium">
@@ -115,26 +139,18 @@ export const LaunchDetailScreen = () => {
         )}
 
         {rocketName && (
-          <Pressable
-            className="mt-6"
-            disabled={!rocketInfoURL}
-            onPress={async () => await WebBrowser.openBrowserAsync(rocketInfoURL)}
-          >
+          <View className="mt-6">
             <View className="bg-secondary rounded-lg p-4">
-              <View className="flex-row items-center justify-between">
-                <View className="flex-1 space-y-3 mr-5">
-                  <Text className="text-white text-sm font-bold">
-                    {launch.rocket?.configuration?.name}
+              <View className="flex-1 space-y-3">
+                <Text className="text-white text-sm font-bold">
+                  {launch.rocket?.configuration?.name}
+                </Text>
+
+                {launch?.rocket?.configuration?.description && (
+                  <Text className="text-gray text-xs">
+                    {launch?.rocket?.configuration?.description}
                   </Text>
-
-                  {launch?.rocket?.configuration?.description && (
-                    <Text className="text-gray text-xs">
-                      {launch?.rocket?.configuration?.description}
-                    </Text>
-                  )}
-                </View>
-
-                {rocketInfoURL && <Ionicons name="chevron-forward" color="white" size={18} />}
+                )}
               </View>
 
               <View className="space-y-4 mt-6">
@@ -220,64 +236,84 @@ export const LaunchDetailScreen = () => {
                   </Text>
                 </View>
               </View>
+
+              {rocketInfoURL && (
+                <Pressable
+                  className="flex-row bg-dark h-6 items-center p-1.5 mt-5 rounded-md self-start mr-2"
+                  onPress={() => handleOpenExternalLink(rocketInfoURL)}
+                >
+                  <Ionicons name="ios-link" color="white" size={14} />
+
+                  <Text className="text-white text-xs font-medium ml-1">Wikipedia</Text>
+                </Pressable>
+              )}
             </View>
-          </Pressable>
+          </View>
         )}
 
         {launcherCore && (
-          <Pressable
-            className="mt-6"
-            disabled={!launch?.pad?.wiki_url}
-            onPress={async () => await WebBrowser.openBrowserAsync(launch?.pad?.wiki_url)}
-          >
-            <View className="flex-row bg-secondary rounded-lg p-4 items-center justify-between">
-              <View>
-                <View className="flex-1 flex-row">
-                  <Text className="text-white text-sm font-bold mr-2">Core</Text>
+          <View className="mt-6">
+            <View className="bg-secondary rounded-lg p-4">
+              <View className="flex-row">
+                <Text className="text-white text-sm font-bold mr-2">{launcherCore?.type}</Text>
 
-                  <Text className="text-gray text-sm">
-                    #{launcherCore?.launcher?.serial_number}
+                <Text className="text-gray text-sm">#{launcherCore?.launcher?.serial_number}</Text>
+              </View>
+
+              <View className="flex-1 space-y-6 mt-6">
+                {launcherCore?.landing?.success && (
+                  <View className="flex-row items-center justify-between">
+                    <Text className="text-gray text-xs font-medium">Success</Text>
+                    <Ionicons name="checkmark-sharp" color="green" size={12} />
+                  </View>
+                )}
+
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Flights</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launcherCore?.launcher?.flights}
                   </Text>
                 </View>
 
-                <View className="flex-row">
-                  <View className="flex-row bg-dark h-6 items-center p-1.5 mt-3 rounded-md self-start mr-2">
-                    <Ionicons name="caret-down" color="white" size={10} />
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Attempted Landings</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launcherCore?.launcher?.attempted_landings}
+                  </Text>
+                </View>
 
-                    <Text className="text-white text-xs font-medium ml-1">
-                      {launcherCore?.landing?.type?.abbrev ?? 'Unknown'}
-                    </Text>
-                  </View>
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Successfull Landings</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launcherCore?.launcher?.successful_landings}
+                  </Text>
+                </View>
 
-                  <View className="flex-row bg-dark h-6 items-center p-1.5 mt-3 rounded-md self-start mr-2">
-                    <Text className="text-white text-xs font-medium">
-                      {launcherCore?.landing?.location?.abbrev ?? 'Unknown'}
-                    </Text>
-                  </View>
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Landing Type</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launcherCore?.landing?.type?.abbrev ?? 'Unknown'}
+                  </Text>
+                </View>
 
-                  <View className="flex-row bg-dark h-6 items-center p-1.5 mt-3 rounded-md self-start mr-2">
-                    <Ionicons name="sync" color="white" size={10} />
-
-                    <Text className="text-white text-xs font-medium ml-1">
-                      {launcherCore?.launcher?.flights}
-                    </Text>
-                  </View>
-
-                  {launcherCore?.landing?.success && (
-                    <View className="bg-dark h-6 w-6 items-center p-1.5 mt-3 rounded-md self-start">
-                      <Ionicons name="checkmark-sharp" color="green" size={12} />
-                    </View>
-                  )}
+                <View className="flex-row justify-between">
+                  <Text className="text-gray text-xs font-medium">Landing Name</Text>
+                  <Text className="text-white text-xs font-medium">
+                    {launcherCore?.landing?.location?.name ?? 'Unknown'}
+                  </Text>
                 </View>
               </View>
-
-              <Ionicons name="chevron-forward" color="white" size={18} />
             </View>
-          </Pressable>
+          </View>
         )}
 
         {launch?.pad && <LocationMap pad={launch?.pad} />}
       </View>
+
+      <LaunchArticles
+        launchId={launch?.id}
+        navigateToNewsDetail={(article) => navigation.navigate('news-detail', { article })}
+      />
     </Container>
   );
 };
