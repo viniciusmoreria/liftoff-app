@@ -33,10 +33,11 @@ export const UserProfileSheet = () => {
       aspect: [4, 3],
       allowsEditing: true,
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      base64: true,
     });
 
     if (!result.cancelled) {
-      setProfilePicture(result.uri);
+      setProfilePicture(`data:image/jpg;base64,${result.base64}`);
     }
   }, [setProfilePicture]);
 
@@ -52,10 +53,11 @@ export const UserProfileSheet = () => {
       aspect: [4, 3],
       allowsEditing: true,
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      base64: true,
     });
 
     if (!result.cancelled) {
-      setProfilePicture(result.uri);
+      setProfilePicture(`data:image/jpg;base64,${result.base64}`);
     }
   }, [setProfilePicture]);
 
