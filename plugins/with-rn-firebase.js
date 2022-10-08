@@ -6,8 +6,8 @@ const configPlugins = require('@expo/config-plugins');
 const code = `  pod 'Firebase', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
-  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '9.5.0'
-  $RNFirebaseAsStaticFramework = true`;
+  $RNFirebaseAsStaticFramework = true
+  $RNFirebaseAnalyticsWithoutAdIdSupport = true`;
 
 const withReactNativeFirebase = (config) => {
   return configPlugins.withDangerousMod(config, [
