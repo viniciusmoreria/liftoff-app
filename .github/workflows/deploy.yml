@@ -2,10 +2,10 @@ name: Deploy
 
 on:
   push:
+    tags-ignore:
+      - '**'
     branches:
       - staging
-    tags-ignore:
-      - '*'
 
 concurrency:
   group: expo-production-${{ github.event_name }}-${{ github.ref }}
