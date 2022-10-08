@@ -72,5 +72,11 @@ jobs:
           expo-cache: true
           token: ${{ secrets.EXPO_TOKEN }}
 
+      - name: Bump version
+        run: npx standard-version --no-verify --release-as minor
+
+      - name: Push version bump
+        run: git push --follow-tags
+
       - name: Build on EAS
         run: eas build --profile production --platform all --non-interactive --no-wait --auto-submit --resource-class=large
