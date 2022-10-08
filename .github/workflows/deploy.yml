@@ -2,10 +2,13 @@ name: Deploy
 
 on:
   push:
-    tags-ignore:
-      - '**'
     branches:
       - staging
+    paths-ignore:
+      - README.md
+      - CHANGELOG.md
+      - app.json
+      - package.json
 
 concurrency:
   group: expo-production-${{ github.event_name }}-${{ github.ref }}
@@ -32,8 +35,8 @@ jobs:
 
       - name: Set up git user
         run: |
-          git config --global user.name github-actions
-          git config user.email github-actions@github.com
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Setup Node
         uses: actions/setup-node@v3
