@@ -44,7 +44,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
       {
         text: 'Open',
         onPress: async () => {
-          await WebBrowser.openBrowserAsync(url, {
+          await WebBrowser.openBrowserAsync(encodeURI(url), {
             readerMode: true,
           });
         },
