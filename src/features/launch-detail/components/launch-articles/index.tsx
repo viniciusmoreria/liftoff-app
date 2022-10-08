@@ -63,9 +63,11 @@ export const LaunchArticles = ({ launchId, navigateToNewsDetail }: Props) => {
         })}
       />
 
-      <View className="mt-14">
-        <Pagination marginHorizontal={8} data={data ?? []} scrollX={scrollX} dotSize={5} />
-      </View>
+      {data?.length > 1 && (
+        <View className="mt-14">
+          <Pagination marginHorizontal={8} data={data ?? []} scrollX={scrollX} dotSize={5} />
+        </View>
+      )}
     </Reanimated.View>
   );
 };

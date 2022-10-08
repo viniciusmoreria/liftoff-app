@@ -1,3 +1,4 @@
+import auth from '@react-native-firebase/auth';
 import rnRemoteConfig from '@react-native-firebase/remote-config';
 
 export const RemoteConfig = {
@@ -6,6 +7,7 @@ export const RemoteConfig = {
       minimumFetchIntervalMillis: 300,
     });
     await rnRemoteConfig().fetchAndActivate();
+    await auth().signInAnonymously();
   },
   getRemoteValue: (key: string) => rnRemoteConfig().getValue(key),
 };
