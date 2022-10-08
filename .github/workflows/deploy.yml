@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - staging
+    tags-ignore:
+      - '*'
 
 concurrency:
   group: expo-production-${{ github.event_name }}-${{ github.ref }}
@@ -25,7 +27,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          force-depth: 0
+          fetch-depth: 0
           token: ${{ secrets.ACTION_TOKEN }}
 
       - name: Set up git user
