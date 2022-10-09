@@ -1,0 +1,62 @@
+name: Expo Staging
+
+on:
+  push:
+    branches:
+      - dev
+
+concurrency:
+  group: staging-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  staging:
+    name: Deploy Staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "EXPO_TOKEN is not set"
+            exit 1
+          fi
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: yarn
+
+      - name: Find yarn cache
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Restore cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: EAS Pre-Install
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_ANDROID }}" | base64 --decode > ./src/libs/firebase/google-services.json
+          echo "${{ secrets.GOOGLE_SERVICES_IOS }}" | base64 --decode > ./src/libs/firebase/GoogleService-Info.plist
+          echo "${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}" | base64 --decode > ./src/libs/firebase/service-account-key.json
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+          eas-cache: true
+          expo-cache: true
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build on EAS
+        run: eas build --profile preview --platform all --non-interactive --no-wait --resource-class=large

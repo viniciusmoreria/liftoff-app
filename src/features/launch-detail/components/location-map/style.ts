@@ -12,6 +12,7 @@ export const customMapStyle = [
     stylers: [
       {
         visibility: 'off',
+        color: '#212121',
       },
     ],
   },
@@ -67,11 +68,68 @@ export const customMapStyle = [
     ],
   },
   {
+    featureType: 'administrative.province',
+    stylers: [
+      {
+        visibility: 'on',
+      },
+    ],
+  },
+  {
     featureType: 'poi',
     elementType: 'labels.text.fill',
     stylers: [
       {
         color: '#757575',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.attraction',
+    stylers: [
+      {
+        visibility: 'on',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.business',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.government',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.government',
+    elementType: 'labels.text.fill',
+    stylers: [
+      {
+        visibility: 'on',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.medical',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.park',
+    stylers: [
+      {
+        visibility: 'off',
       },
     ],
   },
@@ -99,6 +157,39 @@ export const customMapStyle = [
     stylers: [
       {
         color: '#1b1b1b',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.place_of_worship',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.school',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.sports_complex',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.sports_complex',
+    elementType: 'geometry',
+    stylers: [
+      {
+        visibility: 'off',
       },
     ],
   },
@@ -140,10 +231,26 @@ export const customMapStyle = [
   },
   {
     featureType: 'road.highway.controlled_access',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'road.highway.controlled_access',
     elementType: 'geometry',
     stylers: [
       {
         color: '#4e4e4e',
+      },
+    ],
+  },
+  {
+    featureType: 'road.local',
+    stylers: [
+      {
+        visibility: 'off',
       },
     ],
   },
@@ -158,10 +265,44 @@ export const customMapStyle = [
   },
   {
     featureType: 'transit',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'geometry',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'transit',
     elementType: 'labels.text.fill',
     stylers: [
       {
         color: '#757575',
+      },
+    ],
+  },
+  {
+    featureType: 'transit.station',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'transit.station',
+    elementType: 'labels.text.fill',
+    stylers: [
+      {
+        visibility: 'off',
       },
     ],
   },
