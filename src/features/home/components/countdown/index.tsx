@@ -52,7 +52,6 @@ export const Countdown = ({ navigateToLaunchDetail }: Props) => {
           <View>
             <View className="items-center bg-secondary px-2 py-5 rounded-md min-w-[50]">
               <NumberDisplay displayNumber={days} />
-              <Text className="text-white text-2xl font-bold">{days}</Text>
             </View>
             <Text className="text-gray text-xs mt-1 pb-1">{Number(days) > 1 ? 'days' : 'day'}</Text>
           </View>
