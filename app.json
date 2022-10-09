@@ -6,7 +6,7 @@
     "owner": "viniciusmoreria",
     "privacy": "public",
     "primaryColor": "#16171B",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "backgroundColor": "#16171B",
@@ -17,14 +17,16 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "jsEngine": "hermes",
     "ios": {
       "bitcode": false,
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist",
-      "buildNumber": "2.0.2",
+      "buildNumber": "2.1.0",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -38,7 +40,7 @@
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "versionCode": 440020001
+      "versionCode": 460020100
     },
     "notification": {
       "icon": "./src/assets/push-icon.png",
