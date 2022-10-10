@@ -35,7 +35,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
-        "backgroundColor": "#16171B"
+        "backgroundColor": "#ffffff"
       },
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
@@ -44,7 +44,7 @@
     },
     "notification": {
       "icon": "./src/assets/push-icon.png",
-      "color": "#16171B",
+      "color": "#ffffff",
       "iosDisplayInForeground": true
     },
     "runtimeVersion": {
@@ -67,7 +67,7 @@
         "expo-notifications",
         {
           "icon": "./src/assets/push-icon.png",
-          "color": "#16171B"
+          "color": "#ffffff"
         }
       ],
       [
