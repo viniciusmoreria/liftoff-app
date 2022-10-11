@@ -27,13 +27,15 @@ export const SupportSection = () => {
     if (isAndroid) {
       await Linking.openURL(`market://details?id=${Application.applicationId}`);
     } else {
-      await Linking.openURL(`itms-apps://itunes.apple.com/app/id=1645685152`);
+      await Linking.openURL(
+        `https://apps.apple.com/app/apple-store/id1645685152?action=write-review`
+      );
     }
   }
 
   async function shareApp() {
     await Share.share({
-      message: `Track and watch all upcoming rocket launches from agencies around the world with Liftoff.\n\nDownload Liftoff for iOS: https://apps.apple.com/us/app/liftoff/id1645685152 \n\nDownload Liftoff for Android: https://play.google.com/store/apps/details?id=${Application.applicationId}`,
+      message: `Track and watch all upcoming rocket launches from agencies around the world with Liftoff.\n\nDownload Liftoff for iOS: https://apple.co/3CHM9YO \n\nDownload Liftoff for Android: https://play.google.com/store/apps/details?id=${Application.applicationId}`,
     });
   }
 
