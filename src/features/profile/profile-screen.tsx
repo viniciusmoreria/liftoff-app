@@ -4,6 +4,7 @@ import { PlaceholderUserPicture } from '@assets/images';
 import { Container } from '@components/container';
 import { Feather } from '@expo/vector-icons';
 import { useBottomSheet } from '@hooks/use-bottom-sheet';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { isIOS } from '@libs/utilities';
 import { useUserStore } from '@store/userStore';
 import * as Application from 'expo-application';
@@ -16,6 +17,7 @@ import { SupportSection } from './components/support-section';
 export const ProfileScreen = () => {
   const { username, profilePicture } = useUserStore();
   const { setSheetContent } = useBottomSheet();
+  const { logEvent } = useAnalytics();
 
   return (
     <Container useScrollView>
@@ -24,6 +26,7 @@ export const ProfileScreen = () => {
           <Pressable
             className="items-center"
             onPress={() => {
+              logEvent('profile_sheet_open');
               setSheetContent({
                 content: <UserProfileSheet />,
               });

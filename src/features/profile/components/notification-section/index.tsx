@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 
 import { useBottomSheet } from '@hooks/use-bottom-sheet';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { usePreferencesStore } from '@store/preferencesStore';
 
 import { MenuItem } from '../menu-item';
@@ -8,6 +9,7 @@ import { NotificationSettings } from './settings';
 
 export const NotificationSection = () => {
   const { setSheetContent } = useBottomSheet();
+  const { logEvent } = useAnalytics();
 
   const { leastOneReminder, updates, webcastLive, setNotificationPreference } =
     usePreferencesStore();
@@ -21,6 +23,7 @@ export const NotificationSection = () => {
             title="Reminders"
             label={leastOneReminder ? 'On' : 'Off'}
             onPress={() => {
+              logEvent('notification_reminders');
               setSheetContent({
                 content: <NotificationSettings />,
               });
@@ -32,7 +35,10 @@ export const NotificationSection = () => {
             title="Launch Updates"
             useSwitch
             isEnabled={updates}
-            onPress={() => setNotificationPreference({ type: 'updates', value: !updates })}
+            onPress={() => {
+              logEvent('notification_updates');
+              setNotificationPreference({ type: 'updates', value: !updates });
+            }}
           />
         </View>
         <View>
@@ -40,12 +46,13 @@ export const NotificationSection = () => {
             title="Available Livestream"
             useSwitch
             isEnabled={webcastLive}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_webcast');
               setNotificationPreference({
                 type: 'webcastLive',
                 value: !webcastLive,
-              })
-            }
+              });
+            }}
           />
         </View>
       </View>

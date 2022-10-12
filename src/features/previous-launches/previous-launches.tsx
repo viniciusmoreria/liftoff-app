@@ -5,6 +5,7 @@ import { Container } from '@components/container';
 import { PreviousLaunch } from '@features/home/components/previous-carousel/components/previous-launch';
 import { Launch } from '@features/home/hooks/types';
 import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -16,6 +17,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'previous-launches'>;
 
 export const PreviousLaunchesScreen = ({ navigation }: Props) => {
   const insets = useSafeAreaInsets();
+  const { logEvent } = useAnalytics();
   const {
     data: docs,
     fetchNextPage,
@@ -32,11 +34,12 @@ export const PreviousLaunchesScreen = ({ navigation }: Props) => {
     return (
       <Animated.View entering={FadeIn}>
         <Pressable
-          onPress={() =>
+          onPress={() => {
+            logEvent('launch_detail', { launch: item.name });
             navigation.navigate('launch-detail', {
               launch: item,
-            })
-          }
+            });
+          }}
         >
           <PreviousLaunch launch={item} />
         </Pressable>

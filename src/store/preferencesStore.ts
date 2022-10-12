@@ -22,7 +22,8 @@ type LocationType =
   | 'india'
   | 'japan'
   | 'french_guiana'
-  | 'new_zealand';
+  | 'new_zealand'
+  | 'kazakhstan';
 
 export type NotificationPreference = {
   type: RemindersType | LocationType;
@@ -45,6 +46,7 @@ interface PreferencesState {
   japan: boolean;
   french_guiana: boolean;
   new_zealand: boolean;
+  kazakhstan: boolean;
   leastOneReminder: boolean;
   setNotificationPreference: ({ type, value }: NotificationPreference) => void;
 }
@@ -73,6 +75,7 @@ const topics: NotificationPreference['type'][] = [
   'japan',
   'french_guiana',
   'new_zealand',
+  'kazakhstan',
 ];
 
 const usePreferencesStoreBase = create(
@@ -93,6 +96,7 @@ const usePreferencesStoreBase = create(
       japan: false,
       french_guiana: false,
       new_zealand: false,
+      kazakhstan: false,
       leastOneReminder: false,
       setNotificationPreference: async ({ type, value }: NotificationPreference) => {
         if (type === 'all') {
