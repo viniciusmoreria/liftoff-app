@@ -1,5 +1,6 @@
 import { Linking, Share, Text, View } from 'react-native';
 
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { isAndroid } from '@libs/utilities';
 import * as Application from 'expo-application';
 import * as Device from 'expo-device';
@@ -7,7 +8,11 @@ import * as Device from 'expo-device';
 import { MenuItem } from '../menu-item';
 
 export const SupportSection = () => {
+  const { logEvent } = useAnalytics();
+
   async function sendEmail({ title }: { title: string }) {
+    logEvent('send_email', { title });
+
     const reportInfo = {
       Version: Application.nativeApplicationVersion,
       Device: `${Device.manufacturer} ${Device.modelName}`,
@@ -24,6 +29,8 @@ export const SupportSection = () => {
   }
 
   async function rateApp() {
+    logEvent('rate_app');
+
     if (isAndroid) {
       await Linking.openURL(`market://details?id=${Application.applicationId}`);
     } else {
@@ -32,6 +39,8 @@ export const SupportSection = () => {
   }
 
   async function shareApp() {
+    logEvent('share_app');
+
     await Share.share({
       message: `Track and watch all upcoming rocket launches from agencies around the world with Liftoff.\n\nDownload Liftoff for iOS: https://apps.apple.com/us/app/liftoff/id1645685152 \n\nDownload Liftoff for Android: https://play.google.com/store/apps/details?id=${Application.applicationId}`,
     });

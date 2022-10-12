@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Alert, Image, Pressable, Text, View } from 'react-native';
 
 import { Container } from '@components/container';
 import { Ionicons } from '@expo/vector-icons';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import {
   formatToDollar,
   formatToUnit,
@@ -27,7 +28,10 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
   const { params } = useRoute<RouteProp<RootStackParams, 'launch-detail'>>();
   const { launch } = params;
 
+  const { logEvent } = useAnalytics();
+
   const [hasLoadedVideo, setHasLoadedVideo] = useState(false);
+  const [hasLoadedImage, setHasLoadedImage] = useState(false);
 
   const livestreamId = launch?.vidURLs[0]?.url?.split('v=')[1];
   const rocketName = launch?.rocket?.configuration?.name;
@@ -44,6 +48,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
       {
         text: 'Open',
         onPress: async () => {
+          logEvent('open_external_link', { url });
           await WebBrowser.openBrowserAsync(encodeURI(url), {
             readerMode: true,
           });
@@ -107,8 +112,21 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
               />
             </Skeleton>
           ) : (
-            <View className="bg-secondary items-center justify-center rounded-lg h-[80]">
-              <Text className="text-white text-xs font-medium">Livestream not available</Text>
+            <View className="bg-secondary rounded-lg">
+              {launch?.image && (
+                <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
+                  <Image
+                    source={{ uri: launch?.image }}
+                    className="h-[220]"
+                    accessibilityLabel={`${launch.name} launch image`}
+                    onLoadEnd={() => setHasLoadedImage(true)}
+                  />
+                </Skeleton>
+              )}
+
+              <View className="bg-secondary w-full absolute bottom-0 rounded-b-lg py-5 items-center">
+                <Text className="text-white text-xs font-bold">Livestream not available</Text>
+              </View>
             </View>
           )}
         </View>
@@ -312,7 +330,10 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
 
       <LaunchArticles
         launchId={launch?.id}
-        navigateToNewsDetail={(article) => navigation.navigate('news-detail', { article })}
+        navigateToNewsDetail={(article) => {
+          logEvent('news_detail', { article: article.title, articleUrl: article.url });
+          navigation.navigate('news-detail', { article });
+        }}
       />
     </Container>
   );

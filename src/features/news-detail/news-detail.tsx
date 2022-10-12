@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Dimensions, Image, Pressable, ScrollView, Text, View } from 'react-native';
 
 import { Feather, Ionicons } from '@expo/vector-icons';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { formatRelativeDate } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { RouteProp, useRoute } from '@react-navigation/native';
@@ -15,6 +16,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'news-detail'>;
 
 export const NewsDetailScreen = ({ navigation }: Props) => {
   const insets = useSafeAreaInsets();
+  const { logEvent } = useAnalytics();
   const { params } = useRoute<RouteProp<RootStackParams, 'news-detail'>>();
   const { article } = params;
 
@@ -77,11 +79,12 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
           </View>
 
           <Pressable
-            onPress={() =>
+            onPress={() => {
+              logEvent('open_external_link', { url: article.url });
               WebBrowser.openBrowserAsync(article.url, {
                 readerMode: true,
-              })
-            }
+              });
+            }}
             className="bg-secondary w-full p-4 rounded-lg items-center mt-16"
           >
             <Text className="text-white font-bold text-md">
