@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
 
 import { Feather, Ionicons } from '@expo/vector-icons';
 import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
@@ -10,6 +10,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
+import FastImage from 'react-native-fast-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = NativeStackScreenProps<RootStackParams, 'news-detail'>;
@@ -43,7 +44,7 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
 
       <View>
         <Skeleton show={!hasLoadedImage}>
-          <Image
+          <FastImage
             source={{
               uri: article.imageUrl,
             }}

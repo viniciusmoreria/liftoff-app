@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Image, Text, View, useWindowDimensions } from 'react-native';
+import { Text, View, useWindowDimensions } from 'react-native';
 
 import { Launch } from '@features/home/hooks/types';
 import { format } from 'date-fns';
 import { Skeleton } from 'moti/skeleton';
+import FastImage from 'react-native-fast-image';
 
 const SPACING = 18;
 
@@ -26,7 +27,7 @@ export const PreviousLaunch = ({ launch }: { launch: Launch }) => {
     >
       <View className="rounded-t-lg">
         <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
-          <Image
+          <FastImage
             source={{ uri: launchImage }}
             className="h-32"
             accessibilityLabel={`${launch.name} launch image`}

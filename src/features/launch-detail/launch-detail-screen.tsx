@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Image, Pressable, Text, View } from 'react-native';
+import { Alert, Pressable, Text, View } from 'react-native';
 
 import { Container } from '@components/container';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,6 +17,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format } from 'date-fns';
 import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
+import FastImage from 'react-native-fast-image';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import { LaunchArticles } from './components/launch-articles';
@@ -115,7 +116,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
             <View className="bg-secondary rounded-lg">
               {launch?.image && (
                 <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
-                  <Image
+                  <FastImage
                     source={{ uri: launch?.image }}
                     className="h-[220]"
                     accessibilityLabel={`${launch.name} launch image`}
