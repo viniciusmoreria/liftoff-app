@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Image, Text, View, useWindowDimensions } from 'react-native';
+import { Text, View, useWindowDimensions } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
 import { Article as ArticleType } from '@features/home/hooks/types';
 import { formatRelativeDate } from '@libs/utilities';
 import { Skeleton } from 'moti/skeleton';
+import FastImage from 'react-native-fast-image';
 
 const SPACING = 18;
 
@@ -21,7 +22,7 @@ export const Article = ({ article }: { article: ArticleType }) => {
     >
       <View className="rounded-t-lg h-32 w-28">
         <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
-          <Image
+          <FastImage
             source={{ uri: article.imageUrl }}
             className="h-32 w-28"
             accessibilityLabel={`Published image of the article: ${article.title}`}
