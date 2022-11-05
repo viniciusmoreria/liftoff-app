@@ -38,7 +38,8 @@ export const LaunchArticles = ({ launchId, navigateToNewsDetail }: Props) => {
     return articles?.pages
       ?.flat()
       .slice(0, 5)
-      .map((article) => article);
+      .map((article) => article)
+      .reverse();
   }, [articles]);
 
   if (!data?.length) {

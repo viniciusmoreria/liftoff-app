@@ -62,8 +62,8 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
         </View>
       </View>
 
-      <View className="bg-dark -mt-4 rounded-t-3xl w-full">
-        <View className="flex mt-6 px-4">
+      <View className="flex-1 bg-dark -mt-4 rounded-t-3xl w-full">
+        <View className="flex-1 mt-6 px-4">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center justify-between h-8">
               <Feather name="clock" color="white" />
@@ -75,7 +75,7 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
             <Text className="text-white text-sm">{article.newsSite}</Text>
           </View>
 
-          <View className="mt-10">
+          <View className="flex-1 mt-10">
             <Text className="text-white text-sm">{article.summary}</Text>
           </View>
 
