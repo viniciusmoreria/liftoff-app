@@ -146,7 +146,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
               )}
             </View>
 
-            <View className="space-y-4 mt-6">
+            <View className="space-y-5 mt-6">
               <View className="flex-row justify-between">
                 <Text className="text-gray text-xs font-medium">Orbit</Text>
                 <Text className="text-white text-xs font-medium">
@@ -172,7 +172,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 )}
               </View>
 
-              <View className="space-y-4 mt-6">
+              <View className="space-y-5 mt-6">
                 <View className="flex-row justify-between">
                   <Text className="text-gray text-xs font-medium">Successfull launches</Text>
                   <Text className="text-white text-xs font-medium">
@@ -279,7 +279,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 <Text className="text-gray text-sm">#{launcherCore?.launcher?.serial_number}</Text>
               </View>
 
-              <View className="flex-1 space-y-6 mt-6">
+              <View className="flex-1 space-y-5 mt-6">
                 {launcherCore?.landing?.success && (
                   <View className="flex-row items-center justify-between">
                     <Text className="text-gray text-xs font-medium">Success</Text>
