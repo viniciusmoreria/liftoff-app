@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/viniciusmoreria/liftoff-app/compare/v2.1.0...v2.2.0) (2022-11-06)
+
+
+### ✨ Features
+
+* analytics tracking ([29ca98d](https://github.com/viniciusmoreria/liftoff-app/commit/29ca98df5bc3c41799c487ce909af2ef0aa47fe0))
+* implements fast image for better list performance ([353c4db](https://github.com/viniciusmoreria/liftoff-app/commit/353c4db2c0e4645d6af7bb234f2e5108da41873a))
+* increase icon size ([e63cd34](https://github.com/viniciusmoreria/liftoff-app/commit/e63cd34222da24657e475a522d56fd8d5ec20a93))
+* new app icon ([ac080e4](https://github.com/viniciusmoreria/liftoff-app/commit/ac080e45d2b45cbf5bfa5a065519667458ca0ef7))
+* new icon style ([b006da0](https://github.com/viniciusmoreria/liftoff-app/commit/b006da006d9abf79d08712de5317d7b37dd656c5))
+
+
+### 🐛 Bug Fixes
+
+* adaptive icon size ([e08d817](https://github.com/viniciusmoreria/liftoff-app/commit/e08d8179ee2cfcf7f35d098d8d3fec432c7d9d38))
+* apple store review link ([8e2be21](https://github.com/viniciusmoreria/liftoff-app/commit/8e2be2105981db6c6cda30a4f5e04a7a866b6028))
+* icon color ([c3c084a](https://github.com/viniciusmoreria/liftoff-app/commit/c3c084ad2d974f63d3f38bc7756c84e576a4ce90))
+* icon size ([4335d7c](https://github.com/viniciusmoreria/liftoff-app/commit/4335d7c497613b5a79333c916cd8642de8102701))
+* increase default font size ([ab3cbb4](https://github.com/viniciusmoreria/liftoff-app/commit/ab3cbb476e649e5ecc3468746edfd8bf13db50ad))
+
 ## 2.1.0 (2022-10-09)
 
 
