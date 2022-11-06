@@ -5,6 +5,7 @@ import { Container } from '@components/container';
 import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
 import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -17,6 +18,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'upcoming-launches'>;
 
 export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
   const insets = useSafeAreaInsets();
+  const { logEvent } = useAnalytics();
   const { data: launches, refetch } = useUpcomingLaunches();
 
   const data = launches?.filter((launch) => new Date(launch.net) > new Date()) ?? [];
@@ -25,11 +27,12 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
     const hasLiftoff = new Date(item.net) < new Date();
     return (
       <Pressable
-        onPress={() =>
+        onPress={() => {
+          logEvent('launch_detail', { launch: item.name });
           navigation.navigate('launch-detail', {
             launch: item,
-          })
-        }
+          });
+        }}
       >
         <Animated.View entering={FadeIn} className="px-4">
           <View className="bg-secondary p-4 rounded-lg h-24 w-full overflow-hidden">

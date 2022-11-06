@@ -5,21 +5,24 @@ import { PlaceholderUserPicture } from '@assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { useBottomSheet } from '@hooks/use-bottom-sheet';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { isIOS, isNameValid } from '@libs/utilities';
 import { useUserStore } from '@store/userStore';
 import * as ImagePicker from 'expo-image-picker';
 
 export const UserProfileSheet = () => {
+  const { logEvent } = useAnalytics();
   const { setUsername, profilePicture, setProfilePicture } = useUserStore();
   const { closeSheet } = useBottomSheet();
 
   const [name, setName] = useState('');
 
   const handleSubmitName = useCallback(async () => {
+    logEvent('profile_name_change', { name });
     setUsername(name.trim());
     setName('');
     closeSheet();
-  }, [closeSheet, name, setUsername]);
+  }, [closeSheet, logEvent, name, setUsername]);
 
   const pickImage = useCallback(async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -71,10 +74,12 @@ export const UserProfileSheet = () => {
         },
         async (buttonIndex) => {
           if (buttonIndex === 1) {
+            logEvent('profile_sheet_open_camera');
             openCamera();
           }
 
           if (buttonIndex === 2) {
+            logEvent('profile_sheet_open_gallery');
             pickImage();
           }
         }
@@ -102,7 +107,7 @@ export const UserProfileSheet = () => {
         }
       );
     }
-  }, [openCamera, pickImage]);
+  }, [logEvent, openCamera, pickImage]);
 
   return (
     <View className="pt-3 pb-4">

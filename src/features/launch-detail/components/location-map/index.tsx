@@ -4,6 +4,7 @@ import { Alert, Dimensions, Image, Linking, Platform, Pressable, Text, View } fr
 import { CaretDownIcon } from '@assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { Pad } from '@features/home/hooks/types';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import { customMapStyle } from './style';
@@ -16,6 +17,8 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export const LocationMap = ({ pad }: { pad: Pad }) => {
   const { latitude, longitude, location, name } = pad;
+
+  const { logEvent } = useAnalytics();
 
   const [isZoomApplied, toggleZoom] = useReducer((s) => !s, false);
 
@@ -58,7 +61,10 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
       },
       {
         text: 'Open',
-        onPress: handleOpenGps,
+        onPress: () => {
+          logEvent('open_map', { name });
+          handleOpenGps();
+        },
       },
     ]);
   };
@@ -96,7 +102,7 @@ export const LocationMap = ({ pad }: { pad: Pad }) => {
 
         <View className="bg-secondary w-full absolute bottom-0 rounded-b-lg py-3 px-2">
           <View className="flex-row items-center justify-between flex-wrap space-y-4">
-            <Text className="text-white text-xs font-bold">{name}</Text>
+            <Text className="text-white text-xs font-bold mr-2">{name}</Text>
             <Text className="text-white text-xs">{location?.name}</Text>
           </View>
         </View>

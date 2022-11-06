@@ -3,6 +3,7 @@ import { Alert, Pressable, Text, View } from 'react-native';
 
 import { Container } from '@components/container';
 import { Ionicons } from '@expo/vector-icons';
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import {
   formatToDollar,
   formatToUnit,
@@ -16,6 +17,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format } from 'date-fns';
 import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
+import FastImage from 'react-native-fast-image';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import { LaunchArticles } from './components/launch-articles';
@@ -27,7 +29,10 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
   const { params } = useRoute<RouteProp<RootStackParams, 'launch-detail'>>();
   const { launch } = params;
 
+  const { logEvent } = useAnalytics();
+
   const [hasLoadedVideo, setHasLoadedVideo] = useState(false);
+  const [hasLoadedImage, setHasLoadedImage] = useState(false);
 
   const livestreamId = launch?.vidURLs[0]?.url?.split('v=')[1];
   const rocketName = launch?.rocket?.configuration?.name;
@@ -44,6 +49,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
       {
         text: 'Open',
         onPress: async () => {
+          logEvent('open_external_link', { url });
           await WebBrowser.openBrowserAsync(encodeURI(url), {
             readerMode: true,
           });
@@ -107,8 +113,21 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
               />
             </Skeleton>
           ) : (
-            <View className="bg-secondary items-center justify-center rounded-lg h-[80]">
-              <Text className="text-white text-xs font-medium">Livestream not available</Text>
+            <View className="bg-secondary rounded-lg">
+              {launch?.image && (
+                <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
+                  <FastImage
+                    source={{ uri: launch?.image }}
+                    className="h-[220]"
+                    accessibilityLabel={`${launch.name} launch image`}
+                    onLoadEnd={() => setHasLoadedImage(true)}
+                  />
+                </Skeleton>
+              )}
+
+              <View className="bg-secondary w-full absolute bottom-0 rounded-b-lg py-5 items-center">
+                <Text className="text-white text-xs font-bold">Livestream not available</Text>
+              </View>
             </View>
           )}
         </View>
@@ -127,7 +146,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
               )}
             </View>
 
-            <View className="space-y-4 mt-6">
+            <View className="space-y-5 mt-6">
               <View className="flex-row justify-between">
                 <Text className="text-gray text-xs font-medium">Orbit</Text>
                 <Text className="text-white text-xs font-medium">
@@ -153,7 +172,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 )}
               </View>
 
-              <View className="space-y-4 mt-6">
+              <View className="space-y-5 mt-6">
                 <View className="flex-row justify-between">
                   <Text className="text-gray text-xs font-medium">Successfull launches</Text>
                   <Text className="text-white text-xs font-medium">
@@ -260,7 +279,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 <Text className="text-gray text-sm">#{launcherCore?.launcher?.serial_number}</Text>
               </View>
 
-              <View className="flex-1 space-y-6 mt-6">
+              <View className="flex-1 space-y-5 mt-6">
                 {launcherCore?.landing?.success && (
                   <View className="flex-row items-center justify-between">
                     <Text className="text-gray text-xs font-medium">Success</Text>
@@ -312,7 +331,10 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
 
       <LaunchArticles
         launchId={launch?.id}
-        navigateToNewsDetail={(article) => navigation.navigate('news-detail', { article })}
+        navigateToNewsDetail={(article) => {
+          logEvent('news_detail', { article: article.title, articleUrl: article.url });
+          navigation.navigate('news-detail', { article });
+        }}
       />
     </Container>
   );

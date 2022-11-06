@@ -1,10 +1,13 @@
 import { Text, View } from 'react-native';
 
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import { usePreferencesStore } from '@store/preferencesStore';
 
 import { MenuItem } from '../../menu-item';
 
 export const NotificationSettings = () => {
+  const { logEvent } = useAnalytics();
+
   const {
     twentyFourHour,
     oneHour,
@@ -18,6 +21,7 @@ export const NotificationSettings = () => {
     russia,
     van,
     wallops,
+    kazakhstan,
     setNotificationPreference,
   } = usePreferencesStore();
 
@@ -31,12 +35,15 @@ export const NotificationSettings = () => {
             title="24 hours before launch"
             useSwitch
             isEnabled={twentyFourHour}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_24_hours', {
+                value: !twentyFourHour,
+              });
               setNotificationPreference({
                 type: 'twentyFourHour',
                 value: !twentyFourHour,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -44,12 +51,15 @@ export const NotificationSettings = () => {
             title="1 hour before launch"
             useSwitch
             isEnabled={oneHour}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_one_minute', {
+                value: !oneHour,
+              });
               setNotificationPreference({
                 type: 'oneHour',
                 value: !oneHour,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -57,12 +67,15 @@ export const NotificationSettings = () => {
             title="10 minutes before launch"
             useSwitch
             isEnabled={tenMinutes}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_ten_minutes', {
+                value: !tenMinutes,
+              });
               setNotificationPreference({
                 type: 'tenMinutes',
                 value: !tenMinutes,
-              })
-            }
+              });
+            }}
           />
         </View>
       </View>
@@ -78,12 +91,15 @@ export const NotificationSettings = () => {
             title="Cape Canaveral"
             useSwitch
             isEnabled={cape}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_cape_canaveral', {
+                value: !cape,
+              });
               setNotificationPreference({
                 type: 'cape',
                 value: !cape,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -91,12 +107,15 @@ export const NotificationSettings = () => {
             title="Vandenberg"
             useSwitch
             isEnabled={van}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_vandenberg', {
+                value: !van,
+              });
               setNotificationPreference({
                 type: 'van',
                 value: !van,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -104,12 +123,15 @@ export const NotificationSettings = () => {
             title="Wallops"
             useSwitch
             isEnabled={wallops}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_wallops', {
+                value: !wallops,
+              });
               setNotificationPreference({
                 type: 'wallops',
                 value: !wallops,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -117,12 +139,15 @@ export const NotificationSettings = () => {
             title="China"
             useSwitch
             isEnabled={china}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_china', {
+                value: !china,
+              });
               setNotificationPreference({
                 type: 'china',
                 value: !china,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -130,12 +155,15 @@ export const NotificationSettings = () => {
             title="Russia"
             useSwitch
             isEnabled={russia}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_russia', {
+                value: !russia,
+              });
               setNotificationPreference({
                 type: 'russia',
                 value: !russia,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -143,12 +171,15 @@ export const NotificationSettings = () => {
             title="India"
             useSwitch
             isEnabled={india}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_india', {
+                value: !india,
+              });
               setNotificationPreference({
                 type: 'india',
                 value: !india,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -156,12 +187,15 @@ export const NotificationSettings = () => {
             title="Japan"
             useSwitch
             isEnabled={japan}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_japan', {
+                value: !japan,
+              });
               setNotificationPreference({
                 type: 'japan',
                 value: !japan,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -169,12 +203,15 @@ export const NotificationSettings = () => {
             title="French Guiana"
             useSwitch
             isEnabled={french_guiana}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_french_guiana', {
+                value: !french_guiana,
+              });
               setNotificationPreference({
                 type: 'french_guiana',
                 value: !french_guiana,
-              })
-            }
+              });
+            }}
           />
         </View>
         <View>
@@ -182,12 +219,31 @@ export const NotificationSettings = () => {
             title="New Zealand"
             useSwitch
             isEnabled={new_zealand}
-            onPress={() =>
+            onPress={() => {
+              logEvent('notification_reminders_new_zealand', {
+                value: !new_zealand,
+              });
               setNotificationPreference({
                 type: 'new_zealand',
                 value: !new_zealand,
-              })
-            }
+              });
+            }}
+          />
+        </View>
+        <View>
+          <MenuItem
+            title="Kazakhstan"
+            useSwitch
+            isEnabled={kazakhstan}
+            onPress={() => {
+              logEvent('notification_reminders_kazakhstan', {
+                value: !kazakhstan,
+              });
+              setNotificationPreference({
+                type: 'kazakhstan',
+                value: !kazakhstan,
+              });
+            }}
           />
         </View>
       </View>

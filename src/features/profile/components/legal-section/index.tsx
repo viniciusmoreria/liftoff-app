@@ -1,9 +1,14 @@
 import { Linking, Text, View } from 'react-native';
 
+import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
+
 import { MenuItem } from '../menu-item';
 
 export const LegalSection = () => {
+  const { logEvent } = useAnalytics();
+
   async function openPrivacyPolicy() {
+    logEvent('open_privacy_policy');
     await Linking.openURL('https://liftoffprivacypolicy.carrd.co/');
   }
 
