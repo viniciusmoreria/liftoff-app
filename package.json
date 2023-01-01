@@ -17,6 +17,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@amplitude/react-native": "^2.17.0",
     "@capsizecss/core": "^3.0.0",
     "@expo/vector-icons": "^13.0.0",
     "@formatjs/intl-datetimeformat": "^6.2.0",
