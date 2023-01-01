@@ -1,10 +1,13 @@
 import { ReactNode, useRef } from 'react';
 
+import { analyticsService } from '@libs/amplitude/analytics';
 import { Sentry } from '@libs/sentry';
 import analytics from '@react-native-firebase/analytics';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 
 const routingInstrumentation = new Sentry.Native.ReactNavigationInstrumentation();
+
+analyticsService.init(process.env.AMPLITUDE_KEY);
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
@@ -32,6 +35,10 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
         const previousRouteName = routeNameRef.current;
         const currentRouteName = navigationRef?.getCurrentRoute()?.name;
         if (previousRouteName !== currentRouteName) {
+          await analyticsService.logEvent('screen_view', {
+            screen: currentRouteName,
+            previous_screen: previousRouteName,
+          });
           await analytics().logScreenView({
             screen_name: currentRouteName,
             screen_class: currentRouteName,
