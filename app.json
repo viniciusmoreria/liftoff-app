@@ -17,9 +17,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "jsEngine": "hermes",
     "ios": {
       "bitcode": false,
@@ -32,9 +30,7 @@
       },
       "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152",
       "infoPlist": {
-        "LSApplicationQueriesSchemes": [
-          "itms-apps"
-        ]
+        "LSApplicationQueriesSchemes": ["itms-apps"]
       }
     },
     "android": {
@@ -45,7 +41,7 @@
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "versionCode": 460020200
+      "versionCode": 460020400
     },
     "notification": {
       "icon": "./src/assets/push-icon.png",
