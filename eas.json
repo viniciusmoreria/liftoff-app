@@ -1,11 +1,12 @@
 {
   "cli": {
-    "version": ">= 1.2.0"
+    "version": ">= 3.3.0"
   },
   "build": {
     "base": {
       "ios": {
-        "image": "latest"
+        "image": "latest",
+        "resourceClass": "m1-medium"
       },
       "android": {
         "image": "latest"
