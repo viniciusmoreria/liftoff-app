@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Pressable, RefreshControl, Text, View } from 'react-native';
 
 import { Container } from '@components/container';
@@ -6,11 +6,12 @@ import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
 import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
 import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
-import { isIOS } from '@libs/utilities';
+import { getAdUnitId, insertAdsToArray, isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
 import { format } from 'date-fns';
+import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -21,7 +22,12 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
   const { logEvent } = useAnalytics();
   const { data: launches, refetch } = useUpcomingLaunches();
 
-  const data = launches?.filter((launch) => new Date(launch.net) > new Date()) ?? [];
+  const data = useMemo(() => {
+    return insertAdsToArray({
+      array: launches?.filter((launch) => new Date(launch.net) > new Date()) ?? [],
+      interval: 5,
+    });
+  }, [launches]);
 
   const renderItem = ({ item }: { item: Launch }) => {
     const hasLiftoff = new Date(item.net) < new Date();
@@ -87,7 +93,18 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
           />
         }
         showsVerticalScrollIndicator={false}
-        renderItem={renderItem}
+        renderItem={({ item }) => {
+          if (item?.type === 'ad') {
+            return (
+              <View className="px-4">
+                <View className="bg-secondary rounded-lg h-24 w-full overflow-hidden">
+                  <BannerAd unitId={getAdUnitId()} size={BannerAdSize.INLINE_ADAPTIVE_BANNER} />
+                </View>
+              </View>
+            );
+          }
+          return renderItem({ item: item });
+        }}
         keyExtractor={(item) => String(item.id)}
         estimatedItemSize={110}
         ItemSeparatorComponent={() => <View className="h-4" />}
