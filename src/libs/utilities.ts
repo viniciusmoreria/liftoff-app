@@ -1,9 +1,11 @@
 import { ComponentProps } from 'react';
 import { Platform } from 'react-native';
 
+import { AD_UNIT_ANDROID_ID, AD_UNIT_IOS_ID } from '@constants/index';
 import { Ionicons } from '@expo/vector-icons';
 import { formatRelative, intervalToDuration, isAfter } from 'date-fns';
 import en from 'date-fns/locale/en-US';
+import { TestIds } from 'react-native-google-mobile-ads';
 
 export const isIOS = Platform.OS === 'ios';
 export const isAndroid = Platform.OS === 'android';
@@ -105,4 +107,29 @@ export const formatToUnit = (value?: number, unit?: string) => {
     unit: unit,
     unitDisplay: 'short',
   });
+};
+
+export const insertAdsToArray = <T>({ array, interval }: { array: T[]; interval: number }) => {
+  const arrayWithAds = array.reduce((acc, item, index) => {
+    if (index % interval === 0 && index !== 0) {
+      acc.push({ type: 'ad', id: index } as typeof item);
+    }
+    acc.push(item);
+    return acc;
+  }, [] as T[]);
+
+  return arrayWithAds;
+};
+
+export const getAdUnitId = () => {
+  if (__DEV__) {
+    return TestIds.BANNER;
+  }
+  if (isIOS) {
+    return AD_UNIT_IOS_ID;
+  }
+  if (isAndroid) {
+    return AD_UNIT_ANDROID_ID;
+  }
+  return TestIds.BANNER;
 };

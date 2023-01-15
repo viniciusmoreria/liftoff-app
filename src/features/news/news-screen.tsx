@@ -6,10 +6,11 @@ import { Article } from '@features/home/components/articles-carousel/components/
 import { Article as ArticleType } from '@features/home/hooks/types';
 import { useArticles } from '@features/home/hooks/use-articles';
 import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
-import { isIOS } from '@libs/utilities';
+import { getAdUnitId, insertAdsToArray, isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
+import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -21,7 +22,10 @@ export const NewsScreen = ({ navigation }: Props) => {
   const { data: articles, fetchNextPage, refetch, isFetchingNextPage, isFetching } = useArticles();
 
   const data = useMemo(() => {
-    return articles?.pages?.flat().map((article) => article);
+    return insertAdsToArray({
+      array: articles?.pages?.flat().map((article) => article) ?? [],
+      interval: 5,
+    });
   }, [articles]);
 
   const renderItem = ({ item }: { item: ArticleType }) => {
@@ -62,7 +66,18 @@ export const NewsScreen = ({ navigation }: Props) => {
           />
         }
         showsVerticalScrollIndicator={false}
-        renderItem={renderItem}
+        renderItem={({ item }) => {
+          if (item.type === 'ad') {
+            return (
+              <View className="px-4">
+                <View className="bg-secondary rounded-lg h-32 overflow-hidden">
+                  <BannerAd unitId={getAdUnitId()} size={BannerAdSize.INLINE_ADAPTIVE_BANNER} />
+                </View>
+              </View>
+            );
+          }
+          return renderItem({ item: item as ArticleType });
+        }}
         keyExtractor={(item) => String(item.id)}
         estimatedItemSize={143}
         ItemSeparatorComponent={() => <View className="h-4" />}

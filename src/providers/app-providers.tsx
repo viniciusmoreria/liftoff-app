@@ -11,6 +11,7 @@ import * as Notifications from 'expo-notifications';
 import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import mobileAds from 'react-native-google-mobile-ads';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -34,6 +35,8 @@ if (__DEV__) {
     addPlugin({ queryClient });
   });
 }
+
+mobileAds().initialize();
 
 export const AppProviders = ({ children }: { children: JSX.Element }) => {
   const { setNotificationPreference } = usePreferencesStore();
