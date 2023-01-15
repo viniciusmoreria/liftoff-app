@@ -46,6 +46,11 @@ export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props
     }).slice(0, 6);
   }, [articles]);
 
+  const bannerAdSize = useMemo(() => {
+    const height = 128;
+    return `${Math.floor(width)}x${height}`;
+  }, [width]);
+
   return (
     <Reanimated.View entering={FadeIn} className="mt-0">
       <View className="flex-row justify-between mb-4 px-4">
@@ -64,7 +69,7 @@ export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props
                 className="bg-secondary rounded-lg h-32 overflow-hidden"
                 style={{ width, marginHorizontal: SPACING }}
               >
-                <BannerAd unitId={getAdUnitId()} size={`${windowWidth}x128`} />
+                <BannerAd unitId={getAdUnitId()} size={bannerAdSize} />
               </View>
             );
           }

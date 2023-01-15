@@ -12,6 +12,7 @@ import { StatusBar } from 'expo-status-bar';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from 'react-native-google-mobile-ads';
+import { AdsConsent, AdsConsentStatus } from 'react-native-google-mobile-ads';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -41,6 +42,17 @@ mobileAds().initialize();
 export const AppProviders = ({ children }: { children: JSX.Element }) => {
   const { setNotificationPreference } = usePreferencesStore();
 
+  const getConsentStatus = useCallback(async () => {
+    const consentInfo = await AdsConsent.requestInfoUpdate();
+    if (
+      consentInfo.isConsentFormAvailable &&
+      (consentInfo.status === AdsConsentStatus.UNKNOWN ||
+        consentInfo.status === AdsConsentStatus.REQUIRED)
+    ) {
+      await AdsConsent.showForm();
+    }
+  }, []);
+
   async function getNotificationPermissionStatus() {
     if (isAndroid) {
       await Notifications.setNotificationChannelAsync('default', {
@@ -54,7 +66,7 @@ export const AppProviders = ({ children }: { children: JSX.Element }) => {
     return status.granted;
   }
 
-  const requestNotificationPermission = useCallback(async () => {
+  const requestDevicePermissions = useCallback(async () => {
     const granted = await getNotificationPermissionStatus();
 
     if (!granted) {
@@ -70,11 +82,13 @@ export const AppProviders = ({ children }: { children: JSX.Element }) => {
         setNotificationPreference({ type: 'all', value: true });
       }
     }
-  }, [setNotificationPreference]);
+
+    await getConsentStatus();
+  }, [getConsentStatus, setNotificationPreference]);
 
   useEffect(() => {
-    requestNotificationPermission();
-  }, [requestNotificationPermission]);
+    requestDevicePermissions();
+  }, [requestDevicePermissions]);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
