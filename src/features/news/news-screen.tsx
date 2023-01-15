@@ -23,6 +23,8 @@ export const NewsScreen = ({ navigation }: Props) => {
 
   const { width: windowWidth } = useWindowDimensions();
 
+  const width = windowWidth - 32;
+
   const data = useMemo(() => {
     return insertAdsToArray({
       array: articles?.pages?.flat().map((article) => article) ?? [],
@@ -53,6 +55,11 @@ export const NewsScreen = ({ navigation }: Props) => {
     }
   };
 
+  const bannerAdSize = useMemo(() => {
+    const height = 128;
+    return `${Math.floor(width)}x${height}`;
+  }, [width]);
+
   return (
     <Container>
       <FlashList
@@ -73,7 +80,7 @@ export const NewsScreen = ({ navigation }: Props) => {
             return (
               <View className="px-4">
                 <View className="bg-secondary rounded-lg h-32 overflow-hidden">
-                  <BannerAd unitId={getAdUnitId()} size={`${windowWidth}x128`} />
+                  <BannerAd unitId={getAdUnitId()} size={bannerAdSize} />
                 </View>
               </View>
             );

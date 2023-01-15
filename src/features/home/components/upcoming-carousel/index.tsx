@@ -75,6 +75,11 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
     }).slice(0, 6);
   }, [launches]);
 
+  const bannerAdSize = useMemo(() => {
+    const height = 96;
+    return `${Math.floor(width)}x${height}`;
+  }, [width]);
+
   return (
     <Reanimated.View entering={FadeIn} className="mt-12">
       <View className="flex-row justify-between mb-4 px-4">
@@ -93,7 +98,7 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
                 className="bg-secondary rounded-lg h-24 overflow-hidden"
                 style={{ width, marginHorizontal: SPACING }}
               >
-                <BannerAd unitId={getAdUnitId()} size={`${windowWidth}x96`} />
+                <BannerAd unitId={getAdUnitId()} size={bannerAdSize} />
               </View>
             );
           }
