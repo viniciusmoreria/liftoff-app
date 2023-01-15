@@ -3,7 +3,9 @@ import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-nati
 
 import { Article as ArticleType } from '@features/home/hooks/types';
 import { useArticles } from '@features/home/hooks/use-articles';
+import { getAdUnitId, insertAdsToArray } from '@libs/utilities';
 import { FlashList } from '@shopify/flash-list';
+import { BannerAd } from 'react-native-google-mobile-ads';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -34,15 +36,20 @@ export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props
   };
 
   const data = useMemo(() => {
-    return articles?.pages
-      ?.flat()
-      .slice(0, 5)
-      .map((article) => article);
+    return insertAdsToArray({
+      array:
+        articles?.pages
+          ?.flat()
+          .slice(0, 6)
+          .map((article) => article) ?? [],
+      interval: 2,
+    }).slice(0, 6);
   }, [articles]);
 
-  if (!data) {
-    return null;
-  }
+  const bannerAdSize = useMemo(() => {
+    const height = 128;
+    return `${Math.floor(width)}x${height}`;
+  }, [width]);
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-0">
@@ -55,7 +62,19 @@ export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props
 
       <FlashList
         data={data ?? []}
-        renderItem={renderItem}
+        renderItem={({ item }) => {
+          if (item.type === 'ad') {
+            return (
+              <View
+                className="bg-secondary rounded-lg h-32 overflow-hidden"
+                style={{ width, marginHorizontal: SPACING }}
+              >
+                <BannerAd unitId={getAdUnitId()} size={bannerAdSize} />
+              </View>
+            );
+          }
+          return renderItem({ item: item as ArticleType });
+        }}
         horizontal
         pagingEnabled
         bounces={false}

@@ -487,6 +487,7 @@ export interface Launch {
   pad_launch_attempt_count_year?: number;
   agency_launch_attempt_count_year?: number;
   mission_patches: MissionPatch[];
+  type?: string;
 }
 
 export interface Article {
@@ -498,6 +499,7 @@ export interface Article {
   summary: string;
   publishedAt: string;
   newsSite: string;
+  type?: string;
   launches: [
     {
       id: string;

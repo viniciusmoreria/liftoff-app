@@ -1,9 +1,11 @@
-import React, { useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-native';
 
 import { Launch } from '@features/home/hooks/types';
 import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
+import { getAdUnitId, insertAdsToArray } from '@libs/utilities';
 import { FlashList } from '@shopify/flash-list';
+import { BannerAd } from 'react-native-google-mobile-ads';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -34,15 +36,20 @@ export const PreviousCarousel = ({ navigateToLaunchDetail, navigateToPreviousLau
   };
 
   const data = useMemo(() => {
-    return docs?.pages
-      ?.flat()
-      .slice(0, 5)
-      .map((doc) => doc.data() as Launch);
-  }, [docs]);
+    return insertAdsToArray({
+      array:
+        docs?.pages
+          ?.flat()
+          .slice(0, 6)
+          .map((doc) => doc.data()) ?? [],
+      interval: 2,
+    }).slice(0, 6);
+  }, [docs?.pages]);
 
-  if (!data) {
-    return null;
-  }
+  const bannerAdSize = useMemo(() => {
+    const height = 224;
+    return `${Math.floor(width)}x${height}`;
+  }, [width]);
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-0">
@@ -55,7 +62,19 @@ export const PreviousCarousel = ({ navigateToLaunchDetail, navigateToPreviousLau
 
       <FlashList
         data={data ?? []}
-        renderItem={renderItem}
+        renderItem={({ item }) => {
+          if (item.type === 'ad') {
+            return (
+              <View
+                className="bg-secondary rounded-lg h-56 overflow-hidden"
+                style={{ width, marginHorizontal: SPACING }}
+              >
+                <BannerAd unitId={getAdUnitId()} size={bannerAdSize} />
+              </View>
+            );
+          }
+          return renderItem({ item: item as Launch });
+        }}
         horizontal
         pagingEnabled
         bounces={false}

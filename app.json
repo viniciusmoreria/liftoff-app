@@ -58,6 +58,14 @@
     },
     "plugins": [
       [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }"
+          }
+        }
+      ],
+      [
         "expo-image-picker",
         {
           "photosPermission": "The photo will be used only to customize your profile picture and will not be upload to any server.",
@@ -85,5 +93,11 @@
       "@react-native-firebase/perf",
       "sentry-expo"
     ]
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4500374559312974~8821018551",
+    "ios_app_id": "ca-app-pub-4500374559312974~6118795609",
+    "user_tracking_usage_description": "This will allow us to show you personalized ads, which helps us to keep the app free.",
+    "delay_app_measurement_init": true
   }
 }

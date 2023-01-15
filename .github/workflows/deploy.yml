@@ -87,4 +87,4 @@ jobs:
         run: git push --follow-tags
 
       - name: Build on EAS
-        run: eas build --profile production --platform all --non-interactive --no-wait --auto-submit --resource-class=large
+        run: eas build --profile production --platform all --non-interactive --no-wait --auto-submit
