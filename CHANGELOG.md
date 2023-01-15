@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/viniciusmoreria/liftoff-app/compare/v2.2.0...v2.3.0) (2023-01-15)
+
+
+### ✨ Features
+
+* bump release version ([4d351a7](https://github.com/viniciusmoreria/liftoff-app/commit/4d351a74f3b5eee1f64d9ae4552688c837af0311))
+* implements amplitude analytics sdk ([0127aac](https://github.com/viniciusmoreria/liftoff-app/commit/0127aac9ab425f497f2f54285d3bbb8bfc42e96b))
+* insert banner ads on home screen ([30cfd6e](https://github.com/viniciusmoreria/liftoff-app/commit/30cfd6e3d2158c42a5415eff9a1f2d126511a330))
+* insert banner on list screens ([6edff40](https://github.com/viniciusmoreria/liftoff-app/commit/6edff40734d37972d52908cce05e6a667250eeb9))
+* insert new types and setup eas m1 builds ([b741bf0](https://github.com/viniciusmoreria/liftoff-app/commit/b741bf09095db9d1fbe765c3755b2832113ead91))
+
+
+### 🐛 Bug Fixes
+
+* banner size ([693c98f](https://github.com/viniciusmoreria/liftoff-app/commit/693c98f9c794e82f798aadf5a96208257efd19da))
+* banner size crash on android devices ([e16e5f0](https://github.com/viniciusmoreria/liftoff-app/commit/e16e5f060d7d615aa2275b5e5a01d533f90049ee))
+
 ## [2.2.0](https://github.com/viniciusmoreria/liftoff-app/compare/v2.1.0...v2.2.0) (2022-11-06)
 
 
