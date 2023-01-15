@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Pressable, RefreshControl, Text, View } from 'react-native';
+import { Pressable, RefreshControl, Text, View, useWindowDimensions } from 'react-native';
 
 import { Container } from '@components/container';
 import { ProgressBar } from '@components/progress-bar';
@@ -11,7 +11,7 @@ import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
 import { format } from 'date-fns';
-import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import { BannerAd } from 'react-native-google-mobile-ads';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -21,6 +21,8 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
   const insets = useSafeAreaInsets();
   const { logEvent } = useAnalytics();
   const { data: launches, refetch } = useUpcomingLaunches();
+
+  const { width: windowWidth } = useWindowDimensions();
 
   const data = useMemo(() => {
     return insertAdsToArray({
@@ -98,7 +100,7 @@ export const UpcomingLaunchesScreen = ({ navigation }: Props) => {
             return (
               <View className="px-4">
                 <View className="bg-secondary rounded-lg h-24 w-full overflow-hidden">
-                  <BannerAd unitId={getAdUnitId()} size={BannerAdSize.INLINE_ADAPTIVE_BANNER} />
+                  <BannerAd unitId={getAdUnitId()} size={`${windowWidth}x96`} />
                 </View>
               </View>
             );

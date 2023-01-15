@@ -7,7 +7,7 @@ import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches'
 import { getAdUnitId, insertAdsToArray } from '@libs/utilities';
 import { FlashList } from '@shopify/flash-list';
 import { format } from 'date-fns';
-import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import { BannerAd } from 'react-native-google-mobile-ads';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -93,7 +93,7 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
                 className="bg-secondary rounded-lg h-24 overflow-hidden"
                 style={{ width, marginHorizontal: SPACING }}
               >
-                <BannerAd unitId={getAdUnitId()} size={BannerAdSize.INLINE_ADAPTIVE_BANNER} />
+                <BannerAd unitId={getAdUnitId()} size={`${windowWidth}x96`} />
               </View>
             );
           }

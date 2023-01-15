@@ -5,7 +5,7 @@ import { Article as ArticleType } from '@features/home/hooks/types';
 import { useArticles } from '@features/home/hooks/use-articles';
 import { getAdUnitId, insertAdsToArray } from '@libs/utilities';
 import { FlashList } from '@shopify/flash-list';
-import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import { BannerAd } from 'react-native-google-mobile-ads';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -64,7 +64,7 @@ export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props
                 className="bg-secondary rounded-lg h-32 overflow-hidden"
                 style={{ width, marginHorizontal: SPACING }}
               >
-                <BannerAd unitId={getAdUnitId()} size={BannerAdSize.INLINE_ADAPTIVE_BANNER} />
+                <BannerAd unitId={getAdUnitId()} size={`${windowWidth}x128`} />
               </View>
             );
           }
