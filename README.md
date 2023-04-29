@@ -2,8 +2,8 @@
 
 Liftoff allows you to track all upcoming launches from SpaceX, NASA, ULA and more
 
-[![Build Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff-app/Lint?style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff-app/actions/workflows/lint.yml)
-[![Deploy Status](https://img.shields.io/github/workflow/status/viniciusmoreria/liftoff-app/Expo%20Preview?label=deployment&style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff-app/actions/workflows/preview.yml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/viniciusmoreria/liftoff-app/lint.yml?style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff-app/actions/workflows/lint.yml)
+[![Deploy Status](https://img.shields.io/github/actions/workflow/status/viniciusmoreria/liftoff-app/preview.yml?label=deployment&style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff-app/actions/workflows/preview.yml)
 [![Runs with Expo](https://img.shields.io/badge/runs%20with%20expo-try%20now-4630EB.svg?style=flat&colorA=000000&colorB=000000)](https://expo.dev/@viniciusmoreria/liftoff)
 [![License](https://img.shields.io/github/license/viniciusmoreria/liftoff-app?style=flat&colorA=000000&colorB=000000)](https://github.com/viniciusmoreria/liftoff-app/blob/main/LICENSE)
 

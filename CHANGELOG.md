@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/viniciusmoreria/liftoff-app/compare/v2.1.0...v2.4.1) (2023-01-15)
+
+
+### ✨ Features
+
+* analytics tracking ([29ca98d](https://github.com/viniciusmoreria/liftoff-app/commit/29ca98df5bc3c41799c487ce909af2ef0aa47fe0))
+* bump release version ([4d351a7](https://github.com/viniciusmoreria/liftoff-app/commit/4d351a74f3b5eee1f64d9ae4552688c837af0311))
+* implements amplitude analytics sdk ([0127aac](https://github.com/viniciusmoreria/liftoff-app/commit/0127aac9ab425f497f2f54285d3bbb8bfc42e96b))
+* implements fast image for better list performance ([353c4db](https://github.com/viniciusmoreria/liftoff-app/commit/353c4db2c0e4645d6af7bb234f2e5108da41873a))
+* increase icon size ([e63cd34](https://github.com/viniciusmoreria/liftoff-app/commit/e63cd34222da24657e475a522d56fd8d5ec20a93))
+* insert banner ads on home screen ([30cfd6e](https://github.com/viniciusmoreria/liftoff-app/commit/30cfd6e3d2158c42a5415eff9a1f2d126511a330))
+* insert banner on list screens ([6edff40](https://github.com/viniciusmoreria/liftoff-app/commit/6edff40734d37972d52908cce05e6a667250eeb9))
+* insert new types and setup eas m1 builds ([b741bf0](https://github.com/viniciusmoreria/liftoff-app/commit/b741bf09095db9d1fbe765c3755b2832113ead91))
+* new app icon ([ac080e4](https://github.com/viniciusmoreria/liftoff-app/commit/ac080e45d2b45cbf5bfa5a065519667458ca0ef7))
+* new icon style ([b006da0](https://github.com/viniciusmoreria/liftoff-app/commit/b006da006d9abf79d08712de5317d7b37dd656c5))
+
+
+### 🐛 Bug Fixes
+
+* adaptive icon size ([e08d817](https://github.com/viniciusmoreria/liftoff-app/commit/e08d8179ee2cfcf7f35d098d8d3fec432c7d9d38))
+* apple store review link ([8e2be21](https://github.com/viniciusmoreria/liftoff-app/commit/8e2be2105981db6c6cda30a4f5e04a7a866b6028))
+* banner size ([693c98f](https://github.com/viniciusmoreria/liftoff-app/commit/693c98f9c794e82f798aadf5a96208257efd19da))
+* banner size crash on android devices ([e16e5f0](https://github.com/viniciusmoreria/liftoff-app/commit/e16e5f060d7d615aa2275b5e5a01d533f90049ee))
+* icon color ([c3c084a](https://github.com/viniciusmoreria/liftoff-app/commit/c3c084ad2d974f63d3f38bc7756c84e576a4ce90))
+* icon size ([4335d7c](https://github.com/viniciusmoreria/liftoff-app/commit/4335d7c497613b5a79333c916cd8642de8102701))
+* increase default font size ([ab3cbb4](https://github.com/viniciusmoreria/liftoff-app/commit/ab3cbb476e649e5ecc3468746edfd8bf13db50ad))
+
+
+### 🤖 Chores
+
+* **release:** 2.2.0 ([4482611](https://github.com/viniciusmoreria/liftoff-app/commit/44826117db07b1e37e48a2f96e31205d6a967a63))
+* **release:** 2.3.0 ([ea365c7](https://github.com/viniciusmoreria/liftoff-app/commit/ea365c74c58a35bb2fb1f8618aec7dd0ac90352a))
+
+## [2.3.0](https://github.com/viniciusmoreria/liftoff-app/compare/v2.2.0...v2.3.0) (2023-01-15)
+
+
+### ✨ Features
+
+* bump release version ([4d351a7](https://github.com/viniciusmoreria/liftoff-app/commit/4d351a74f3b5eee1f64d9ae4552688c837af0311))
+* implements amplitude analytics sdk ([0127aac](https://github.com/viniciusmoreria/liftoff-app/commit/0127aac9ab425f497f2f54285d3bbb8bfc42e96b))
+* insert banner ads on home screen ([30cfd6e](https://github.com/viniciusmoreria/liftoff-app/commit/30cfd6e3d2158c42a5415eff9a1f2d126511a330))
+* insert banner on list screens ([6edff40](https://github.com/viniciusmoreria/liftoff-app/commit/6edff40734d37972d52908cce05e6a667250eeb9))
+* insert new types and setup eas m1 builds ([b741bf0](https://github.com/viniciusmoreria/liftoff-app/commit/b741bf09095db9d1fbe765c3755b2832113ead91))
+
+
+### 🐛 Bug Fixes
+
+* banner size ([693c98f](https://github.com/viniciusmoreria/liftoff-app/commit/693c98f9c794e82f798aadf5a96208257efd19da))
+* banner size crash on android devices ([e16e5f0](https://github.com/viniciusmoreria/liftoff-app/commit/e16e5f060d7d615aa2275b5e5a01d533f90049ee))
+
 ## [2.2.0](https://github.com/viniciusmoreria/liftoff-app/compare/v2.1.0...v2.2.0) (2022-11-06)
 
 
