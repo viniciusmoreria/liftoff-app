@@ -5,6 +5,7 @@ import { Container } from '@components/container';
 import { Ionicons } from '@expo/vector-icons';
 import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import {
+  extractLivestreamId,
   formatToDollar,
   formatToUnit,
   getLaunchStatusColor,
@@ -34,7 +35,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
   const [hasLoadedVideo, setHasLoadedVideo] = useState(false);
   const [hasLoadedImage, setHasLoadedImage] = useState(false);
 
-  const livestreamId = launch?.vidURLs[0]?.url?.split('v=')[1];
+  const livestreamId = extractLivestreamId(launch?.vidURLs[0]?.url);
   const rocketName = launch?.rocket?.configuration?.name;
   const rocketInfoURL =
     launch.rocket?.configuration?.wiki_url || launch.rocket?.configuration?.info_url;

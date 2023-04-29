@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Text, View, useWindowDimensions } from 'react-native';
 
 import { Launch } from '@features/home/hooks/types';
+import { extractLivestreamId } from '@libs/utilities';
 import { format } from 'date-fns';
 import { Skeleton } from 'moti/skeleton';
 import FastImage from 'react-native-fast-image';
@@ -14,7 +15,7 @@ export const PreviousLaunch = ({ launch }: { launch: Launch }) => {
 
   const [hasLoadedImage, setHasLoadedImage] = useState(false);
 
-  const livestreamId = launch?.vidURLs[0]?.url?.split('v=')[1];
+  const livestreamId = extractLivestreamId(launch?.vidURLs[0]?.url);
   const launchBySpacex = launch?.launch_service_provider?.id === 121;
   const launchImage = launchBySpacex
     ? `https://img.youtube.com/vi/${livestreamId}/0.jpg`
