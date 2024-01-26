@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.5.0 (2024-01-26)
+
+
+### 🐛 Bug Fixes
+
+* github action token ([ae36b16](https://github.com/viniciusmoreria/liftoff-app/commit/ae36b1642b6da633b30c1144c105bf51547416a5))
+
 ### [2.4.1](https://github.com/viniciusmoreria/liftoff-app/compare/v2.1.0...v2.4.1) (2023-01-15)
 
 

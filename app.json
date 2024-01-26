@@ -6,7 +6,7 @@
     "owner": "viniciusmoreria",
     "privacy": "public",
     "primaryColor": "#16171B",
-    "version": "2.4.1",
+    "version": "2.5.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "backgroundColor": "#16171B",
@@ -17,20 +17,24 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "jsEngine": "hermes",
     "ios": {
       "bitcode": false,
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist",
-      "buildNumber": "2.4.1",
+      "buildNumber": "2.5.0",
       "config": {
         "usesNonExemptEncryption": false
       },
       "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152",
       "infoPlist": {
-        "LSApplicationQueriesSchemes": ["itms-apps"]
+        "LSApplicationQueriesSchemes": [
+          "itms-apps"
+        ]
       }
     },
     "android": {
@@ -41,7 +45,7 @@
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "versionCode": 460020401
+      "versionCode": 460020500
     },
     "notification": {
       "icon": "./src/assets/push-icon.png",
