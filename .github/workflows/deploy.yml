@@ -86,5 +86,11 @@ jobs:
       - name: Push version bump
         run: git push --follow-tags
 
+      - name: Update dev branch
+        run: |
+          git checkout dev
+          git merge --no-ff main
+          git push
+
       - name: Build on EAS
         run: eas build --profile production --platform all --non-interactive --no-wait --auto-submit
