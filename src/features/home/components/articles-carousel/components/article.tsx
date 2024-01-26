@@ -23,7 +23,7 @@ export const Article = ({ article }: { article: ArticleType }) => {
       <View className="rounded-t-lg h-32 w-28">
         <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
           <FastImage
-            source={{ uri: article.imageUrl }}
+            source={{ uri: article.image_url }}
             className="h-32 w-28"
             accessibilityLabel={`Published image of the article: ${article.title}`}
             onLoadEnd={() => setHasLoadedImage(true)}
@@ -41,11 +41,11 @@ export const Article = ({ article }: { article: ArticleType }) => {
             <Feather name="clock" color="white" />
 
             <Text className="text-white text-[9px] font-semibold ml-1">
-              {formatRelativeDate(article.publishedAt)}
+              {formatRelativeDate(article.published_at)}
             </Text>
           </View>
 
-          <Text className="text-white text-[9px] font-semibold ml-1">{article.newsSite}</Text>
+          <Text className="text-white text-[9px] font-semibold ml-1">{article.news_site}</Text>
         </View>
       </View>
     </View>

@@ -495,10 +495,10 @@ export interface Article {
   title: string;
   featured: boolean;
   url: string;
-  imageUrl: string;
+  image_url: string;
   summary: string;
-  publishedAt: string;
-  newsSite: string;
+  published_at: string;
+  news_site: string;
   type?: string;
   launches: [
     {
@@ -525,6 +525,13 @@ export interface Article {
     }
   ];
 }
+
+export type ArticleResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: Article[];
+};
 
 export type PreviousQueryCacheType =
   | InfiniteData<

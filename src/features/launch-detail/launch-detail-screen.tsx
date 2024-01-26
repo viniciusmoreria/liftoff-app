@@ -90,8 +90,8 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
           </View>
         </View>
 
-        <View className="overflow-hidden mt-6 rounded-lg">
-          {livestreamId ? (
+        {livestreamId && livestreamId?.length > 0 ? (
+          <View className="overflow-hidden mt-6 rounded-lg">
             <Skeleton show={!hasLoadedVideo}>
               <YoutubePlayer
                 initialPlayerParams={{
@@ -113,7 +113,9 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 onReady={() => setHasLoadedVideo(true)}
               />
             </Skeleton>
-          ) : (
+          </View>
+        ) : (
+          <View className="overflow-hidden mt-6 rounded-lg">
             <View className="bg-secondary rounded-lg">
               {launch?.image && (
                 <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
@@ -126,12 +128,12 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 </Skeleton>
               )}
 
-              <View className="bg-secondary w-full absolute bottom-0 rounded-b-lg py-5 items-center">
+              <View className="bg-secondary w-full rounded-b-lg py-5 items-center">
                 <Text className="text-white text-xs font-bold">Livestream not available</Text>
               </View>
             </View>
-          )}
-        </View>
+          </View>
+        )}
 
         {launch.mission && (
           <View className="bg-secondary rounded-lg p-4 justify-between mt-6">

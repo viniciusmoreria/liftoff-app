@@ -6,7 +6,7 @@
     "base": {
       "ios": {
         "image": "latest",
-        "resourceClass": "m1-medium"
+        "resourceClass": "m-medium"
       },
       "android": {
         "image": "latest"

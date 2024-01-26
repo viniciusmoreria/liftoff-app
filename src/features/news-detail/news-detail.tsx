@@ -46,7 +46,7 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
         <Skeleton show={!hasLoadedImage}>
           <FastImage
             source={{
-              uri: article.imageUrl,
+              uri: article.image_url,
             }}
             style={{
               height: Dimensions.get('screen').height / 2,
@@ -68,11 +68,11 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
             <View className="flex-row items-center justify-between h-8">
               <Feather name="clock" color="white" />
               <Text className="text-white text-sm ml-1 leading-3">
-                {formatRelativeDate(article.publishedAt)}
+                {formatRelativeDate(article.published_at)}
               </Text>
             </View>
 
-            <Text className="text-white text-sm">{article.newsSite}</Text>
+            <Text className="text-white text-sm">{article.news_site}</Text>
           </View>
 
           <View className="flex-1 mt-10">
@@ -89,7 +89,7 @@ export const NewsDetailScreen = ({ navigation }: Props) => {
             className="bg-secondary w-full p-4 rounded-lg items-center mt-16"
           >
             <Text className="text-white font-bold text-md">
-              Continue reading on {article.newsSite}
+              Continue reading on {article.news_site}
             </Text>
           </Pressable>
         </View>
