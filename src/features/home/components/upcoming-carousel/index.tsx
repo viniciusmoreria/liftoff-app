@@ -1,13 +1,11 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Animated, Pressable, Text, View, useWindowDimensions } from 'react-native';
 
 import { ProgressBar } from '@components/progress-bar';
 import { Launch } from '@features/home/hooks/types';
 import { useUpcomingLaunches } from '@features/home/hooks/use-upcoming-launches';
-import { getAdUnitId, insertAdsToArray } from '@libs/utilities';
 import { FlashList } from '@shopify/flash-list';
 import { format } from 'date-fns';
-import { BannerAd } from 'react-native-google-mobile-ads';
 import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 import { Pagination } from '../pagination';
@@ -68,17 +66,7 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
     );
   };
 
-  const data = useMemo(() => {
-    return insertAdsToArray({
-      array: launches?.filter((launch) => new Date(launch.net) > new Date()).slice(0, 6) ?? [],
-      interval: 2,
-    }).slice(0, 6);
-  }, [launches]);
-
-  const bannerAdSize = useMemo(() => {
-    const height = 96;
-    return `${Math.floor(width)}x${height}`;
-  }, [width]);
+  const data = launches?.filter((launch) => new Date(launch.net) > new Date()).slice(0, 5) ?? [];
 
   return (
     <Reanimated.View entering={FadeIn} className="mt-12">
@@ -91,19 +79,7 @@ export const UpcomingCarousel = ({ navigateToLaunchDetail, navigateToUpcomingLau
 
       <FlashList
         data={data ?? []}
-        renderItem={({ item }) => {
-          if (item?.type === 'ad') {
-            return (
-              <View
-                className="bg-secondary rounded-lg h-24 overflow-hidden"
-                style={{ width, marginHorizontal: SPACING }}
-              >
-                <BannerAd unitId={getAdUnitId()} size={bannerAdSize} />
-              </View>
-            );
-          }
-          return renderItem({ item: item });
-        }}
+        renderItem={renderItem}
         horizontal
         pagingEnabled
         bounces={false}

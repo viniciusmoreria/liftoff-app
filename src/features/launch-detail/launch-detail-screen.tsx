@@ -5,6 +5,7 @@ import { Container } from '@components/container';
 import { Ionicons } from '@expo/vector-icons';
 import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
 import {
+  extractLivestreamId,
   formatToDollar,
   formatToUnit,
   getLaunchStatusColor,
@@ -34,7 +35,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
   const [hasLoadedVideo, setHasLoadedVideo] = useState(false);
   const [hasLoadedImage, setHasLoadedImage] = useState(false);
 
-  const livestreamId = launch?.vidURLs[0]?.url?.split('v=')[1];
+  const livestreamId = extractLivestreamId(launch?.vidURLs[0]?.url);
   const rocketName = launch?.rocket?.configuration?.name;
   const rocketInfoURL =
     launch.rocket?.configuration?.wiki_url || launch.rocket?.configuration?.info_url;
@@ -89,8 +90,8 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
           </View>
         </View>
 
-        <View className="overflow-hidden mt-6 rounded-lg">
-          {livestreamId ? (
+        {livestreamId && livestreamId?.length > 0 ? (
+          <View className="overflow-hidden mt-6 rounded-lg">
             <Skeleton show={!hasLoadedVideo}>
               <YoutubePlayer
                 initialPlayerParams={{
@@ -112,7 +113,9 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 onReady={() => setHasLoadedVideo(true)}
               />
             </Skeleton>
-          ) : (
+          </View>
+        ) : (
+          <View className="overflow-hidden mt-6 rounded-lg">
             <View className="bg-secondary rounded-lg">
               {launch?.image && (
                 <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
@@ -125,12 +128,12 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 </Skeleton>
               )}
 
-              <View className="bg-secondary w-full absolute bottom-0 rounded-b-lg py-5 items-center">
+              <View className="bg-secondary w-full rounded-b-lg py-5 items-center">
                 <Text className="text-white text-xs font-bold">Livestream not available</Text>
               </View>
             </View>
-          )}
-        </View>
+          </View>
+        )}
 
         {launch.mission && (
           <View className="bg-secondary rounded-lg p-4 justify-between mt-6">

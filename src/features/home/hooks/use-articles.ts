@@ -1,15 +1,15 @@
 import { axios } from '@libs/axios';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { Article } from './types';
+import { ArticleResponse } from './types';
 
-const SPACEFLIGHTNEWSAPI = 'https://api.spaceflightnewsapi.net/v3';
+const SPACEFLIGHTNEWSAPI = 'https://api.spaceflightnewsapi.net/v4';
 
 export const ARTICLES_QUERY_KEY = 'articles';
 
-const getArticles = async (start: number): Promise<Article[]> => {
-  const response = await axios({
-    url: `${SPACEFLIGHTNEWSAPI}/articles?_limit=10&_start=${start}`,
+const getArticles = async (offset: number): Promise<ArticleResponse> => {
+  const response: ArticleResponse = await axios({
+    url: `${SPACEFLIGHTNEWSAPI}/articles?limit=10&offset=${offset}`,
     method: 'GET',
   });
   return response;
@@ -17,6 +17,8 @@ const getArticles = async (start: number): Promise<Article[]> => {
 
 export function useArticles() {
   return useInfiniteQuery([ARTICLES_QUERY_KEY], ({ pageParam = 0 }) => getArticles(pageParam), {
-    getNextPageParam: (lastPage, pages) => (lastPage.length ? pages.length * 10 : undefined),
+    getNextPageParam: (lastPage) => {
+      return lastPage.next ? lastPage.next.split('offset=')[1] : undefined;
+    },
   });
 }
