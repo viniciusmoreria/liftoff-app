@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Pressable, RefreshControl, View, useWindowDimensions } from 'react-native';
+import { Pressable, RefreshControl, View } from 'react-native';
 
 import { Container } from '@components/container';
 import { Article } from '@features/home/components/articles-carousel/components/article';
@@ -20,12 +20,8 @@ export const NewsScreen = ({ navigation }: Props) => {
   const { logEvent } = useAnalytics();
   const { data: articles, fetchNextPage, refetch, isFetchingNextPage, isFetching } = useArticles();
 
-  const { width: windowWidth } = useWindowDimensions();
-
-  const width = windowWidth - 32;
-
   const data = useMemo(() => {
-    return articles?.pages?.flat().map((article) => article);
+    return articles?.pages.flatMap((page) => page.results);
   }, [articles]);
 
   const renderItem = ({ item }: { item: ArticleType }) => {
@@ -50,11 +46,6 @@ export const NewsScreen = ({ navigation }: Props) => {
       fetchNextPage();
     }
   };
-
-  const bannerAdSize = useMemo(() => {
-    const height = 128;
-    return `${Math.floor(width)}x${height}`;
-  }, [width]);
 
   return (
     <Container>

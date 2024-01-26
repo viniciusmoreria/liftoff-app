@@ -128,7 +128,7 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
                 </Skeleton>
               )}
 
-              <View className="bg-secondary w-full absolute bottom-0 rounded-b-lg py-5 items-center">
+              <View className="bg-secondary w-full rounded-b-lg py-5 items-center">
                 <Text className="text-white text-xs font-bold">Livestream not available</Text>
               </View>
             </View>

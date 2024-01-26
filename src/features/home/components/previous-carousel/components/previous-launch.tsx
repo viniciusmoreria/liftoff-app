@@ -38,8 +38,8 @@ export const PreviousLaunch = ({ launch }: { launch: Launch }) => {
             />
           </Skeleton>
         ) : (
-          <View className="h-32 bg-secondary items-center justify-center">
-            <Text className="text-white text-xs font-bold text-center">No image available</Text>
+          <View className="h-32 bg-gray items-center justify-center w-full">
+            <Text className="text-dark text-xs font-bold text-center">No image available</Text>
           </View>
         )}
       </View>
