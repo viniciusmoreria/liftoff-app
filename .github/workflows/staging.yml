@@ -1,6 +1,7 @@
 name: Expo Staging
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
@@ -20,6 +21,7 @@ jobs:
             echo "EXPO_TOKEN is not set"
             exit 1
           fi
+
       - name: Checkout repository
         uses: actions/checkout@v3
 

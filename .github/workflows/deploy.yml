@@ -1,6 +1,7 @@
 name: Deploy
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -9,6 +10,7 @@ on:
       - CHANGELOG.md
       - app.json
       - package.json
+      - .github/**
 
 concurrency:
   group: expo-production-${{ github.event_name }}-${{ github.ref }}
@@ -29,9 +31,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.ACTION_TOKEN }}
 
       - name: Set up git user
         run: |
