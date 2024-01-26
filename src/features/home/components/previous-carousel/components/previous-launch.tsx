@@ -17,24 +17,31 @@ export const PreviousLaunch = ({ launch }: { launch: Launch }) => {
 
   const livestreamId = extractLivestreamId(launch?.vidURLs[0]?.url);
   const launchBySpacex = launch?.launch_service_provider?.id === 121;
-  const launchImage = launchBySpacex
-    ? `https://img.youtube.com/vi/${livestreamId}/0.jpg`
-    : launch?.image;
+  const launchImage =
+    launchBySpacex && livestreamId
+      ? `https://img.youtube.com/vi/${livestreamId}/0.jpg`
+      : launch?.image;
 
   return (
     <View
       className="bg-secondary rounded-lg overflow-hidden"
       style={{ width, marginHorizontal: SPACING }}
     >
-      <View className="rounded-t-lg">
-        <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
-          <FastImage
-            source={{ uri: launchImage }}
-            className="h-32"
-            accessibilityLabel={`${launch.name} launch image`}
-            onLoadEnd={() => setHasLoadedImage(true)}
-          />
-        </Skeleton>
+      <View className="rounded-t-lg items-center">
+        {launchImage ? (
+          <Skeleton show={!hasLoadedImage} width="100%" radius={0}>
+            <FastImage
+              source={{ uri: launchImage }}
+              className="h-32"
+              accessibilityLabel={`${launch.name} launch image`}
+              onLoadEnd={() => setHasLoadedImage(true)}
+            />
+          </Skeleton>
+        ) : (
+          <View className="h-32 bg-secondary items-center justify-center">
+            <Text className="text-white text-xs font-bold text-center">No image available</Text>
+          </View>
+        )}
       </View>
 
       <View className="h-24 p-4">

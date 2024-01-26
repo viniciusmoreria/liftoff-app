@@ -1,16 +1,15 @@
 import React, { useMemo } from 'react';
-import { Pressable, RefreshControl, View, useWindowDimensions } from 'react-native';
+import { Pressable, RefreshControl, View } from 'react-native';
 
 import { Container } from '@components/container';
 import { PreviousLaunch } from '@features/home/components/previous-carousel/components/previous-launch';
 import { Launch } from '@features/home/hooks/types';
 import { usePreviousLaunches } from '@features/home/hooks/use-previous-launches';
 import { useAnalytics } from '@libs/firebase/analytics/use-analytics';
-import { getAdUnitId, insertAdsToArray, isIOS } from '@libs/utilities';
+import { isIOS } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashList } from '@shopify/flash-list';
-import { BannerAd } from 'react-native-google-mobile-ads';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -27,16 +26,9 @@ export const PreviousLaunchesScreen = ({ navigation }: Props) => {
     isFetching,
   } = usePreviousLaunches();
 
-  const { width: windowWidth } = useWindowDimensions();
-
-  const width = windowWidth - 32;
-
   const data = useMemo(() => {
-    return insertAdsToArray({
-      array: docs?.pages?.flat().map((doc) => doc.data()) ?? [],
-      interval: 5,
-    });
-  }, [docs?.pages]);
+    return docs?.pages?.flat().map((doc) => doc.data() as Launch);
+  }, [docs]);
 
   const renderItem = ({ item }: { item: Launch }) => {
     return (
@@ -61,11 +53,6 @@ export const PreviousLaunchesScreen = ({ navigation }: Props) => {
     }
   };
 
-  const bannerAdSize = useMemo(() => {
-    const height = 224;
-    return `${Math.floor(width)}x${height}`;
-  }, [width]);
-
   return (
     <Container>
       <FlashList
@@ -81,18 +68,7 @@ export const PreviousLaunchesScreen = ({ navigation }: Props) => {
         }
         data={data}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => {
-          if (item.type === 'ad') {
-            return (
-              <View className="px-4">
-                <View className="bg-secondary rounded-lg h-56 overflow-hidden">
-                  <BannerAd unitId={getAdUnitId()} size={bannerAdSize} />
-                </View>
-              </View>
-            );
-          }
-          return renderItem({ item: item as Launch });
-        }}
+        renderItem={renderItem}
         keyExtractor={(item) => String(item.id)}
         estimatedItemSize={207}
         ItemSeparatorComponent={() => <View className="h-4" />}
