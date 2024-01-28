@@ -34,7 +34,7 @@ export const ArticlesCarousel = ({ navigateToNews, navigateToNewsDetail }: Props
   };
 
   const data = useMemo(() => {
-    return articles?.pages.flatMap((page) => page.results);
+    return articles?.pages.flatMap((page) => page.results).slice(0, 5);
   }, [articles]);
 
   if (!data) {
