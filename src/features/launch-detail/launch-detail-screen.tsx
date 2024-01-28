@@ -14,19 +14,19 @@ import {
 } from '@libs/utilities';
 import { RootStackParams } from '@navigation/types';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+// import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format } from 'date-fns';
 import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
 import FastImage from 'react-native-fast-image';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
-import { LaunchArticles } from './components/launch-articles';
+// import { LaunchArticles } from './components/launch-articles';
 import { LocationMap } from './components/location-map';
 
-type Props = NativeStackScreenProps<RootStackParams, 'launch-detail'>;
+// type Props = NativeStackScreenProps<RootStackParams, 'launch-detail'>;
 
-export const LaunchDetailScreen = ({ navigation }: Props) => {
+export const LaunchDetailScreen = () => {
   const { params } = useRoute<RouteProp<RootStackParams, 'launch-detail'>>();
   const { launch } = params;
 
@@ -332,13 +332,13 @@ export const LaunchDetailScreen = ({ navigation }: Props) => {
         {launch?.pad && <LocationMap pad={launch?.pad} />}
       </View>
 
-      <LaunchArticles
+      {/* <LaunchArticles
         launchId={launch?.id}
         navigateToNewsDetail={(article) => {
           logEvent('news_detail', { article: article.title, articleUrl: article.url });
           navigation.navigate('news-detail', { article });
         }}
-      />
+      /> */}
     </Container>
   );
 };

@@ -89,6 +89,7 @@ jobs:
 
       - name: Update dev branch
         run: |
+          git fetch --all
           git checkout dev
           git merge --no-ff main
           git push
