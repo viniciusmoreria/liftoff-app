@@ -5,7 +5,7 @@
     "description": "Liftoff allows you to track all upcoming launches from SpaceX, NASA, ULA and more",
     "scheme": "liftoff",
     "owner": "viniciusmoreria",
-    "version": "2.6.0",
+    "version": "3.0.0",
     "privacy": "public",
     "web": {
       "bundler": "metro",
@@ -31,7 +31,7 @@
       "bitcode": false,
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
-      "buildNumber": "2.6.0",
+      "buildNumber": "3.0.0",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -55,7 +55,7 @@
       },
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
-      "versionCode": 460020600,
+      "versionCode": 500030000,
       "googleServicesFile": "./src/libs/firebase/google-services.json"
     },
     "notification": {
