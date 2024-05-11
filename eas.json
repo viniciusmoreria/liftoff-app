@@ -1,12 +1,11 @@
 {
   "cli": {
-    "version": ">= 3.3.0"
+    "version": ">= 7.6.2"
   },
   "build": {
     "base": {
       "ios": {
-        "image": "latest",
-        "resourceClass": "m-medium"
+        "image": "latest"
       },
       "android": {
         "image": "latest"
@@ -17,10 +16,8 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "STAGE": "development"
-      },
-      "cache": {
-        "key": "liftoff-1"
+        "EXPO_PUBLIC_STAGE": "development",
+        "NO_FLIPPER": "1"
       }
     },
     "simulator": {
@@ -30,24 +27,20 @@
         "simulator": true
       },
       "env": {
-        "STAGE": "development"
-      },
-      "cache": {
-        "key": "liftoff-1"
+        "EXPO_PUBLIC_STAGE": "development",
+        "NO_FLIPPER": "1"
       }
     },
     "preview": {
+      "extends": "base",
       "channel": "preview",
       "distribution": "internal",
       "android": {
         "buildType": "apk"
       },
       "env": {
-        "STAGE": "staging",
-        "FLIPPER_DISABLE": "1"
-      },
-      "cache": {
-        "key": "liftoff-1"
+        "EXPO_PUBLIC_STAGE": "staging",
+        "NO_FLIPPER": "1"
       }
     },
     "production": {
@@ -58,11 +51,8 @@
         "buildType": "app-bundle"
       },
       "env": {
-        "STAGE": "production",
-        "FLIPPER_DISABLE": "1"
-      },
-      "cache": {
-        "key": "liftoff-1"
+        "EXPO_PUBLIC_STAGE": "production",
+        "NO_FLIPPER": "1"
       }
     }
   },
