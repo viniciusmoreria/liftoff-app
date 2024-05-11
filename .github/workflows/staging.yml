@@ -13,6 +13,9 @@ jobs:
   staging:
     name: Deploy Staging
     runs-on: ubuntu-latest
+    env:
+      PLATFORM: ${{ secrets.PLATFORM }}
+
     steps:
       - name: Check for EXPO_TOKEN
         run: |
@@ -59,4 +62,4 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Build on EAS
-        run: eas build --profile preview --platform all --non-interactive --no-wait
+        run: eas build --profile preview --platform ${PLATFORM} --non-interactive --no-wait

@@ -1,0 +1,80 @@
+import { Ionicons } from '@expo/vector-icons';
+import { ArticlesBadge } from '@modules/articles/presentation/components/ArticlesBadge';
+import { Text } from '@modules/components';
+import { PreviousBadge } from '@modules/launches/previous/presentation/components/PreviousBadge';
+import { useUpcomingLaunches } from '@modules/launches/upcoming/domain/useCases/getUpcomingLaunches';
+import { CountdownBadge } from '@modules/launches/upcoming/presentation/components/CountdownBadge';
+import { UpcomingBadge } from '@modules/launches/upcoming/presentation/components/UpcomingBadge';
+import { DrawerActions } from '@react-navigation/native';
+import { colors } from '@theme/colors';
+import { spacing } from '@theme/spacing';
+import { useNavigation } from 'expo-router';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const getTimeOfTheDay = () => {
+  const hour = new Date().getHours();
+  return hour < 12 ? 'morning' : hour < 18 ? 'afternoon' : 'evening';
+};
+
+export default function Page() {
+  const { dispatch } = useNavigation();
+  const { nextLaunch } = useUpcomingLaunches();
+
+  const insets = useSafeAreaInsets();
+  const styles = getStyles(insets);
+
+  return (
+    <ScrollView
+      style={styles.scrollContainer}
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+      stickyHeaderIndices={[0]}>
+      <View>
+        <View style={styles.header}>
+          <Text size="xl" text={`Good ${getTimeOfTheDay()}`} weight="semiBold" />
+
+          <TouchableWithoutFeedback onPress={() => dispatch(DrawerActions.openDrawer())}>
+            <Ionicons name="reorder-two-sharp" size={22} color={colors.text} />
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
+
+      <CountdownBadge nextLaunch={nextLaunch} />
+
+      <UpcomingBadge />
+
+      <PreviousBadge />
+
+      <ArticlesBadge />
+    </ScrollView>
+  );
+}
+
+const getStyles = (insets: EdgeInsets) =>
+  StyleSheet.create({
+    scrollContainer: {
+      backgroundColor: colors.background,
+    },
+    container: {
+      flexGrow: 1,
+      paddingHorizontal: spacing.xs,
+      backgroundColor: colors.background,
+      paddingBottom: spacing.xl,
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingTop: insets.top,
+      paddingHorizontal: spacing.md,
+      paddingBottom: spacing.md,
+      backgroundColor: colors.background,
+    },
+    flexRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      columnGap: spacing.md,
+    },
+  });

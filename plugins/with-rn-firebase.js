@@ -1,27 +1,22 @@
+const configPlugins = require('@expo/config-plugins');
+const generateCode = require('@expo/config-plugins/build/utils/generateCode');
 const fs = require('fs');
 const path = require('path');
-const generateCode = require('@expo/config-plugins/build/utils/generateCode');
-const configPlugins = require('@expo/config-plugins');
-
-const code = `  pod 'Firebase', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
-  $RNFirebaseAsStaticFramework = true
-  $RNFirebaseAnalyticsWithoutAdIdSupport = true`;
 
 const withReactNativeFirebase = (config) => {
   return configPlugins.withDangerousMod(config, [
     'ios',
     async (config) => {
-      const filePath = path.join(config.modRequest.platformProjectRoot, 'Podfile');
-      const contents = fs.readFileSync(filePath, 'utf-8');
+      const file = path.join(config.modRequest.platformProjectRoot, 'Podfile');
+
+      const contents = fs.readFileSync(file, 'utf-8');
 
       const addCode = generateCode.mergeContents({
         tag: 'withReactNativeFirebase',
         src: contents,
-        newSrc: code,
-        anchor: /\s*get_default_flags\(\)/i,
-        offset: 2,
+        newSrc: `  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '10.24.0'`,
+        anchor: /use_native_modules/,
+        offset: 0,
         comment: '#',
       });
 
@@ -32,7 +27,7 @@ const withReactNativeFirebase = (config) => {
         return config;
       }
 
-      fs.writeFileSync(filePath, addCode.contents);
+      fs.writeFileSync(file, addCode.contents);
 
       return config;
     },

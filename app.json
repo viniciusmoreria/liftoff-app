@@ -3,27 +3,34 @@
     "name": "Liftoff",
     "slug": "Liftoff",
     "description": "Liftoff allows you to track all upcoming launches from SpaceX, NASA, ULA and more",
+    "scheme": "liftoff",
     "owner": "viniciusmoreria",
-    "privacy": "public",
-    "primaryColor": "#16171B",
     "version": "2.6.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
-    "backgroundColor": "#16171B",
-    "splash": {
-      "backgroundColor": "#16171B"
+    "privacy": "public",
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
+    "jsEngine": "hermes",
+    "experiments": {
+      "typedRoutes": true,
+      "tsconfigPaths": true
+    },
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#161616"
     },
     "assetBundlePatterns": ["**/*"],
-    "jsEngine": "hermes",
+    "primaryColor": "#D83545",
+    "backgroundColor": "#161616",
     "ios": {
       "bitcode": false,
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
-      "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist",
       "buildNumber": "2.6.0",
       "config": {
         "usesNonExemptEncryption": false
@@ -31,39 +38,62 @@
       "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152",
       "infoPlist": {
         "LSApplicationQueriesSchemes": ["itms-apps"]
-      }
+      },
+      "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist"
+    },
+    "androidStatusBar": {
+      "translucent": true,
+      "barStyle": "light-content",
+      "backgroundColor": "#161616"
+    },
+    "androidNavigationBar": {
+      "barStyle": "light-content"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
-      "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "versionCode": 460020600
+      "versionCode": 460020600,
+      "googleServicesFile": "./src/libs/firebase/google-services.json"
     },
     "notification": {
-      "icon": "./src/assets/push-icon.png",
+      "icon": "./assets/push-icon.png",
       "color": "#ffffff",
       "iosDisplayInForeground": true
-    },
-    "runtimeVersion": {
-      "policy": "nativeVersion"
     },
     "extra": {
       "eas": {
         "projectId": "992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
       }
     },
+    "updates": {
+      "url": "https://u.expo.dev/992860c0-c777-48bd-b67b-4f2ca4a2e6bb"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "plugins": [
+      "expo-router",
+      "expo-font",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-firebase/messaging",
+      "@react-native-firebase/perf",
+      "expo-localization",
       [
         "expo-build-properties",
         {
           "android": {
-            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }",
-            "compileSdkVersion": 33,
-            "targetSdkVersion": 33
+            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; } -keep class com.shopify.reactnative.skia.** { *; }",
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34
+          },
+          "ios": {
+            "deploymentTarget": "13.4",
+            "useFrameworks": "static"
           }
         }
       ],
@@ -77,29 +107,18 @@
       [
         "expo-notifications",
         {
-          "icon": "./src/assets/push-icon.png",
+          "icon": "./assets/push-icon.png",
           "color": "#ffffff"
         }
       ],
       [
-        "expo-build-properties",
+        "@sentry/react-native/expo",
         {
-          "ios": {
-            "deploymentTarget": "13.0"
-          }
+          "organization": "liftoff-wg",
+          "project": "liftoff-wg"
         }
       ],
-      "expo-community-flipper",
-      "./plugins/with-rn-firebase",
-      "@react-native-firebase/app",
-      "@react-native-firebase/perf",
-      "sentry-expo"
+      "./plugins/with-rn-firebase"
     ]
-  },
-  "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-4500374559312974~8821018551",
-    "ios_app_id": "ca-app-pub-4500374559312974~6118795609",
-    "user_tracking_usage_description": "This will allow us to show you personalized ads, which helps us to keep the app free.",
-    "delay_app_measurement_init": true
   }
 }

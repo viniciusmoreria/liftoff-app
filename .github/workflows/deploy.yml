@@ -18,6 +18,8 @@ jobs:
   build-and-submit:
     name: Build and Submit
     runs-on: ubuntu-latest
+    env:
+      PLATFORM: ${{ secrets.PLATFORM }}
 
     steps:
       - name: Check for EXPO_TOKEN
@@ -95,4 +97,4 @@ jobs:
         run: git push --follow-tags
 
       - name: Build on EAS
-        run: eas build --profile production --platform all --non-interactive --no-wait --auto-submit
+        run: eas build --profile production --platform ${PLATFORM} --non-interactive --no-wait --auto-submit

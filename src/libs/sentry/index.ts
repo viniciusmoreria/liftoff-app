@@ -1,3 +1,4 @@
-import * as Sentry from 'sentry-expo';
+import * as Sentry from '@sentry/react-native';
+import * as SentryTypes from '@sentry/types';
 
-export { Sentry };
+export { Sentry, SentryTypes };
