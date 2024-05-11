@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/viniciusmoreria/liftoff-app/compare/v3.0.0...v3.1.0) (2024-05-11)
+
+
+### 🐛 Bug Fixes
+
+* bottom sheet keyboard handling on android devices ([1e5450a](https://github.com/viniciusmoreria/liftoff-app/commit/1e5450a8514ffcc5bdd832624defb3300ff11ced))
+* remove unnecessary prop ([5612ca8](https://github.com/viniciusmoreria/liftoff-app/commit/5612ca8dd6182c95e8a2bbe6e218fa578d3617d9))
+
 ## [3.0.0](https://github.com/viniciusmoreria/liftoff-app/compare/v2.5.0...v3.0.0) (2024-05-11)
 
 
