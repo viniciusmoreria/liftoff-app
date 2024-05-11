@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Alert, Pressable, Share, Text, View } from 'react-native';
 
 import { Container } from '@components/container';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,15 +16,15 @@ import { RootStackParams } from '@navigation/types';
 import { RouteProp, useRoute } from '@react-navigation/native';
 // import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format } from 'date-fns';
+import * as Application from 'expo-application';
 import * as WebBrowser from 'expo-web-browser';
 import { Skeleton } from 'moti/skeleton';
 import FastImage from 'react-native-fast-image';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
-// import { LaunchArticles } from './components/launch-articles';
 import { LocationMap } from './components/location-map';
 
-// type Props = NativeStackScreenProps<RootStackParams, 'launch-detail'>;
+// import { LaunchArticles } from './components/launch-articles';
 
 export const LaunchDetailScreen = () => {
   const { params } = useRoute<RouteProp<RootStackParams, 'launch-detail'>>();
@@ -57,6 +57,30 @@ export const LaunchDetailScreen = () => {
         },
       },
     ]);
+  };
+
+  const onShareLaunchButtonTap = async () => {
+    logEvent('share_launch', { launch: launch.name });
+
+    const shareURL = launch?.vidURLs[0]?.url ? `\n\n${launch?.vidURLs[0]?.url}` : '';
+    const location = launch?.pad?.location?.name
+      ? `\n\nLocation: ${launch?.pad?.location?.name}\n\n`
+      : '';
+
+    const message = `${launch.name} on ${format(new Date(launch.net), 'MMM d, yyyy')} at ${format(
+      new Date(launch.net),
+      'HH:mm O'
+    )}${shareURL}${location}${
+      launch?.mission?.description || ''
+    }\n\nDownload Liftoff for Android: https://play.google.com/store/apps/details?id=${
+      Application.applicationId
+    }
+    `;
+
+    await Share.share({
+      title: 'Liftoff - Rocket Launch Tracker',
+      message: message,
+    });
   };
 
   return (
@@ -134,6 +158,13 @@ export const LaunchDetailScreen = () => {
             </View>
           </View>
         )}
+
+        <Pressable
+          onPress={onShareLaunchButtonTap}
+          className="bg-secondary w-full rounded-lg py-5 mt-6 items-center justify-center"
+        >
+          <Text className="text-white text-xs font-bold mr-2">Share this launch</Text>
+        </Pressable>
 
         {launch.mission && (
           <View className="bg-secondary rounded-lg p-4 justify-between mt-6">

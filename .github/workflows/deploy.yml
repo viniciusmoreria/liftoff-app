@@ -83,15 +83,16 @@ jobs:
       - name: Bump version
         run: npx standard-version --no-verify --release-as minor
 
+      - name: Update dev branch
+        run: |
+          git fetch --all --unshallow
+          git stash
+          git checkout dev
+          git merge main
+          git push
+
       - name: Push version bump
         run: git push --follow-tags
 
       - name: Build on EAS
         run: eas build --profile production --platform all --non-interactive --no-wait --auto-submit
-
-      - name: Update dev branch
-        run: |
-          git fetch --all
-          git checkout dev
-          git merge --no-ff main
-          git push

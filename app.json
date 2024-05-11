@@ -6,7 +6,7 @@
     "owner": "viniciusmoreria",
     "privacy": "public",
     "primaryColor": "#16171B",
-    "version": "2.4.1",
+    "version": "2.6.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "backgroundColor": "#16171B",
@@ -24,7 +24,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist",
-      "buildNumber": "2.4.1",
+      "buildNumber": "2.6.0",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -41,7 +41,7 @@
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
       "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "versionCode": 460020401
+      "versionCode": 460020600
     },
     "notification": {
       "icon": "./src/assets/push-icon.png",
@@ -61,7 +61,9 @@
         "expo-build-properties",
         {
           "android": {
-            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }"
+            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }",
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33
           }
         }
       ],
