@@ -206,6 +206,7 @@ export default function Profile() {
       <BottomSheetModal
         ref={profileBottomSheetModalRef}
         enableDynamicSizing
+        android_keyboardInputMode="adjustResize"
         backdropComponent={renderBackdrop}
         keyboardBehavior="interactive"
         keyboardBlurBehavior="restore"
