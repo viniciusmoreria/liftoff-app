@@ -4,22 +4,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "jsx": "react-native",
-    "module": "esnext",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@assets/*": ["assets/*"],
-      "@constants/*": ["constants/*"],
-      "@components/*": ["components/*"],
-      "@hooks/*": ["hooks/*"],
-      "@libs/*": ["libs/*"],
-      "@navigation/*": ["navigation/*"],
-      "@features/*": ["features/*"],
-      "@providers/*": ["providers/*"],
-      "@store/*": ["store/*"],
-      "@styles/*": ["styles/*"]
+      "@theme/*": ["src/theme/*"],
+      "@libs/*": ["src/libs/*"],
+      "@modules/*": ["src/modules/*"],
+      "@assets/*": ["assets/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }

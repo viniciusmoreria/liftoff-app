@@ -1,7 +1,6 @@
 name: Deploy
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -10,7 +9,6 @@ on:
       - CHANGELOG.md
       - app.json
       - package.json
-      - .github/**
 
 concurrency:
   group: expo-production-${{ github.event_name }}-${{ github.ref }}
@@ -20,6 +18,9 @@ jobs:
   build-and-submit:
     name: Build and Submit
     runs-on: ubuntu-latest
+    env:
+      PLATFORM: ${{ secrets.PLATFORM }}
+      SEMVER: ${{ secrets.SEMVER }}
 
     steps:
       - name: Check for EXPO_TOKEN
@@ -32,6 +33,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          fetch-depth: 0
           token: ${{ secrets.ACTION_TOKEN }}
 
       - name: Set up git user
@@ -42,7 +44,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18
           cache: yarn
 
       - name: Setup Expo
@@ -82,17 +84,18 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Bump version
-        run: npx standard-version --no-verify --release-as minor
+        run: npx standard-version --no-verify --release-as ${SEMVER}
+
+      - name: Update dev branch
+        run: |
+          git fetch --all --unshallow
+          git stash
+          git checkout dev
+          git merge main
+          git push
 
       - name: Push version bump
         run: git push --follow-tags
 
-      - name: Update dev branch
-        run: |
-          git fetch --all
-          git checkout dev
-          git merge --no-ff main
-          git push
-
       - name: Build on EAS
-        run: eas build --profile production --platform all --non-interactive --no-wait --auto-submit
+        run: eas build --profile production --platform ${PLATFORM} --non-interactive --no-wait --auto-submit

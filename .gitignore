@@ -9,10 +9,22 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-.env
+# expo router
+expo-env.d.ts
+
+
+
+ios
+android
 
 # macOS
 .DS_Store
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# Env
+.env
 
 #Firebase
 google-services.json

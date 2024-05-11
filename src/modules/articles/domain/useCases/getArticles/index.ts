@@ -1,0 +1,1 @@
+export { useArticles } from './useCase';

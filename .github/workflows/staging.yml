@@ -14,6 +14,9 @@ jobs:
   staging:
     name: Deploy Staging
     runs-on: ubuntu-latest
+    env:
+      PLATFORM: ${{ secrets.PLATFORM }}
+
     steps:
       - name: Check for EXPO_TOKEN
         run: |
@@ -28,7 +31,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18
           cache: yarn
 
       - name: Find yarn cache
@@ -61,4 +64,4 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Build on EAS
-        run: eas build --profile preview --platform all --non-interactive --no-wait
+        run: eas build --profile preview --platform ${PLATFORM} --non-interactive --no-wait
