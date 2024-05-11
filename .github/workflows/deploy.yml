@@ -86,6 +86,9 @@ jobs:
       - name: Bump version
         run: npx standard-version --no-verify --release-as ${SEMVER}
 
+      - name: Push version bump
+        run: git push --follow-tags origin main
+
       - name: Update dev branch
         run: |
           git fetch origin
@@ -93,9 +96,6 @@ jobs:
           git checkout dev
           git merge main
           git push
-
-      - name: Push version bump
-        run: git push --follow-tags
 
       - name: Build on EAS
         run: eas build --profile production --platform ${PLATFORM} --non-interactive --no-wait --auto-submit
