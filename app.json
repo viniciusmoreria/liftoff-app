@@ -42,7 +42,6 @@
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist"
     },
     "androidStatusBar": {
-      "translucent": true,
       "barStyle": "light-content",
       "backgroundColor": "#161616"
     },

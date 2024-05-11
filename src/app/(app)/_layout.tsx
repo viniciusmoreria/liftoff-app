@@ -24,7 +24,7 @@ const headerDefaultProps = {
     backgroundColor: colors.background,
   },
   headerLargeTitle: true,
-  headerTransparent: true,
+  headerTransparent: false,
   headerShadowVisible: false,
 };
 
