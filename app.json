@@ -24,9 +24,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#161616"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "primaryColor": "#D83545",
     "backgroundColor": "#161616",
     "ios": {
@@ -39,15 +37,14 @@
       },
       "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152",
       "infoPlist": {
-        "LSApplicationQueriesSchemes": [
-          "itms-apps"
-        ]
+        "LSApplicationQueriesSchemes": ["itms-apps"]
       },
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist"
     },
     "androidStatusBar": {
       "barStyle": "light-content",
-      "backgroundColor": "#161616"
+      "backgroundColor": "#161616",
+      "translucent": false
     },
     "androidNavigationBar": {
       "barStyle": "light-content"
