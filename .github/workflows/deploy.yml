@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PLATFORM: ${{ secrets.PLATFORM }}
+      SEMVER: ${{ secrets.SEMVER }}
 
     steps:
       - name: Check for EXPO_TOKEN
@@ -83,7 +84,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Bump version
-        run: npx standard-version --no-verify --release-as minor
+        run: npx standard-version --no-verify --release-as ${SEMVER}
 
       - name: Update dev branch
         run: |
