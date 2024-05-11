@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/viniciusmoreria/liftoff-app/compare/v2.5.0...v3.0.0) (2024-05-11)
+
+
+### 🤖 Chores
+
+* **release:** 2.6.0 ([72a56f1](https://github.com/viniciusmoreria/liftoff-app/commit/72a56f1dfbbb3333759b36fa52fcff899bc930f4))
+
+
+### ✨ Features
+
+* allow sharing launches and fixing deploy workflow ([3ac43ae](https://github.com/viniciusmoreria/liftoff-app/commit/3ac43ae8dc6f9df92bf96a0e52036db796b4353d))
+* full design overhaul ([eacc3ec](https://github.com/viniciusmoreria/liftoff-app/commit/eacc3ece4a41f50e0dd01a5d623f5dc8d6d89cfa))
+* put next semver into env variable ([55af991](https://github.com/viniciusmoreria/liftoff-app/commit/55af99118877b9a033b9cd6ddd8b1697c4525f1f))
+
+
+### 🐛 Bug Fixes
+
+* github action token ([61cb0a2](https://github.com/viniciusmoreria/liftoff-app/commit/61cb0a2d595674ede7fcbaacbb009568981855ba))
+* incorrect header prop [cip skip] ([e238615](https://github.com/viniciusmoreria/liftoff-app/commit/e238615119f22b8adc7b004241c926904f3c0bf0))
+* launch articles not available ([82984d9](https://github.com/viniciusmoreria/liftoff-app/commit/82984d92e9fb3b4c1167314ae76aeec5efc6354b))
+* testing [ci skip] ([9bcb8f6](https://github.com/viniciusmoreria/liftoff-app/commit/9bcb8f69bb50de3116147160ffee4f7c6c40f0bb))
+* trying to fix the merge back step ([610cd71](https://github.com/viniciusmoreria/liftoff-app/commit/610cd7133653ff5572a68fd592514495bd8fd806))
+* update workflow actions node version ([19931d4](https://github.com/viniciusmoreria/liftoff-app/commit/19931d41abd0f10264ad6637cd792e39c2e09222))
+* update workflow actions node version ([0eeef97](https://github.com/viniciusmoreria/liftoff-app/commit/0eeef9703107660cbea7e06bc95b968b10ec30d6))
+
 ## 2.6.0 (2024-01-28)
 
 ## 2.5.0 (2024-01-26)
