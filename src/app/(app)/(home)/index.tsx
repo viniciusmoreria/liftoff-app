@@ -9,8 +9,9 @@ import { DrawerActions } from '@react-navigation/native';
 import { colors } from '@theme/colors';
 import { spacing } from '@theme/spacing';
 import { useNavigation } from 'expo-router';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const getTimeOfTheDay = () => {
@@ -26,7 +27,8 @@ export default function Page() {
   const styles = getStyles(insets);
 
   return (
-    <ScrollView
+    <Animated.ScrollView
+      entering={FadeIn}
       style={styles.scrollContainer}
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
@@ -48,7 +50,7 @@ export default function Page() {
       <PreviousBadge />
 
       <ArticlesBadge />
-    </ScrollView>
+    </Animated.ScrollView>
   );
 }
 

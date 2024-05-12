@@ -1,14 +1,15 @@
 import { LoadingAnimation } from '@assets/animations';
 import { colors } from '@theme/colors';
 import { spacing } from '@theme/spacing';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import Animated, { FadeOut } from 'react-native-reanimated';
 import { Skottie } from 'react-native-skottie';
 
 export const SplashScreen = () => {
   return (
-    <View style={styles.container}>
-      <Skottie style={styles.lottie} source={LoadingAnimation} autoPlay />
-    </View>
+    <Animated.View exiting={FadeOut} style={styles.container}>
+      <Skottie style={styles.lottie} source={LoadingAnimation} autoPlay loop />
+    </Animated.View>
   );
 };
 

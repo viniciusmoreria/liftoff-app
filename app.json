@@ -24,9 +24,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#161616"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "primaryColor": "#D83545",
     "backgroundColor": "#161616",
     "ios": {
@@ -39,9 +37,7 @@
       },
       "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152",
       "infoPlist": {
-        "LSApplicationQueriesSchemes": [
-          "itms-apps"
-        ]
+        "LSApplicationQueriesSchemes": ["itms-apps"]
       },
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist"
     },
@@ -90,7 +86,7 @@
         "expo-build-properties",
         {
           "android": {
-            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; } -keep class com.shopify.reactnative.skia.** { *; }",
+            "extraProguardRules": "-keep class com.shopify.reactnative.skia.** { *; }",
             "compileSdkVersion": 34,
             "targetSdkVersion": 34
           },
@@ -117,6 +113,7 @@
       [
         "@sentry/react-native/expo",
         {
+          "url": "https://sentry.io/",
           "organization": "liftoff-wg",
           "project": "liftoff-wg"
         }
