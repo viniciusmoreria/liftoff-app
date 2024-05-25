@@ -89,7 +89,8 @@
           "android": {
             "extraProguardRules": "-keep class com.shopify.reactnative.skia.** { *; }",
             "compileSdkVersion": 34,
-            "targetSdkVersion": 34
+            "targetSdkVersion": 34,
+            "minSdkVersion": 24
           },
           "ios": {
             "deploymentTarget": "13.4",

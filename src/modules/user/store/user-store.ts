@@ -1,4 +1,5 @@
 import { MMKV } from 'react-native-mmkv';
+import Purchases from 'react-native-purchases';
 import { create } from 'zustand';
 import { StateStorage, createJSONStorage, persist } from 'zustand/middleware';
 
@@ -20,11 +21,13 @@ const zustandStorage: StateStorage = {
 interface UserState {
   username: string;
   profilePicture: string;
+  enablePurchases: boolean;
 }
 
 interface UserActions {
   setUsername: (username: string) => void;
   setProfilePicture: (profilePicture: string) => void;
+  setShouldEnablePurchases: () => Promise<void>;
 }
 
 export const useUserStore = create(
@@ -34,6 +37,11 @@ export const useUserStore = create(
       setUsername: (username) => set({ username }),
       profilePicture: '',
       setProfilePicture: (profilePicture) => set({ profilePicture }),
+      enablePurchases: false,
+      setShouldEnablePurchases: async () => {
+        const isPurchasesAvailable = await Purchases.isConfigured();
+        set({ enablePurchases: isPurchasesAvailable });
+      },
     }),
     {
       name: '@liftoff-user-store',
