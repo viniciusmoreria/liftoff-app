@@ -3,13 +3,10 @@ import { getPreviousLaunchesQuery } from '@modules/launches/previous/domain/useC
 import { getUpcomingLaunchesQuery } from '@modules/launches/upcoming/domain/useCases/getUpcomingLaunches/queries';
 import { useNotificationObserver } from '@modules/notifications/hooks/useNotificationObserver';
 import { SplashScreen } from '@modules/splash-screen';
-import { useUserStore } from '@modules/user/store/user-store';
 import { useQueryClient } from '@tanstack/react-query';
 import { colors } from '@theme/colors';
 import { Stack } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Platform } from 'react-native';
-import Purchases from 'react-native-purchases';
 
 export const unstable_settings = {
   initialRouteName: '(home)',
@@ -35,17 +32,9 @@ export default function HomeLayout() {
 
   const queryClient = useQueryClient();
 
-  const { setShouldEnablePurchases } = useUserStore();
-
   const [isLoading, setIsLoading] = useState(true);
 
   const prefetch = async () => {
-    if (Platform.OS === 'android') {
-      Purchases.configure({ apiKey: process.env.REVENUE_CAT_ANDROID ?? '' });
-    } else {
-      Purchases.configure({ apiKey: process.env.REVENUE_CAT_IOS ?? '' });
-    }
-
     const dataFetchingPromises: Promise<any>[] = [
       queryClient.prefetchQuery(getUpcomingLaunchesQuery),
       queryClient.prefetchInfiniteQuery(getPreviousLaunchesQuery),
@@ -54,7 +43,6 @@ export default function HomeLayout() {
 
     try {
       await Promise.all(dataFetchingPromises);
-      await setShouldEnablePurchases();
     } finally {
       setIsLoading(false);
     }
@@ -71,6 +59,13 @@ export default function HomeLayout() {
   return (
     <Stack screenOptions={headerDefaultProps}>
       <Stack.Screen name="(home)" />
+      <Stack.Screen
+        name="subscriptions/index"
+        options={{
+          presentation: 'modal',
+          animation: 'slide_from_bottom',
+        }}
+      />
     </Stack>
   );
 }

@@ -10,7 +10,7 @@ export function useAnalytics() {
       Logger.error({
         domain: 'Analytics',
         error,
-        name: 'AnalyticsLogEventErro',
+        name: 'AnalyticsLogEventError',
         severity: 'warning',
       });
     }
