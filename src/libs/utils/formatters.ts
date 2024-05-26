@@ -9,6 +9,17 @@ const formatToDollar = (value: string) => {
   return formatter.format(Number(value));
 };
 
+const formatToCurrency = (value: string | number, currency: string) => {
+  const formatter = Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+    unitDisplay: 'short',
+    notation: 'standard',
+  });
+
+  return formatter.format(Number(value)).replace(/^(\D+)/, '$1 ');
+};
+
 const formatToUnit = (value?: number, unit?: string) => {
   if (!value) {
     return null;
@@ -37,6 +48,7 @@ const date = {
 
 export const formatters = {
   formatToDollar,
+  formatToCurrency,
   formatToUnit,
   date,
 };

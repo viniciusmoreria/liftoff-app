@@ -9,7 +9,7 @@ import { Skottie } from 'react-native-skottie';
 export default function NotFoundScreen() {
   return (
     <View style={styles.container}>
-      <Skottie source={SpaceManAnimation} autoPlay style={styles.lottie} />
+      <Skottie source={SpaceManAnimation} autoPlay style={styles.lottie} loop />
 
       <Animated.View entering={FadeIn} style={styles.animatedContainer}>
         <Text style={styles.text}>Seem like you aren't on earth</Text>

@@ -1,4 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
+import { useAnalytics } from '@libs/firebase/analytics';
 import { estimateReadTime } from '@libs/utils/estimateReadTime';
 import { formatRelativeDate } from '@libs/utils/formatRelativeDate';
 import { darkBlurhash } from '@libs/utils/launches';
@@ -14,8 +15,10 @@ import * as WebBrowser from 'expo-web-browser';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 export default function Article() {
-  const { id } = useLocalSearchParams();
   const queryClient = useQueryClient();
+
+  const { id } = useLocalSearchParams();
+  const { logEvent } = useAnalytics();
 
   const article = queryClient.getQueryData([ARTICLE_BY_ID_QUERY_KEY, Number(id)]) as ArticleType;
 
@@ -58,11 +61,12 @@ export default function Article() {
         <Text text={article.summary} size="md" />
 
         <Pressable
-          onPress={() =>
+          onPress={() => {
+            logEvent('open_external_link', { url: article.url });
             WebBrowser.openBrowserAsync(article.url, {
               readerMode: true,
-            })
-          }
+            });
+          }}
           style={styles.button}>
           <Text
             text="Continue reading on the website"

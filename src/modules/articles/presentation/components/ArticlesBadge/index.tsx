@@ -45,7 +45,7 @@ export const ArticlesBadge = () => {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text text="News" size="md" weight="semiBold" />
+        <Text text="Articles" size="md" weight="semiBold" />
 
         <TouchableWithoutFeedback onPress={() => router.push('/articles/')} hitSlop={15}>
           <View style={styles.seeAll}>

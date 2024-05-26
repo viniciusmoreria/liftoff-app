@@ -2992,6 +2992,11 @@
   dependencies:
     web-streams-polyfill "^3.1.1"
 
+"@revenuecat/purchases-typescript-internal@10.6.1":
+  version "10.6.1"
+  resolved "https://registry.yarnpkg.com/@revenuecat/purchases-typescript-internal/-/purchases-typescript-internal-10.6.1.tgz#f3e34ef9114ba65028c5b8e92e4e89c1bdfd0671"
+  integrity sha512-97FsLylxu+qHocxFbLkoHbJ9WRfFXGUT1srKUcvcH33UPFP8eQHrsJwMPlB/4EmXC9Uf/CchTakNcSNsx5vmhQ==
+
 "@segment/loosely-validate-event@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@segment/loosely-validate-event/-/loosely-validate-event-2.0.0.tgz#87dfc979e5b4e7b82c5f1d8b722dfd5d77644681"
@@ -6028,6 +6033,13 @@ expo-image@~1.10.6:
   integrity sha512-vcnAIym1eU8vQgV1re1E7rVQZStJimBa4aPDhjFfzMzbddAF7heJuagyewiUkTzbZUwYzPaZAie6VJPyWx9Ueg==
   dependencies:
     "@react-native/assets-registry" "~0.73.1"
+
+expo-insights@~0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/expo-insights/-/expo-insights-0.6.1.tgz#d338e4d1c957eed16f38acade8e97c53efb09c9a"
+  integrity sha512-0cCCKcFq7e7HME9uwVU5eE9LYEPnYEmTkE+LjJs/G15fnw+xK52jwx3p9nZcdI9lmZ23qBtqatlQKz/PMXSheQ==
+  dependencies:
+    expo-eas-client "~0.11.0"
 
 expo-json-utils@~0.12.0:
   version "0.12.3"
@@ -9786,6 +9798,13 @@ react-native-mmkv@^2.12.2:
   version "2.12.2"
   resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-2.12.2.tgz#4bba0f5f04e2cf222494cce3a9794ba6a4894dee"
   integrity sha512-6058Aq0p57chPrUutLGe9fYoiDVDNMU2PKV+lLFUJ3GhoHvUrLdsS1PDSCLr00yqzL4WJQ7TTzH+V8cpyrNcfg==
+
+react-native-purchases@^7.27.1:
+  version "7.27.1"
+  resolved "https://registry.yarnpkg.com/react-native-purchases/-/react-native-purchases-7.27.1.tgz#2e5c640fc5c5027fd843fe87432bc8d173a63bd6"
+  integrity sha512-F/YT80W/VBsL86UUsNubj05Tiapgs+0i7Cw0qLKJQXnlGAAUYgbUgW24LIQon5wOlmCvvefmnuHoXuWsCbxy4A==
+  dependencies:
+    "@revenuecat/purchases-typescript-internal" "10.6.1"
 
 react-native-reanimated-carousel@^3.5.1:
   version "3.5.1"

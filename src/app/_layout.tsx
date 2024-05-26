@@ -1,3 +1,4 @@
+import { useAnalytics } from '@libs/firebase/analytics';
 import { FirebaseAuth } from '@libs/firebase/auth';
 import { Logger } from '@libs/logger';
 import { Sentry } from '@libs/sentry';
@@ -6,7 +7,14 @@ import { useNotificationPermission } from '@modules/notifications/hooks/useNotif
 import { AppProviders } from '@modules/providers/app-providers';
 import { customFontsToLoad } from '@theme/typography';
 import { useFonts } from 'expo-font';
-import { ErrorBoundaryProps, Slot, SplashScreen, useNavigationContainerRef } from 'expo-router';
+import {
+  ErrorBoundaryProps,
+  Slot,
+  SplashScreen,
+  useGlobalSearchParams,
+  useNavigationContainerRef,
+  usePathname,
+} from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -34,7 +42,10 @@ SplashScreen.preventAutoHideAsync();
 
 function RootLayout() {
   const ref = useNavigationContainerRef();
+  const pathname = usePathname();
+  const params = useGlobalSearchParams();
 
+  const { logEvent } = useAnalytics();
   const { requestPermission } = useNotificationPermission();
 
   const [areFontsLoaded] = useFonts(customFontsToLoad);
@@ -68,6 +79,10 @@ function RootLayout() {
       runAsync();
     }
   }, [areFontsLoaded, runAsync]);
+
+  useEffect(() => {
+    logEvent(pathname, params);
+  }, [pathname, params]);
 
   if (!appIsReady) {
     return null;

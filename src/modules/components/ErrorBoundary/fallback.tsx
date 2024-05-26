@@ -10,7 +10,7 @@ import { FallbackProps } from './index';
 export const Fallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <View style={styles.container}>
-      <Skottie source={SpaceManAnimation} autoPlay style={styles.lottie} />
+      <Skottie source={SpaceManAnimation} autoPlay style={styles.lottie} loop />
 
       <Animated.View entering={FadeIn} style={styles.animatedContainer}>
         <Text style={styles.text}>Something is wrong</Text>

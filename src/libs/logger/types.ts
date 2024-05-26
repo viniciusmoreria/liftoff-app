@@ -1,4 +1,10 @@
-export type DomainError = 'Launches' | 'Error-Boundary' | 'React-Query' | 'Startup' | 'Analytics';
+export type DomainError =
+  | 'Launches'
+  | 'Error-Boundary'
+  | 'React-Query'
+  | 'Startup'
+  | 'Analytics'
+  | 'Subscriptions';
 
 export type ErrorName =
   | 'FetchUpcomingLaunchesError'
@@ -7,4 +13,5 @@ export type ErrorName =
   | 'ErrorBoundaryCrash'
   | 'QueryRequestError'
   | 'FirebaseSignInError'
-  | 'AnalyticsLogEventErro';
+  | 'AnalyticsLogEventError'
+  | 'PurchasePackagesError';

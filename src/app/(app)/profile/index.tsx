@@ -6,6 +6,7 @@ import {
   BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import { useAnalytics } from '@libs/firebase/analytics';
 import { formatters } from '@libs/utils/formatters';
 import { isAndroid } from '@libs/utils/platform';
 import { ProfileSheet, Switch, Text } from '@modules/components';
@@ -54,6 +55,7 @@ export default function Profile() {
   const profileBottomSheetModalRef = useRef<BottomSheetModal>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
+  const { logEvent } = useAnalytics();
   const { username, profilePicture } = useUserStore();
   const { getPreference, notificationPreferences, setNotificationPreference } =
     useNotificationStore();
@@ -74,12 +76,16 @@ export default function Profile() {
       .map(([key, value]) => `${key}: ${value}`)
       .join('\n');
 
+    logEvent('send_email', { deviceData });
+
     await Linking.openURL(
       `mailto:appliftoff@gmail.com?subject=Liftoff ${title} Request (v${Application.nativeApplicationVersion})&body=\n\n\n\n${deviceData}`
     );
   };
 
   const onRateAppButtonTap = async () => {
+    logEvent('rate_app');
+
     if (isAndroid) {
       await Linking.openURL(`market://details?id=${Application.applicationId}`);
     } else {
@@ -90,12 +96,16 @@ export default function Profile() {
   };
 
   const onShareAppButtonTap = async () => {
+    logEvent('share_app');
+
     await Share.share({
       message: `Track and watch all upcoming rocket launches from agencies around the world with Liftoff.\n\nDownload Liftoff for iOS: https://apple.co/3CHM9YO \n\nDownload Liftoff for Android: https://play.google.com/store/apps/details?id=${Application.applicationId}`,
     });
   };
 
   const onOpenPrivacyPolicyButtonTap = async () => {
+    logEvent('open_external_link', { url: 'https://liftoffprivacypolicy.carrd.co/' });
+
     await WebBrowser.openBrowserAsync('https://liftoffprivacypolicy.carrd.co/');
   };
 
@@ -140,7 +150,10 @@ export default function Profile() {
             <Text text="Launch Updates" size="xxs" color={colors.text} weight="semiBold" />
             <Switch
               isEnabled={updatesState}
-              onPress={() => setNotificationPreference({ type: 'updates', value: !updatesState })}
+              onPress={() => {
+                logEvent('updates', { value: !updatesState });
+                setNotificationPreference({ type: 'updates', value: !updatesState });
+              }}
             />
           </View>
 
@@ -148,9 +161,10 @@ export default function Profile() {
             <Text text="Available Livestream" size="xxs" color={colors.text} weight="semiBold" />
             <Switch
               isEnabled={livestreamState}
-              onPress={() =>
-                setNotificationPreference({ type: 'webcastLive', value: !livestreamState })
-              }
+              onPress={() => {
+                logEvent('webcastLive', { value: !livestreamState });
+                setNotificationPreference({ type: 'webcastLive', value: !livestreamState });
+              }}
             />
           </View>
         </View>
@@ -261,12 +275,16 @@ export default function Profile() {
                     />
                     <Switch
                       isEnabled={getPreference(item.type)}
-                      onPress={() =>
+                      onPress={() => {
+                        logEvent(item.type, {
+                          value: !getPreference(item.type),
+                        });
+
                         setNotificationPreference({
                           type: item.type,
                           value: !getPreference(item.type),
-                        })
-                      }
+                        });
+                      }}
                     />
                   </View>
                 );
@@ -298,12 +316,16 @@ export default function Profile() {
                       />
                       <Switch
                         isEnabled={getPreference(item.type)}
-                        onPress={() =>
+                        onPress={() => {
+                          logEvent(item.type, {
+                            value: !getPreference(item.type),
+                          });
+
                           setNotificationPreference({
                             type: item.type,
                             value: !getPreference(item.type),
-                          })
-                        }
+                          });
+                        }}
                       />
                     </View>
                   );
