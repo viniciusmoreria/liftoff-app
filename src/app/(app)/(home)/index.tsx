@@ -5,12 +5,14 @@ import { PreviousBadge } from '@modules/launches/previous/presentation/component
 import { useUpcomingLaunches } from '@modules/launches/upcoming/domain/useCases/getUpcomingLaunches';
 import { CountdownBadge } from '@modules/launches/upcoming/presentation/components/CountdownBadge';
 import { UpcomingBadge } from '@modules/launches/upcoming/presentation/components/UpcomingBadge';
+import { usePurchases } from '@modules/purchases/hooks/usePurchases';
 import { DrawerActions } from '@react-navigation/native';
 import { colors } from '@theme/colors';
 import { spacing } from '@theme/spacing';
-import { useNavigation } from 'expo-router';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { router, useNavigation } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const getTimeOfTheDay = () => {
@@ -19,6 +21,8 @@ const getTimeOfTheDay = () => {
 };
 
 export default function Page() {
+  const { isSubscribed } = usePurchases();
+
   const { dispatch } = useNavigation();
   const { nextLaunch } = useUpcomingLaunches();
 
@@ -26,7 +30,8 @@ export default function Page() {
   const styles = getStyles(insets);
 
   return (
-    <ScrollView
+    <Animated.ScrollView
+      entering={FadeIn}
       style={styles.scrollContainer}
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
@@ -35,9 +40,19 @@ export default function Page() {
         <View style={styles.header}>
           <Text size="xl" text={`Good ${getTimeOfTheDay()}`} weight="semiBold" />
 
-          <TouchableWithoutFeedback onPress={() => dispatch(DrawerActions.openDrawer())}>
-            <Ionicons name="reorder-two-sharp" size={22} color={colors.text} />
-          </TouchableWithoutFeedback>
+          <View style={styles.flexRow}>
+            <TouchableWithoutFeedback onPress={() => router.push('/subscriptions/')}>
+              <Ionicons
+                name={isSubscribed ? 'heart-sharp' : 'heart-circle'}
+                size={22}
+                color={colors.text}
+              />
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={() => dispatch(DrawerActions.openDrawer())}>
+              <Ionicons name="reorder-two-sharp" size={22} color={colors.text} />
+            </TouchableWithoutFeedback>
+          </View>
         </View>
       </View>
 
@@ -48,7 +63,7 @@ export default function Page() {
       <PreviousBadge />
 
       <ArticlesBadge />
-    </ScrollView>
+    </Animated.ScrollView>
   );
 }
 

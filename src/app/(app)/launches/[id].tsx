@@ -169,7 +169,13 @@ export default function Launch() {
                 </View>
               )}
             </View>
-            <Skottie autoPlay source={OrbitAnimation} style={styles.lottie} resizeMode="cover" />
+            <Skottie
+              autoPlay
+              source={OrbitAnimation}
+              style={styles.lottie}
+              resizeMode="cover"
+              loop
+            />
           </View>
         </View>
 

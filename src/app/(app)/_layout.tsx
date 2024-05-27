@@ -1,4 +1,3 @@
-import { Sentry } from '@libs/sentry';
 import { getArticlesQuery } from '@modules/articles/domain/useCases/getArticles/queries';
 import { getPreviousLaunchesQuery } from '@modules/launches/previous/domain/useCases/getPreviousLaunches/queries';
 import { getUpcomingLaunchesQuery } from '@modules/launches/upcoming/domain/useCases/getUpcomingLaunches/queries';
@@ -28,7 +27,7 @@ const headerDefaultProps = {
   headerShadowVisible: false,
 };
 
-function RootLayout() {
+export default function HomeLayout() {
   useNotificationObserver();
 
   const queryClient = useQueryClient();
@@ -60,8 +59,13 @@ function RootLayout() {
   return (
     <Stack screenOptions={headerDefaultProps}>
       <Stack.Screen name="(home)" />
+      <Stack.Screen
+        name="subscriptions/index"
+        options={{
+          presentation: 'modal',
+          animation: 'slide_from_bottom',
+        }}
+      />
     </Stack>
   );
 }
-
-export default Sentry.wrap(RootLayout);

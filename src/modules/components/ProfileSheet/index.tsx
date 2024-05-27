@@ -1,6 +1,7 @@
 import { PlaceholderUserPicture } from '@assets/images';
 import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetScrollView, BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import { useAnalytics } from '@libs/firebase/analytics';
 import { isIOS } from '@libs/utils/platform';
 import { validators } from '@libs/utils/validators';
 import { useUserStore } from '@modules/user/store/user-store';
@@ -21,17 +22,21 @@ type Props = {
 export const ProfileSheet = ({ onClose }: Props) => {
   const insets = useSafeAreaInsets();
 
+  const { logEvent } = useAnalytics();
   const { setUsername, profilePicture, setProfilePicture } = useUserStore();
 
   const [name, setName] = useState('');
 
   const handleSubmitName = useCallback(async () => {
+    logEvent('profile_name_change', { name });
     setUsername(name.trim());
     setName('');
     onClose();
   }, [name, setUsername]);
 
   const pickImage = useCallback(async () => {
+    logEvent('profile_sheet_open_gallery');
+
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
@@ -53,6 +58,8 @@ export const ProfileSheet = ({ onClose }: Props) => {
   }, [setProfilePicture]);
 
   const openCamera = useCallback(async () => {
+    logEvent('profile_sheet_open_camera');
+
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
 
     if (permissionResult.granted === false) {
