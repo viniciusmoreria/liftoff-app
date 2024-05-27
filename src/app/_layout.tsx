@@ -1,3 +1,4 @@
+import { analyticsService } from '@libs/amplitude';
 import { useAnalytics } from '@libs/firebase/analytics';
 import { FirebaseAuth } from '@libs/firebase/auth';
 import { Logger } from '@libs/logger';
@@ -21,6 +22,8 @@ import { useCallback, useEffect, useState } from 'react';
 import '../libs/i18n/translation';
 
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
+
+analyticsService.init(process.env.EXPO_PUBLIC_AMPLITUDE_KEY);
 
 Sentry.init({
   dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
