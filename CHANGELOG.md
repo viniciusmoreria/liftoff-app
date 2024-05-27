@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/viniciusmoreria/liftoff-app/compare/v3.1.0...v3.2.0) (2024-05-27)
+
+
+### 🤖 Chores
+
+* android new manifest tag ([195c43c](https://github.com/viniciusmoreria/liftoff-app/commit/195c43cdaea1d17000cb7e3ac26b0be62b5c1db7))
+* setup paywall and analytics events ([18392ba](https://github.com/viniciusmoreria/liftoff-app/commit/18392ba3a657f1cbe2325d8612826a458bf56e64))
+
+
+### ✨ Features
+
+* add in app purchases lib and fix skottie animations ([29574cd](https://github.com/viniciusmoreria/liftoff-app/commit/29574cdcb92601ac18e703194196cf03dcf67007))
+* new paywall screen implementation ([eca492d](https://github.com/viniciusmoreria/liftoff-app/commit/eca492d9f7ef5eec7a4921aafd8269199bdeaee6))
+
+
+### 🐛 Bug Fixes
+
+* amplitude analytics init [ci skip] ([972d7ed](https://github.com/viniciusmoreria/liftoff-app/commit/972d7ed808592dba06995d58b790c7bb842136b2))
+
 ## [3.1.0](https://github.com/viniciusmoreria/liftoff-app/compare/v3.0.0...v3.1.0) (2024-05-11)
 
 

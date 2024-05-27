@@ -5,7 +5,7 @@
     "description": "Liftoff allows you to track all upcoming launches from SpaceX, NASA, ULA and more",
     "scheme": "liftoff",
     "owner": "viniciusmoreria",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "privacy": "public",
     "web": {
       "bundler": "metro",
@@ -24,20 +24,24 @@
       "resizeMode": "contain",
       "backgroundColor": "#161616"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "primaryColor": "#D83545",
     "backgroundColor": "#161616",
     "ios": {
       "bitcode": false,
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
-      "buildNumber": "3.1.0",
+      "buildNumber": "3.2.0",
       "config": {
         "usesNonExemptEncryption": false
       },
       "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152",
       "infoPlist": {
-        "LSApplicationQueriesSchemes": ["itms-apps"]
+        "LSApplicationQueriesSchemes": [
+          "itms-apps"
+        ]
       },
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist"
     },
@@ -55,9 +59,11 @@
       },
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
-      "versionCode": 500030100,
+      "versionCode": 500030200,
       "googleServicesFile": "./src/libs/firebase/google-services.json",
-      "permissions": ["com.android.vending.BILLING"]
+      "permissions": [
+        "com.android.vending.BILLING"
+      ]
     },
     "notification": {
       "icon": "./assets/push-icon.png",
