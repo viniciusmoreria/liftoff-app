@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.1](https://github.com/viniciusmoreria/liftoff-app/compare/v3.2.0...v3.2.1) (2024-05-27)
+
+
+### 🐛 Bug Fixes
+
+* missing env in ci ([87f5dd5](https://github.com/viniciusmoreria/liftoff-app/commit/87f5dd5231acb51a3cfb88a92cc13bfd16091d7c))
+* missing env in the ci ([0dacf9f](https://github.com/viniciusmoreria/liftoff-app/commit/0dacf9ffe8d878a04eb0d70e36e49eb808357c56))
+
 ## [3.2.0](https://github.com/viniciusmoreria/liftoff-app/compare/v3.1.0...v3.2.0) (2024-05-27)
 
 
