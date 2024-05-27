@@ -1,5 +1,6 @@
 import { SpaceManAnimation } from '@assets/animations';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { useAnalytics } from '@libs/firebase/analytics';
 import { Logger } from '@libs/logger';
 import { formatters } from '@libs/utils/formatters';
 import { Text } from '@modules/components';
@@ -24,6 +25,7 @@ import { Skottie } from 'react-native-skottie';
 const PAGE_WIDTH = Dimensions.get('window').width - spacing.md;
 
 export default function Subscriptions() {
+  const { logEvent } = useAnalytics();
   const { currentOffering, purchasePackage, restore } = usePurchases();
 
   const filteredPackages = currentOffering?.availablePackages.filter(
@@ -34,7 +36,8 @@ export default function Subscriptions() {
     if (!selectedPackage) return;
 
     try {
-      await purchasePackage(selectedPackage);
+      const result = await purchasePackage(selectedPackage);
+      logEvent('purchase_result', { result });
       router.back();
     } catch (error) {
       Logger.error({
