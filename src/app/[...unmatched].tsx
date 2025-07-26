@@ -4,12 +4,12 @@ import { spacing } from '@theme/spacing';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import { Skottie } from 'react-native-skottie';
+import LottieView from 'lottie-react-native';
 
 export default function NotFoundScreen() {
   return (
     <View style={styles.container}>
-      <Skottie source={SpaceManAnimation} autoPlay style={styles.lottie} loop />
+      <LottieView source={SpaceManAnimation} autoPlay style={styles.lottie} loop />
 
       <Animated.View entering={FadeIn} style={styles.animatedContainer}>
         <Text style={styles.text}>Seem like you aren't on earth</Text>

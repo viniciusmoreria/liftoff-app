@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 import { PRODUCT_CATEGORY, PurchasesPackage } from 'react-native-purchases';
 import Carousel from 'react-native-reanimated-carousel';
-import { Skottie } from 'react-native-skottie';
+import LottieView from 'lottie-react-native';
 
 const PAGE_WIDTH = Dimensions.get('window').width - spacing.md;
 
@@ -59,7 +59,7 @@ export default function Subscriptions() {
         onPress={() => router.dismiss()}
       />
       <View style={styles.content}>
-        <Skottie source={SpaceManAnimation} autoPlay style={styles.lottie} loop />
+        <LottieView source={SpaceManAnimation} autoPlay style={styles.lottie} loop />
 
         <Text
           text="Support Liftoff and Keep Us Soaring!"
