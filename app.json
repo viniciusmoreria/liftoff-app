@@ -40,8 +40,10 @@
       "appStoreUrl": "https://apps.apple.com/us/app/liftoff/id1645685152",
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
+          "itms-apps",
           "itms-apps"
-        ]
+        ],
+        "ITSAppUsesNonExemptEncryption": false
       },
       "googleServicesFile": "./src/libs/firebase/GoogleService-Info.plist"
     },
@@ -84,6 +86,13 @@
     "plugins": [
       "expo-router",
       "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/push-icon.png",
+          "color": "#ffffff"
+        }
+      ],
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
       "@react-native-firebase/messaging",
@@ -93,13 +102,12 @@
         "expo-build-properties",
         {
           "android": {
-            "extraProguardRules": "-keep class com.shopify.reactnative.skia.** { *; }",
-            "compileSdkVersion": 34,
-            "targetSdkVersion": 34,
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
             "minSdkVersion": 24
           },
           "ios": {
-            "deploymentTarget": "13.4",
+            "deploymentTarget": "15.1",
             "useFrameworks": "static"
           }
         }
@@ -112,18 +120,18 @@
         }
       ],
       [
-        "expo-notifications",
-        {
-          "icon": "./assets/push-icon.png",
-          "color": "#ffffff"
-        }
-      ],
-      [
         "@sentry/react-native/expo",
         {
           "url": "https://sentry.io/",
           "organization": "liftoff-wg",
           "project": "liftoff-wg"
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/transparent.png",
+          "backgroundColor": "#161616"
         }
       ],
       "./plugins/with-rn-firebase"

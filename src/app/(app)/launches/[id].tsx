@@ -21,7 +21,7 @@ import { Skeleton } from 'moti/skeleton';
 import { useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Skottie } from 'react-native-skottie';
+import LottieView from 'lottie-react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 const defaultHeaderParams = {
@@ -103,9 +103,6 @@ export default function Launch() {
           <View style={styles.videoContainer}>
             <Skeleton show={!hasLoadedVideo}>
               <YoutubePlayer
-                initialPlayerParams={{
-                  modestbranding: true,
-                }}
                 height={220}
                 videoId={livestreamId}
                 webViewProps={{
@@ -169,7 +166,7 @@ export default function Launch() {
                 </View>
               )}
             </View>
-            <Skottie
+            <LottieView
               autoPlay
               source={OrbitAnimation}
               style={styles.lottie}
