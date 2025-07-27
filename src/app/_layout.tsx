@@ -21,7 +21,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import '../libs/i18n/translation';
 
-const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
+const reactNavigationIntegration =  Sentry.reactNavigationIntegration();
 
 analyticsService.init(process.env.EXPO_PUBLIC_AMPLITUDE_KEY);
 
@@ -30,10 +30,12 @@ Sentry.init({
   environment: process.env.EXPO_PUBLIC_STAGE,
   tracesSampleRate: 1.0,
   debug: false,
+  enableAppStartTracking: true,
+  enableNativeFramesTracking: true,
+  enableStallTracking: true,
+  enableUserInteractionTracing: true,
   integrations: [
-    new Sentry.ReactNativeTracing({
-      routingInstrumentation,
-    }),
+    reactNavigationIntegration,
   ],
 });
 
@@ -73,7 +75,7 @@ function RootLayout() {
 
   useEffect(() => {
     if (ref) {
-      routingInstrumentation.registerNavigationContainer(ref);
+      reactNavigationIntegration.registerNavigationContainer(ref);
     }
   }, [ref]);
 
