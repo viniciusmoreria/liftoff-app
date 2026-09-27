@@ -8,7 +8,7 @@ import { spacing } from '@theme/spacing';
 import { router } from 'expo-router';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import Carousel from 'react-native-reanimated-carousel';
+import { Carousel } from 'react-native-reanimated-carousel';
 
 const PAGE_WIDTH = Dimensions.get('window').width - spacing.md;
 
@@ -66,20 +66,15 @@ export const ArticlesBadge = () => {
       <Carousel
         data={mostRecentArticles}
         renderItem={renderItem}
-        style={{ width: PAGE_WIDTH }}
-        height={190}
-        width={PAGE_WIDTH}
-        loop={false}
-        pagingEnabled
-        snapEnabled
-        autoPlay={false}
-        mode="parallax"
-        modeConfig={{
-          parallaxScrollingScale: 0.9,
-          parallaxScrollingOffset: 45,
+        style={{ width: PAGE_WIDTH, height: 190 }}
+        snapMode="page"
+        layout={{
+          type: 'parallax',
+          scale: 0.9,
+          offset: 45,
         }}
-        panGestureHandlerProps={{
-          activeOffsetX: [-10, 10],
+        onConfigurePanGesture={(gesture) => {
+          gesture.activeOffsetX([-10, 10]);
         }}
       />
     </View>

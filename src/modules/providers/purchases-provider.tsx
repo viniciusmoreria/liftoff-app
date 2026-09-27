@@ -1,5 +1,6 @@
+import { Logger } from '@libs/logger';
 import { PurchasesContext } from '@modules/purchases/context/purchases-context';
-import { useEffect, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Platform } from 'react-native';
 import Purchases, {
   CustomerInfo,
@@ -9,7 +10,7 @@ import Purchases, {
 } from 'react-native-purchases';
 
 type PurchasesProviderProps = {
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode;
 };
 
 const androidApiKey = process.env.EXPO_PUBLIC_REVENUE_CAT_ANDROID!;
@@ -36,13 +37,24 @@ export const PurchasesProvider = ({ children }: PurchasesProviderProps) => {
       Purchases.setLogLevel(LOG_LEVEL.DEBUG);
     }
 
-    await getOfferings();
-
     Purchases.addCustomerInfoUpdateListener((customerInfo) => {
       setCustomerInfo(customerInfo);
     });
 
+    // Billing may be unavailable (outdated Play Store, network, region) and getOfferings can
+    // hang instead of rejecting, so never block rendering on it
     setInitialized(true);
+
+    try {
+      await getOfferings();
+    } catch (error) {
+      Logger.error({
+        domain: 'Subscriptions',
+        error,
+        name: 'GetOfferingsError',
+        severity: 'warning',
+      });
+    }
   };
 
   const purchasePackage = async (purchasedPackage: PurchasesPackage) => {

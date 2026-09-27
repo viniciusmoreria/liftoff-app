@@ -1,9 +1,9 @@
 import { SpaceManAnimation } from '@assets/animations';
 import { colors } from '@theme/colors';
 import { spacing } from '@theme/spacing';
+import LottieView from 'lottie-react-native';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import LottieView from 'lottie-react-native';
 
 import { FallbackProps } from './index';
 
