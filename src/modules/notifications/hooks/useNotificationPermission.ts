@@ -7,6 +7,8 @@ import { useNotificationStore } from '../store/notification-store';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
+    shouldShowBanner: true,
+    shouldShowList: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
   }),
@@ -37,7 +39,6 @@ export const useNotificationPermission = () => {
           allowAlert: true,
           allowBadge: true,
           allowSound: true,
-          allowAnnouncements: true,
         },
       });
 

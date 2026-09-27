@@ -58,9 +58,6 @@
   },
   "submit": {
     "production": {
-      "android": {
-        "serviceAccountKeyPath": "./src/libs/firebase/service-account-key.json"
-      },
       "ios": {
         "appName": "Liftoff: Rocket Launch Tracker",
         "ascAppId": "1645685152"
