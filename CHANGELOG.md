@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.5](https://github.com/viniciusmoreria/liftoff-app/compare/v3.2.2...v3.2.5) (2026-09-27)
+
+
+### 🐛 Bug Fixes
+
+* **android:** blank screen without billing and carousel crash ([#57](https://github.com/viniciusmoreria/liftoff-app/issues/57)) ([ba72a4c](https://github.com/viniciusmoreria/liftoff-app/commit/ba72a4cf8c1cfcaf5014fbedd43d2800d8346570))
+
 ### [3.2.2](https://github.com/viniciusmoreria/liftoff-app/compare/v3.2.1...v3.2.2) (2025-07-27)
 
 ### [3.2.1](https://github.com/viniciusmoreria/liftoff-app/compare/v3.2.0...v3.2.1) (2024-05-27)

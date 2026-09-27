@@ -10,7 +10,7 @@ export const useNotificationObserver = () => {
 
     function redirect(notification: Notifications.Notification) {
       const url = notification.request.content.data?.url;
-      if (url) {
+      if (typeof url === 'string') {
         router.push(url);
       }
     }

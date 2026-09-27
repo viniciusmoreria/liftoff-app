@@ -9,6 +9,7 @@ import { colors } from '@theme/colors';
 import { spacing } from '@theme/spacing';
 import { router } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
+import LottieView from 'lottie-react-native';
 import {
   Dimensions,
   Platform,
@@ -19,8 +20,7 @@ import {
   View,
 } from 'react-native';
 import { PRODUCT_CATEGORY, PurchasesPackage } from 'react-native-purchases';
-import Carousel from 'react-native-reanimated-carousel';
-import LottieView from 'lottie-react-native';
+import { Carousel } from 'react-native-reanimated-carousel';
 
 const PAGE_WIDTH = Dimensions.get('window').width - spacing.md;
 
@@ -118,12 +118,14 @@ type PackageMetadata = {
 
 type PackagesCarouselProps = {
   packages?: PurchasesPackage[];
-  metadata: PackageMetadata;
+  metadata?: PackageMetadata;
   handlePurchasePackage: (purchasesPackage: PurchasesPackage) => void;
 };
 
 const PackagesCarousel = (props: PackagesCarouselProps) => {
   const { packages, metadata, handlePurchasePackage } = props;
+
+  if (!packages || !metadata?.subscriptions) return null;
 
   const subscriptions = metadata.subscriptions[Platform.OS === 'ios' ? 'ios' : 'android'];
 
@@ -176,26 +178,19 @@ const PackagesCarousel = (props: PackagesCarouselProps) => {
     );
   };
 
-  if (!packages) return null;
-
   return (
     <Carousel
       data={packages}
       renderItem={renderItem}
-      style={{ width: PAGE_WIDTH }}
-      height={320}
-      width={PAGE_WIDTH}
-      loop={false}
-      pagingEnabled
-      snapEnabled
-      autoPlay={false}
-      mode="parallax"
-      modeConfig={{
-        parallaxScrollingScale: 0.9,
-        parallaxScrollingOffset: 45,
+      style={{ width: PAGE_WIDTH, height: 320 }}
+      snapMode="page"
+      layout={{
+        type: 'parallax',
+        scale: 0.9,
+        offset: 45,
       }}
-      panGestureHandlerProps={{
-        activeOffsetX: [-10, 10],
+      onConfigurePanGesture={(gesture) => {
+        gesture.activeOffsetX([-10, 10]);
       }}
     />
   );

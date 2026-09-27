@@ -1,10 +1,17 @@
 import { useNotificationStore } from '../notification-store';
 import { NotificationPreference } from '../types';
 
+jest.mock('@react-native-firebase/messaging', () => () => ({
+  subscribeToTopic: jest.fn(),
+  unsubscribeFromTopic: jest.fn(),
+}));
+
 const initialState = [
   { type: 'twentyFourHour', value: false },
   { type: 'oneHour', value: false },
   { type: 'tenMinutes', value: false },
+  { type: 'updates', value: false },
+  { type: 'webcastLive', value: false },
   { type: 'cape', value: false },
   { type: 'van', value: false },
   { type: 'wallops', value: false },

@@ -1,9 +1,9 @@
 import { LoadingAnimation } from '@assets/animations';
 import { colors } from '@theme/colors';
 import { spacing } from '@theme/spacing';
+import LottieView from 'lottie-react-native';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeOut } from 'react-native-reanimated';
-import LottieView from 'lottie-react-native';
 
 export const SplashScreen = () => {
   return (

@@ -5,14 +5,14 @@
     "description": "Liftoff allows you to track all upcoming launches from SpaceX, NASA, ULA and more",
     "scheme": "liftoff",
     "owner": "viniciusmoreria",
-    "version": "3.2.2",
-    "privacy": "public",
+    "version": "3.2.5",
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/favicon.png"
     },
     "jsEngine": "hermes",
+    "newArchEnabled": true,
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
@@ -33,7 +33,7 @@
       "bitcode": false,
       "supportsTablet": true,
       "bundleIdentifier": "com.viniciusmoreria.liftoff",
-      "buildNumber": "3.2.2",
+      "buildNumber": "3.2.5",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -61,7 +61,7 @@
       },
       "package": "com.viniciusmoreria.liftoff",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.viniciusmoreria.liftoff",
-      "versionCode": 520030202,
+      "versionCode": 540030205,
       "googleServicesFile": "./src/libs/firebase/google-services.json",
       "permissions": [
         "com.android.vending.BILLING"
@@ -102,8 +102,8 @@
         "expo-build-properties",
         {
           "android": {
-            "compileSdkVersion": 35,
-            "targetSdkVersion": 35,
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
             "minSdkVersion": 24
           },
           "ios": {
@@ -120,13 +120,14 @@
         }
       ],
       [
-        "@sentry/react-native/expo",
+        "@sentry/react-native",
         {
           "url": "https://sentry.io/",
           "organization": "liftoff-wg",
           "project": "liftoff-wg"
         }
       ],
+      "expo-web-browser",
       [
         "expo-splash-screen",
         {
