@@ -14,4 +14,5 @@ export type ErrorName =
   | 'QueryRequestError'
   | 'FirebaseSignInError'
   | 'AnalyticsLogEventError'
-  | 'PurchasePackagesError';
+  | 'PurchasePackagesError'
+  | 'GetOfferingsError';
